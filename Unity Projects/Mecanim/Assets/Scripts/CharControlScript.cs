@@ -27,9 +27,9 @@ public class CharControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
+		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
 		layer2CurrentState = anim.GetCurrentAnimatorStateInfo(1);
-		
+		/*
 		//if (currentBaseState.nameHash == idleState)
 		//{
 			if (Input.GetKeyDown("t")) 
@@ -41,11 +41,11 @@ public class CharControlScript : MonoBehaviour {
 			{	
 				anim.SetBool("Wave", true);
 			}
-		//}
+		//}*/
 		if(layer2CurrentState.nameHash == waveState)
 		{
 			anim.SetBool("Wave", false);
-		}*/
+		}
 	}
 	
 	void FixedUpdate ()

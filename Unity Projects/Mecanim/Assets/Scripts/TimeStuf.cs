@@ -11,11 +11,13 @@ public class TimeStuf : MonoBehaviour {
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
 	private bool isTeleporting = false;
-	private List<int> maxInstanceExtends = new List<int>();
+	private List<float> maxInstanceExtends = new List<float>();
+	
+	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
-	
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -27,17 +29,36 @@ public class TimeStuf : MonoBehaviour {
 			}
 			if (Input.GetKeyDown("t")) 
 			{	
-				Debug.Log("go");
-				teleport();	
+				//Debug.Log("go");
+				anim.SetBool("Wave", true);
+				StartCoroutine(teleport());	
 			}
 			if (Input.GetKeyDown("r")) 
 			{	
-				teleportCloner();	
+				anim.SetBool("Wave", true);
+				StartCoroutine(teleportCloner());	
 			}
 			if (Input.GetKeyDown("y")) 
 			{	
 				sendYoungestBack();	
 			}
+			
+			//if (currentBaseState.nameHash == idleState)
+			//{
+			/*if (Input.GetKeyDown("t")) 
+			{	
+				//Debug.Log(("Wave"));
+				anim.SetBool("Wave", true);
+			}
+			if (Input.GetKeyDown("r")) 
+			{	
+				anim.SetBool("Wave", true);
+			}*/
+			//}
+			/*if(layer2CurrentState.nameHash == waveState)
+			{
+				anim.SetBool("Wave", false);
+			}*/
 		}
 	}
 	
@@ -45,45 +66,7 @@ public class TimeStuf : MonoBehaviour {
 		float posX = transform.position.x;
 		float posZ = transform.position.z;
 		
-		GameObject lightObject;
-		Light light;
-		
-		//First segment:
-		if (posZ > -45 && posZ < -4) {
-			lightObject = GameObject.Find("Point light1");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 0.0f, 0.0f);
-			lightObject = GameObject.Find("Point light2");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-			lightObject = GameObject.Find("Point light3");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-		}
-		//Second segment:
-		else if (posZ >= -4 && posZ < 24) {
-			lightObject = GameObject.Find("Point light2");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 0.0f, 0.0f);
-			lightObject = GameObject.Find("Point light1");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-			lightObject = GameObject.Find("Point light3");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-		}
-		//Third segment:
-		else {
-			lightObject = GameObject.Find("Point light3");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 0.0f, 0.0f);
-			lightObject = GameObject.Find("Point light1");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-			lightObject = GameObject.Find("Point light2");
-			light = lightObject.GetComponent<Light>();
-			light.color = new Color(1.0f, 1.0f, 1.0f);
-		}
+		updateLights(posZ, new Color(0.0f,1.0f,0.0f));
 		
 		//Create a 3D object at the checkpoint to indicate where it is set:
 		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, 3.5f, posZ), Quaternion.identity);
@@ -98,44 +81,49 @@ public class TimeStuf : MonoBehaviour {
 		checkpoints.Add(checkpoint);
 	}
 	
-	public /*IEnumerator*/ void teleport() { 
+	public IEnumerator teleport() { 
 		if (checkpoints.Count > 0) {
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
 			isTeleporting = true;
-			//yield return new WaitForSeconds(0.75f);
+			Debug.Log(anim.GetBool("Wave"));
+			while (anim.GetBool("Wave")) {
+				yield return new WaitForSeconds(1.5f);
+			}
 			isTeleporting = false;
-			transform.position = new Vector3(checkPosX, 1f, checkPosZ);
+			transform.position = new Vector3(checkPosX, 0, checkPosZ);
 			
 			//Remove all instances:
 			foreach (GameObject clone in clones) {
 				GameObject.Destroy(clone);
 			}
 			clones = new List<GameObject>();
-			maxInstanceExtends = new List<int>();
+			maxInstanceExtends = new List<float>();
 		}
 	}
 	
-	public /*IEnumerator*/ void teleportCloner() {
+	public IEnumerator teleportCloner() {
 		if (checkpoints.Count > 0 && clones.Count < 4) {
 			float posZ = transform.position.z;
 			
-			if (posZ > -45 && posZ < -4) {
-				maxInstanceExtends.Add(-4);
+			if (posZ >= -17.5 && posZ < 2.5) {
+				maxInstanceExtends.Add(-17.5f);
 			}
-			else if (posZ >= -4 && posZ < 24) {
-				maxInstanceExtends.Add(24);
+			else if (posZ >= -27.5 && posZ < -17.5) {
+				maxInstanceExtends.Add(-27.5f);
 			}
 			else 
-				maxInstanceExtends.Add(45);
+				maxInstanceExtends.Add(-47.5f);
 	 	
-		
+			updateLights(posZ, new Color(1.0f,0.0f,0.0f));
+			
+			
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
 			isTeleporting = true;
-			//yield return new WaitForSeconds(0.75f);
+			yield return new WaitForSeconds(1.5f);
 			isTeleporting = false;
-			transform.position = new Vector3(checkPosX, 1, checkPosZ);
+			transform.position = new Vector3(checkPosX, 0, checkPosZ);
 			
 			float cloneX;
 			float cloneZ;
@@ -157,7 +145,7 @@ public class TimeStuf : MonoBehaviour {
 					cloneZ = checkPosZ - 1;
 					break;
 			}
-			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, 1f, cloneZ), Quaternion.identity);
+			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, 0, cloneZ), Quaternion.identity);
 			clones.Add(clone);
 		}
 	}
@@ -167,6 +155,34 @@ public class TimeStuf : MonoBehaviour {
 			GameObject.Destroy(clones[clones.Count-1]);
 			clones.RemoveAt(clones.Count-1);
 			maxInstanceExtends.RemoveAt(maxInstanceExtends.Count-1);
+		}
+	}
+	
+	void updateLights(float posZ, Color color) {
+		GameObject lightObject1 = GameObject.Find("Point light1");
+		GameObject lightObject2 = GameObject.Find("Point light2");
+		GameObject lightObject3 = GameObject.Find("Point light3");
+		Light light1 = lightObject1.GetComponent<Light>();
+		Light light2 = lightObject2.GetComponent<Light>();
+		Light light3 = lightObject3.GetComponent<Light>();
+	
+		//First segment:
+		if (posZ >= -17.5 && posZ < 2.5) {
+			light1.color = color;
+			light2.color = new Color(1.0f, 1.0f, 1.0f);
+			light3.color = new Color(1.0f, 1.0f, 1.0f);
+		}
+		//Second segment:
+		else if (posZ >= -27.5 && posZ < -17.5) {
+			light2.color = color;
+			light1.color = new Color(1.0f, 1.0f, 1.0f);
+			light3.color = new Color(1.0f, 1.0f, 1.0f);
+		}
+		//Third segment:
+		else {
+			light3.color = color;
+			light1.color = new Color(1.0f, 1.0f, 1.0f);
+			light2.color = new Color(1.0f, 1.0f, 1.0f);
 		}
 	}
 
