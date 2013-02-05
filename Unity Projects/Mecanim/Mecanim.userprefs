@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharControlScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\CharControlScript.cs" Line="6" Column="3" />
+      <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="23" Column="101" />
+      <File FileName="Assets\Scripts\TimeStuf.cs" Line="101" Column="29" />
+      <File FileName="Assets\Scripts\TimeStuff.js" Line="3" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
