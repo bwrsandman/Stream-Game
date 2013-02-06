@@ -3,66 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class TimeStuf : MonoBehaviour {
+public class TimeActions : MonoBehaviour {
 	
 	public GameObject checkFab;
 	public GameObject charFab;
 	
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
-	private bool isTeleporting = false;
+	private bool teleporting = false;
 	private List<float> maxInstanceExtends = new List<float>();
-	
-	private Animator anim;
 
-	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (!isTeleporting) {
-			if (Input.GetKeyDown("e")) 
-			{	
-				setCheckpoint();	
-			}
-			if (Input.GetKeyDown("t")) 
-			{	
-				//Debug.Log("go");
-				anim.SetBool("Wave", true);
-				StartCoroutine(teleport());	
-			}
-			if (Input.GetKeyDown("r")) 
-			{	
-				anim.SetBool("Wave", true);
-				StartCoroutine(teleportCloner());	
-			}
-			if (Input.GetKeyDown("y")) 
-			{	
-				sendYoungestBack();	
-			}
-			
-			//if (currentBaseState.nameHash == idleState)
-			//{
-			/*if (Input.GetKeyDown("t")) 
-			{	
-				//Debug.Log(("Wave"));
-				anim.SetBool("Wave", true);
-			}
-			if (Input.GetKeyDown("r")) 
-			{	
-				anim.SetBool("Wave", true);
-			}*/
-			//}
-			/*if(layer2CurrentState.nameHash == waveState)
-			{
-				anim.SetBool("Wave", false);
-			}*/
-		}
-	}
-	
-	void setCheckpoint() {
+	public void setCheckpoint() {
 		float posX = transform.position.x;
 		float posZ = transform.position.z;
 		
@@ -85,12 +39,9 @@ public class TimeStuf : MonoBehaviour {
 		if (checkpoints.Count > 0) {
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			isTeleporting = true;
-			Debug.Log(anim.GetBool("Wave"));
-			while (anim.GetBool("Wave")) {
-				yield return new WaitForSeconds(1.5f);
-			}
-			isTeleporting = false;
+			teleporting = true;			
+			yield return new WaitForSeconds(1.5f);
+			teleporting = false;
 			transform.position = new Vector3(checkPosX, 0, checkPosZ);
 			
 			//Remove all instances:
@@ -118,13 +69,15 @@ public class TimeStuf : MonoBehaviour {
 			updateLights(posZ, new Color(1.0f,0.0f,0.0f));
 			
 			
+			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			isTeleporting = true;
+			teleporting = true;
 			yield return new WaitForSeconds(1.5f);
-			isTeleporting = false;
+			teleporting = false;
 			transform.position = new Vector3(checkPosX, 0, checkPosZ);
 			
+			//Find position for new instance:
 			float cloneX;
 			float cloneZ;
 			switch(clones.Count) {
@@ -150,7 +103,7 @@ public class TimeStuf : MonoBehaviour {
 		}
 	}
 	
-	void sendYoungestBack() {
+	public void sendYoungestBack() {
 		if (clones.Count > 0) {
 			GameObject.Destroy(clones[clones.Count-1]);
 			clones.RemoveAt(clones.Count-1);
@@ -184,6 +137,9 @@ public class TimeStuf : MonoBehaviour {
 			light1.color = new Color(1.0f, 1.0f, 1.0f);
 			light2.color = new Color(1.0f, 1.0f, 1.0f);
 		}
+	}
+	public bool isTeleporting () {
+		return teleporting;	
 	}
 
 }

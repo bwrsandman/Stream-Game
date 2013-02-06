@@ -5,20 +5,21 @@ using System.Collections;
 [RequireComponent(typeof (Animator))]
 //[RequireComponent(typeof (CapsuleCollider))]
 [RequireComponent(typeof (Rigidbody))]
+[RequireComponent(typeof (TimeActions))]
 
-public class CharControlScript : MonoBehaviour {
+public class CharControl : MonoBehaviour {
 	
 	private Animator anim;							// a reference to the animator on the character
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
+	private TimeActions timeScript; 
+		
 	//private CapsuleCollider col;	
-	
-	static int idleState = Animator.StringToHash("Base Layer.Idle");	
 	static int waveState = Animator.StringToHash("Layer2.Wave");
 
-	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();					  
+		anim = GetComponent<Animator>();	
+		timeScript = GetComponent<TimeActions>();
 		//col = GetComponent<CapsuleCollider>();		
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
@@ -29,19 +30,28 @@ public class CharControlScript : MonoBehaviour {
 	void Update () {
 		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
 		layer2CurrentState = anim.GetCurrentAnimatorStateInfo(1);
-		/*
-		//if (currentBaseState.nameHash == idleState)
-		//{
+		
+		if (!timeScript.isTeleporting()) {
+			if (Input.GetKeyDown("e")) 
+			{	
+				timeScript.setCheckpoint();	
+			}
 			if (Input.GetKeyDown("t")) 
 			{	
-				Debug.Log(("Wave"));
 				anim.SetBool("Wave", true);
+				StartCoroutine(timeScript.teleport());	
 			}
 			if (Input.GetKeyDown("r")) 
 			{	
 				anim.SetBool("Wave", true);
+				StartCoroutine(timeScript.teleportCloner());	
 			}
-		//}*/
+			if (Input.GetKeyDown("y")) 
+			{	
+				timeScript.sendYoungestBack();	
+			}	
+		}
+		
 		if(layer2CurrentState.nameHash == waveState)
 		{
 			anim.SetBool("Wave", false);
