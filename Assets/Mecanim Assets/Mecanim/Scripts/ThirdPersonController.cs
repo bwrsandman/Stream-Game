@@ -7,7 +7,7 @@ using System.Collections;
 [RequireComponent(typeof (Rigidbody))]
 [RequireComponent(typeof (TimeActions))]
 
-public class CharControl : MonoBehaviour {
+public class ThirdPersonController : MonoBehaviour {
 	
 	private Animator anim;							// a reference to the animator on the character
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
