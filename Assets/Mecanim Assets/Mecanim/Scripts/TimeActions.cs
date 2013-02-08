@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class TimeActions : MonoBehaviour {
 	
 	public GameObject checkFab;
@@ -12,8 +11,9 @@ public class TimeActions : MonoBehaviour {
 	private List<GameObject> clones = new List<GameObject>();
 	private bool teleporting = false;
 	private List<float> maxInstanceExtends = new List<float>();
-
+	
 	void Start () {
+		
 	}
 	
 	public void setCheckpoint() {
@@ -99,6 +99,7 @@ public class TimeActions : MonoBehaviour {
 					break;
 			}
 			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, 0, cloneZ), Quaternion.identity);
+			clone.name = "clone" + clones.Count;
 			clones.Add(clone);
 		}
 	}
@@ -141,5 +142,9 @@ public class TimeActions : MonoBehaviour {
 	public bool isTeleporting () {
 		return teleporting;	
 	}
-
+	
+	public int GetCloneCount()
+	{
+		return clones.Count;
+	}
 }
