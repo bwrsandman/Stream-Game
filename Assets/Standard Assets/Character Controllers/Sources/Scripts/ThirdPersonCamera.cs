@@ -6,6 +6,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 	Transform cameraTransform;
 	private Transform _target;	
 		
+	public float smooth = 10.0f;
+	public float sweep_width = 0.25f;
+	
 	public float distance = 7.0f;
 	
 	// the height we want the camera to be above the target
@@ -69,12 +72,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 		Cut(_target, centerOffset);
 	}
 	
-	void DebugDrawStuff ()
-	{
-		Debug.DrawLine(_target.position, _target.position + headOffset);
-	
-	}
-	
 	float AngleDistance (float a, float b)
 	{
 		a = Mathf.Repeat(a, 360.0f);
@@ -124,28 +121,34 @@ public class ThirdPersonCamera : MonoBehaviour {
 	    cameraTransform.rotation = rotation;
 		
 		
-		/* TODO: Adjust distance if camera is obstructed
-		 *       Shoot ray from camera to targetHead to find out */
+		
 		// Set position	
 		Vector3 cam_position = rotation * new Vector3(0.0f, 0.0f, -distance);
+		Vector3 cam_no_head = cameraTransform.position - targetHead;
+		
+		
+		/* Calculate offset orthogonal to the lookat vector and the up vector */
+		
+		Vector3 sweep_offset = Vector3.Cross(Vector3.up, cam_position).normalized * sweep_width;
+		
+		/* Show rays being cast */
+		Debug.DrawRay(targetHead - sweep_offset, cam_position + sweep_offset);
+		Debug.DrawRay(targetHead + sweep_offset, cam_position - sweep_offset);
+		
+		/* Shoot ray from camera to targetHead to find out */
 		RaycastHit hit;
-		if(Physics.Raycast(targetHead, cam_position, out hit))
+		if(Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit) || 
+			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit))
 		{
 			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance);
+			cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
+		}
+		else if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
+		{
+			cam_position = Vector3.Lerp(cameraTransform.position - targetHead, cam_position, Time.deltaTime * smooth);
 		}
 		
 		cameraTransform.position = cam_position  + targetHead;
-		
-		// Always look at the target	
-		//SetUpRotation(targetCenter, targetHead);
-	}
-	
-	void OnGUI ()
-	{
-		/*GUI.TextArea(new Rect(400, 200, 250, 50), "cameraTransform.eulerAngles.y: " + cameraTransform.eulerAngles.y);
-		GUI.TextArea(new Rect(400, 300, 250, 50), "cameraTransform.eulerAngles.x: " + cameraTransform.eulerAngles.x);
-		GUI.TextArea(new Rect(400, 400, 250, 50), "currentAngle_v: " +  currentAngle_v);
-		GUI.TextArea(new Rect(400, 500, 250, 50), "currentAngle_h: " +  currentAngle_h);*/
 	}
 	
 	// Use this for initialization
@@ -174,47 +177,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 		heightSmoothLag = oldHeightSmooth;
 		snapMaxSpeed = oldSnapMaxSpeed;
 		snapSmoothLag = oldSnapSmooth;
-	}
-	
-	void SetUpRotation (Vector3 centerPos, Vector3 headPos)
-	{
-		Vector3 cameraPos = cameraTransform.position;
-		Vector3 offsetToCenter = centerPos - cameraPos;
-		Vector3 offsetToHead = headPos - cameraPos;
-		
-		// Generate base rotation only around y-axis
-		Quaternion yRotation = Quaternion.LookRotation(new Vector3(offsetToHead.x, offsetToHead.y, offsetToHead.z));
-	
-		Vector3 relativeOffset = Vector3.forward * distance + Vector3.down * height;
-		cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
-	
-		// Calculate the projected center position and top position in world space
-		Ray centerRay = cameraTransform.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1.0f));
-		Ray topRay = cameraTransform.camera.ViewportPointToRay(new Vector3(0.5f, clampHeadPositionScreenSpace, 1.0f));
-	
-		Vector3 centerRayPos = centerRay.GetPoint(distance);
-		Vector3 topRayPos = topRay.GetPoint(distance);
-		
-		float centerToTopAngle = Vector3.Angle(centerRay.direction, topRay.direction);
-		
-		float heightToAngle = centerToTopAngle / (centerRayPos.y - topRayPos.y);
-	
-		float extraLookAngle = heightToAngle * (centerRayPos.y - centerPos.y);
-		if (extraLookAngle < centerToTopAngle)
-		{
-			extraLookAngle = 0.0f;
-		}
-		else
-		{
-			extraLookAngle = extraLookAngle - centerToTopAngle;
-			cameraTransform.rotation *= Quaternion.Euler(-extraLookAngle, 0.0f, 0.0f);
-		}
-	}
-
-	Vector3 GetCenterOffset ()
-	{
-		return centerOffset;
-	}
-	
+	}	
 	
 }
