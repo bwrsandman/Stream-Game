@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: 05525bc72383c0f4597bdc284cb82052
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: place3dTexture1
+    100002: place3dTexture2
+    100004: place3dTexture3
+    100006: place3dTexture4
+    100008: TEMP_console
+    100010: TEMP_Console_bridge
+    100012: TEMP_Console_btn
+    100014: TEMP_Exit_bridge
+    100016: TEMP_Obstacle_4
+    100018: TEMP_Obstacle_5
+    100020: TEMP_Obstacle_6
+    100022: TEMP_Obstacle_7
+    100024: TEMP_Obstacle_8
+    100026: TEMP_Obstacle_9
+    100028: TEMP_textures
+    100030: //RootNode
+    100032: TEMP_Tutorial_level_1_00
+    100034: TEMP_tutorial_level_grp
+    400000: place3dTexture1
+    400002: place3dTexture2
+    400004: place3dTexture3
+    400006: place3dTexture4
+    400008: TEMP_console
+    400010: TEMP_Console_bridge
+    400012: TEMP_Console_btn
+    400014: TEMP_Exit_bridge
+    400016: TEMP_Obstacle_4
+    400018: TEMP_Obstacle_5
+    400020: TEMP_Obstacle_6
+    400022: TEMP_Obstacle_7
+    400024: TEMP_Obstacle_8
+    400026: TEMP_Obstacle_9
+    400028: TEMP_textures
+    400030: //RootNode
+    400032: TEMP_Tutorial_level_1_00
+    400034: TEMP_tutorial_level_grp
+    2300000: TEMP_console
+    2300002: TEMP_Console_bridge
+    2300004: TEMP_Console_btn
+    2300006: TEMP_Exit_bridge
+    2300008: TEMP_Obstacle_4
+    2300010: TEMP_Obstacle_5
+    2300012: TEMP_Obstacle_6
+    2300014: TEMP_Obstacle_7
+    2300016: TEMP_Obstacle_8
+    2300018: TEMP_Obstacle_9
+    2300020: TEMP_Tutorial_level_1_00
+    3300000: TEMP_console
+    3300002: TEMP_Console_bridge
+    3300004: TEMP_Console_btn
+    3300006: TEMP_Exit_bridge
+    3300008: TEMP_Obstacle_4
+    3300010: TEMP_Obstacle_5
+    3300012: TEMP_Obstacle_6
+    3300014: TEMP_Obstacle_7
+    3300016: TEMP_Obstacle_8
+    3300018: TEMP_Obstacle_9
+    3300020: TEMP_Tutorial_level_1_00
+    4300000: TEMP_Tutorial_level_1_00
+    4300002: TEMP_Obstacle_9
+    4300004: TEMP_Obstacle_8
+    4300006: TEMP_Obstacle_7
+    4300008: TEMP_Obstacle_6
+    4300010: TEMP_Obstacle_5
+    4300012: TEMP_Obstacle_4
+    4300014: TEMP_Console_btn
+    4300016: TEMP_console
+    4300018: TEMP_Console_bridge
+    4300020: TEMP_Exit_bridge
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
