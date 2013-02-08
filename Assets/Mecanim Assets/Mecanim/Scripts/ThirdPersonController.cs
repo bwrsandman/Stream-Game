@@ -64,7 +64,5 @@ public class ThirdPersonController : MonoBehaviour {
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		anim.SetFloat("Speed", v);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
 		anim.SetFloat("Direction", h);
-		
-
 	}
 }
