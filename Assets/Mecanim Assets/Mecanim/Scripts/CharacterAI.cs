@@ -22,7 +22,7 @@ public class CharacterAI : MonoBehaviour {
 	Transform cloneTransform; //current transform data of this clone
     private float moveSpeed = 3.0f; //move speed
     private float rotationSpeed = 3.0f; //speed of turning
-	private static CharControl master;
+	private static ThirdPersonController master;
 	
     void Awake()
     {
@@ -32,7 +32,7 @@ public class CharacterAI : MonoBehaviour {
     void Start()
     {
 		timeActions = GetComponent<TimeActions>();
-		master = GetComponent<CharControl>();
+		master = GetComponent<ThirdPersonController>();
 		playerTransform = GameObject.FindWithTag("Player").transform;
     }
      
