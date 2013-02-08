@@ -127,8 +127,14 @@ public class ThirdPersonCamera : MonoBehaviour {
 		/* TODO: Adjust distance if camera is obstructed
 		 *       Shoot ray from camera to targetHead to find out */
 		// Set position	
-		cameraTransform.position = rotation * new Vector3(0.0f, 0.0f, -distance)
-	                                  + targetHead;
+		Vector3 cam_position = rotation * new Vector3(0.0f, 0.0f, -distance);
+		RaycastHit hit;
+		if(Physics.Raycast(targetHead, cam_position, out hit))
+		{
+			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance);
+		}
+		
+		cameraTransform.position = cam_position  + targetHead;
 		
 		// Always look at the target	
 		//SetUpRotation(targetCenter, targetHead);
