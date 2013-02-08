@@ -13,6 +13,8 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
+	private bool isMoving;
+	
 		
 	//private CapsuleCollider col;	
 	static int waveState = Animator.StringToHash("Layer2.Wave");
@@ -24,6 +26,7 @@ public class ThirdPersonController : MonoBehaviour {
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
+		isMoving = false;
 	}
 	
 	// Update is called once per frame
@@ -60,9 +63,40 @@ public class ThirdPersonController : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
+		updateMovement();
+	}
+	
+	void updateMovement () {
 		float h = Input.GetAxis("Horizontal Move");				// setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
-		anim.SetFloat("Speed", v);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-		anim.SetFloat("Direction", h);
+		
+		Transform cameraTransform = Camera.main.transform;
+		Debug.Log(cameraTransform.position);
+		
+		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
+		forward.y = 0.0f;
+		forward.Normalize();
+		
+		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);
+		
+		
+		Vector3 dir = h * right + v*forward;
+		float mag = dir.magnitude;
+		
+		bool wasMoving = isMoving;
+		isMoving = mag > 0.01f; 
+		
+		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
+		
+		if (isMoving) {
+			float x = dir.x;
+			float y = dir.z;
+			
+			
+			float rot = Mathf.Atan2(x,y)*Mathf.Rad2Deg;
+			
+			transform.eulerAngles = new Vector3(0,rot,0);
+		}
+		
 	}
 }
