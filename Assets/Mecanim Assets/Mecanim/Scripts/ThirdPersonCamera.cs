@@ -80,7 +80,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		return Mathf.Abs(b - a);
 	}
 	
-	void Apply (Transform dummyTarget, Vector3 dummyCenter)
+	public void Apply (Transform dummyTarget, Vector3 dummyCenter)
 	{
 		/* Early out if we don't have a target */
 		if (!controller)
@@ -158,7 +158,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		Apply (transform, Vector3.zero);
+		if (!controller.isMoving()) {
+			Apply (transform, Vector3.zero);
+		}
 	}
 	
 	void Cut (Transform dummyTarget , Vector3 dummyCenter)

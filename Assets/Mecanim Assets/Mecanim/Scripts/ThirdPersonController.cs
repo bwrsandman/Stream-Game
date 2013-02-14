@@ -13,7 +13,8 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
-	private bool isMoving;
+	private ThirdPersonCamera camScript;
+	private bool moving;
 	
 		
 	//private CapsuleCollider col;	
@@ -22,11 +23,12 @@ public class ThirdPersonController : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator>();	
 		timeScript = GetComponent<TimeActions>();
+		camScript = GetComponent<ThirdPersonCamera>();
 		//col = GetComponent<CapsuleCollider>();		
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
-		isMoving = false;
+		moving = false;
 	}
 	
 	// Update is called once per frame
@@ -71,32 +73,38 @@ public class ThirdPersonController : MonoBehaviour {
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
 		Transform cameraTransform = Camera.main.transform;
-		Debug.Log(cameraTransform.position);
 		
 		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
 		forward.y = 0.0f;
 		forward.Normalize();
 		
-		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);
+		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);		
 		
-		
-		Vector3 dir = h * right + v*forward;
+		Vector3 dir = h * right + v * forward;
+		dir.Normalize();
 		float mag = dir.magnitude;
 		
-		bool wasMoving = isMoving;
-		isMoving = mag > 0.01f; 
+		bool wasMoving = moving;
+		moving = mag > 0.01f; 
 		
 		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
 		
-		if (isMoving) {
+		if (moving) {
 			float x = dir.x;
-			float y = dir.z;
+			float y = dir.z;			
 			
+			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			
-			float rot = Mathf.Atan2(x,y)*Mathf.Rad2Deg;
+			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
+			 
+			//Move the camera immediately to avoid stutter when moving towards the camera:
+			camScript.Apply (transform, Vector3.zero);
 			
-			transform.eulerAngles = new Vector3(0,rot,0);
+			Debug.Log(rot);
 		}
-		
+	}
+	
+	public bool isMoving () {
+		return moving;	
 	}
 }
