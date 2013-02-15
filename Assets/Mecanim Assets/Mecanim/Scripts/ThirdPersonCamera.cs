@@ -36,11 +36,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public Vector3 headOffset = Vector3.zero;
 	public Vector3 centerOffset = Vector3.zero;
 	
-	private float heightVelocity = 0.0f;
-	private float angleVelocity = 0.0f;
-	private bool snap = false;
 	private ThirdPersonController controller;
-	private float targetHeight = 100000.0f; 	
 	
 	void Awake ()
 	{
@@ -173,7 +169,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 		snapSmoothLag = 0.001f;
 		heightSmoothLag = 0.001f;
 		
-		snap = true;
 		Apply (transform, Vector3.zero);
 		
 		heightSmoothLag = oldHeightSmooth;
