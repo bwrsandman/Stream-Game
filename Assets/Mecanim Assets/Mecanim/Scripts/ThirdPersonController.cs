@@ -98,13 +98,7 @@ public class ThirdPersonController : MonoBehaviour {
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 			 
 			//Move the camera immediately to avoid stutter when moving towards the camera:
-			camScript.Apply (transform, Vector3.zero);
-			
-			Debug.Log(rot);
+			//camScript.Apply (transform, Vector3.zero);
 		}
-	}
-	
-	public bool isMoving () {
-		return moving;	
 	}
 }

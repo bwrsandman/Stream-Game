@@ -153,10 +153,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
-		if (!controller.isMoving()) {
-			Apply (transform, Vector3.zero);
-		}
+	void FixedUpdate () {
+		Apply (transform, Vector3.zero);
 	}
 	
 	void Cut (Transform dummyTarget , Vector3 dummyCenter)
