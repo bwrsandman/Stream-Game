@@ -60,7 +60,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		
 		if (controller)
 		{
-			CharacterController characterController  = (CharacterController)_target.collider;
+			Collider characterController  = _target.collider;
 			centerOffset = characterController.bounds.center - _target.position;
 			headOffset = centerOffset;
 			headOffset.y = characterController.bounds.max.y - _target.position.y;
