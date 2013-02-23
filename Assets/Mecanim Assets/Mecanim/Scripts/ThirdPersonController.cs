@@ -72,6 +72,9 @@ public class ThirdPersonController : MonoBehaviour {
 		float h = Input.GetAxis("Horizontal Move");				// setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
+		bool run = Input.GetKey("left shift");
+		anim.SetBool("ShiftDown", run);
+		
 		Transform cameraTransform = Camera.main.transform;
 		
 		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);

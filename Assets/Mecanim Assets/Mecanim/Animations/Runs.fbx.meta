@@ -667,11 +667,11 @@ ModelImporter:
       skeletonMaskElements: []
     - name: Run
       takeName: Run
-      firstFrame: 301
-      lastFrame: 318
+      firstFrame: 311
+      lastFrame: 327
       wrapMode: 0
-      orientationOffsetY: -3.92000008
-      level: 0
+      orientationOffsetY: 3.23000002
+      level: -0
       cycleOffset: 0
       loop: 0
       loopBlend: 1
@@ -679,9 +679,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       keepAdditionalBonesAnimation: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
