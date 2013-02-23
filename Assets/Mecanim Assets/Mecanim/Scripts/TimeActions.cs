@@ -18,12 +18,13 @@ public class TimeActions : MonoBehaviour {
 	
 	public void setCheckpoint() {
 		float posX = transform.position.x;
+		float posY = transform.position.y;
 		float posZ = transform.position.z;
 		
 		updateLights(posZ, new Color(0.0f,1.0f,0.0f));
 		
 		//Create a 3D object at the checkpoint to indicate where it is set:
-		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, 3.5f, posZ), Quaternion.identity);
+		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, posY + 3.5f, posZ), Quaternion.identity);
 		
 		//Destroy the old checkpoint (for now we only have one checkpoint at a time):
 		if (checkpoints.Count > 0) {
@@ -38,11 +39,12 @@ public class TimeActions : MonoBehaviour {
 	public IEnumerator teleport() { 
 		if (checkpoints.Count > 0) {
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
+			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
 			teleporting = true;			
 			yield return new WaitForSeconds(1.5f);
 			teleporting = false;
-			transform.position = new Vector3(checkPosX, 0, checkPosZ);
+			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Remove all instances:
 			foreach (GameObject clone in clones) {
@@ -71,11 +73,12 @@ public class TimeActions : MonoBehaviour {
 			
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
+			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
 			teleporting = true;
 			yield return new WaitForSeconds(1.5f);
 			teleporting = false;
-			transform.position = new Vector3(checkPosX, 0, checkPosZ);
+			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Find position for new instance:
 			float cloneX;
@@ -98,7 +101,7 @@ public class TimeActions : MonoBehaviour {
 					cloneZ = checkPosZ - 1;
 					break;
 			}
-			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, 0, cloneZ), Quaternion.identity);
+			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, transform.position.y + 1.0f, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			CharacterAI ai = (CharacterAI)clone.AddComponent("CharacterAI");
 			clones.Add(clone);
