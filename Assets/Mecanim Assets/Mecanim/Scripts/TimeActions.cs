@@ -21,7 +21,7 @@ public class TimeActions : MonoBehaviour {
 		float posY = transform.position.y;
 		float posZ = transform.position.z;
 		
-		updateLights(posZ, new Color(0.0f,1.0f,0.0f));
+		//updateLights(posZ, new Color(0.0f,1.0f,0.0f));
 		
 		//Create a 3D object at the checkpoint to indicate where it is set:
 		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, posY + 3.5f, posZ), Quaternion.identity);
@@ -68,7 +68,7 @@ public class TimeActions : MonoBehaviour {
 			else 
 				maxInstanceExtends.Add(-47.5f);
 	 	
-			updateLights(posZ, new Color(1.0f,0.0f,0.0f));
+			//updateLights(posZ, new Color(1.0f,0.0f,0.0f));
 			
 			
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
@@ -116,7 +116,7 @@ public class TimeActions : MonoBehaviour {
 		}
 	}
 	
-	void updateLights(float posZ, Color color) {
+	/*void updateLights(float posZ, Color color) {
 		GameObject lightObject1 = GameObject.Find("Point light1");
 		GameObject lightObject2 = GameObject.Find("Point light2");
 		GameObject lightObject3 = GameObject.Find("Point light3");
@@ -142,7 +142,7 @@ public class TimeActions : MonoBehaviour {
 			light1.color = new Color(1.0f, 1.0f, 1.0f);
 			light2.color = new Color(1.0f, 1.0f, 1.0f);
 		}
-	}
+	}*/
 	public bool isTeleporting () {
 		return teleporting;	
 	}
