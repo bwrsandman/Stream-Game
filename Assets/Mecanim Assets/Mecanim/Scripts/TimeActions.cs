@@ -104,7 +104,8 @@ public class TimeActions : MonoBehaviour {
 			}
 			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y + 1.0f, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
-			CharacterAI ai = (CharacterAI)clone.AddComponent("CharacterAI");
+			AIFollow ai = (AIFollow)clone.GetComponent("AIFollow");
+			ai.m_Player = transform;
 			clones.Add(clone);
 		}
 	}
