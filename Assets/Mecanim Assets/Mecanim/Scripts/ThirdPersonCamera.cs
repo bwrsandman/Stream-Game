@@ -10,6 +10,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public float sweep_width = 0.25f;
 	
 	public float distance = 7.0f;
+	public float walloffset = 0.05f;
 	
 	// the height we want the camera to be above the target
 	public float height = 3.0f;
@@ -117,7 +118,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 	    cameraTransform.rotation = rotation;
 		
 		
-		
 		// Set position	
 		Vector3 cam_position = rotation * new Vector3(0.0f, 0.0f, -distance);
 		Vector3 cam_no_head = cameraTransform.position - targetHead;
@@ -133,10 +133,10 @@ public class ThirdPersonCamera : MonoBehaviour {
 		
 		/* Shoot ray from camera to targetHead to find out */
 		RaycastHit hit;
-		if(Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit) || 
-			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit))
+		if (Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit, distance) || 
+			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit, distance))
 		{
-			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance);
+			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
 			cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
 		}
 		else if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
@@ -144,7 +144,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 			cam_position = Vector3.Lerp(cameraTransform.position - targetHead, cam_position, Time.deltaTime * smooth);
 		}
 		
-		cameraTransform.position = cam_position  + targetHead;
+		cameraTransform.position = cam_position + targetHead;
 	}
 	
 	// Use this for initialization
@@ -153,10 +153,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
-		if (!controller.isMoving()) {
-			Apply (transform, Vector3.zero);
-		}
+	void FixedUpdate () {
+		Apply (transform, Vector3.zero);
 	}
 	
 	void Cut (Transform dummyTarget , Vector3 dummyCenter)
