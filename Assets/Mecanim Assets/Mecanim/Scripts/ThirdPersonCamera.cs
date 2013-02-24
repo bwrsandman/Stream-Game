@@ -118,7 +118,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 	    cameraTransform.rotation = rotation;
 		
 		
-		
 		// Set position	
 		Vector3 cam_position = rotation * new Vector3(0.0f, 0.0f, -distance);
 		Vector3 cam_no_head = cameraTransform.position - targetHead;
@@ -145,7 +144,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 			cam_position = Vector3.Lerp(cameraTransform.position - targetHead, cam_position, Time.deltaTime * smooth);
 		}
 		
-		cameraTransform.position = cam_position  + targetHead;
+		cameraTransform.position = cam_position + targetHead;
 	}
 	
 	// Use this for initialization
@@ -154,10 +153,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
-		if (!controller.isMoving()) {
-			Apply (transform, Vector3.zero);
-		}
+	void FixedUpdate () {
+		Apply (transform, Vector3.zero);
 	}
 	
 	void Cut (Transform dummyTarget , Vector3 dummyCenter)
