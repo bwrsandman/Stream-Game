@@ -6,6 +6,7 @@ public class TimeActions : MonoBehaviour {
 	
 	public GameObject checkFab;
 	public GameObject charFab;
+	public GameObject cloneFab;
 	
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
@@ -101,7 +102,7 @@ public class TimeActions : MonoBehaviour {
 					cloneZ = checkPosZ - 1;
 					break;
 			}
-			GameObject clone = (GameObject) Instantiate(charFab, new Vector3(cloneX, transform.position.y + 1.0f, cloneZ), Quaternion.identity);
+			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y + 1.0f, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			CharacterAI ai = (CharacterAI)clone.AddComponent("CharacterAI");
 			clones.Add(clone);
