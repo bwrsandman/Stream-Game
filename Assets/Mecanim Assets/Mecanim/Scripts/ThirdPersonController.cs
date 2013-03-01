@@ -99,9 +99,6 @@ public class ThirdPersonController : MonoBehaviour {
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
-			 
-			//Move the camera immediately to avoid stutter when moving towards the camera:
-			//camScript.Apply (transform, Vector3.zero);
 		}
 	}
 }

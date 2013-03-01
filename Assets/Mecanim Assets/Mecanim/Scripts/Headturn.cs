@@ -7,14 +7,12 @@ public class Headturn : MonoBehaviour {
 	private Transform camTransform;
 	private Transform playerTransform;
 	
-	private Transform headTransform;
+	public Transform headTransform;
 	
 	// Use this for initialization
 	void Start () {
 		camTransform = Camera.main.transform;
 		playerTransform = transform;
-		
-		headTransform = GameObject.Find("Bip001 Head").transform;
 	}
 	
 	// Update is called once per frame
