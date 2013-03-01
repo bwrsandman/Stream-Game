@@ -102,7 +102,7 @@ public class TimeActions : MonoBehaviour {
 					cloneZ = checkPosZ - 1;
 					break;
 			}
-			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y + 1.0f, cloneZ), Quaternion.identity);
+			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			AIFollow ai = (AIFollow)clone.GetComponent("AIFollow");
 			ai.m_Player = transform;
