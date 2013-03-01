@@ -16,6 +16,7 @@ void Update () {
 	if(Vector3.Distance(transform.position, m_Player.position) > 1.5f)
 	{
 		GetComponent<NavMeshAgent>().enabled = true;
+		GetComponent<NavMeshAgent>().speed = 1.534f;
 		GetComponent<NavMeshAgent>().destination = m_Player.position;
 		charSpeed = GetComponent<NavMeshAgent>().speed;
 	}
@@ -24,6 +25,13 @@ void Update () {
 		GetComponent<NavMeshAgent>().enabled = false;
 		charSpeed = 0.0f;
 	}
+		
+	if(Vector3.Distance(transform.position, m_Player.position) > 5.0f)
+	{
+			GetComponent<NavMeshAgent>().speed = 5.54f;
+			charSpeed = GetComponent<NavMeshAgent>().speed;
+	}
+		
 	anim.SetFloat("Speed", charSpeed);
 }
 	
