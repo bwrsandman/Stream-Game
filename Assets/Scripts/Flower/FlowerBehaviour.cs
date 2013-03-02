@@ -5,16 +5,23 @@ namespace Flower
 	public abstract class FlowerBehaviour
 	{
 		FlowerBehaviour [] children;
-		protected static SurveillanceBotAI AI;
+		protected FlowerBotController controller;
+		public bool sense_player = false;
 		
-		public FlowerBehaviour (SurveillanceBotAI ai)
+		protected abstract FlowerState state
 		{
-			AI = ai;
+			get;
 		}
 		
-		public virtual void run()
+		public FlowerBehaviour (FlowerBotController controller)
 		{
-			AI.close_prism();
+			this.controller = controller;
+		}
+		
+		public virtual FlowerState run()
+		{
+			controller.close_prism();
+			return state;
 		}
 	}
 }
