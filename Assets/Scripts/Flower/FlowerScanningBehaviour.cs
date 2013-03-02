@@ -24,6 +24,10 @@ namespace Flower
 		{
 			Debug.Log("Scanning...");
 			FlowerState ret = base.run ();
+			if(sense_player)
+				controller.face_target();
+			else
+				ret = FlowerState.CLOSEUP;
 			return ret;
 		}
 	}

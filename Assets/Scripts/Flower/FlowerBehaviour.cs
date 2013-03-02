@@ -6,10 +6,11 @@ namespace Flower
 	{
 		FlowerBehaviour [] children;
 		protected FlowerBotController controller;
-		public bool sense_player = false;
+		protected bool sense_player {
+			get { return controller.sense_player; }
+		}
 		
-		protected abstract FlowerState state
-		{
+		protected abstract FlowerState state {
 			get;
 		}
 		

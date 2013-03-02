@@ -2,13 +2,15 @@ using UnityEngine;
 
 namespace Flower
 {
-	public class FlowerOpenningBehaviour : FlowerBehaviour
+	public class FlowerOpenningBehaviour : FlowerOpenCloseBehaviour
 	{
-		// TODO: figure out order: Idle->spring->open or Idle->open->spring
-		private const FlowerState next_state = FlowerState.SCANNING;
+		float av;
+		const float open_speed = 10.0f;
 		
-		float look_speed = 4.0f;
-		float open_speed = 10.0f;
+		// TODO: figure out order: Idle->spring->open or Idle->open->spring
+		protected override FlowerState next_state
+		{ get { return FlowerState.SCANNING; } }
+		
 		public FlowerOpenningBehaviour (FlowerBotController controller)
 			:base (controller)
 		{
@@ -19,20 +21,25 @@ namespace Flower
 			get { return FlowerState.OPENNING; }
 		}
 		
+		protected override float openclose_speed
+		{
+			get { return open_speed / Mathf.Max(av, 1.0f); }
+		}
+		
+		protected override float opening_goal
+		{
+			get { return 1.0f; }
+		}
+		
 		public override FlowerState run ()
 		{
 			FlowerState ret = base.run ();
 			
-			float av = controller.angular_velocity;
+			av = controller.angular_velocity;
 			controller.angular_velocity = Mathf.Min(Mathf.Lerp(
-				av, 0.0f, Time.deltaTime),0.1f);
-			controller.transform.rotation = Quaternion.Slerp(
-				controller.transform.rotation, 
-				controller.lookat_target(), 
-				look_speed * Time.deltaTime);
-			controller.opened = Mathf.Lerp(controller.opened, 1.01f, 
-				(open_speed / Mathf.Max(av, 1.0f)) * Time.deltaTime);
-			return (controller.opened >= 1.0f? next_state : ret);
+				av, 0.0f, Time.deltaTime), 0.1f);
+			controller.face_target();
+			return ret;
 		}
 	}
 }

@@ -21,11 +21,19 @@ public class FlowerBotController : MonoBehaviour
 	
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
+	const float look_speed = 4.0f;
 	const float max_closed = 110.0f;
 	public MeshFilter [] prisms = new MeshFilter[3];
 	FlowerBehaviour [] behaviour;
 	FlowerState behaviour_state;
-	Vector3 target_pos;
+	public bool sense_player;
+	Transform target_transform;
+	
+	
+	Vector3 target_pos
+	{
+		get { return target_transform.position; }
+	}
 	
 	FlowerBehaviour current_behaviour 
 	{
@@ -66,6 +74,12 @@ public class FlowerBotController : MonoBehaviour
 		}		
 	}
 	
+	public void face_target()
+	{
+		transform.rotation = Quaternion.Slerp(transform.rotation, 
+		lookat_target(), look_speed * Time.deltaTime);
+	}
+		
 	public Quaternion lookat_target()
 	{
 		return Quaternion.LookRotation(vector_to_target());
@@ -78,13 +92,12 @@ public class FlowerBotController : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other) 
 	{
-        current_behaviour.sense_player = true;
-		target_pos = other.transform.position + Vector3.up * 0.5f;
-		
+        sense_player = true;
+		target_transform = other.transform;
     }
 	
 	void OnTriggerExit(Collider other) 
 	{
-        current_behaviour.sense_player = false;
+        sense_player = false;
     }
 }
