@@ -21,6 +21,8 @@ namespace Flower
 		public virtual FlowerState run()
 		{
 			controller.close_prism();
+			controller.transform.RotateAroundLocal(Vector3.up,
+				controller.angular_velocity * Time.deltaTime);
 			return state;
 		}
 	}

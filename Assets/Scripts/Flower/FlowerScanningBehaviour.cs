@@ -2,6 +2,12 @@ using UnityEngine;
 
 namespace Flower
 {
+	/* ********************************************************
+	 * Look for player or Instances.
+	 * If the player has left the collision sphere, drop down
+	 * and close up.
+	 * If the player is still there, start shooting 
+	 * ******************************************************** */
 	public class FlowerScanningBehaviour : FlowerBehaviour
 	{
 		public FlowerScanningBehaviour (FlowerBotController controller)
@@ -16,6 +22,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
+			Debug.Log("Scanning...");
 			FlowerState ret = base.run ();
 			return ret;
 		}
