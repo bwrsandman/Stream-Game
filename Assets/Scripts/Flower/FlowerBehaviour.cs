@@ -1,11 +1,20 @@
-using System;
+using UnityEngine;
 
-namespace AssemblyCSharp
+namespace Flower
 {
-	public class FlowerBehaviour
+	public abstract class FlowerBehaviour
 	{
-		public FlowerBehaviour ()
+		FlowerBehaviour [] children;
+		protected static SurveillanceBotAI AI;
+		
+		public FlowerBehaviour (SurveillanceBotAI ai)
 		{
+			AI = ai;
+		}
+		
+		public virtual void run()
+		{
+			AI.close_prism();
 		}
 	}
 }

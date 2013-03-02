@@ -1,11 +1,18 @@
-using System;
+using UnityEngine;
 
-namespace AssemblyCSharp
+namespace Flower
 {
-	public class FlowerIdleBehaviour
+	public class FlowerIdleBehaviour : FlowerBehaviour
 	{
-		public FlowerIdleBehaviour ()
+		public FlowerIdleBehaviour (SurveillanceBotAI ai)
+			:base (ai)
 		{
+		}
+		
+		public override void run ()
+		{
+			AI.opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
+			base.run ();
 		}
 	}
 }
