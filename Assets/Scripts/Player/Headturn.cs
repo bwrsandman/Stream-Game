@@ -7,6 +7,8 @@ public class Headturn : MonoBehaviour {
 	private Transform camTransform;
 	private Transform playerTransform;
 	
+	public float turnLimit = 80.0f;
+	
 	public Transform headTransform;
 	
 	// Use this for initialization
@@ -23,10 +25,10 @@ public class Headturn : MonoBehaviour {
 		float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
 		float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot - 90.0f));
 		
-		if (playerCamDiff > -80.0f && playerCamDiff < 80.0f) { 
+		if (playerCamDiff > -turnLimit && playerCamDiff < turnLimit) { 
 			
-			//don't lerp if the change in angle is greater than 80 degrees:
-			if (Mathf.Ceil(deltaAngle) < 80.0f) {
+			//don't lerp if the change in angle is greater than "turnLimit":
+			if (Mathf.Ceil(deltaAngle) < turnLimit) {
 				prevAngle = Mathf.LerpAngle(prevAngle, camRot - 90.0f, .2f);
 				Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, -90.0f);
 		    	headTransform.rotation = rotation;
@@ -39,8 +41,8 @@ public class Headturn : MonoBehaviour {
 			Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, -90.0f);
 	    	headTransform.rotation = rotation;
 			
-			//if the player turns more than 80 degrees on the spot, don't lerp:
-			if (deltaAngle < 80.0f && deltaAngle > 0.1) 
+			//if the player turns more than "turnLimit" on the spot, don't lerp:
+			if (deltaAngle < turnLimit && deltaAngle > 0.1) 
 				prevAngle = Mathf.LerpAngle(prevAngle, playerRot - 90.0f, .05f);
 			else
 				prevAngle = playerRot - 90.0f;
