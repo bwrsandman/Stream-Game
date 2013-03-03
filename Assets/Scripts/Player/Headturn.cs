@@ -8,7 +8,6 @@ public class Headturn : MonoBehaviour {
 	private Transform playerTransform;
 	
 	public float turnLimit = 80.0f;
-	
 	public Transform headTransform;
 	
 	// Use this for initialization
