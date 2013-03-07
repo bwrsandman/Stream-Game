@@ -7,7 +7,7 @@ namespace Flower
 		const float close_speed = 8.0f;
 	
 		protected override FlowerState next_state
-		{ get { return FlowerState.IDLE; } }
+		{ get { return FlowerState.DROPDOWN; } }
 		
 		public FlowerCloseUpBehaviour (FlowerBotController controller)
 			:base (controller)

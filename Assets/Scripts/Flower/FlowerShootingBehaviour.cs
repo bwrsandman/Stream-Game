@@ -4,6 +4,7 @@ namespace Flower
 {
 	public class FlowerShootingBehaviour : FlowerBehaviour
 	{
+		//LineRenderer
 		public FlowerShootingBehaviour (FlowerBotController controller)
 			:base (controller)
 		{

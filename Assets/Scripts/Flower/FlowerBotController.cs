@@ -54,6 +54,8 @@ public class FlowerBotController : MonoBehaviour
 			new FlowerCloseUpBehaviour(this),
 		};
 		behaviour_state = FlowerState.IDLE;
+		
+		transform.RotateAround(Vector3.up, Random.value * 360.0f);
 	}
 	
 	// Update is called once per frame

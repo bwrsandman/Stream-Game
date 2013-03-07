@@ -2,21 +2,26 @@ using UnityEngine;
 
 namespace Flower
 {
-	public class FlowerSpringUpBehaviour : FlowerBehaviour
+	public class FlowerSpringUpBehaviour : FlowerSpringUpDownBehaviour
 	{
 		// TODO: figure out order: Idle->spring->open or Idle->open->spring
-		private const FlowerState next_state = FlowerState.OPENNING;
+		const float _speed = 5.0f;
+		const float _angular_speed = 20.0f;
+		const float height = 3.5f;
+		const float height_variation = 2.0f;
 		
-		Vector3 target;
-		Transform transform;
-		float speed = 5.0f;
-		float angular_speed = 20.0f;
+		protected override FlowerState next_state
+		{ get { return FlowerState.OPENNING; } }
+
+		protected override float speed
+		{ get { return _speed; } }
+		
+		protected override float angular_speed
+		{ get { return _angular_speed; } }
 		
 		public FlowerSpringUpBehaviour (FlowerBotController controller)
-			:base (controller)
+			:base (controller, controller.transform.position + new Vector3(0.0f, height + Random.value * height_variation, 0.0f))
 		{
-			transform = controller.transform;
-			target = transform.position + new Vector3(0.0f, 3.5f, 0.0f);
 		}
 		
 		protected override FlowerState state
@@ -26,12 +31,10 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			controller.angular_velocity = angular_speed;
-			Vector3 pos = transform.position;
-			transform.position = Vector3.Slerp(pos, target, speed * Time.deltaTime);
 			FlowerState ret = base.run ();
-			return ((pos - target).sqrMagnitude < 0.01f? next_state : ret);
+			return ret;
 		}
+		
 	}
 }
 
