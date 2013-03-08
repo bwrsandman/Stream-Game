@@ -33,7 +33,7 @@ public class FlowerBotController : MonoBehaviour
 	FlowerBehaviour [] behaviour;
 	FlowerState behaviour_state;
 	public bool sense_player;
-	Transform target_transform;
+	public Transform target_transform;
 	public Vector3 other_direction;
 	
 	
@@ -123,25 +123,10 @@ public class FlowerBotController : MonoBehaviour
 	}
 	
 	void OnTriggerEnter(Collider other) 
-	{
-		if (other.tag == "Player") {
-        	sense_player = true;
-			target_transform = other.transform;
-		}
-		else 
+	{		
+		if (other.tag != "Player") {
 			Destroy(this.gameObject);
-    }
-	
-	void OnTriggerStay(Collider other) 
-	{
-		if (other.tag == "Player") {
-			other_direction = -transform.position + other.transform.position;
+			Destroy(other.gameObject);
 		}
-	}
-	
-	void OnTriggerExit(Collider other) 
-	{
-		if (other.tag == "Player") 
-        	sense_player = false;
     }
 }
