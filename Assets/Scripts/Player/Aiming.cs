@@ -18,15 +18,18 @@ public class Aiming : MonoBehaviour {
 	
 	private bool ikActive = false;
 	
+	private ThirdPersonCamera camScript;
+	
 	protected Animator anim;
 	
 	void Start () {
 		screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
 		anim = GetComponent<Animator>();
+		camScript = GetComponent<ThirdPersonCamera>();
 
 	}
 	
-	void OnAnimatorIK () {	
+	/*void OnAnimatorIK () {	
 		float camRot = Camera.main.transform.eulerAngles.y;
 		float playerRot = transform.eulerAngles.y;
 		
@@ -44,7 +47,7 @@ public class Aiming : MonoBehaviour {
 				//anim.SetIKRotation(AvatarIKGoal.RightHand,q*IKtarget.rotation);
 			}		
 		}
-	}
+	}*/
 	
 	void LateUpdate () {
 		
@@ -55,16 +58,47 @@ public class Aiming : MonoBehaviour {
 		Vector3 dir = (pos - Camera.main.transform.position).normalized;
 		
 		//A more precise solution would be to use the ray hit point as in shootProjectile.
-		IKtarget.position = pos + dir*.75f;
+		IKtarget.position = pos + dir * 0.75f;
 			
-		Debug.DrawRay(pos, dir * 5.0f, Color.green);
+		//Debug.DrawRay(pos, dir * 5.0f, Color.green);
+		
+		if (anim.GetBool("ScopeMode")) {
+		 	Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);	
+			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+			transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);	
+		}
+			
+			
+		
+		/*Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);	
+		float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+		transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);*/
 		
 		//(Input should be changed to a cross-platform solution)
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) && anim.GetBool("ScopeMode")) {
+			
+			/*Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
+			
+			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+			
+			upperBody.eulerAngles = new Vector3(0.0f, rot, 0.0f);*/
+
+			
 			//For now ikActive never becomes false, will need some sort of timer for that.
 			ikActive = true; 
 			shootRay();
-			shootProjectile();
+			if (!hit.point.Equals(Vector3.zero))
+				shootProjectile();
+		}
+		
+		if (Input.GetMouseButtonDown(1)) {
+			anim.SetBool("ScopeMode", true);
+			camScript.setDistance(1.0f);
+			
+		}
+		if (Input.GetMouseButtonUp(1)) {
+			anim.SetBool("ScopeMode", false);
+			camScript.setDistance(2.0f);
 		}
 	}
 	
@@ -92,14 +126,20 @@ public class Aiming : MonoBehaviour {
 		spawnPos += shootingDirection; 
 		
 		GameObject projectile = (GameObject) Instantiate(projectileFab, spawnPos, Quaternion.identity);
+		
+		Projectile projectileScript = projectile.GetComponent<Projectile>();
+		
+		projectileScript.setPosition(spawnPos);
+		projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
 
-		projectile.transform.position = spawnPos;
-		if (!hit.point.Equals(Vector3.zero))
-			projectile.rigidbody.velocity = (hit.point - spawnPos).normalized * projectileSpeed;
+		//projectile.transform.position = spawnPos;
+		
+		//if (!hit.point.Equals(Vector3.zero))
+		//projectile.rigidbody.velocity = (hit.point - spawnPos).normalized * projectileSpeed;
 		
 		//If nothing collides make the projectile goes in the direction of the ray.
 		//(This will never happen once we have a skybox, and then shootingDirection will not be needed anymore)
-		else
-			projectile.rigidbody.velocity = shootingDirection * projectileSpeed;
+		//else
+		//	projectile.rigidbody.velocity = shootingDirection * projectileSpeed;
 	}
 }
