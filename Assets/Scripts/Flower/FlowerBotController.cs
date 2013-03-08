@@ -7,7 +7,8 @@ namespace Flower
 {
 	public enum FlowerState {
 		IDLE,
-		OPENNING,
+		OPENNING_MID,
+		OPENNING_FULL,
 		SPRINGUP,
 		SCANNING,
 		SHOOTING,
@@ -21,6 +22,11 @@ public class FlowerBotController : MonoBehaviour
 	
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
+	public float angular_acceleration = 0.0f;
+	public float max_angular_velocity = 10.0f;
+	public Vector3 offset;
+	const float offset_mag = 2.0f; // How much will the flower miss by at start
+	
 	const float look_speed = 4.0f;
 	const float max_closed = 110.0f;
 	public MeshFilter [] prisms = new MeshFilter[3];
@@ -28,7 +34,17 @@ public class FlowerBotController : MonoBehaviour
 	FlowerState behaviour_state;
 	public bool sense_player;
 	Transform target_transform;
+	public Vector3 other_direction;
 	
+	
+	public float angle_to_other()
+	{
+		Vector2 forward = transform.forward.x * Vector2.right + 
+			transform.forward.z * Vector2.up;
+		Vector2 other = other_direction.x * Vector2.right + 
+			other_direction.z * Vector2.up;
+		return Vector2.Angle(forward, other);
+	}
 	
 	Vector3 target_pos
 	{
@@ -46,7 +62,8 @@ public class FlowerBotController : MonoBehaviour
 	{
 		behaviour = new FlowerBehaviour[] { 
 			new FlowerIdleBehaviour(this),
-			new FlowerOpenningBehaviour(this),
+			new FlowerOpenningEarlyBehaviour(this),
+			new FlowerOpenningLateBehaviour(this),
 			new FlowerSpringUpBehaviour(this),
 			new FlowerScanningBehaviour(this),
 			new FlowerShootingBehaviour(this),
@@ -76,16 +93,29 @@ public class FlowerBotController : MonoBehaviour
 		}		
 	}
 	
-	public void face_target()
+	public void face_target(float delta)
 	{
+		face_target(delta, 1.0f);
+	}
+	
+	public float face_target(float d_o, float d_s)
+	{
+		Quaternion target = lookat_target(d_o);
 		transform.rotation = Quaternion.Slerp(transform.rotation, 
-		lookat_target(), look_speed * Time.deltaTime);
+		target, d_s * look_speed * Time.deltaTime);
+		return Mathf.Abs(Quaternion.Angle(transform.rotation, target));
+	}
+	
+	public Quaternion lookat_target(float delta)
+	{
+		return Quaternion.LookRotation(other_direction + delta * offset + Vector3.up);
+	}
+	
+	public void set_offset(float delta)
+	{
+		offset = delta * Vector3.Cross(other_direction, Vector3.up).normalized * Random.value * offset_mag;
 	}
 		
-	public Quaternion lookat_target()
-	{
-		return Quaternion.LookRotation(vector_to_target());
-	}
 	
 	public Vector3 vector_to_target()
 	{
@@ -97,6 +127,11 @@ public class FlowerBotController : MonoBehaviour
         sense_player = true;
 		target_transform = other.transform;
     }
+	
+	void OnTriggerStay(Collider other) 
+	{
+		other_direction = -transform.position + other.transform.position;
+	}
 	
 	void OnTriggerExit(Collider other) 
 	{
