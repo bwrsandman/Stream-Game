@@ -124,17 +124,24 @@ public class FlowerBotController : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other) 
 	{
-        sense_player = true;
-		target_transform = other.transform;
+		if (other.tag == "Player") {
+        	sense_player = true;
+			target_transform = other.transform;
+		}
+		else 
+			Destroy(this.gameObject);
     }
 	
 	void OnTriggerStay(Collider other) 
 	{
-		other_direction = -transform.position + other.transform.position;
+		if (other.tag == "Player") {
+			other_direction = -transform.position + other.transform.position;
+		}
 	}
 	
 	void OnTriggerExit(Collider other) 
 	{
-        sense_player = false;
+		if (other.tag == "Player") 
+        	sense_player = false;
     }
 }

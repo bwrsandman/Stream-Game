@@ -174,4 +174,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 		snapSmoothLag = oldSnapSmooth;
 	}	
 	
+	public void setDistance (float distance) {
+		this.distance = distance;	
+	}
+	
 }
