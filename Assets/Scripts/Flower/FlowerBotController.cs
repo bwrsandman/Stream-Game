@@ -33,8 +33,10 @@ public class FlowerBotController : MonoBehaviour
 	FlowerBehaviour [] behaviour;
 	FlowerState behaviour_state;
 	public bool sense_player;
-	Transform target_transform;
+	public Transform target_transform;
 	public Vector3 other_direction;
+	
+	private Health healthScript;
 	
 	
 	public float angle_to_other()
@@ -60,6 +62,8 @@ public class FlowerBotController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		healthScript = GetComponent<Health>();
+		
 		behaviour = new FlowerBehaviour[] { 
 			new FlowerIdleBehaviour(this),
 			new FlowerOpenningEarlyBehaviour(this),
@@ -121,27 +125,4 @@ public class FlowerBotController : MonoBehaviour
 	{
 		return target_pos - transform.position;
 	}
-	
-	void OnTriggerEnter(Collider other) 
-	{
-		if (other.tag == "Player") {
-        	sense_player = true;
-			target_transform = other.transform;
-		}
-		else 
-			Destroy(this.gameObject);
-    }
-	
-	void OnTriggerStay(Collider other) 
-	{
-		if (other.tag == "Player") {
-			other_direction = -transform.position + other.transform.position;
-		}
-	}
-	
-	void OnTriggerExit(Collider other) 
-	{
-		if (other.tag == "Player") 
-        	sense_player = false;
-    }
 }

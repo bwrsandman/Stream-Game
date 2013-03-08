@@ -21,7 +21,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			Debug.Log("Openning...");
+			//Debug.Log("Openning...");
 			FlowerState ret = base.run ();
 			
 			Vector3 looking_at = controller.transform.forward;			

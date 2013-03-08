@@ -31,7 +31,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			Debug.Log("Springing up...");
+			//Debug.Log("Springing up...");
 			FlowerState ret = base.run ();
 			return ret;
 		}
