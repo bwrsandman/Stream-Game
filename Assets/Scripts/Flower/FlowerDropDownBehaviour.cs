@@ -7,7 +7,6 @@ namespace Flower
 		float _speed = 0.0f;
 		float _accel = 9.8f;
 		const float _angular_speed = 5.0f;
-		const float look_speed = 10.0f;
 		
 		public FlowerDropDownBehaviour (FlowerBotController controller)
 			:base (controller, controller.transform.position)
@@ -32,8 +31,6 @@ namespace Flower
 		{
 			FlowerState ret = base.run ();
 			_speed = (ret == next_state)? 0.0f : _speed + _accel * Time.deltaTime;
-			transform.rotation = Quaternion.Slerp(transform.rotation,
-				Quaternion.LookRotation(Vector3.up), look_speed * Time.deltaTime);
 			return ret;
 		}
 	}

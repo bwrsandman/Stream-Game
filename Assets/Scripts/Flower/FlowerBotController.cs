@@ -21,6 +21,8 @@ public class FlowerBotController : MonoBehaviour
 	
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
+	public float angular_acceleration = 0.0f;
+	public float max_angular_velocity = 10.0f;
 	const float look_speed = 4.0f;
 	const float max_closed = 110.0f;
 	public MeshFilter [] prisms = new MeshFilter[3];

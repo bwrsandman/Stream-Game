@@ -5,7 +5,7 @@ namespace Flower
 	public abstract class FlowerOpenCloseBehaviour: FlowerBehaviour
 	{
 		public FlowerOpenCloseBehaviour (FlowerBotController controller)
-			:base (controller)
+			: base (controller)
 		{
 		}
 		
@@ -19,11 +19,13 @@ namespace Flower
 		{ get; }
 		
 		public override FlowerState run ()
-		{
+		{			
 			FlowerState ret = base.run ();
 			controller.opened = Mathf.Lerp(controller.opened, opening_goal, 
 				openclose_speed * Time.deltaTime);
-			return (Mathf.Approximately(controller.opened, opening_goal)? next_state : ret);
+			
+			return (Mathf.Approximately(controller.opened, opening_goal)? 
+					next_state : ret);
 		}
 	}
 }
