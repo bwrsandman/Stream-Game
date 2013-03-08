@@ -134,7 +134,9 @@ public class FlowerBotController : MonoBehaviour
 	
 	void OnTriggerStay(Collider other) 
 	{
-		other_direction = -transform.position + other.transform.position;
+		if (other.tag == "Player") {
+			other_direction = -transform.position + other.transform.position;
+		}
 	}
 	
 	void OnTriggerExit(Collider other) 
