@@ -18,6 +18,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
+			Debug.Log("Idling...");
 			controller.angular_velocity = 0.0f;
 			controller.opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
 			FlowerState ret = base.run ();
