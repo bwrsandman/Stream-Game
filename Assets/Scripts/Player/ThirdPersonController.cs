@@ -13,7 +13,6 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
-	private ThirdPersonCamera camScript;
 	private bool moving;
 	
 		
@@ -23,7 +22,6 @@ public class ThirdPersonController : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator>();	
 		timeScript = GetComponent<TimeActions>();
-		camScript = GetComponent<ThirdPersonCamera>();
 		//col = GetComponent<CapsuleCollider>();		
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);

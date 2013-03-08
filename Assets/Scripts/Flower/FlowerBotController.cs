@@ -36,6 +36,8 @@ public class FlowerBotController : MonoBehaviour
 	public Transform target_transform;
 	public Vector3 other_direction;
 	
+	private Health healthScript;
+	
 	
 	public float angle_to_other()
 	{
@@ -60,6 +62,8 @@ public class FlowerBotController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		healthScript = GetComponent<Health>();
+		
 		behaviour = new FlowerBehaviour[] { 
 			new FlowerIdleBehaviour(this),
 			new FlowerOpenningEarlyBehaviour(this),
@@ -121,12 +125,4 @@ public class FlowerBotController : MonoBehaviour
 	{
 		return target_pos - transform.position;
 	}
-	
-	void OnTriggerEnter(Collider other) 
-	{		
-		if (other.tag != "Player") {
-			Destroy(this.gameObject);
-			Destroy(other.gameObject);
-		}
-    }
 }
