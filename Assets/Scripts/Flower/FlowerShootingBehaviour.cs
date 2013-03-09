@@ -19,7 +19,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			Debug.Log("Shooting...");
+			//Debug.Log("Shooting...");
 			
 			FlowerState ret = base.run ();
 			return (controller.face_target(-1.0f, 0.5f) < 2.5f)?

@@ -36,7 +36,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			Debug.Log("Scanning...");
+			//Debug.Log("Scanning...");
 			// TODO generalize scan acceleration so we don't need to update this every time
 			controller.angular_acceleration = (rotate_forwards? 1.0f : -1.0f) * scan_acceleration;
 			controller.max_angular_velocity = max_scan;
