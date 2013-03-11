@@ -67,12 +67,6 @@ public class Aiming : MonoBehaviour {
 			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
 			transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);	
 		}
-			
-			
-		
-		/*Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);	
-		float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
-		transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);*/
 		
 		//(Input should be changed to a cross-platform solution)
 		if (Input.GetMouseButtonDown(0) && anim.GetBool("ScopeMode")) {
@@ -131,15 +125,5 @@ public class Aiming : MonoBehaviour {
 		
 		projectileScript.setPosition(spawnPos);
 		projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
-
-		//projectile.transform.position = spawnPos;
-		
-		//if (!hit.point.Equals(Vector3.zero))
-		//projectile.rigidbody.velocity = (hit.point - spawnPos).normalized * projectileSpeed;
-		
-		//If nothing collides make the projectile goes in the direction of the ray.
-		//(This will never happen once we have a skybox, and then shootingDirection will not be needed anymore)
-		//else
-		//	projectile.rigidbody.velocity = shootingDirection * projectileSpeed;
 	}
 }
