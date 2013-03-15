@@ -80,8 +80,10 @@ public class ThirdPersonCamera : MonoBehaviour {
 		else
 			Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
 	
-		
-		Cut();
+		float tmp = smooth;
+		smooth = 10000000.0f;
+		Apply();
+		smooth = tmp;
 	}
 	
 	float AngleDistance (float a, float b)
@@ -110,7 +112,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 			v = 0.0f;
 		if (Mathf.Abs (h) < 0.1f)
 			h = 0.0f;
-		
+
 		/* Calculate the new angles */
 		currentAngle_h += h * camera_turn_speed_h * dt;
 		currentAngle_v += v * camera_turn_speed_v * dt;
@@ -158,17 +160,23 @@ public class ThirdPersonCamera : MonoBehaviour {
 		if (Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit, distance) || 
 			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit, distance))
 		{
-			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
-			cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
+			if (!inLargeRoom) {
+				Debug.Log("notInLargeRoom");
+				cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
+				cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
+			}
 		}
-		else if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
+		else// if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
 		{
 			cam_position = Vector3.Lerp(cameraTransform.position - targetHead, cam_position, Time.deltaTime * smooth);
 		}
 		
 		cameraTransform.position = cam_position + targetHead;
-		if(inLargeRoom)
+
+		if(inLargeRoom) {
 			cameraTransform.LookAt(targetHead);
+			currentAngle_h = cameraTransform.eulerAngles.y;
+		}
 	}
 	
 	// Use this for initialization

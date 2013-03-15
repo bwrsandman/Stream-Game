@@ -15,15 +15,18 @@ public class ThirdPersonController : MonoBehaviour {
 	private TimeActions timeScript; 
 	private bool moving;
 	private bool inLargeRoom = false;
+	private bool locked = false;
 	
 	public void setLargeRoom(Transform target)
 	{
 		inLargeRoom = true;
+		locked = true;
 	}
 	
 	public void unsetLargeRoom()
 	{
 		inLargeRoom = false;
+		locked = false;
 	}
 	
 		
@@ -83,6 +86,13 @@ public class ThirdPersonController : MonoBehaviour {
 		
 		bool run = Input.GetKey("left shift");
 		anim.SetBool("ShiftDown", run);
+		
+		if (inLargeRoom && Mathf.Abs(v) < 0.01f)
+			locked = false;
+		
+		if(inLargeRoom && locked) {
+			v = -Mathf.Abs(v);
+		}
 		
 		Transform cameraTransform = Camera.main.transform;
 		
