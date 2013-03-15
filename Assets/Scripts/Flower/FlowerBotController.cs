@@ -19,7 +19,7 @@ namespace Flower
 
 public class FlowerBotController : MonoBehaviour 
 {
-	
+	public float _sphereRadius = 1.0f;
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
 	public float angular_acceleration = 0.0f;
@@ -35,9 +35,14 @@ public class FlowerBotController : MonoBehaviour
 	public bool sense_player;
 	public Transform target_transform;
 	public Vector3 other_direction;
+	public LineRenderer laser;
 	
 	private Health healthScript;
 	
+	public float scan_radius
+	{
+		get { return behaviour[(int)behaviour_state].sphereRadius; }
+	}
 	
 	public float angle_to_other()
 	{
@@ -47,6 +52,7 @@ public class FlowerBotController : MonoBehaviour
 			other_direction.z * Vector2.up;
 		return Vector2.Angle(forward, other);
 	}
+	
 	
 	Vector3 target_pos
 	{
@@ -62,6 +68,8 @@ public class FlowerBotController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		laser = GetComponentInChildren<LineRenderer>();
+		
 		healthScript = GetComponent<Health>();
 		
 		behaviour = new FlowerBehaviour[] { 
@@ -112,7 +120,7 @@ public class FlowerBotController : MonoBehaviour
 	
 	public Quaternion lookat_target(float delta)
 	{
-		return Quaternion.LookRotation(other_direction + delta * offset + Vector3.up);
+		return Quaternion.LookRotation(other_direction + delta * offset);
 	}
 	
 	public void set_offset(float delta)

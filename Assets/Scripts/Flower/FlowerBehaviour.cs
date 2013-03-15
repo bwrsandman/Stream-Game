@@ -14,6 +14,14 @@ namespace Flower
 			get;
 		}
 		
+		public virtual float sphereRadius {
+			get { return controller._sphereRadius; }
+		}
+		
+		public virtual bool laserVisibility {
+			get { return false; }
+		}
+		
 		public FlowerBehaviour (FlowerBotController controller)
 		{
 			this.controller = controller;
@@ -21,6 +29,7 @@ namespace Flower
 		
 		public virtual FlowerState run()
 		{
+			controller.laser.enabled = laserVisibility;
 			controller.close_prism();
 			controller.angular_velocity += controller.angular_acceleration * Time.deltaTime;
 			controller.angular_velocity = Mathf.Max(-controller.max_angular_velocity, 
