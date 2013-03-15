@@ -14,6 +14,17 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
 	private bool moving;
+	private bool inLargeRoom = false;
+	
+	public void setLargeRoom(Transform target)
+	{
+		inLargeRoom = true;
+	}
+	
+	public void unsetLargeRoom()
+	{
+		inLargeRoom = false;
+	}
 	
 		
 	//private CapsuleCollider col;	
@@ -82,8 +93,8 @@ public class ThirdPersonController : MonoBehaviour {
 		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);		
 		
 		Vector3 dir = h * right + v * forward;
-		dir.Normalize();
 		float mag = dir.magnitude;
+		dir.Normalize();
 		
 		bool wasMoving = moving;
 		moving = mag > 0.01f; 

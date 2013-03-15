@@ -4,15 +4,17 @@ using System.Collections;
 public class BotScanning : MonoBehaviour {
 	
 	FlowerBotController botController;
+	SphereCollider scanCollider;
 	
 	// Use this for initialization
 	void Start () {
+		scanCollider = GetComponent<SphereCollider>();
 		botController = transform.parent.gameObject.GetComponent<FlowerBotController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		scanCollider.radius = botController.scan_radius;
 	}
 	
 	void OnTriggerEnter(Collider other) 
