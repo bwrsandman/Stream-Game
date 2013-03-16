@@ -5,6 +5,7 @@ namespace Flower
 	public class FlowerCloseUpBehaviour : FlowerOpenCloseBehaviour
 	{
 		const float close_speed = 8.0f;
+		const float look_speed = 2.0f;
 	
 		protected override FlowerState next_state
 		{ get { return FlowerState.DROPDOWN; } }
@@ -31,6 +32,9 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
+			//Debug.Log("Closing...");
+			controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation,
+				Quaternion.LookRotation(Vector3.up), look_speed * Time.deltaTime);
 			FlowerState ret = base.run ();
 			return ret;
 		}

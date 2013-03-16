@@ -3,8 +3,6 @@ using System.Collections;
 
 // Require these components when using this script
 [RequireComponent(typeof (Animator))]
-//[RequireComponent(typeof (CapsuleCollider))]
-[RequireComponent(typeof (Rigidbody))]
 [RequireComponent(typeof (TimeActions))]
 
 public class ThirdPersonController : MonoBehaviour {
@@ -13,17 +11,29 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
-	private ThirdPersonCamera camScript;
 	private bool moving;
+	private bool inLargeRoom = false;
+	private bool locked = false;
+	
+	public void setLargeRoom(Transform target)
+	{
+		inLargeRoom = true;
+		locked = true;
+	}
+	
+	public void unsetLargeRoom()
+	{
+		inLargeRoom = false;
+		locked = false;
+	}
 	
 		
 	//private CapsuleCollider col;	
-	static int waveState = Animator.StringToHash("Layer2.Wave");
+	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 
 	void Start () {
 		anim = GetComponent<Animator>();	
 		timeScript = GetComponent<TimeActions>();
-		camScript = GetComponent<ThirdPersonCamera>();
 		//col = GetComponent<CapsuleCollider>();		
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
@@ -43,12 +53,12 @@ public class ThirdPersonController : MonoBehaviour {
 			}
 			if (Input.GetKeyDown("t")) 
 			{	
-				anim.SetBool("Wave", true);
+				anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleport());	
 			}
 			if (Input.GetKeyDown("r")) 
 			{	
-				anim.SetBool("Wave", true);
+				anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleportCloner());	
 			}
 			if (Input.GetKeyDown("y")) 
@@ -57,9 +67,9 @@ public class ThirdPersonController : MonoBehaviour {
 			}	
 		}
 		
-		if(layer2CurrentState.nameHash == waveState)
+		if(layer2CurrentState.nameHash == SettingWaypointState)
 		{
-			anim.SetBool("Wave", false);
+			anim.SetBool("SettingWaypoint", false);
 		}
 	}
 	
@@ -73,7 +83,14 @@ public class ThirdPersonController : MonoBehaviour {
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
 		bool run = Input.GetKey("left shift");
-		anim.SetBool("ShiftDown", run);
+		anim.SetBool("Running", run);
+		
+		if (inLargeRoom && Mathf.Abs(v) < 0.01f)
+			locked = false;
+		
+		if(inLargeRoom && locked) {
+			v = -Mathf.Abs(v);
+		}
 		
 		Transform cameraTransform = Camera.main.transform;
 		
@@ -84,8 +101,8 @@ public class ThirdPersonController : MonoBehaviour {
 		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);		
 		
 		Vector3 dir = h * right + v * forward;
-		dir.Normalize();
 		float mag = dir.magnitude;
+		dir.Normalize();
 		
 		bool wasMoving = moving;
 		moving = mag > 0.01f; 

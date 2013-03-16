@@ -1,38 +1,41 @@
 using UnityEngine;
-using System.Collections;
 
 public class AIFollow : MonoBehaviour {
-	private Animator anim;							// a reference to the animator on the character
+	private Animator anim;
 	public Transform m_Player;
-	// Use this for initialization
-	void Start () {
+	NavMeshAgent agent;
+	
+	public float satisfaction_radius = 2.5f;
+	public float urgency_radius = 7.5f;
+	public float movingSpeed = 0.1f;
+	
+	void Start () 
+	{
 		anim = GetComponent<Animator>();	
+		agent = GetComponent<NavMeshAgent>();
 	}
 	
-	// Update is called once per frame
-void Update () {
-	float charSpeed;
-
-	if(Vector3.Distance(transform.position, m_Player.position) > 1.5f)
+	void Update () 
 	{
-		GetComponent<NavMeshAgent>().enabled = true;
-		GetComponent<NavMeshAgent>().speed = 1.534f;
-		GetComponent<NavMeshAgent>().destination = m_Player.position;
-		charSpeed = GetComponent<NavMeshAgent>().speed;
+		float distance = Vector3.Distance(transform.position, m_Player.position);
+		if(distance < satisfaction_radius) {
+			//Debug.Log("Player within satisfaction radius. Idling.");
+			agent.Stop();
+			anim.SetFloat("Speed", 0.0f);
+			anim.SetBool("Running", false);
+		}
+		else if(distance < urgency_radius) {
+			//Debug.Log("Just outside satisfaction radius. Walking to follow.");
+			agent.Resume();
+			anim.SetFloat("Speed", movingSpeed);
+		}
+		else {
+			//Debug.Log("Player outside of urgency radius. Must run to catch up.");
+			anim.SetFloat("Speed", movingSpeed);
+			anim.SetBool("Running", true);
+		}
+		agent.destination = m_Player.position;
+		agent.speed = anim.GetFloat("Speed");
 	}
-	else
-	{
-		GetComponent<NavMeshAgent>().enabled = false;
-		charSpeed = 0.0f;
-	}
-		
-	if(Vector3.Distance(transform.position, m_Player.position) > 5.0f)
-	{
-			GetComponent<NavMeshAgent>().speed = 5.54f;
-			charSpeed = GetComponent<NavMeshAgent>().speed;
-	}
-		
-	anim.SetFloat("Speed", charSpeed);
-}
 	
 }

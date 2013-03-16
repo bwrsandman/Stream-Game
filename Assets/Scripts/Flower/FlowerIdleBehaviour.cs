@@ -4,11 +4,14 @@ namespace Flower
 {
 	public class FlowerIdleBehaviour : FlowerBehaviour
 	{
-		// TODO: figure out order: Idle->spring->open or Idle->open->spring
 		private const FlowerState next_state = FlowerState.SPRINGUP;
 		public FlowerIdleBehaviour (FlowerBotController controller)
 			:base (controller)
 		{
+		}
+		
+		public override float sphereRadius {
+			get { return 0.5f * controller._sphereRadius; }
 		}
 		
 		protected override FlowerState state

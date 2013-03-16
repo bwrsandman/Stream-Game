@@ -4,10 +4,13 @@ namespace Flower
 {
 	public class FlowerShootingBehaviour : FlowerBehaviour
 	{
-		//LineRenderer
 		public FlowerShootingBehaviour (FlowerBotController controller)
 			:base (controller)
 		{
+		}
+				
+		public override bool laserVisibility {
+			get { return true; }
 		}
 		
 		protected override FlowerState state
@@ -18,7 +21,8 @@ namespace Flower
 		public override FlowerState run ()
 		{
 			FlowerState ret = base.run ();
-			return ret;
+			return (controller.face_target(-1.0f, 0.5f) < 2.5f)?
+				FlowerState.OPENNING_MID : ret;
 		}
 	}
 }

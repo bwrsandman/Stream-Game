@@ -11,7 +11,7 @@ namespace Flower
 		const float height_variation = 2.0f;
 		
 		protected override FlowerState next_state
-		{ get { return FlowerState.OPENNING; } }
+		{ get { return FlowerState.OPENNING_MID; } }
 
 		protected override float speed
 		{ get { return _speed; } }
@@ -31,6 +31,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
+			//Debug.Log("Springing up...");
 			FlowerState ret = base.run ();
 			return ret;
 		}
