@@ -4,7 +4,7 @@ using System.Collections;
 public class ThirdPersonCamera : MonoBehaviour {
 	
 	Transform cameraTransform;
-	private Transform _target;	
+	Transform playerTranform;	
 		
 	public float smooth = 10.0f;
 	public float sweep_width = 0.25f;
@@ -39,6 +39,21 @@ public class ThirdPersonCamera : MonoBehaviour {
 	
 	private ThirdPersonController controller;
 	
+	private bool inLargeRoom;
+	private Transform largeRoomCamTarget;
+	
+	public void setLargeRoom(Transform target)
+	{
+		Debug.Log("setting large room mode");
+		largeRoomCamTarget = target;
+		inLargeRoom = true;
+	}
+	
+	public void unsetLargeRoom()
+	{
+		inLargeRoom = false;
+	}
+	
 	void Awake ()
 	{
 		if(!cameraTransform && Camera.main)
@@ -49,24 +64,26 @@ public class ThirdPersonCamera : MonoBehaviour {
 		}
 				
 			
-		_target = transform;
-		if (_target)
+		playerTranform = transform;
+		if (playerTranform)
 		{
-			controller = _target.GetComponent<ThirdPersonController>();
+			controller = playerTranform.GetComponent<ThirdPersonController>();
 		}
 		
 		if (controller)
 		{
-			Collider characterController  = _target.collider;
-			centerOffset = characterController.bounds.center - _target.position;
+			Collider characterController  = playerTranform.collider;
+			centerOffset = characterController.bounds.center - playerTranform.position;
 			headOffset = centerOffset;
-			headOffset.y = characterController.bounds.max.y - _target.position.y;
+			headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
 		}
 		else
 			Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
 	
-		
-		Cut(_target, centerOffset);
+		float tmp = smooth;
+		smooth = 10000000.0f;
+		Apply();
+		smooth = tmp;
 	}
 	
 	float AngleDistance (float a, float b)
@@ -77,7 +94,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		return Mathf.Abs(b - a);
 	}
 	
-	public void Apply (Transform dummyTarget, Vector3 dummyCenter)
+	public void Apply ()
 	{
 		/* Early out if we don't have a target */
 		if (!controller)
@@ -85,8 +102,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 		
 		float dt = Time.deltaTime;
 		
-		Vector3 targetCenter = _target.position + centerOffset;
-		Vector3 targetHead = _target.position + headOffset;
+		Vector3 targetCenter = playerTranform.position + centerOffset;
+		Vector3 targetHead = playerTranform.position + ((inLargeRoom)? Vector3.zero : headOffset);
 	
 		/* Get input from Xbox Controller */
 		float h = Input.GetAxisRaw("Horizontal Look");
@@ -95,7 +112,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 			v = 0.0f;
 		if (Mathf.Abs (h) < 0.1f)
 			h = 0.0f;
-		
+
 		/* Calculate the new angles */
 		currentAngle_h += h * camera_turn_speed_h * dt;
 		currentAngle_v += v * camera_turn_speed_v * dt;
@@ -114,17 +131,24 @@ public class ThirdPersonCamera : MonoBehaviour {
 			
 		// Convert the angle into a rotation, by which we then reposition the camera
 		Quaternion rotation; //Current orientation
-		rotation = Quaternion.Euler(currentAngle_v, currentAngle_h, 0);
-	    cameraTransform.rotation = rotation;
 		
+		Vector3 cam_position, cam_no_head, target_vector;
 		
 		// Set position	
-		Vector3 cam_position = rotation * new Vector3(0.0f, 0.0f, -distance);
-		Vector3 cam_no_head = cameraTransform.position - targetHead;
-		
+		if(inLargeRoom) {
+			target_vector =  -largeRoomCamTarget.position + playerTranform.position;
+			target_vector.y *= -1.0f;
+			rotation = Quaternion.LookRotation(-target_vector + playerTranform.position);
+		}
+		else {
+			rotation = Quaternion.Euler(currentAngle_v, currentAngle_h, 0);
+	    	cameraTransform.rotation = rotation;
+			target_vector =  new Vector3(0.0f, 0.0f, -distance);
+		}
+		cam_position = rotation * target_vector;
+		cam_no_head = cameraTransform.position - targetHead;
 		
 		/* Calculate offset orthogonal to the lookat vector and the up vector */
-		
 		Vector3 sweep_offset = Vector3.Cross(Vector3.up, cam_position).normalized * sweep_width;
 		
 		/* Show rays being cast */
@@ -136,28 +160,38 @@ public class ThirdPersonCamera : MonoBehaviour {
 		if (Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit, distance) || 
 			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit, distance))
 		{
-			cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
-			cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
+			if (!inLargeRoom) {
+				Debug.Log("notInLargeRoom");
+				cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
+				cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
+			}
 		}
-		else if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
+		else// if(cam_position.sqrMagnitude > cam_no_head.sqrMagnitude + 0.1f)
 		{
 			cam_position = Vector3.Lerp(cameraTransform.position - targetHead, cam_position, Time.deltaTime * smooth);
 		}
 		
 		cameraTransform.position = cam_position + targetHead;
+
+		if(inLargeRoom) {
+			cameraTransform.LookAt(targetHead);
+			currentAngle_h = cameraTransform.eulerAngles.y;
+		}
 	}
 	
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		inLargeRoom = false;
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		Apply (transform, Vector3.zero);
+	void FixedUpdate () 
+	{
+		Apply ();
 	}
 	
-	void Cut (Transform dummyTarget , Vector3 dummyCenter)
+	void Cut ()
 	{
 		float oldHeightSmooth = heightSmoothLag;
 		float oldSnapMaxSpeed = snapMaxSpeed;
@@ -167,7 +201,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		snapSmoothLag = 0.001f;
 		heightSmoothLag = 0.001f;
 		
-		Apply (transform, Vector3.zero);
+		Apply ();
 		
 		heightSmoothLag = oldHeightSmooth;
 		snapMaxSpeed = oldSnapMaxSpeed;

@@ -12,6 +12,20 @@ public class ThirdPersonController : MonoBehaviour {
 	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
 	private bool moving;
+	private bool inLargeRoom = false;
+	private bool locked = false;
+	
+	public void setLargeRoom(Transform target)
+	{
+		inLargeRoom = true;
+		locked = true;
+	}
+	
+	public void unsetLargeRoom()
+	{
+		inLargeRoom = false;
+		locked = false;
+	}
 	
 		
 	//private CapsuleCollider col;	
@@ -71,6 +85,13 @@ public class ThirdPersonController : MonoBehaviour {
 		bool run = Input.GetKey("left shift");
 		anim.SetBool("Running", run);
 		
+		if (inLargeRoom && Mathf.Abs(v) < 0.01f)
+			locked = false;
+		
+		if(inLargeRoom && locked) {
+			v = -Mathf.Abs(v);
+		}
+		
 		Transform cameraTransform = Camera.main.transform;
 		
 		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
@@ -80,8 +101,8 @@ public class ThirdPersonController : MonoBehaviour {
 		Vector3 right = new Vector3(forward.z, 0.0f, -forward.x);		
 		
 		Vector3 dir = h * right + v * forward;
-		dir.Normalize();
 		float mag = dir.magnitude;
+		dir.Normalize();
 		
 		bool wasMoving = moving;
 		moving = mag > 0.01f; 
