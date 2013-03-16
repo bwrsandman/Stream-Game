@@ -12,11 +12,6 @@ public class Aiming : MonoBehaviour {
 	
 	public float projectileSpeed = 30.0f;
 	public GameObject projectileFab;
-	public GameObject handFab;
-	
-	public Transform IKtarget;
-	
-	private bool ikActive = false;
 	
 	private ThirdPersonCamera camScript;
 	
@@ -26,28 +21,7 @@ public class Aiming : MonoBehaviour {
 		screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
 		anim = GetComponent<Animator>();
 		camScript = GetComponent<ThirdPersonCamera>();
-
 	}
-	
-	/*void OnAnimatorIK () {	
-		float camRot = Camera.main.transform.eulerAngles.y;
-		float playerRot = transform.eulerAngles.y;
-		
-		float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
-		
-		if(ikActive && playerCamDiff > -95.0f && playerCamDiff < 30.0f) {
-			anim.SetIKPositionWeight(AvatarIKGoal.RightHand,1.0f);
-			//anim.SetIKRotationWeight(AvatarIKGoal.RightHand,1.0f);
-	
-		    //set the position and the rotation of the right hand where the external object is
-			if(IKtarget != null) {				
-				Quaternion q = Quaternion.Euler(0.0f,180.0f,0.0f);
-				
-				anim.SetIKPosition(AvatarIKGoal.RightHand,IKtarget.position);
-				//anim.SetIKRotation(AvatarIKGoal.RightHand,q*IKtarget.rotation);
-			}		
-		}
-	}*/
 	
 	void LateUpdate () {
 		
@@ -57,11 +31,6 @@ public class Aiming : MonoBehaviour {
 		
 		Vector3 dir = (pos - Camera.main.transform.position).normalized;
 		
-		//A more precise solution would be to use the ray hit point as in shootProjectile.
-		IKtarget.position = pos + dir * 0.75f;
-			
-		//Debug.DrawRay(pos, dir * 5.0f, Color.green);
-		
 		if (anim.GetBool("ScopeMode")) {
 		 	Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);	
 			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
@@ -70,16 +39,6 @@ public class Aiming : MonoBehaviour {
 		
 		//(Input should be changed to a cross-platform solution)
 		if (Input.GetMouseButtonDown(0) && anim.GetBool("ScopeMode")) {
-			
-			/*Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
-			
-			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
-			
-			upperBody.eulerAngles = new Vector3(0.0f, rot, 0.0f);*/
-
-			
-			//For now ikActive never becomes false, will need some sort of timer for that.
-			ikActive = true; 
 			shootRay();
 			if (!hit.point.Equals(Vector3.zero))
 				shootProjectile();
