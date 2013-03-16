@@ -3,8 +3,6 @@ using System.Collections;
 
 // Require these components when using this script
 [RequireComponent(typeof (Animator))]
-//[RequireComponent(typeof (CapsuleCollider))]
-[RequireComponent(typeof (Rigidbody))]
 [RequireComponent(typeof (TimeActions))]
 
 public class ThirdPersonController : MonoBehaviour {
@@ -17,7 +15,7 @@ public class ThirdPersonController : MonoBehaviour {
 	
 		
 	//private CapsuleCollider col;	
-	static int waveState = Animator.StringToHash("Layer2.Wave");
+	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 
 	void Start () {
 		anim = GetComponent<Animator>();	
@@ -41,12 +39,12 @@ public class ThirdPersonController : MonoBehaviour {
 			}
 			if (Input.GetKeyDown("t")) 
 			{	
-				anim.SetBool("Wave", true);
+				anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleport());	
 			}
 			if (Input.GetKeyDown("r")) 
 			{	
-				anim.SetBool("Wave", true);
+				anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleportCloner());	
 			}
 			if (Input.GetKeyDown("y")) 
@@ -55,9 +53,9 @@ public class ThirdPersonController : MonoBehaviour {
 			}	
 		}
 		
-		if(layer2CurrentState.nameHash == waveState)
+		if(layer2CurrentState.nameHash == SettingWaypointState)
 		{
-			anim.SetBool("Wave", false);
+			anim.SetBool("SettingWaypoint", false);
 		}
 	}
 	
@@ -71,7 +69,7 @@ public class ThirdPersonController : MonoBehaviour {
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
 		bool run = Input.GetKey("left shift");
-		anim.SetBool("ShiftDown", run);
+		anim.SetBool("Running", run);
 		
 		Transform cameraTransform = Camera.main.transform;
 		

@@ -9,7 +9,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public float smooth = 10.0f;
 	public float sweep_width = 0.25f;
 	
-	public float distance = 7.0f;
+	public float distance = 2.0f;
 	public float walloffset = 0.05f;
 	
 	// the height we want the camera to be above the target

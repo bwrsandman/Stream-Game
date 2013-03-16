@@ -62,14 +62,14 @@ public class Aiming : MonoBehaviour {
 			
 		//Debug.DrawRay(pos, dir * 5.0f, Color.green);
 		
-		if (anim.GetBool("ScopeMode")) {
+		if (anim.GetBool("Aiming")) {
 		 	Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);	
 			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
 			transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);	
 		}
 		
 		//(Input should be changed to a cross-platform solution)
-		if (Input.GetMouseButtonDown(0) && anim.GetBool("ScopeMode")) {
+		if (Input.GetMouseButtonDown(0) && anim.GetBool("Aiming")) {
 			
 			/*Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
 			
@@ -86,12 +86,12 @@ public class Aiming : MonoBehaviour {
 		}
 		
 		if (Input.GetMouseButtonDown(1)) {
-			anim.SetBool("ScopeMode", true);
+			anim.SetBool("Aiming", true);
 			camScript.setDistance(1.0f);
 			
 		}
 		if (Input.GetMouseButtonUp(1)) {
-			anim.SetBool("ScopeMode", false);
+			anim.SetBool("Aiming", false);
 			camScript.setDistance(2.0f);
 		}
 	}
