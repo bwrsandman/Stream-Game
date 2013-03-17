@@ -339,8 +339,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 0
@@ -362,7 +362,7 @@ ModelImporter:
       loop: 0
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
@@ -422,12 +422,12 @@ ModelImporter:
       firstFrame: 580
       lastFrame: 598
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: -8.42000008
       level: 0
       cycleOffset: 0
       loop: 0
       loopBlend: 1
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -728,8 +728,8 @@ ModelImporter:
         min: {x: 0, y: -20, z: -50}
         max: {x: 0, y: 20, z: 50}
         value: {x: .0357476585, y: 0, z: .0178738292}
-        preQ: {x: -.0533270426, y: -.0470706001, z: -.991001666, w: .113385163}
-        postQ: {x: -3.12924357e-07, y: .68903929, z: -.724723935, w: -3.47772556e-07}
+        preQ: {x: -.053327065, y: -.0470706038, z: -.991001666, w: .113385163}
+        postQ: {x: -3.24100228e-07, y: .68903935, z: -.724723935, w: -3.4020556e-07}
         length: .0446845889
         modified: 1
     - boneName: Sal_model04:Sal_lf_index_b_jnt
@@ -738,8 +738,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0296519659, y: 0, z: .014825983}
-        preQ: {x: .243078515, y: .641561627, z: -.681930363, w: .253539681}
-        postQ: {x: -2.01165705e-07, y: .69662112, z: -.717439175, w: -1.99165726e-07}
+        preQ: {x: .243078545, y: .641561627, z: -.681930363, w: .253539681}
+        postQ: {x: -1.93715124e-07, y: .69662112, z: -.717439175, w: -2.06614487e-07}
         length: .0370649658
         modified: 1
     - boneName: Sal_model04:Sal_lf_index_c_jnt
@@ -749,7 +749,7 @@ ModelImporter:
         max: {x: 0, y: 0, z: 45}
         value: {x: .0222389717, y: 0, z: .0111194858}
         preQ: {x: .218288258, y: .658733249, z: -.684017777, w: .224811688}
-        postQ: {x: .00593174249, y: .695647359, z: -.718336582, w: .00565985963}
+        postQ: {x: .00593174994, y: .695647359, z: -.718336582, w: .00565985218}
         length: .0277987234
         modified: 1
     - boneName: Sal_model04:Sal_lf_middle_a_jnt
@@ -818,8 +818,8 @@ ModelImporter:
         min: {x: 0, y: -20, z: -50}
         max: {x: 0, y: 20, z: 50}
         value: {x: .0239487235, y: 0, z: .0119743617}
-        preQ: {x: .230965495, y: .680592835, z: -.676009953, w: .162661582}
-        postQ: {x: 2.90572615e-07, y: .690039098, z: -.723771989, w: 3.03603855e-07}
+        preQ: {x: .23096548, y: .680592835, z: -.676009893, w: .162661597}
+        postQ: {x: 2.90572643e-07, y: .690039158, z: -.723771989, w: 3.18497769e-07}
         length: .0299359132
         modified: 1
     - boneName: Sal_model04:Sal_lf_pinky_b_jnt
@@ -828,8 +828,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0234997869, y: 0, z: .0117498934}
-        preQ: {x: .242898524, y: .653721869, z: -.67071408, w: .252567858}
-        postQ: {x: 1.2293458e-07, y: .687960625, z: -.725747824, w: 8.19654886e-08}
+        preQ: {x: .242898539, y: .653721869, z: -.670714021, w: .252567858}
+        postQ: {x: 1.26659899e-07, y: .687960744, z: -.725747883, w: 9.31341049e-08}
         length: .0293747429
         modified: 1
     - boneName: Sal_model04:Sal_lf_pinky_c_jnt
@@ -838,8 +838,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0176248383, y: 0, z: .00881241914}
-        preQ: {x: .215487346, y: .660376012, z: -.68249011, w: .227323234}
-        postQ: {x: .0015743603, y: .688034415, z: -.725674748, w: .00153270224}
+        preQ: {x: .215487346, y: .660376012, z: -.682490051, w: .227323219}
+        postQ: {x: .00157436752, y: .688034415, z: -.725674689, w: .00153271318}
         length: .0220310576
         modified: 1
     - boneName: Sal_model04:Sal_rt_thumb_a_jnt
@@ -879,7 +879,7 @@ ModelImporter:
         max: {x: 0, y: 20, z: 50}
         value: {x: .0357478485, y: 0, z: .0178739242}
         preQ: {x: -.992324114, y: -.116419107, z: .0413225442, w: -.0056273751}
-        postQ: {x: .716825306, y: -3.05188587e-06, z: -2.6896596e-06, w: -.697252691}
+        postQ: {x: .716825306, y: -3.05194385e-06, z: -2.68965937e-06, w: -.697252691}
         length: .0446848273
         modified: 1
     - boneName: Sal_model04:Sal_rt_index_b_jnt
@@ -888,8 +888,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0296519175, y: 0, z: .0148259588}
-        preQ: {x: -.641780913, y: -.249919772, z: -.243659735, w: .682852268}
-        postQ: {x: .705636024, y: 1.15529183e-05, z: 1.08554959e-05, w: -.708574414}
+        preQ: {x: -.641780913, y: -.249919772, z: -.243659765, w: .682852268}
+        postQ: {x: .705636024, y: 1.15454604e-05, z: 1.08554959e-05, w: -.708574414}
         length: .0370649062
         modified: 1
     - boneName: Sal_model04:Sal_rt_index_c_jnt
@@ -898,8 +898,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0222389363, y: 0, z: .0111194681}
-        preQ: {x: -.643464267, y: -.219546497, z: -.220459178, w: .699393034}
-        postQ: {x: .706549466, y: .00577044347, z: .0058468543, w: -.707615912}
+        preQ: {x: -.643464267, y: -.219546482, z: -.220459178, w: .699393034}
+        postQ: {x: .706549466, y: .00577043602, z: .0058468543, w: -.707615912}
         length: .0277986787
         modified: 1
     - boneName: Sal_model04:Sal_rt_middle_a_jnt
@@ -939,7 +939,7 @@ ModelImporter:
         max: {x: 0, y: 7.50000048, z: 50}
         value: {x: .0321728475, y: 0, z: .0160864238}
         preQ: {x: -.644514084, y: -.149257109, z: -.197595403, w: .723380864}
-        postQ: {x: .716674209, y: 4.08143387e-06, z: 4.12762165e-06, w: -.69740802}
+        postQ: {x: .716674209, y: 4.08143387e-06, z: 4.12017107e-06, w: -.69740802}
         length: .0402160771
         modified: 1
     - boneName: Sal_model04:Sal_rt_ring_b_jnt
@@ -949,7 +949,7 @@ ModelImporter:
         max: {x: 0, y: 0, z: 45}
         value: {x: .0338194706, y: 0, z: .0169097353}
         preQ: {x: -.620054364, y: -.247515306, z: -.241081104, w: .704378128}
-        postQ: {x: .710566819, y: 1.56591777e-05, z: 1.58324838e-05, w: -.703629613}
+        postQ: {x: .710566819, y: 1.56591923e-05, z: 1.58250332e-05, w: -.703629613}
         length: .0422743559
         modified: 1
     - boneName: Sal_model04:Sal_rt_ring_c_jnt
@@ -959,7 +959,7 @@ ModelImporter:
         max: {x: 0, y: 0, z: 45}
         value: {x: .0253646057, y: 0, z: .0126823029}
         preQ: {x: -.629523754, y: -.217953175, z: -.21582365, w: .713874221}
-        postQ: {x: .710552454, y: -.00302003091, z: -.00296310708, w: -.703631401}
+        postQ: {x: .710552454, y: -.00302003091, z: -.0029631108, w: -.703631401}
         length: .0317057669
         modified: 1
     - boneName: Sal_model04:Sal_rt_pinky_a_jnt
@@ -969,7 +969,7 @@ ModelImporter:
         max: {x: 0, y: 20, z: 50}
         value: {x: .0239492469, y: 0, z: .0119746234}
         preQ: {x: -.637465477, y: -.154935822, z: -.226541787, w: .719938338}
-        postQ: {x: .716135681, y: -8.68119823e-05, z: -7.56084919e-05, w: -.697961032}
+        postQ: {x: .716135681, y: -8.68121278e-05, z: -7.55935907e-05, w: -.697961032}
         length: .0299365669
         modified: 1
     - boneName: Sal_model04:Sal_rt_pinky_b_jnt
@@ -978,8 +978,8 @@ ModelImporter:
         min: {x: 0, y: 0, z: -45}
         max: {x: 0, y: 0, z: 45}
         value: {x: .0235002469, y: 0, z: .0117501235}
-        preQ: {x: -.630717993, y: -.247622132, z: -.242055267, w: .694468975}
-        postQ: {x: .714406013, y: 5.62940149e-05, z: 3.83034385e-05, w: -.69973129}
+        preQ: {x: -.630718052, y: -.247622147, z: -.242055312, w: .694468975}
+        postQ: {x: .714406013, y: 5.62939313e-05, z: 3.83183396e-05, w: -.69973135}
         length: .0293753184
         modified: 1
     - boneName: Sal_model04:Sal_rt_pinky_c_jnt
@@ -989,7 +989,7 @@ ModelImporter:
         max: {x: 0, y: 0, z: 45}
         value: {x: .0176251847, y: 0, z: .00881259236}
         preQ: {x: -.642609119, y: -.220931351, z: -.216372401, w: .701017559}
-        postQ: {x: .714331627, y: .00161441485, z: .00158729427, w: -.699803591}
+        postQ: {x: .714331627, y: .00161441485, z: .00158730918, w: -.699803591}
         length: .0220314898
         modified: 1
     skeleton:
@@ -1105,7 +1105,7 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_lf_index_a_jnt
       position: {x: -.0110929376, y: .00372089655, z: .00224012206}
-      rotation: {x: -.702801228, y: .0935491621, z: -.149481416, w: .689183652}
+      rotation: {x: -.702801287, y: .0935491696, z: -.149481431, w: .689183712}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_lf_index_b_jnt
@@ -1140,12 +1140,12 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_lf_middle_d_jnt
       position: {x: -.00424828054, y: 1.61776924e-17, z: 1.95082342e-17}
-      rotation: {x: .706935346, y: .0155667039, z: -.0652135313, w: .704093099}
+      rotation: {x: .706935406, y: .0155667076, z: -.0652135387, w: .704093158}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_lf_pinkyCup_jnt
       position: {x: -.00503997738, y: .000740386546, z: -.00300756842}
-      rotation: {x: -.707947254, y: .0583802685, z: -.173205301, w: .682203889}
+      rotation: {x: -.707947314, y: .0583802834, z: -.173205316, w: .682203948}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_lf_pinky_a_jnt
@@ -1165,7 +1165,7 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_lf_pinky_d_jnt
       position: {x: -.00338309514, y: 4.95112231e-17, z: 9.12086236e-18}
-      rotation: {x: .703182399, y: .0743934959, z: -.0411205776, w: .705910087}
+      rotation: {x: .703182459, y: .0743935034, z: -.0411205813, w: .705910146}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_lf_ringCup_jnt
@@ -1335,7 +1335,7 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_rt_index_a_jnt
       position: {x: .0110930093, y: -.00372055918, z: -.00224013627}
-      rotation: {x: -.702801228, y: .0935491621, z: -.149481416, w: .689183652}
+      rotation: {x: -.702801287, y: .0935491696, z: -.149481431, w: .689183712}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_rt_index_b_jnt
@@ -1370,12 +1370,12 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_rt_middle_d_jnt
       position: {x: .00424833456, y: -4.49775506e-09, z: 3.62927352e-07}
-      rotation: {x: .706935346, y: .0155667039, z: -.0652135313, w: .704093099}
+      rotation: {x: .706935406, y: .0155667076, z: -.0652135387, w: .704093158}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_rt_pinkyCup_jnt
       position: {x: .00503997598, y: -.000740316114, z: .00300756237}
-      rotation: {x: -.707948387, y: .0583899245, z: -.17321904, w: .682198405}
+      rotation: {x: -.707948446, y: .0583899394, z: -.173219055, w: .682198465}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_rt_pinky_a_jnt
@@ -1395,12 +1395,12 @@ ModelImporter:
       transformModified: 1
     - name: Sal_model04:Sal_rt_pinky_d_jnt
       position: {x: .00338303018, y: -2.19835226e-08, z: -3.53481283e-07}
-      rotation: {x: .703182399, y: .0743934959, z: -.0411205776, w: .705910087}
+      rotation: {x: .703182459, y: .0743935034, z: -.0411205813, w: .705910146}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_rt_ringCup_jnt
       position: {x: .00493470998, y: -.001521711, z: .00111556565}
-      rotation: {x: -.713006616, y: .041714102, z: -.158503875, w: .681731522}
+      rotation: {x: -.713006675, y: .0417141058, z: -.15850389, w: .681731582}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Sal_model04:Sal_rt_ring_a_jnt
