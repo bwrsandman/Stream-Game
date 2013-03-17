@@ -11,7 +11,7 @@ public class Headturn : MonoBehaviour {
 	public float turnLimit = 80.0f;
 	public Transform headTransform;
 	
-	public float turnOffset = -90.0f;
+	public float turnOffset = 90.0f;
 	public float lookupOffset = -60.0f;
 	
 	// Use this for initialization
@@ -22,7 +22,7 @@ public class Headturn : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	/*void LateUpdate () {
 		if (!anim.GetBool("Aiming")) {
 		float camRot = camTransform.eulerAngles.y;
 		float playerRot = playerTransform.eulerAngles.y;
@@ -56,6 +56,6 @@ public class Headturn : MonoBehaviour {
 				prevAngle = playerRot + turnOffset;
 		}
 		}
-	}
+	}*/
 }
 			
