@@ -71,11 +71,8 @@ public class ThirdPersonController : MonoBehaviour {
 		{
 			anim.SetBool("SettingWaypoint", false);
 		}
-	}
-	
-	void FixedUpdate ()
-	{
-		updateMovement();
+		
+		updateMovement(); 
 	}
 	
 	void updateMovement () {

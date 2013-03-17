@@ -11,7 +11,7 @@ public class Headturn : MonoBehaviour {
 	public float turnLimit = 80.0f;
 	public Transform headTransform;
 	
-	public float turnOffset = 90.0f;
+	public float turnOffset = -90.0f;
 	public float lookupOffset = -60.0f;
 	
 	// Use this for initialization
@@ -28,7 +28,7 @@ public class Headturn : MonoBehaviour {
 		float playerRot = playerTransform.eulerAngles.y;
 		
 		float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
-		float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + lookupOffset));
+		float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + lookupOffset)) + 90.0f;
 		
 		if (playerCamDiff > -turnLimit && playerCamDiff < turnLimit) { 
 			
@@ -45,6 +45,9 @@ public class Headturn : MonoBehaviour {
 		else {
 			Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, lookupOffset);
 	    	headTransform.rotation = rotation;
+				
+			if (deltaAngle < turnLimit)
+				Debug.Log(deltaAngle);
 			
 			//if the player turns more than "turnLimit" on the spot, don't lerp:
 			if (deltaAngle < turnLimit && deltaAngle > 0.1) 
