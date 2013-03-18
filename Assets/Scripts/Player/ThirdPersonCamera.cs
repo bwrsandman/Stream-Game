@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (ThirdPersonController))]
+
 public class ThirdPersonCamera : MonoBehaviour {
 	
 	Transform cameraTransform;
@@ -37,6 +39,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public Vector3 headOffset = Vector3.zero;
 	public Vector3 centerOffset = Vector3.zero;
 	
+	public float sidewaysCameraShift = 0.5f;
+	
 	private ThirdPersonController controller;
 	
 	private bool inLargeRoom;
@@ -66,24 +70,22 @@ public class ThirdPersonCamera : MonoBehaviour {
 			
 		playerTranform = transform;
 		if (playerTranform)
-		{
 			controller = playerTranform.GetComponent<ThirdPersonController>();
-		}
 		
-		if (controller)
-		{
-			Collider characterController  = playerTranform.collider;
-			centerOffset = characterController.bounds.center - playerTranform.position;
-			headOffset = centerOffset;
-			headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
-		}
-		else
-			Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
+		Collider characterController = playerTranform.collider;
+		centerOffset = characterController.bounds.center - playerTranform.position;
+		//headOffset = centerOffset;
+		//headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
+		
 	
-		float tmp = smooth;
+		/* tmp = smooth;
 		smooth = 10000000.0f;
 		Apply();
-		smooth = tmp;
+		smooth = tmp;*/
+		
+		//Vector3 targetHead = playerTranform.position + ((inLargeRoom)? Vector3.zero : headOffset);
+		//Vector3 cam_position = cameraTransform.position - targetHead;
+		//cameraTransform.position = cam_position + targetHead;
 	}
 	
 	float AngleDistance (float a, float b)
@@ -143,7 +145,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		else {
 			rotation = Quaternion.Euler(currentAngle_v, currentAngle_h, 0);
 	    	cameraTransform.rotation = rotation;
-			target_vector =  new Vector3(0.0f, 0.0f, -distance);
+			target_vector =  new Vector3(sidewaysCameraShift, 0.0f, -distance);
 		}
 		cam_position = rotation * target_vector;
 		cam_no_head = cameraTransform.position - targetHead;
@@ -159,9 +161,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast(targetHead - sweep_offset, cam_position + sweep_offset, out hit, distance) || 
 			Physics.Raycast(targetHead + sweep_offset, cam_position - sweep_offset, out hit, distance))
-		{
+		{		
 			if (!inLargeRoom) {
-				Debug.Log("notInLargeRoom");
+				//Debug.Log("notInLargeRoom");
 				cam_position = rotation * new Vector3(0.0f, 0.0f, -hit.distance) + walloffset * hit.normal;
 				cam_position = Vector3.Lerp(cam_no_head, cam_position, Time.deltaTime * smooth);
 			}
@@ -186,7 +188,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () 
+	void LateUpdate () 
 	{
 		Apply ();
 	}
