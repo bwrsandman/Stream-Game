@@ -33,8 +33,7 @@ public class ThirdPersonController : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();	
-		timeScript = GetComponent<TimeActions>();
-		//col = GetComponent<CapsuleCollider>();		
+		timeScript = GetComponent<TimeActions>();	
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
@@ -70,8 +69,10 @@ public class ThirdPersonController : MonoBehaviour {
 		if(layer2CurrentState.nameHash == SettingWaypointState)
 		{
 			anim.SetBool("SettingWaypoint", false);
-		}
-		
+		} 
+	}
+	
+	void Update () {
 		updateMovement(); 
 	}
 	
@@ -103,21 +104,15 @@ public class ThirdPersonController : MonoBehaviour {
 		
 		bool wasMoving = moving;
 		moving = mag > 0.01f; 
-		
-		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-		
-		if (moving)  {
-			if (!anim.GetBool("Aiming")) {
-				float x = dir.x;
-				float y = dir.z;			
-				
-				float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
-				
-				transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
-			}
-			else {
-				//Sidestep animation instead of turning	
-			}
+
+		if (moving)  {			
+			anim.SetFloat("Speed", mag);
+			
+			float x = dir.x;
+			float y = dir.z;			
+			
+			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
+			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
 	}
 }
