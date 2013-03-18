@@ -22,13 +22,13 @@ public class Headturn : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	/*void LateUpdate () {
 		if (!anim.GetBool("Aiming")) {
 		float camRot = camTransform.eulerAngles.y;
 		float playerRot = playerTransform.eulerAngles.y;
 		
 		float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
-		float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + lookupOffset));
+		float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + lookupOffset)) + 90.0f;
 		
 		if (playerCamDiff > -turnLimit && playerCamDiff < turnLimit) { 
 			
@@ -45,6 +45,9 @@ public class Headturn : MonoBehaviour {
 		else {
 			Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, lookupOffset);
 	    	headTransform.rotation = rotation;
+				
+			if (deltaAngle < turnLimit)
+				Debug.Log(deltaAngle);
 			
 			//if the player turns more than "turnLimit" on the spot, don't lerp:
 			if (deltaAngle < turnLimit && deltaAngle > 0.1) 
@@ -53,6 +56,6 @@ public class Headturn : MonoBehaviour {
 				prevAngle = playerRot + turnOffset;
 		}
 		}
-	}
+	}*/
 }
 			
