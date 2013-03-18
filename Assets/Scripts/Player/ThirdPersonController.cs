@@ -106,13 +106,18 @@ public class ThirdPersonController : MonoBehaviour {
 		
 		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
 		
-		if (moving) {
-			float x = dir.x;
-			float y = dir.z;			
-			
-			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
-			
-			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
+		if (moving)  {
+			if (!anim.GetBool("Aiming")) {
+				float x = dir.x;
+				float y = dir.z;			
+				
+				float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
+				
+				transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
+			}
+			else {
+				//Sidestep animation instead of turning	
+			}
 		}
 	}
 }
