@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (ThirdPersonController))]
+
 public class ThirdPersonCamera : MonoBehaviour {
 	
 	Transform cameraTransform;
@@ -37,6 +39,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public Vector3 headOffset = Vector3.zero;
 	public Vector3 centerOffset = Vector3.zero;
 	
+	public float sidewaysCameraShift = 0.5f;
+	
 	private ThirdPersonController controller;
 	
 	private bool inLargeRoom;
@@ -66,19 +70,13 @@ public class ThirdPersonCamera : MonoBehaviour {
 			
 		playerTranform = transform;
 		if (playerTranform)
-		{
 			controller = playerTranform.GetComponent<ThirdPersonController>();
-		}
 		
-		if (controller)
-		{
-			Collider characterController = playerTranform.collider;
-			centerOffset = characterController.bounds.center - playerTranform.position;
-			headOffset = centerOffset;
-			headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
-		}
-		else
-			Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
+		Collider characterController = playerTranform.collider;
+		centerOffset = characterController.bounds.center - playerTranform.position;
+		//headOffset = centerOffset;
+		//headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
+		
 	
 		/* tmp = smooth;
 		smooth = 10000000.0f;
@@ -147,7 +145,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		else {
 			rotation = Quaternion.Euler(currentAngle_v, currentAngle_h, 0);
 	    	cameraTransform.rotation = rotation;
-			target_vector =  new Vector3(0.0f, 0.0f, -distance);
+			target_vector =  new Vector3(sidewaysCameraShift, 0.0f, -distance);
 		}
 		cam_position = rotation * target_vector;
 		cam_no_head = cameraTransform.position - targetHead;
