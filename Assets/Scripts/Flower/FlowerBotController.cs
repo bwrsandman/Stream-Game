@@ -95,10 +95,10 @@ public class FlowerBotController : MonoBehaviour
 	
 	public void close_prism()
 	{
-		opened = Mathf.Clamp(opened, 0.0f, 1.0f);
+		opened = Mathf.Max(Mathf.Min(1.0f, opened), 0.0f);
 		for(int i = 0; i < 3; ++i)
 		{
-			float closed = Mathf.Clamp((((1.0f - opened) - i * 0.05f) * 1.8f), 0.0f, 1.0f);
+			float closed = Mathf.Max(Mathf.Min(1.0f, ((1.0f - opened) - i * 0.05f) * 1.8f), 0.0f);
 			Transform tran = prisms[i].transform;
 			tran.localRotation = Quaternion.Euler(0.0f, 0.0f, i * -120.0f) * 
 								 Quaternion.Euler(max_closed * closed, 0.0f, 0.0f);

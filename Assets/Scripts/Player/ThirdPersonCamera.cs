@@ -37,8 +37,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public Vector3 headOffset = Vector3.zero;
 	public Vector3 centerOffset = Vector3.zero;
 	
-	public float sidewaysCameraShift = 0.5f;
-	
 	private ThirdPersonController controller;
 	
 	private bool inLargeRoom;
@@ -76,16 +74,16 @@ public class ThirdPersonCamera : MonoBehaviour {
 		{
 			Collider characterController = playerTranform.collider;
 			centerOffset = characterController.bounds.center - playerTranform.position;
-			//headOffset = centerOffset;
-			//headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
+			headOffset = centerOffset;
+			headOffset.y = characterController.bounds.max.y - playerTranform.position.y;
 		}
 		else
 			Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
 	
-		float tmp = smooth;
+		/* tmp = smooth;
 		smooth = 10000000.0f;
 		Apply();
-		smooth = tmp;
+		smooth = tmp;*/
 		
 		//Vector3 targetHead = playerTranform.position + ((inLargeRoom)? Vector3.zero : headOffset);
 		//Vector3 cam_position = cameraTransform.position - targetHead;
@@ -149,7 +147,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		else {
 			rotation = Quaternion.Euler(currentAngle_v, currentAngle_h, 0);
 	    	cameraTransform.rotation = rotation;
-			target_vector =  new Vector3(sidewaysCameraShift, 0.0f, -distance);
+			target_vector =  new Vector3(0.0f, 0.0f, -distance);
 		}
 		cam_position = rotation * target_vector;
 		cam_no_head = cameraTransform.position - targetHead;
@@ -178,7 +176,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 		}
 		
 		cameraTransform.position = cam_position + targetHead;
-		
 
 		if(inLargeRoom) {
 			cameraTransform.LookAt(targetHead);

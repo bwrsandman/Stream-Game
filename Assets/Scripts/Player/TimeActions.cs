@@ -17,25 +17,22 @@ public class TimeActions : MonoBehaviour {
 		
 	}
 	
-	public void setCheckpoint() {	
-		//NB: Needs to on LateUpdate because the position is changed.
+	public void setCheckpoint() {
 		float posX = transform.position.x;
 		float posY = transform.position.y;
 		float posZ = transform.position.z;
 		
 		//updateLights(posZ, new Color(0.0f,1.0f,0.0f));
 		
+		//Create a 3D object at the checkpoint to indicate where it is set:
+		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, posY + 3.5f, posZ), Quaternion.identity);
+		
 		//Destroy the old checkpoint (for now we only have one checkpoint at a time):
 		if (checkpoints.Count > 0) {
-			
 			GameObject oldCheck = checkpoints[0];
 			GameObject.Destroy(oldCheck);
 			checkpoints.RemoveAt(checkpoints.Count-1);
 		}
-		
-		//Create a 3D object at the checkpoint to indicate where it is set:
-		GameObject checkpoint = (GameObject) Instantiate(checkFab, new Vector3(posX, posY + 3.5f, posZ), Quaternion.identity);
-		
 		//Save the new checkpoint to the checkpoint list (checkpoint.length() == 1):
 		checkpoints.Add(checkpoint);
 	}

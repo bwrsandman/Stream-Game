@@ -42,7 +42,7 @@ public class ThirdPersonController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	void Update () {
 		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
 		layer2CurrentState = anim.GetCurrentAnimatorStateInfo(1);
 		
@@ -73,7 +73,6 @@ public class ThirdPersonController : MonoBehaviour {
 		}
 		
 		updateMovement(); 
-		
 	}
 	
 	void updateMovement () {
