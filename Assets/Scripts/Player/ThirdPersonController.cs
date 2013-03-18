@@ -9,7 +9,7 @@ public class ThirdPersonController : MonoBehaviour {
 	
 	private Animator anim;							// a reference to the animator on the character
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
-	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
+	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
 	private bool moving;
 	private bool inLargeRoom = false;
@@ -33,7 +33,9 @@ public class ThirdPersonController : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();	
-		timeScript = GetComponent<TimeActions>();	
+		anim.SetLayerWeight(1, 1.0f);
+		anim.SetLayerWeight(2, 1.0f);
+		timeScript = GetComponent<TimeActions>();
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
@@ -43,11 +45,14 @@ public class ThirdPersonController : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
-		layer2CurrentState = anim.GetCurrentAnimatorStateInfo(1);
+		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
+		
+		anim.SetBool("SettingWaypoint", false);
 		
 		if (!timeScript.isTeleporting()) {
 			if (Input.GetKeyDown("e")) 
 			{	
+				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
 			}
 			if (Input.GetKeyDown("t")) 
@@ -65,14 +70,10 @@ public class ThirdPersonController : MonoBehaviour {
 				timeScript.sendYoungestBack();	
 			}	
 		}
-		
-		if(layer2CurrentState.nameHash == SettingWaypointState)
-		{
-			anim.SetBool("SettingWaypoint", false);
-		} 
 	}
 	
 	void Update () {
+
 		updateMovement(); 
 	}
 	
