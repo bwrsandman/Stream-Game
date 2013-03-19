@@ -15,6 +15,8 @@ public class ThirdPersonController : MonoBehaviour {
 	private bool inLargeRoom = false;
 	private bool locked = false;
 	
+	public Transform spine;
+	
 	public void setLargeRoom(Transform target)
 	{
 		inLargeRoom = true;
@@ -36,7 +38,6 @@ public class ThirdPersonController : MonoBehaviour {
 		anim.SetLayerWeight(1, 1.0f);
 		anim.SetLayerWeight(2, 1.0f);
 		timeScript = GetComponent<TimeActions>();
-		//col = GetComponent<CapsuleCollider>();		
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
@@ -71,6 +72,12 @@ public class ThirdPersonController : MonoBehaviour {
 				timeScript.sendYoungestBack();	
 			}	
 		}
+		
+		updateAim();
+	}
+	
+	void Update () {
+
 		updateMovement(); 
 	}
 	
@@ -102,21 +109,22 @@ public class ThirdPersonController : MonoBehaviour {
 		
 		bool wasMoving = moving;
 		moving = mag > 0.01f; 
-		
-		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-		
-		if (moving)  {
-			if (!anim.GetBool("Aiming")) {
-				float x = dir.x;
-				float y = dir.z;			
-				
-				float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
-				
-				transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
-			}
-			else {
-				//Sidestep animation instead of turning	
-			}
+
+		if (moving)  {			
+			anim.SetFloat("Speed", mag);
+			
+			float x = dir.x;
+			float y = dir.z;			
+			
+			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
+			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
+	}
+	
+	void updateAim () {
+		if (anim.GetBool("Aiming")) {
+			Transform cameraTransform = Camera.main.transform;
+			spine.localRotation = Quaternion.Euler(180.0f, 0.0f, cameraTransform.eulerAngles.x);
+		}	
 	}
 }

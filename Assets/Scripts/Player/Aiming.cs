@@ -10,12 +10,12 @@ public class Aiming : MonoBehaviour {
 	private Vector3 shootingDirection;
 	private RaycastHit hit;
 	
-	public float projectileSpeed = 30.0f;
-	public GameObject projectileFab;
-	
 	private ThirdPersonCamera camScript;
 	
 	protected Animator anim;
+	
+	public float projectileSpeed = 30.0f;
+	public GameObject projectileFab;
 	
 	void Start () {
 		screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
