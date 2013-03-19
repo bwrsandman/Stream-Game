@@ -15,6 +15,8 @@ public class ThirdPersonController : MonoBehaviour {
 	private bool inLargeRoom = false;
 	private bool locked = false;
 	
+	public Transform spine;
+	
 	public void setLargeRoom(Transform target)
 	{
 		inLargeRoom = true;
@@ -70,6 +72,8 @@ public class ThirdPersonController : MonoBehaviour {
 				timeScript.sendYoungestBack();	
 			}	
 		}
+		
+		updateAim();
 	}
 	
 	void Update () {
@@ -115,5 +119,12 @@ public class ThirdPersonController : MonoBehaviour {
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
+	}
+	
+	void updateAim () {
+		if (anim.GetBool("Aiming")) {
+			Transform cameraTransform = Camera.main.transform;
+			spine.localRotation = Quaternion.Euler(180.0f, 0.0f, cameraTransform.eulerAngles.x);
+		}	
 	}
 }
