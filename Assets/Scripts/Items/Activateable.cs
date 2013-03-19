@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Activateable : MonoBehaviour
 {
-	static Activate mPlayerActivate;
+	static ActivationHandler mPlayerActivate;
 	
 	void Awake () 
 	{
 		if(!mPlayerActivate)
-			mPlayerActivate = GameObject.FindWithTag("Player").GetComponent<Activate>();
+			mPlayerActivate = GameObject.FindWithTag("Player").GetComponent<ActivationHandler>();
 	}
 	
 	void Update () 

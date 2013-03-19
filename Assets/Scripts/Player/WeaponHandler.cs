@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Weapon : MonoBehaviour 
+public class WeaponHandler : MonoBehaviour 
 {
-	public GameObject weapon;
+	public Weapon mWeapon;
 	Transform mTransform;
 	public Transform holdingHand;
 	public Transform supportHand;
@@ -11,8 +11,14 @@ public class Weapon : MonoBehaviour
 	
 	void Start () 
 	{
-		if (weapon)
-			mTransform = weapon.transform;
+		if (mWeapon)
+			mTransform = mWeapon.transform;
+	}
+	
+	public void PickUpWeapon(Weapon weapon)
+	{
+		mWeapon = weapon;
+		Start();
 	}
 	
 	// The weapon is located in the holding
@@ -20,8 +26,8 @@ public class Weapon : MonoBehaviour
 	// the holding hand and support hand (supportHand - holdingHand)
 	// otherwise, the weapon is oriented according to the holding hand.
 	void LateUpdate () 
-	{
-		if (!weapon)
+	{		
+		if (!mWeapon)
 			return;
 		
 		Vector3 handDiff = supportHand.position - holdingHand.position;
