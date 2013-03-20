@@ -17,7 +17,12 @@ public class WeaponHandler : MonoBehaviour
 	
 	public void PickUpWeapon(Weapon weapon)
 	{
+		if (this.weapon != null) {
+			this.weapon.collider.enabled = true;
+			this.weapon.rigidbody.velocity = new Vector3(0.0f,1.0f,0.0f);
+		}
 		this.weapon = weapon;
+		weapon.collider.enabled = false;
 		Start();
 	}
 	
