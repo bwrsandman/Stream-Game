@@ -18,8 +18,15 @@ public class WeaponHandler : MonoBehaviour
 	public void PickUpWeapon(Weapon weapon)
 	{
 		if (this.weapon != null) {
+			//Dropped weapon gets collider re-enabled and is moved in front of the character.
 			this.weapon.collider.enabled = true;
-			this.weapon.rigidbody.velocity = new Vector3(0.0f,1.0f,0.0f);
+			this.weapon.rigidbody.velocity = new Vector3(0.0f, 1.0f, 0.0f);			
+			
+			Vector3 dir = (transform.position - Camera.main.transform.position).normalized;			
+			dir *= 4.0f;
+			dir.y = 1.0f;
+			
+			this.weapon.rigidbody.position = transform.position + dir;
 		}
 		this.weapon = weapon;
 		weapon.collider.enabled = false;
@@ -31,7 +38,7 @@ public class WeaponHandler : MonoBehaviour
 	// the holding hand and support hand (supportHand - holdingHand)
 	// otherwise, the weapon is oriented according to the holding hand.
 	void LateUpdate () 
-	{		
+	{
 		if (!weapon)
 			return;
 		
