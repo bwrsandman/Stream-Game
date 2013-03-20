@@ -13,7 +13,7 @@ public class ActivationHandler : MonoBehaviour {
 	
 	public void setSelectedObject (Activateable obj)
 	{
-		if(obj != weaponHandler.mWeapon)
+		if(obj != weaponHandler.weapon)
 			selectedObject = obj;
 	}
 	
