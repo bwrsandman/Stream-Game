@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour 
 {
+	private ActivationHandler actHandler;
+	private Transform mTransform;
+	private bool supporting;
+	
 	public Weapon weapon;
-	Transform mTransform;
 	public Transform holdingHand;
 	public Transform supportHand;
-	bool supporting;
 	public Vector3 offset;
 	
 	void Start () 
 	{
+		actHandler = GetComponent<ActivationHandler>();
+		actHandler.unsetSelectedObject(this.weapon);
 		if (weapon)
 			mTransform = weapon.transform;
 	}
@@ -27,9 +31,11 @@ public class WeaponHandler : MonoBehaviour
 			dir.y = 1.0f;
 			
 			this.weapon.rigidbody.position = transform.position + dir;
+			
 		}
 		this.weapon = weapon;
 		weapon.collider.enabled = false;
+				
 		Start();
 	}
 	
