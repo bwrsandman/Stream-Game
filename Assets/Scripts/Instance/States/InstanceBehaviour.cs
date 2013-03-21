@@ -10,6 +10,11 @@ namespace Instance
 		#endregion
 		
 		#region Properties
+		protected InstanceController controller {
+			get {
+				return (InstanceController)mController;
+			}
+		}
 		#endregion
 		
 		#region Initialization

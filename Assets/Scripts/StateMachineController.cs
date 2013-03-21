@@ -2,33 +2,50 @@
 using UnityEngine;
 #endregion
 
-public class StateMachineController : MonoBehaviour 
+public abstract class StateMachineController : MonoBehaviour 
 {
 	#region Members
-	protected uint behaviour_state;
+	protected uint behaviourState;
 	protected StateBehaviour [] behaviour;
 	#endregion
 	
 	#region Public Members
-	public Transform target_transform;
+	public Transform targetTransform;
 	#endregion
 	
 	#region Properties
-	protected Vector3 target_pos
+	public Vector3 targetPosition
 	{
-		get { return target_transform.position; }
+		get { return targetTransform.position; }
 	}
 
 	protected StateBehaviour currentBehaviour 
 	{
-		get { return behaviour[behaviour_state]; }
+		get { return behaviour[behaviourState]; }
+	}
+	
+	protected abstract uint beginState
+	{
+		get;
 	}
 	#endregion
-
-	#region Internal Functions
+	
+	#region Initialization
+	protected virtual void Start()
+	{
+		behaviourState = beginState;
+		BuildBehaviours();
+	}
+	#endregion
+	
+	#region Member functions
+	protected abstract void BuildBehaviours();
+	#endregion
+	
+	#region Internal functions
 	protected virtual void Update () 
 	{
-		behaviour_state = currentBehaviour.run ();
+		behaviourState = currentBehaviour.run ();
 	}
 	#endregion
 }

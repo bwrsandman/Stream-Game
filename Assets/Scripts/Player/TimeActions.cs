@@ -102,8 +102,9 @@ public class TimeActions : MonoBehaviour {
 			}
 			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
-			InstanceFollowBehaviour ai = (InstanceFollowBehaviour)clone.GetComponent("InstanceFollowBehaviour");
-			ai.m_Player = transform;
+			InstanceController ai = (InstanceController)clone.GetComponent("InstanceController");
+			ai.player = transform;
+			ai.targetTransform = transform;
 			clones.Add(clone);
 		}
 	}

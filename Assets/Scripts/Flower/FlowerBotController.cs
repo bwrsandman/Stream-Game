@@ -49,15 +49,25 @@ public class FlowerBotController : StateMachineController
 	{
 		get { return ((FlowerBehaviour)currentBehaviour).sphereRadius; }
 	}
+	
+	protected override uint beginState {
+		get {
+			return (uint) FlowerState.IDLE;
+		}
+	}
 	#endregion
 	
 	#region Initialization
-	void Start () 
+	protected override void Start () 
 	{
+		base.Start();
 		laser = GetComponentInChildren<LineRenderer>();
-		
 		healthScript = GetComponent<Health>();
-		
+		transform.RotateAround(Vector3.up, Random.value * 360.0f);
+	}
+	
+	protected override void BuildBehaviours()
+	{
 		behaviour = new FlowerBehaviour[] { 
 			new FlowerIdleBehaviour(this),
 			new FlowerOpenningEarlyBehaviour(this),
@@ -68,9 +78,6 @@ public class FlowerBotController : StateMachineController
 			new FlowerDropDownBehaviour(this),
 			new FlowerCloseUpBehaviour(this),
 		};
-		behaviour_state = (uint) FlowerState.IDLE;
-		
-		transform.RotateAround(Vector3.up, Random.value * 360.0f);
 	}
 	#endregion
 	
@@ -121,7 +128,7 @@ public class FlowerBotController : StateMachineController
 
 	public Vector3 vector_to_target()
 	{
-		return target_pos - transform.position;
+		return targetPosition - transform.position;
 	}
 	#endregion
 }

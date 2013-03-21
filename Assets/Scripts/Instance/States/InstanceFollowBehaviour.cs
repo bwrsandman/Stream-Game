@@ -1,46 +1,46 @@
 using UnityEngine;
 
-public class InstanceFollowBehaviour : MonoBehaviour {
-	private Animator anim;
-	public Transform m_Player;
-	NavMeshAgent agent;
-	
-	public float satisfaction_radius = 2.5f;
-	public float urgency_radius = 7.5f;
-	public float movingSpeed = 0.11f;
-	
-	void Start () 
+namespace Instance
+{
+	public class InstanceFollowBehaviour : InstanceBehaviour
 	{
-		anim = GetComponent<Animator>();	
-		agent = GetComponent<NavMeshAgent>();
-	}
-	
-	void Update () 
-	{
-		Vector3 travelVector = m_Player.position - transform.position;
-		travelVector.y = 0.0f;
-		float distance = travelVector.magnitude;
-		float yRot = Quaternion.LookRotation(travelVector).eulerAngles.y;
-		transform.rotation = Quaternion.Euler(transform.rotation.x, yRot, transform.rotation.z);
+		public InstanceFollowBehaviour (InstanceController controller)
+			:base (controller)
+		{
+		}
 		
-		if(distance < satisfaction_radius) {
-			//Debug.Log("Player within satisfaction radius. Idling.");
-			agent.Stop();
-			anim.SetFloat("Speed", 0.0f);
-			anim.SetBool("Running", false);
+		protected override uint state
+		{
+			get { return (uint)InstanceState.FOLLOW; }
 		}
-		else if(distance < urgency_radius) {
-			//Debug.Log("Just outside satisfaction radius. Walking to follow.");
-			agent.Resume();
-			anim.SetFloat("Speed", movingSpeed);
+		
+		public override uint run ()
+		{
+			uint ret = state;
+			controller.targetTransform = controller.player;
+			
+			Vector3 travelVector = controller.travelVector;
+			
+			travelVector.y = 0.0f;
+			float distance = travelVector.magnitude;
+			controller.rotateY(Quaternion.LookRotation(travelVector).eulerAngles.y);
+			
+			
+			if(distance < InstanceController.satisfaction_radius) {
+				//Debug.Log("Player within satisfaction radius. Idling.");
+				controller.Stop();
+			}
+			else if(distance < InstanceController.urgency_radius) {
+				//Debug.Log("Just outside satisfaction radius. Walking to follow.");
+				controller.Resume(false);
+			}
+			else {
+				//Debug.Log("Player outside of urgency radius. Must run to catch up.");
+				controller.Resume(true);
+			}
+			
+			return ret;
 		}
-		else {
-			//Debug.Log("Player outside of urgency radius. Must run to catch up.");
-			anim.SetFloat("Speed", movingSpeed);
-			anim.SetBool("Running", true);
-		}
-		agent.destination = m_Player.position;
-		agent.speed = anim.GetFloat("Speed");
 	}
-	
 }
+

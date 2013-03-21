@@ -21,7 +21,7 @@ public class BotScanning : MonoBehaviour {
 	{		
 		if (other.tag == "Player") {
 			botController.sense_player = true;
-			botController.target_transform = other.transform;
+			botController.targetTransform = other.transform;
 		}
     }
 	

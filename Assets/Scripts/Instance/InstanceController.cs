@@ -8,8 +8,8 @@ using Instance;
 namespace Instance
 {
 	public enum InstanceState {
-		IDLE,
 		FOLLOW,
+		IDLE,
 		GOTO,
 		GOTO_IDLE,
 		ACTIVATE,
@@ -20,13 +20,13 @@ namespace Instance
 public class InstanceController : StateMachineController 
 {
 	#region Constants
-	const float satisfaction_radius = 2.5f;
-	const float urgency_radius = 7.5f;
-	const float movingSpeed = 0.11f;
+	public const float satisfaction_radius = 2.5f;
+	public const float urgency_radius = 7.5f;
+	public const float movingSpeed = 0.11f;
 	#endregion
 	
 	#region Public fields
-
+	public Transform player;
 	#endregion
 	
 	#region Members
@@ -35,47 +35,66 @@ public class InstanceController : StateMachineController
 	#endregion
 	
 	#region Properties
-
+	protected override uint beginState {
+		get {
+			return (uint) InstanceState.FOLLOW;
+		}
+	}
+	
+	public Vector3 travelVector {
+		get {
+			return targetPosition - transform.position;
+		}
+	}
 	#endregion
 	
 	#region Initialization
-	void Start () 
+	protected override void Start () 
 	{
+		base.Start();
 		anim = GetComponent<Animator>();	
 		agent = GetComponent<NavMeshAgent>();
 	}
 	#endregion
 	
 	#region Public functions
+
+	public void Resume(bool running)
+	{
+		agent.Resume();
+		anim.SetFloat("Speed", movingSpeed);
+		if (running)
+			anim.SetBool("Running", true);
+	}
+
+	public void Stop ()
+	{
+		agent.Stop();
+		anim.SetFloat("Speed", 0.0f);
+		anim.SetBool("Running", false);
+	}
+
+	public void rotateY (float y)
+	{
+		transform.rotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
+	}
 	
 	#endregion
 	
-	#region Internal Functions
+	#region Member functions
+	protected override void BuildBehaviours ()
+	{
+		behaviour = new InstanceBehaviour[] { 
+			new InstanceFollowBehaviour(this),
+		};
+	}
+	#endregion
+	
+	#region Internal functions
 	protected override void Update () 
 	{
-		Vector3 travelVector = target_pos - transform.position;
-		travelVector.y = 0.0f;
-		float distance = travelVector.magnitude;
-		float yRot = Quaternion.LookRotation(travelVector).eulerAngles.y;
-		transform.rotation = Quaternion.Euler(transform.rotation.x, yRot, transform.rotation.z);
-		
-		if(distance < satisfaction_radius) {
-			//Debug.Log("Player within satisfaction radius. Idling.");
-			agent.Stop();
-			anim.SetFloat("Speed", 0.0f);
-			anim.SetBool("Running", false);
-		}
-		else if(distance < urgency_radius) {
-			//Debug.Log("Just outside satisfaction radius. Walking to follow.");
-			agent.Resume();
-			anim.SetFloat("Speed", movingSpeed);
-		}
-		else {
-			//Debug.Log("Player outside of urgency radius. Must run to catch up.");
-			anim.SetFloat("Speed", movingSpeed);
-			anim.SetBool("Running", true);
-		}
-		agent.destination = target_pos;
+		base.Update();
+		agent.destination = targetPosition;
 		agent.speed = anim.GetFloat("Speed");
 	}
 	#endregion
