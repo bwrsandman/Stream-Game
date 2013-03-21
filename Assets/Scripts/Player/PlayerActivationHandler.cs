@@ -1,9 +1,17 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerActivationHandler : ActivationHandler 
 {	
 	PackHandler packHandler;
+	
+	protected override List<System.Type> activateableTypes
+	{
+		get 
+		{
+			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment)});
+		}
+	}
 	
 	protected override void Start () 
 	{
