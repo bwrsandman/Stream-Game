@@ -7,7 +7,7 @@ public class AIFollow : MonoBehaviour {
 	
 	public float satisfaction_radius = 2.5f;
 	public float urgency_radius = 7.5f;
-	public float movingSpeed = 0.1f;
+	public float movingSpeed = 0.11f;
 	
 	void Start () 
 	{
@@ -17,7 +17,12 @@ public class AIFollow : MonoBehaviour {
 	
 	void Update () 
 	{
-		float distance = Vector3.Distance(transform.position, m_Player.position);
+		Vector3 travelVector = m_Player.position - transform.position;
+		travelVector.y = 0.0f;
+		float distance = travelVector.magnitude;
+		float yRot = Quaternion.LookRotation(travelVector).eulerAngles.y;
+		transform.rotation = Quaternion.Euler(transform.rotation.x, yRot, transform.rotation.z);
+		
 		if(distance < satisfaction_radius) {
 			//Debug.Log("Player within satisfaction radius. Idling.");
 			agent.Stop();
