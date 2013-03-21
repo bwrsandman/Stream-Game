@@ -31,7 +31,8 @@ public class Projectile : MonoBehaviour {
 		}
 		else if (other.tag != "TriggerArea") {
 			Health otherHealth = other.gameObject.GetComponent<Health>();
-			otherHealth.decreaseHealth(20);
+			if (otherHealth != null)
+				otherHealth.decreaseHealth(20);
 		}
     }
 }
