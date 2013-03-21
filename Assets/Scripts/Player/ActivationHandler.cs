@@ -45,10 +45,12 @@ public class ActivationHandler : MonoBehaviour {
 			return;
 		} else if (selectedObject.GetType() == typeof(Weapon)) {
 			weaponHandler.PickUpWeapon((Weapon)selectedObject);
+			unsetSelectedObject(selectedObject);
 		} else if (selectedObject.GetType() == typeof(Equipment)) {
 			if (selectedObject.name == "Powerpack")
 			{
 				Destroy(selectedObject.gameObject);
+				unsetSelectedObject(selectedObject);
 				packHandler.Show();
 			}
 		}

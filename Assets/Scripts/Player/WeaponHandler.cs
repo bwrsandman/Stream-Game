@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour 
 {
-	private ActivationHandler actHandler;
 	private Transform mTransform;
 	private bool supporting;
 	
@@ -13,8 +12,6 @@ public class WeaponHandler : MonoBehaviour
 	
 	void Start () 
 	{
-		actHandler = GetComponent<ActivationHandler>();
-		actHandler.unsetSelectedObject(this.weapon);
 		if (weapon)
 			mTransform = weapon.transform;
 	}
