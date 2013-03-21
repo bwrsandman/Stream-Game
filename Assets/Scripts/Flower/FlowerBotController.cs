@@ -1,7 +1,9 @@
+#region Using
 using UnityEngine;
 using System.Collections;
 
 using Flower;
+#endregion
 
 namespace Flower
 {
@@ -19,40 +21,37 @@ namespace Flower
 
 public class FlowerBotController : MonoBehaviour 
 {
+	#region Constants
+	const float look_speed = 4.0f;
+	const float max_closed = 110.0f;
+	const float offset_mag = 2.0f; // How much will the flower miss by at start
+	#endregion
+	
+	#region Public fields
 	public float _sphereRadius = 1.0f;
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
 	public float angular_acceleration = 0.0f;
 	public float max_angular_velocity = 10.0f;
 	public Vector3 offset;
-	const float offset_mag = 2.0f; // How much will the flower miss by at start
-	
-	const float look_speed = 4.0f;
-	const float max_closed = 110.0f;
 	public MeshFilter [] prisms = new MeshFilter[3];
-	FlowerBehaviour [] behaviour;
-	FlowerState behaviour_state;
 	public bool sense_player;
 	public Transform target_transform;
 	public Vector3 other_direction;
 	public LineRenderer laser;
+	#endregion
 	
-	private Health healthScript;
+	#region Members
+	FlowerBehaviour [] behaviour;
+	FlowerState behaviour_state;
+	Health healthScript;
+	#endregion
 	
+	#region Properties
 	public float scan_radius
 	{
 		get { return behaviour[(int)behaviour_state].sphereRadius; }
 	}
-	
-	public float angle_to_other()
-	{
-		Vector2 forward = transform.forward.x * Vector2.right + 
-			transform.forward.z * Vector2.up;
-		Vector2 other = other_direction.x * Vector2.right + 
-			other_direction.z * Vector2.up;
-		return Vector2.Angle(forward, other);
-	}
-	
 	
 	Vector3 target_pos
 	{
@@ -63,9 +62,9 @@ public class FlowerBotController : MonoBehaviour
 	{
 		get { return behaviour[(int)behaviour_state]; }
 	}
+	#endregion
 	
-	
-	// Use this for initialization
+	#region Initialization
 	void Start () 
 	{
 		laser = GetComponentInChildren<LineRenderer>();
@@ -86,12 +85,17 @@ public class FlowerBotController : MonoBehaviour
 		
 		transform.RotateAround(Vector3.up, Random.value * 360.0f);
 	}
+	#endregion
 	
-	// Update is called once per frame
-	void Update () 
+	#region Public functions
+	public float angle_to_other()
 	{
-		behaviour_state = current_behaviour.run ();
-	}
+		Vector2 forward = transform.forward.x * Vector2.right + 
+			transform.forward.z * Vector2.up;
+		Vector2 other = other_direction.x * Vector2.right + 
+			other_direction.z * Vector2.up;
+		return Vector2.Angle(forward, other);
+	}	
 	
 	public void close_prism()
 	{
@@ -133,4 +137,12 @@ public class FlowerBotController : MonoBehaviour
 	{
 		return target_pos - transform.position;
 	}
+	#endregion
+	
+	#region Internal Functions
+	void Update () 
+	{
+		behaviour_state = current_behaviour.run ();
+	}
+	#endregion
 }
