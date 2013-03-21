@@ -10,14 +10,14 @@ namespace Flower
 		{
 		}
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.OPENNING_MID; }
+			get { return (uint)FlowerState.OPENNING_MID; }
 		}
 		
-		protected override FlowerState next_state
+		protected override uint next_state
 		{ 
-			get { return FlowerState.SCANNING; } 
+			get { return (uint)FlowerState.SCANNING; } 
 		}
 		
 		protected override float opening_goal

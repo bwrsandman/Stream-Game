@@ -13,24 +13,24 @@ namespace Flower
 		protected abstract float openclose_speed
 		{ get; }
 		
-		protected abstract FlowerState next_state
+		protected abstract uint next_state
 		{ get; }
 		
 		protected abstract float opening_goal
 		{ get; }
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{			
-			mController.opened = Mathf.Lerp(mController.opened, opening_goal, 
+			((FlowerBotController)mController).opened = Mathf.Lerp(((FlowerBotController)mController).opened, opening_goal, 
 				openclose_speed * Time.deltaTime);
 			
 			// TODO: implement this better
-			mController.angular_acceleration = 0.0f;
-			mController.angular_velocity = Mathf.Lerp(mController.angular_velocity, 0.0f, angular_dec * Time.deltaTime);
+			((FlowerBotController)mController).angular_acceleration = 0.0f;
+			((FlowerBotController)mController).angular_velocity = Mathf.Lerp(((FlowerBotController)mController).angular_velocity, 0.0f, angular_dec * Time.deltaTime);
 			
-			FlowerState ret = base.run ();
+			uint ret = base.run ();
 			
-			return (Mathf.Approximately(mController.opened, opening_goal)? 
+			return (Mathf.Approximately(((FlowerBotController)mController).opened, opening_goal)? 
 					next_state : ret);
 		}
 	}

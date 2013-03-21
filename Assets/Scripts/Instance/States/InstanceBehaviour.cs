@@ -4,27 +4,23 @@ using UnityEngine;
 
 namespace Instance
 {
-	public abstract class InstanceBehaviour
+	public abstract class InstanceBehaviour : StateBehaviour
 	{
 		#region Members
-		protected InstanceController mController;
 		#endregion
 		
 		#region Properties
-		protected abstract InstanceState state {
-			get;
-		}
 		#endregion
 		
 		#region Initialization
 		public InstanceBehaviour (InstanceController controller)
+			: base(controller)
 		{
-			this.mController = controller;
 		}
 		#endregion
 		
 		#region Run Functions
-		public virtual InstanceState run()
+		public override uint run()
 		{
 			return state;
 		}

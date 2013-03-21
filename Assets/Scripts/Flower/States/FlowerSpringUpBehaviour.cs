@@ -10,8 +10,8 @@ namespace Flower
 		const float height = 3.5f;
 		const float height_variation = 2.0f;
 		
-		protected override FlowerState next_state
-		{ get { return FlowerState.OPENNING_MID; } }
+		protected override uint next_state
+		{ get { return (uint)FlowerState.OPENNING_MID; } }
 
 		protected override float speed
 		{ get { return _speed; } }
@@ -24,15 +24,15 @@ namespace Flower
 		{
 		}
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.SPRINGUP; }
+			get { return (uint)FlowerState.SPRINGUP; }
 		}
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
 			//Debug.Log("Springing up...");
-			FlowerState ret = base.run ();
+			uint ret = base.run ();
 			return ret;
 		}
 		

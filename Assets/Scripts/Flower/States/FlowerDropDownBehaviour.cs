@@ -19,17 +19,17 @@ namespace Flower
 		protected override float angular_speed
 		{ get { return _angular_speed; } }
 		
-		protected override FlowerState next_state
-		{ get { return FlowerState.IDLE; } }
+		protected override uint next_state
+		{ get { return (uint)FlowerState.IDLE; } }
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.DROPDOWN; }
+			get { return (uint)FlowerState.DROPDOWN; }
 		}
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
-			FlowerState ret = base.run ();
+			uint ret = base.run ();
 			_speed = (ret == next_state)? 0.0f : _speed + _accel * Time.deltaTime;
 			return ret;
 		}

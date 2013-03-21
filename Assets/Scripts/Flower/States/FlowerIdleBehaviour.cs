@@ -4,26 +4,26 @@ namespace Flower
 {
 	public class FlowerIdleBehaviour : FlowerBehaviour
 	{
-		private const FlowerState next_state = FlowerState.SPRINGUP;
+		private const uint next_state = (uint)FlowerState.SPRINGUP;
 		public FlowerIdleBehaviour (FlowerBotController controller)
 			:base (controller)
 		{
 		}
 		
 		public override float sphereRadius {
-			get { return 0.5f * mController._sphereRadius; }
+			get { return 0.5f * ((FlowerBotController)mController)._sphereRadius; }
 		}
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.IDLE; }
+			get { return (uint)FlowerState.IDLE; }
 		}
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
-			mController.angular_velocity = 0.0f;
-			mController.opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
-			FlowerState ret = base.run ();
+			((FlowerBotController)mController).angular_velocity = 0.0f;
+			((FlowerBotController)mController).opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
+			uint ret = base.run ();
 			return (sense_player? next_state : ret);
 		}
 	}

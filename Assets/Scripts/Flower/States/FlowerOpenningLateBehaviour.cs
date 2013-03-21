@@ -11,14 +11,14 @@ namespace Flower
 		{
 		}
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.OPENNING_FULL; }
+			get { return (uint)FlowerState.OPENNING_FULL; }
 		}
 		
-		protected override FlowerState next_state
+		protected override uint next_state
 		{
-			get { return FlowerState.SHOOTING; }
+			get { return (uint)FlowerState.SHOOTING; }
 		}
 		
 		
@@ -27,9 +27,9 @@ namespace Flower
 			get { return open_goal; }
 		}
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
-			mController.face_target(1.0f);
+			((FlowerBotController)mController).face_target(1.0f);
 			return base.run ();
 		}
 		

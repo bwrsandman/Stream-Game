@@ -14,7 +14,7 @@ namespace Flower
 			this.transform = controller.transform;
 		}
 		
-		protected abstract FlowerState next_state
+		protected abstract uint next_state
 		{ get; }
 		
 		protected abstract float speed
@@ -23,12 +23,12 @@ namespace Flower
 		protected abstract float angular_speed
 		{ get; }
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
-			mController.angular_velocity = angular_speed;
+			((FlowerBotController)mController).angular_velocity = angular_speed;
 			Vector3 pos = transform.position;
 			transform.position = Vector3.Lerp(pos, target, speed * Time.deltaTime);
-			FlowerState ret = base.run ();
+			uint ret = base.run ();
 			return ((pos - target).sqrMagnitude < 0.01f? next_state : ret);
 		}
 		

@@ -19,7 +19,7 @@ namespace Flower
 	}
 }
 
-public class FlowerBotController : MonoBehaviour 
+public class FlowerBotController : StateMachineController 
 {
 	#region Constants
 	const float look_speed = 4.0f;
@@ -36,31 +36,18 @@ public class FlowerBotController : MonoBehaviour
 	public Vector3 offset;
 	public MeshFilter [] prisms = new MeshFilter[3];
 	public bool sense_player;
-	public Transform target_transform;
 	public Vector3 other_direction;
 	public LineRenderer laser;
 	#endregion
 	
 	#region Members
-	FlowerBehaviour [] behaviour;
-	FlowerState behaviour_state;
 	Health healthScript;
 	#endregion
 	
 	#region Properties
 	public float scan_radius
 	{
-		get { return behaviour[(int)behaviour_state].sphereRadius; }
-	}
-	
-	Vector3 target_pos
-	{
-		get { return target_transform.position; }
-	}
-	
-	FlowerBehaviour current_behaviour 
-	{
-		get { return behaviour[(int)behaviour_state]; }
+		get { return ((FlowerBehaviour)currentBehaviour).sphereRadius; }
 	}
 	#endregion
 	
@@ -81,7 +68,7 @@ public class FlowerBotController : MonoBehaviour
 			new FlowerDropDownBehaviour(this),
 			new FlowerCloseUpBehaviour(this),
 		};
-		behaviour_state = FlowerState.IDLE;
+		behaviour_state = (uint) FlowerState.IDLE;
 		
 		transform.RotateAround(Vector3.up, Random.value * 360.0f);
 	}
@@ -131,18 +118,10 @@ public class FlowerBotController : MonoBehaviour
 	{
 		offset = delta * Vector3.Cross(other_direction, Vector3.up).normalized * Random.value * offset_mag;
 	}
-		
-	
+
 	public Vector3 vector_to_target()
 	{
 		return target_pos - transform.position;
-	}
-	#endregion
-	
-	#region Internal Functions
-	void Update () 
-	{
-		behaviour_state = current_behaviour.run ();
 	}
 	#endregion
 }

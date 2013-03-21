@@ -23,37 +23,37 @@ namespace Flower
 			rotate_forwards = Random.value > 0.5f;
 		}
 		
-		protected override FlowerState state
+		protected override uint state
 		{
-			get { return FlowerState.SCANNING; }
+			get { return (uint)FlowerState.SCANNING; }
 		}
 		
 		private bool spot_player()
 		{
 
-			return mController.sense_player && spot_threshold > mController.angle_to_other();
+			return ((FlowerBotController)mController).sense_player && spot_threshold > ((FlowerBotController)mController).angle_to_other();
 		}
 		
-		public override FlowerState run ()
+		public override uint run ()
 		{
 			//Debug.Log("Scanning...");
 			// TODO generalize scan acceleration so we don't need to update this every time
-			mController.angular_acceleration = (rotate_forwards? 1.0f : -1.0f) * scan_acceleration;
-			mController.max_angular_velocity = max_scan;
+			((FlowerBotController)mController).angular_acceleration = (rotate_forwards? 1.0f : -1.0f) * scan_acceleration;
+			((FlowerBotController)mController).max_angular_velocity = max_scan;
 			
-			FlowerState ret = base.run ();
-			circling += Mathf.Abs(mController.angular_velocity * Time.deltaTime);
+			uint ret = base.run ();
+			circling += Mathf.Abs(((FlowerBotController)mController).angular_velocity * Time.deltaTime);
 			if(spot_player())
 			{
-				ret = FlowerState.OPENNING_FULL;
-				mController.set_offset((rotate_forwards? 1.0f : -1.0f));
-				mController.face_target(1.0f);
+				ret = (uint)FlowerState.OPENNING_FULL;
+				((FlowerBotController)mController).set_offset((rotate_forwards? 1.0f : -1.0f));
+				((FlowerBotController)mController).face_target(1.0f);
 				circling = 0.0f;
 				rotate_forwards ^= true;
 			}
 			else if (circling > Mathf.PI * 2.0f)
 			{
-				ret = FlowerState.CLOSEUP;
+				ret = (uint)FlowerState.CLOSEUP;
 				circling = 0.0f;
 			}
 			return ret;

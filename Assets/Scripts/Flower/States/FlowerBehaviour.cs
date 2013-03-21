@@ -4,23 +4,18 @@ using UnityEngine;
 
 namespace Flower
 {
-	public abstract class FlowerBehaviour
+	public abstract class FlowerBehaviour : StateBehaviour
 	{
 		#region Members
-		protected FlowerBotController mController;
 		#endregion
 		
 		#region Properties
 		protected bool sense_player {
-			get { return mController.sense_player; }
-		}
-		
-		protected abstract FlowerState state {
-			get;
+			get { return ((FlowerBotController)mController).sense_player; }
 		}
 		
 		public virtual float sphereRadius {
-			get { return mController._sphereRadius; }
+			get { return ((FlowerBotController)mController)._sphereRadius; }
 		}
 		
 		public virtual bool laserVisibility {
@@ -30,24 +25,23 @@ namespace Flower
 		
 		#region Initialization
 		public FlowerBehaviour (FlowerBotController controller)
+			: base (controller)
 		{
-			this.mController = controller;
 		}
 		#endregion
 		
 		#region Run Functions
-		public virtual FlowerState run()
+		public override uint run()
 		{
-			mController.laser.enabled = laserVisibility;
-			mController.close_prism();
-			mController.angular_velocity += mController.angular_acceleration * Time.deltaTime;
-			mController.angular_velocity = Mathf.Max(-mController.max_angular_velocity, 
-				Mathf.Min(mController.max_angular_velocity, mController.angular_velocity));
-			mController.transform.RotateAroundLocal(Vector3.up,
-				mController.angular_velocity * Time.deltaTime);
+			((FlowerBotController)mController).laser.enabled = laserVisibility;
+			((FlowerBotController)mController).close_prism();
+			((FlowerBotController)mController).angular_velocity += ((FlowerBotController)mController).angular_acceleration * Time.deltaTime;
+			((FlowerBotController)mController).angular_velocity = Mathf.Max(-((FlowerBotController)mController).max_angular_velocity, 
+				Mathf.Min(((FlowerBotController)mController).max_angular_velocity, ((FlowerBotController)mController).angular_velocity));
+			((FlowerBotController)mController).transform.RotateAroundLocal(Vector3.up,
+				((FlowerBotController)mController).angular_velocity * Time.deltaTime);
 			return state;
 		}
 		#endregion
 	}
 }
-
