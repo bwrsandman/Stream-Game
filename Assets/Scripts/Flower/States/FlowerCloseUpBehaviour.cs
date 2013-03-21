@@ -33,7 +33,7 @@ namespace Flower
 		public override FlowerState run ()
 		{
 			//Debug.Log("Closing...");
-			controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation,
+			mController.transform.rotation = Quaternion.Slerp(mController.transform.rotation,
 				Quaternion.LookRotation(Vector3.up), look_speed * Time.deltaTime);
 			FlowerState ret = base.run ();
 			return ret;

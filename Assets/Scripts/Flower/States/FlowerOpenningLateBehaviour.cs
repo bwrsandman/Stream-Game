@@ -29,7 +29,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			controller.face_target(1.0f);
+			mController.face_target(1.0f);
 			return base.run ();
 		}
 		

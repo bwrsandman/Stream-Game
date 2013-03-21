@@ -21,7 +21,7 @@ namespace Flower
 		public override FlowerState run ()
 		{
 			FlowerState ret = base.run ();
-			return (controller.face_target(-1.0f, 0.5f) < 2.5f)?
+			return (mController.face_target(-1.0f, 0.5f) < 2.5f)?
 				FlowerState.OPENNING_MID : ret;
 		}
 	}

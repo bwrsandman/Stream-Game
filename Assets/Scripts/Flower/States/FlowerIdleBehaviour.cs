@@ -11,7 +11,7 @@ namespace Flower
 		}
 		
 		public override float sphereRadius {
-			get { return 0.5f * controller._sphereRadius; }
+			get { return 0.5f * mController._sphereRadius; }
 		}
 		
 		protected override FlowerState state
@@ -21,8 +21,8 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			controller.angular_velocity = 0.0f;
-			controller.opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
+			mController.angular_velocity = 0.0f;
+			mController.opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
 			FlowerState ret = base.run ();
 			return (sense_player? next_state : ret);
 		}

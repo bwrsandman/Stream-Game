@@ -25,7 +25,7 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{
-			controller.angular_velocity = angular_speed;
+			mController.angular_velocity = angular_speed;
 			Vector3 pos = transform.position;
 			transform.position = Vector3.Lerp(pos, target, speed * Time.deltaTime);
 			FlowerState ret = base.run ();

@@ -31,23 +31,23 @@ namespace Flower
 		private bool spot_player()
 		{
 
-			return controller.sense_player && spot_threshold > controller.angle_to_other();
+			return mController.sense_player && spot_threshold > mController.angle_to_other();
 		}
 		
 		public override FlowerState run ()
 		{
 			//Debug.Log("Scanning...");
 			// TODO generalize scan acceleration so we don't need to update this every time
-			controller.angular_acceleration = (rotate_forwards? 1.0f : -1.0f) * scan_acceleration;
-			controller.max_angular_velocity = max_scan;
+			mController.angular_acceleration = (rotate_forwards? 1.0f : -1.0f) * scan_acceleration;
+			mController.max_angular_velocity = max_scan;
 			
 			FlowerState ret = base.run ();
-			circling += Mathf.Abs(controller.angular_velocity * Time.deltaTime);
+			circling += Mathf.Abs(mController.angular_velocity * Time.deltaTime);
 			if(spot_player())
 			{
 				ret = FlowerState.OPENNING_FULL;
-				controller.set_offset((rotate_forwards? 1.0f : -1.0f));
-				controller.face_target(1.0f);
+				mController.set_offset((rotate_forwards? 1.0f : -1.0f));
+				mController.face_target(1.0f);
 				circling = 0.0f;
 				rotate_forwards ^= true;
 			}

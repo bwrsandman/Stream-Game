@@ -21,16 +21,16 @@ namespace Flower
 		
 		public override FlowerState run ()
 		{			
-			controller.opened = Mathf.Lerp(controller.opened, opening_goal, 
+			mController.opened = Mathf.Lerp(mController.opened, opening_goal, 
 				openclose_speed * Time.deltaTime);
 			
 			// TODO: implement this better
-			controller.angular_acceleration = 0.0f;
-			controller.angular_velocity = Mathf.Lerp(controller.angular_velocity, 0.0f, angular_dec * Time.deltaTime);
+			mController.angular_acceleration = 0.0f;
+			mController.angular_velocity = Mathf.Lerp(mController.angular_velocity, 0.0f, angular_dec * Time.deltaTime);
 			
 			FlowerState ret = base.run ();
 			
-			return (Mathf.Approximately(controller.opened, opening_goal)? 
+			return (Mathf.Approximately(mController.opened, opening_goal)? 
 					next_state : ret);
 		}
 	}
