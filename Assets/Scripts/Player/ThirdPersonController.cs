@@ -16,6 +16,7 @@ public class ThirdPersonController : MonoBehaviour
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
+	private ActivationHandler activationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 	#endregion
 	
@@ -33,6 +34,7 @@ public class ThirdPersonController : MonoBehaviour
 		anim.SetLayerWeight(1, 1.0f);
 		anim.SetLayerWeight(2, 1.0f);
 		timeScript = GetComponent<TimeActions>();
+		activationHandler = GetComponent<ActivationHandler>();
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 		
@@ -139,6 +141,9 @@ public class ThirdPersonController : MonoBehaviour
 			{	
 				timeScript.sendYoungestBack();	
 			}	
+			if (Input.GetKeyDown("q")) {	
+				activationHandler.Activate();
+			}
 		}
 		
 		updateAim();

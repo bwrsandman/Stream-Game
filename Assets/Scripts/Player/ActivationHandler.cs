@@ -39,7 +39,7 @@ public class ActivationHandler : MonoBehaviour {
 		}
 	}
 	
-	void Activate ()
+	public void Activate ()
 	{
 		if (!selectedObject) {
 			return;
@@ -60,11 +60,7 @@ public class ActivationHandler : MonoBehaviour {
 	}
 	
 	void Update () 
-	{
-		if (Input.GetKeyDown("q")) {	
-			Activate();
-		}
-		
+	{		
 		// Update texture rotation
 		if (activationTexture)
 		{
