@@ -1,19 +1,18 @@
 using UnityEngine;
 using System.Collections;
 
-public class ActivationHandler : MonoBehaviour {
+public abstract class ActivationHandler : MonoBehaviour 
+{
 	
 	public Activateable selectedObject;
 	public GameObject activationPrefab;
-	public GameObject activationTexture;
+	protected GameObject activationTexture;
 	
-	WeaponHandler weaponHandler;
-	PackHandler packHandler;
+	protected WeaponHandler weaponHandler;
 	
-	void Start () 
+	protected virtual void Start () 
 	{
 		weaponHandler = GetComponent<WeaponHandler>();
-		packHandler = GetComponent<PackHandler>();
 	}
 	
 	public void setSelectedObject (Activateable obj)
@@ -39,20 +38,13 @@ public class ActivationHandler : MonoBehaviour {
 		}
 	}
 	
-	public void Activate ()
+	public virtual void Activate ()
 	{
 		if (!selectedObject) {
 			return;
 		} else if (selectedObject.GetType() == typeof(Weapon)) {
 			weaponHandler.PickUpWeapon((Weapon)selectedObject);
 			unsetSelectedObject(selectedObject);
-		} else if (selectedObject.GetType() == typeof(Equipment)) {
-			if (selectedObject.name == "Powerpack")
-			{
-				Destroy(selectedObject.gameObject);
-				unsetSelectedObject(selectedObject);
-				packHandler.Show();
-			}
 		}
 	}
 	
