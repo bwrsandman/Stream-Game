@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AIFollow : MonoBehaviour {
+public class InstanceFollowBehaviour : MonoBehaviour {
 	private Animator anim;
 	public Transform m_Player;
 	NavMeshAgent agent;

@@ -24,8 +24,6 @@ public class TimeActions : MonoBehaviour {
 		float posY = transform.position.y;
 		float posZ = transform.position.z;
 		
-		//updateLights(posZ, new Color(0.0f,1.0f,0.0f));
-		
 		//Destroy the old checkpoint (for now we only have one checkpoint at a time):
 		if (checkpoints.Count > 0) {
 			GameObject oldCheck = checkpoints[0];
@@ -72,9 +70,6 @@ public class TimeActions : MonoBehaviour {
 			else 
 				maxInstanceExtends.Add(-47.5f);
 	 	
-			//updateLights(posZ, new Color(1.0f,0.0f,0.0f));
-			
-			
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
@@ -107,7 +102,7 @@ public class TimeActions : MonoBehaviour {
 			}
 			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
-			AIFollow ai = (AIFollow)clone.GetComponent("AIFollow");
+			InstanceFollowBehaviour ai = (InstanceFollowBehaviour)clone.GetComponent("InstanceFollowBehaviour");
 			ai.m_Player = transform;
 			clones.Add(clone);
 		}
@@ -121,33 +116,6 @@ public class TimeActions : MonoBehaviour {
 		}
 	}
 	
-	/*void updateLights(float posZ, Color color) {
-		GameObject lightObject1 = GameObject.Find("Point light1");
-		GameObject lightObject2 = GameObject.Find("Point light2");
-		GameObject lightObject3 = GameObject.Find("Point light3");
-		Light light1 = lightObject1.GetComponent<Light>();
-		Light light2 = lightObject2.GetComponent<Light>();
-		Light light3 = lightObject3.GetComponent<Light>();
-	
-		//First segment:
-		if (posZ >= -17.5 && posZ < 2.5) {
-			light1.color = color;
-			light2.color = new Color(1.0f, 1.0f, 1.0f);
-			light3.color = new Color(1.0f, 1.0f, 1.0f);
-		}
-		//Second segment:
-		else if (posZ >= -27.5 && posZ < -17.5) {
-			light2.color = color;
-			light1.color = new Color(1.0f, 1.0f, 1.0f);
-			light3.color = new Color(1.0f, 1.0f, 1.0f);
-		}
-		//Third segment:
-		else {
-			light3.color = color;
-			light1.color = new Color(1.0f, 1.0f, 1.0f);
-			light2.color = new Color(1.0f, 1.0f, 1.0f);
-		}
-	}*/
 	public bool isTeleporting () {
 		return teleporting;	
 	}
