@@ -60,7 +60,8 @@ public abstract class StateMachineController : MonoBehaviour
 	#region Public functions
 	public void faceTarget(float delta)
 	{
-		faceTarget(delta, 1.0f);
+		Quaternion target = lookAtTarget(delta);
+		transform.Rotate(new Vector3(0.0f, target.eulerAngles.y - transform.eulerAngles.y, 0.0f));
 	}
 	
 	public float faceTarget(float d_o, float d_s)
