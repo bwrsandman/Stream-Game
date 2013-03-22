@@ -16,11 +16,11 @@ namespace Instance
 		
 		public override uint run ()
 		{
-			Debug.Log("Following.");
+			//Debug.Log("Following.");
 			uint ret = state;
 			
 			float distance = controller.distanceToPlayer;
-			controller.faceTarget(0.0f);
+			controller.facePlayer();
 			
 			
 			if(distance < InstanceController.satisfactionRadius * 1.2f) {

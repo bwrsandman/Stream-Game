@@ -101,7 +101,12 @@ public class InstanceController : StateMachineController
 	{
 		transform.rotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 	}
-	
+
+	public void facePlayer()
+	{
+		rotateY(Quaternion.LookRotation(otherDirection).eulerAngles.y);
+	}
+
 	#endregion
 	
 	#region Member functions
