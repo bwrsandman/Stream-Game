@@ -26,6 +26,7 @@ public class PlayerActivationHandler : ActivationHandler
 			if (selectedObject.name == "Powerpack") {
 				Destroy(selectedObject.gameObject);
 				packHandler.Show();
+				unsetSelectedObject(selectedObject);
 			}
 		}
 	}

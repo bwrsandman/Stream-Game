@@ -49,6 +49,7 @@ public abstract class ActivationHandler : MonoBehaviour
 			return;
 		} else if (selectedObject.GetType() == typeof(Weapon)) {
 			weaponHandler.PickUpWeapon((Weapon)selectedObject);
+			unsetSelectedObject(selectedObject);
 		}
 	}
 	
