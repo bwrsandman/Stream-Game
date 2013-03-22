@@ -8,7 +8,7 @@ public class Aiming : MonoBehaviour {
 	private Vector3 screenMidPoint;
 	
 	private Vector3 shootingDirection;
-	private RaycastHit hit;
+	public RaycastHit hit;
 	
 	private ThirdPersonCamera camScript;
 	
@@ -36,26 +36,9 @@ public class Aiming : MonoBehaviour {
 			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
 			transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);	
 		}
-		
-		//(Input should be changed to a cross-platform solution)
-		if (Input.GetMouseButtonDown(0) && anim.GetBool("Aiming")) {
-			shootRay();
-			if (!hit.point.Equals(Vector3.zero))
-				shootProjectile();
-		}
-		
-		if (Input.GetMouseButtonDown(1)) {
-			anim.SetBool("Aiming", true);
-			camScript.setDistance(1.0f);
-			
-		}
-		if (Input.GetMouseButtonUp(1)) {
-			anim.SetBool("Aiming", false);
-			camScript.setDistance(2.0f);
-		}
 	}
 	
-	void shootRay () {
+	public void shootRay () {
 		Ray ray = Camera.main.ScreenPointToRay(screenMidPoint);
 		
 		Debug.DrawRay(ray.origin, ray.direction * 5.0f, Color.red);
@@ -71,7 +54,7 @@ public class Aiming : MonoBehaviour {
 			hit.point = Vector3.zero;
 	}
 	
-	void shootProjectile () {
+	public void shootProjectile () {
 		Vector3 spawnPos = transform.position;
 		spawnPos.y += 1.5f;
 		

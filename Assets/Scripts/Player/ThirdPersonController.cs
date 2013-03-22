@@ -16,6 +16,8 @@ public class ThirdPersonController : MonoBehaviour
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
+	private ThirdPersonCamera camScript;
+	private Aiming aimScript;
 	private ActivationHandler activationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 	#endregion
@@ -25,7 +27,7 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
 	public Transform spine;
-	public float walkSensitivity = 0.5f; //Should be equal to the Input sensitivity for hori/vert movement
+	public float walkSensitivity = 0.1f;
 	public float runSensitivity = 0.65f;
 	
 	#endregion
@@ -37,6 +39,8 @@ public class ThirdPersonController : MonoBehaviour
 		anim.SetLayerWeight(1, 1.0f);
 		anim.SetLayerWeight(2, 1.0f);
 		timeScript = GetComponent<TimeActions>();
+		camScript = GetComponent<ThirdPersonCamera>();
+		aimScript = GetComponent<Aiming>();
 		activationHandler = GetComponent<ActivationHandler>();
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
@@ -132,7 +136,7 @@ public class ThirdPersonController : MonoBehaviour
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
 			}
-			if (Input.GetKeyDown("t")) 
+			if (Input.GetButton("Y")) 
 			{	
 				anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleport());	
@@ -146,9 +150,32 @@ public class ThirdPersonController : MonoBehaviour
 			{	
 				timeScript.sendYoungestBack();	
 			}	
-			if (Input.GetKeyDown("q")) {	
+			
+			if (Input.GetButton("A")) {
 				activationHandler.Activate();
 			}
+
+			Debug.Log(Input.GetAxis("Left Trigger"));
+			Debug.Log(Input.GetAxis("Right Trigger"));
+
+			bool aim = false;
+			if (Input.GetAxis("Left Trigger") > 0.5f)
+				aim = true;
+
+			anim.SetBool("Aiming", aim);
+			camScript.setDistance(aim ? 1.0f : 2.0f);
+
+			bool shoot = false;
+			if (Input.GetAxis("Right Trigger") > 0.5f)
+				shoot = true;
+
+			//(Input should be changed to a cross-platform solution)
+			if (shoot && anim.GetBool("Aiming")) {
+				aimScript.shootRay();
+				if (!aimScript.hit.point.Equals(Vector3.zero))
+					aimScript.shootProjectile();
+			}
+
 		}
 		
 		updateAim();
