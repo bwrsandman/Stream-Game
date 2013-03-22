@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public abstract class ActivationHandler : MonoBehaviour 
 {
@@ -10,6 +10,11 @@ public abstract class ActivationHandler : MonoBehaviour
 	
 	protected WeaponHandler weaponHandler;
 	
+	protected abstract List<System.Type> activateableTypes
+	{
+		get;
+	}
+	
 	protected virtual void Start () 
 	{
 		weaponHandler = GetComponent<WeaponHandler>();
@@ -18,7 +23,7 @@ public abstract class ActivationHandler : MonoBehaviour
 	public void setSelectedObject (Activateable obj)
 	{
 		// Can't select currently held weapon
-		if(obj != weaponHandler.weapon)
+		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType()))
 		{
 			selectedObject = obj;
 			Destroy(activationTexture);

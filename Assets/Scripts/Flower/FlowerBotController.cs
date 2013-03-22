@@ -1,7 +1,9 @@
+#region Using
 using UnityEngine;
 using System.Collections;
 
 using Flower;
+#endregion
 
 namespace Flower
 {
@@ -17,61 +19,73 @@ namespace Flower
 	}
 }
 
-public class FlowerBotController : MonoBehaviour 
+public class FlowerBotController : StateMachineController 
 {
+	#region Constants
+	const float LOOKSPEED = 4.0f;
+	const float max_closed = 110.0f;
+	const float offset_mag = 2.0f; // How much will the flower miss by at start
+	#endregion
+	
+	#region Public fields
 	public float _sphereRadius = 1.0f;
 	public float opened = 0.0f;
 	public float angular_velocity = 0.0f;
 	public float angular_acceleration = 0.0f;
 	public float max_angular_velocity = 10.0f;
 	public Vector3 offset;
-	const float offset_mag = 2.0f; // How much will the flower miss by at start
-	
-	const float look_speed = 4.0f;
-	const float max_closed = 110.0f;
 	public MeshFilter [] prisms = new MeshFilter[3];
-	FlowerBehaviour [] behaviour;
-	FlowerState behaviour_state;
 	public bool sense_player;
-	public Transform target_transform;
 	public Vector3 other_direction;
 	public LineRenderer laser;
+	#endregion
 	
-	private Health healthScript;
+	#region Members
+	Health healthScript;
+	#endregion
 	
+	#region Properties
 	public float scan_radius
 	{
-		get { return behaviour[(int)behaviour_state].sphereRadius; }
+		get { return ((FlowerBehaviour)currentBehaviour).sphereRadius; }
 	}
 	
-	public float angle_to_other()
-	{
-		Vector2 forward = transform.forward.x * Vector2.right + 
-			transform.forward.z * Vector2.up;
-		Vector2 other = other_direction.x * Vector2.right + 
-			other_direction.z * Vector2.up;
-		return Vector2.Angle(forward, other);
+	protected override uint beginState {
+		get {
+			return (uint) FlowerState.IDLE;
+		}
 	}
 	
-	
-	Vector3 target_pos
-	{
-		get { return target_transform.position; }
+	protected override float lookSpeed {
+		get {
+			return LOOKSPEED;
+		}
 	}
 	
-	FlowerBehaviour current_behaviour 
-	{
-		get { return behaviour[(int)behaviour_state]; }
+	public override Vector3 otherDirection {
+		get {
+			return other_direction;
+		}
 	}
 	
+	protected override Vector3 mOffset {
+		get {
+			return offset;
+		}
+	}
+	#endregion
 	
-	// Use this for initialization
-	void Start () 
+	#region Initialization
+	protected override void Start () 
 	{
+		base.Start();
 		laser = GetComponentInChildren<LineRenderer>();
-		
 		healthScript = GetComponent<Health>();
-		
+		transform.RotateAround(Vector3.up, Random.value * 360.0f);
+	}
+	
+	protected override void BuildBehaviours()
+	{
 		behaviour = new FlowerBehaviour[] { 
 			new FlowerIdleBehaviour(this),
 			new FlowerOpenningEarlyBehaviour(this),
@@ -82,15 +96,22 @@ public class FlowerBotController : MonoBehaviour
 			new FlowerDropDownBehaviour(this),
 			new FlowerCloseUpBehaviour(this),
 		};
-		behaviour_state = FlowerState.IDLE;
-		
-		transform.RotateAround(Vector3.up, Random.value * 360.0f);
 	}
+	#endregion
 	
-	// Update is called once per frame
-	void Update () 
+	#region Public functions
+	public float angle_to_other()
 	{
-		behaviour_state = current_behaviour.run ();
+		Vector2 forward = transform.forward.x * Vector2.right + 
+			transform.forward.z * Vector2.up;
+		Vector2 other = other_direction.x * Vector2.right + 
+			other_direction.z * Vector2.up;
+		return Vector2.Angle(forward, other);
+	}	
+	
+	public void set_offset(float delta)
+	{
+		offset = delta * Vector3.Cross(other_direction, Vector3.up).normalized * Random.value * offset_mag;
 	}
 	
 	public void close_prism()
@@ -104,33 +125,5 @@ public class FlowerBotController : MonoBehaviour
 								 Quaternion.Euler(max_closed * closed, 0.0f, 0.0f);
 		}		
 	}
-	
-	public void face_target(float delta)
-	{
-		face_target(delta, 1.0f);
-	}
-	
-	public float face_target(float d_o, float d_s)
-	{
-		Quaternion target = lookat_target(d_o);
-		transform.rotation = Quaternion.Slerp(transform.rotation, 
-		target, d_s * look_speed * Time.deltaTime);
-		return Mathf.Abs(Quaternion.Angle(transform.rotation, target));
-	}
-	
-	public Quaternion lookat_target(float delta)
-	{
-		return Quaternion.LookRotation(other_direction + delta * offset);
-	}
-	
-	public void set_offset(float delta)
-	{
-		offset = delta * Vector3.Cross(other_direction, Vector3.up).normalized * Random.value * offset_mag;
-	}
-		
-	
-	public Vector3 vector_to_target()
-	{
-		return target_pos - transform.position;
-	}
+	#endregion
 }
