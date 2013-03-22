@@ -25,6 +25,9 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
 	public Transform spine;
+	public float walkSensitivity = 0.5f; //Should be equal to the Input sensitivity for hori/vert movement
+	public float runSensitivity = 0.65f;
+	
 	#endregion
 	
 	#region Initialization
@@ -85,10 +88,11 @@ public class ThirdPersonController : MonoBehaviour
 		dir.Normalize();
 		
 		bool wasMoving = mMoving;
-		mMoving = mag > 0.01f; 
+		mMoving = mag > walkSensitivity; 
 
 		if (mMoving)  {			
-			anim.SetFloat("Speed", mag);
+			anim.SetFloat("Speed", dir.magnitude);
+			anim.SetBool("Running", mag > runSensitivity);
 			
 			float x = dir.x;
 			float y = dir.z;			
@@ -96,6 +100,8 @@ public class ThirdPersonController : MonoBehaviour
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
+		else
+			anim.SetFloat("Speed", 0.0f);
 	}
 	
 	void updateAim () 
@@ -110,7 +116,6 @@ public class ThirdPersonController : MonoBehaviour
 	#region Internal Member functions
 	void Update () 
 	{
-
 		updateMovement(); 
 	}
 	
