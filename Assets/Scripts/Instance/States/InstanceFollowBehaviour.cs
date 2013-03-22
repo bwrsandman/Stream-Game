@@ -16,25 +16,19 @@ namespace Instance
 		
 		public override uint run ()
 		{
+			Debug.Log("Following.");
 			uint ret = state;
-			controller.targetTransform = controller.player;
 			
-			Vector3 travelVector = controller.otherDirection;
-			
-			travelVector.y = 0.0f;
-			float distance = travelVector.magnitude;
-			controller.rotateY(Quaternion.LookRotation(travelVector).eulerAngles.y);
+			float distance = controller.distanceToPlayer;
+			controller.faceTarget(0.0f);
 			
 			
-			if(distance < InstanceController.satisfaction_radius) {
+			if(distance < InstanceController.satisfactionRadius * 1.2f) {
 				//Debug.Log("Player within satisfaction radius. Idling.");
 				controller.Stop();
+				ret = (uint)InstanceState.IDLE;
 			}
-			else if(distance < InstanceController.urgency_radius) {
-				//Debug.Log("Just outside satisfaction radius. Walking to follow.");
-				controller.Resume(false);
-			}
-			else {
+			else if(distance > InstanceController.urgencyRadius) {
 				//Debug.Log("Player outside of urgency radius. Must run to catch up.");
 				controller.Resume(true);
 			}

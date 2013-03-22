@@ -29,7 +29,7 @@ namespace Flower
 		
 		public override uint run ()
 		{
-			((FlowerBotController)mController).face_target(1.0f);
+			((FlowerBotController)mController).faceTarget(1.0f);
 			return base.run ();
 		}
 		

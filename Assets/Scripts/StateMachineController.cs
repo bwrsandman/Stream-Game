@@ -58,25 +58,25 @@ public abstract class StateMachineController : MonoBehaviour
 	#endregion
 	
 	#region Public functions
-	public void face_target(float delta)
+	public void faceTarget(float delta)
 	{
-		face_target(delta, 1.0f);
+		faceTarget(delta, 1.0f);
 	}
 	
-	public float face_target(float d_o, float d_s)
+	public float faceTarget(float d_o, float d_s)
 	{
-		Quaternion target = lookat_target(d_o);
+		Quaternion target = lookAtTarget(d_o);
 		transform.rotation = Quaternion.Slerp(transform.rotation, 
 		target, d_s * lookSpeed * Time.deltaTime);
 		return Mathf.Abs(Quaternion.Angle(transform.rotation, target));
 	}
 	
-	public Quaternion lookat_target(float delta)
+	public Quaternion lookAtTarget(float delta)
 	{
 		return Quaternion.LookRotation(otherDirection + delta * mOffset);
 	}
 
-	public Vector3 vector_to_target()
+	public Vector3 vectorToTarget()
 	{
 		return targetPosition - transform.position;
 	}

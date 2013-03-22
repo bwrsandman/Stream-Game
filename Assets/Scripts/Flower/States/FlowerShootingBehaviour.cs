@@ -21,7 +21,7 @@ namespace Flower
 		public override uint run ()
 		{
 			uint ret = base.run ();
-			return (((FlowerBotController)mController).face_target(-1.0f, 0.5f) < 2.5f)?
+			return (((FlowerBotController)mController).faceTarget(-1.0f, 0.5f) < 2.5f)?
 				(uint)FlowerState.OPENNING_MID : ret;
 		}
 	}

@@ -8,8 +8,8 @@ using Instance;
 namespace Instance
 {
 	public enum InstanceState {
-		FOLLOW,
 		IDLE,
+		FOLLOW,
 		GOTO,
 		GOTO_IDLE,
 		ACTIVATE,
@@ -21,8 +21,8 @@ public class InstanceController : StateMachineController
 {
 	#region Constants
 	const float LOOKSPEED = 4.0f;
-	public const float satisfaction_radius = 2.5f;
-	public const float urgency_radius = 7.5f;
+	public const float satisfactionRadius = 2.5f;
+	public const float urgencyRadius = 7.5f;
 	public const float movingSpeed = 0.11f;
 	#endregion
 	
@@ -59,6 +59,15 @@ public class InstanceController : StateMachineController
 			return Vector3.zero;
 		}
 	}
+	
+	public float distanceToPlayer {
+		get {
+			targetTransform = player;
+			Vector3 travelVector = otherDirection;
+			travelVector.y = 0.0f;
+			return travelVector.magnitude;
+		}
+	}
 	#endregion
 	
 	#region Initialization
@@ -75,7 +84,8 @@ public class InstanceController : StateMachineController
 	public void Resume(bool running)
 	{
 		agent.Resume();
-		anim.SetFloat("Speed", movingSpeed);
+		if (anim.GetFloat("Speed") < movingSpeed)
+			anim.SetFloat("Speed", movingSpeed);
 		if (running)
 			anim.SetBool("Running", true);
 	}
@@ -98,6 +108,7 @@ public class InstanceController : StateMachineController
 	protected override void BuildBehaviours ()
 	{
 		behaviour = new InstanceBehaviour[] { 
+			new InstanceIdleBehaviour(this),
 			new InstanceFollowBehaviour(this),
 		};
 	}

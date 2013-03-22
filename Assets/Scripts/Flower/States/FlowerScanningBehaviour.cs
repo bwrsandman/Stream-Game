@@ -47,7 +47,7 @@ namespace Flower
 			{
 				ret = (uint)FlowerState.OPENNING_FULL;
 				((FlowerBotController)mController).set_offset((rotate_forwards? 1.0f : -1.0f));
-				((FlowerBotController)mController).face_target(1.0f);
+				((FlowerBotController)mController).faceTarget(1.0f);
 				circling = 0.0f;
 				rotate_forwards ^= true;
 			}
