@@ -102,18 +102,18 @@ public class FlowerBotController : StateMachineController
 	#region Public functions
 	public float angle_to_other()
 	{
-		Vector2 forward = transform.forward.x * Vector2.right + 
+		Vector2 forward = transform.forward.x * Vector2.right +
 			transform.forward.z * Vector2.up;
-		Vector2 other = other_direction.x * Vector2.right + 
+		Vector2 other = other_direction.x * Vector2.right +
 			other_direction.z * Vector2.up;
 		return Vector2.Angle(forward, other);
-	}	
-	
+	}
+
 	public void set_offset(float delta)
 	{
 		offset = delta * Vector3.Cross(other_direction, Vector3.up).normalized * Random.value * offset_mag;
 	}
-	
+
 	public void close_prism()
 	{
 		opened = Mathf.Max(Mathf.Min(1.0f, opened), 0.0f);
@@ -124,6 +124,19 @@ public class FlowerBotController : StateMachineController
 			tran.localRotation = Quaternion.Euler(0.0f, 0.0f, i * -120.0f) * 
 								 Quaternion.Euler(max_closed * closed, 0.0f, 0.0f);
 		}		
+	}
+
+	public void faceTarget(float delta)
+	{
+		faceTarget(delta, 1.0f);
+	}
+
+	public float faceTarget(float d_o, float d_s)
+	{
+		Quaternion target = lookAtTarget(d_o);
+		transform.rotation = Quaternion.Slerp(transform.rotation,
+		target, d_s * lookSpeed * Time.deltaTime);
+		return Mathf.Abs(Quaternion.Angle(transform.rotation, target));
 	}
 	#endregion
 }

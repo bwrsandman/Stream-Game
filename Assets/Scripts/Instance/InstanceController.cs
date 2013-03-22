@@ -101,7 +101,12 @@ public class InstanceController : StateMachineController
 	{
 		transform.rotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 	}
-	
+
+	public void facePlayer()
+	{
+		rotateY(Quaternion.LookRotation(otherDirection).eulerAngles.y);
+	}
+
 	#endregion
 	
 	#region Member functions
@@ -110,10 +115,14 @@ public class InstanceController : StateMachineController
 		behaviour = new InstanceBehaviour[] { 
 			new InstanceIdleBehaviour(this),
 			new InstanceFollowBehaviour(this),
+			new InstanceGotoBehaviour(this),
+			new InstanceGotoIdleBehaviour(this),
+			new InstanceActivateBehaviour(this),
+			new InstanceAttackBehaviour(this),
 		};
 	}
 	#endregion
-	
+
 	#region Internal functions
 	protected override void Update () 
 	{
