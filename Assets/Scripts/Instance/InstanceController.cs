@@ -115,10 +115,14 @@ public class InstanceController : StateMachineController
 		behaviour = new InstanceBehaviour[] { 
 			new InstanceIdleBehaviour(this),
 			new InstanceFollowBehaviour(this),
+			new InstanceGotoBehaviour(this),
+			new InstanceGotoIdleBehaviour(this),
+			new InstanceActivateBehaviour(this),
+			new InstanceAttackBehaviour(this),
 		};
 	}
 	#endregion
-	
+
 	#region Internal functions
 	protected override void Update () 
 	{
