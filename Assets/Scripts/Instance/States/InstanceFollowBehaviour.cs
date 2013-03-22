@@ -20,7 +20,7 @@ namespace Instance
 			uint ret = state;
 			
 			float distance = controller.distanceToPlayer;
-			controller.facePlayer();
+			//controller.facePlayer();
 			
 			
 			if(distance < InstanceController.satisfactionRadius * 1.2f) {

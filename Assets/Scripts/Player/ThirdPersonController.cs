@@ -136,16 +136,6 @@ public class ThirdPersonController : MonoBehaviour
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
 			}
-			if (Input.GetButton("Y")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleport());	
-			}
-			if (Input.GetKeyDown("r")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleportCloner());	
-			}
 			if (Input.GetKeyDown("y")) 
 			{	
 				timeScript.sendYoungestBack();	
@@ -155,9 +145,7 @@ public class ThirdPersonController : MonoBehaviour
 				activationHandler.Activate();
 			}
 
-			Debug.Log(Input.GetAxis("Left Trigger"));
-			Debug.Log(Input.GetAxis("Right Trigger"));
-
+			//Aiming
 			bool aim = false;
 			if (Input.GetAxis("Left Trigger") > 0.5f)
 				aim = true;
@@ -165,6 +153,7 @@ public class ThirdPersonController : MonoBehaviour
 			anim.SetBool("Aiming", aim);
 			camScript.setDistance(aim ? 1.0f : 2.0f);
 
+			//Shooting
 			bool shoot = false;
 			if (Input.GetAxis("Right Trigger") > 0.5f)
 				shoot = true;
@@ -174,6 +163,40 @@ public class ThirdPersonController : MonoBehaviour
 				aimScript.shootRay();
 				if (!aimScript.hit.point.Equals(Vector3.zero))
 					aimScript.shootProjectile();
+			}
+
+			//Dpad clone activation
+			Vector2 dPad = new Vector2(Input.GetAxis("Dpad X"), Input.GetAxis("Dpad Y"));
+
+			if (dPad.sqrMagnitude > 0.25f) {
+				uint clone_index = 0;
+				float dom = dPad.y;
+				if (Mathf.Abs(dPad.x) > Mathf.Abs(dPad.y)) {
+					dom = dPad.x;
+					clone_index += 1;
+				}
+				if (dom < 0.0f) {
+					clone_index += 2;
+				}
+
+				// do something with clone_index
+				Debug.Log("activate clone #" + clone_index);
+			}
+
+
+			Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
+
+			//Time travel
+			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleportCloner());
+			}
+			//Teleport
+			else if (Input.GetAxis("Y") >= 1.0f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleport());
 			}
 
 		}

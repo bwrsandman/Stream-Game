@@ -127,7 +127,7 @@ public class InstanceController : StateMachineController
 	protected override void Update () 
 	{
 		base.Update();
-		agent.destination = targetPosition;
+		agent.SetDestination(targetPosition);
 		agent.speed = anim.GetFloat("Speed");
 	}
 	#endregion
