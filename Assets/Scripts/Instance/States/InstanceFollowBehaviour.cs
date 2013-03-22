@@ -19,7 +19,7 @@ namespace Instance
 			uint ret = state;
 			controller.targetTransform = controller.player;
 			
-			Vector3 travelVector = controller.travelVector;
+			Vector3 travelVector = controller.otherDirection;
 			
 			travelVector.y = 0.0f;
 			float distance = travelVector.magnitude;

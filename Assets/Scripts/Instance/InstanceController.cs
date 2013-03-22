@@ -20,6 +20,7 @@ namespace Instance
 public class InstanceController : StateMachineController 
 {
 	#region Constants
+	const float LOOKSPEED = 4.0f;
 	public const float satisfaction_radius = 2.5f;
 	public const float urgency_radius = 7.5f;
 	public const float movingSpeed = 0.11f;
@@ -41,9 +42,21 @@ public class InstanceController : StateMachineController
 		}
 	}
 	
-	public Vector3 travelVector {
+	protected override float lookSpeed {
 		get {
-			return targetPosition - transform.position;
+			return LOOKSPEED;
+		}
+	}
+	
+	public override Vector3 otherDirection {
+		get {
+			return targetPosition - transform.position; 
+		}
+	}
+	
+	protected override Vector3 mOffset {
+		get {
+			return Vector3.zero;
 		}
 	}
 	#endregion
