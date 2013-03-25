@@ -146,19 +146,15 @@ public class ThirdPersonController : MonoBehaviour
 			}
 
 			//Aiming
-			bool aim = false;
-			if (Input.GetAxis("Left Trigger") > 0.5f)
-				aim = true;
-
+			bool aim = Input.GetButton("Left Trigger");
 			anim.SetBool("Aiming", aim);
 			camScript.setDistance(aim ? 1.0f : 2.0f);
 
-			//Shooting
-			bool shoot = false;
-			if (Input.GetAxis("Right Trigger") > 0.5f)
-				shoot = true;
 
-			//(Input should be changed to a cross-platform solution)
+			Debug.Log(Input.GetButton("Right Trigger"));
+
+			//Shooting
+			bool shoot = Input.GetButton("Right Trigger");
 			if (shoot && anim.GetBool("Aiming")) {
 				aimScript.shootRay();
 				if (!aimScript.hit.point.Equals(Vector3.zero))
@@ -184,7 +180,7 @@ public class ThirdPersonController : MonoBehaviour
 			}
 
 
-			Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
+			//Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
 
 			//Time travel
 			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
