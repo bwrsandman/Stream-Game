@@ -150,9 +150,6 @@ public class ThirdPersonController : MonoBehaviour
 			anim.SetBool("Aiming", aim);
 			camScript.setDistance(aim ? 1.0f : 2.0f);
 
-
-			Debug.Log(Input.GetButton("Right Trigger"));
-
 			//Shooting
 			bool shoot = Input.GetButton("Right Trigger");
 			if (shoot && anim.GetBool("Aiming")) {

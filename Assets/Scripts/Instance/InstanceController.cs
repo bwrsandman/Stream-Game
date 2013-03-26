@@ -24,6 +24,8 @@ public class InstanceController : StateMachineController
 	public const float satisfactionRadius = 2.5f;
 	public const float urgencyRadius = 7.5f;
 	public const float movingSpeed = 0.11f;
+
+	public GameObject NavCubeFab;
 	#endregion
 	
 	#region Public fields
@@ -33,6 +35,7 @@ public class InstanceController : StateMachineController
 	#region Members
 	Animator anim;
 	NavMeshAgent agent;
+	GameObject cube;
 	#endregion
 	
 	#region Properties
@@ -75,7 +78,8 @@ public class InstanceController : StateMachineController
 	{
 		base.Start();
 		anim = GetComponent<Animator>();	
-		agent = GetComponent<NavMeshAgent>();
+		cube = (GameObject) Instantiate(NavCubeFab, transform.position + otherDirection.normalized, transform.rotation);
+		agent = cube.GetComponent<NavMeshAgent>();
 	}
 	#endregion
 	
@@ -84,10 +88,14 @@ public class InstanceController : StateMachineController
 	public void Resume(bool running)
 	{
 		agent.Resume();
-		if (anim.GetFloat("Speed") < movingSpeed)
+		if (anim.GetFloat("Speed") < movingSpeed) {
 			anim.SetFloat("Speed", movingSpeed);
-		if (running)
+			agent.speed = 0.956f*1.75f*2.0f;
+		}
+		if (running) {
 			anim.SetBool("Running", true);
+			agent.speed = 3.247f*1.5f*1.1f;
+		}
 	}
 
 	public void Stop ()
@@ -95,6 +103,7 @@ public class InstanceController : StateMachineController
 		agent.Stop();
 		anim.SetFloat("Speed", 0.0f);
 		anim.SetBool("Running", false);
+		agent.speed = 0.0f;
 	}
 
 	public void rotateY (float y)
@@ -122,13 +131,25 @@ public class InstanceController : StateMachineController
 		};
 	}
 	#endregion
-
+	
 	#region Internal functions
-	protected override void Update () 
+	protected override void Update ()
 	{
 		base.Update();
 		agent.SetDestination(targetPosition);
-		agent.speed = anim.GetFloat("Speed");
+		if (anim.GetFloat("Speed") > 0.1f) {
+			float dist = Vector3.Distance(transform.position, agent.transform.position);
+		}
 	}
 	#endregion
+
+	protected override void LateUpdate ()
+	{
+		if (anim.GetFloat("Speed") > 0.1f) {
+			transform.LookAt(agent.transform);
+			Vector3 rot = transform.rotation.eulerAngles;
+			rot.x = 0.0f;
+			transform.rotation = Quaternion.Euler(rot);
+		}
+	}
 }
