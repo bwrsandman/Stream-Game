@@ -141,7 +141,6 @@ public class InstanceController : StateMachineController
 			float dist = Vector3.Distance(transform.position, agent.transform.position);
 		}
 	}
-	#endregion
 
 	protected override void LateUpdate ()
 	{
@@ -152,4 +151,5 @@ public class InstanceController : StateMachineController
 			transform.rotation = Quaternion.Euler(rot);
 		}
 	}
+	#endregion
 }
