@@ -70,9 +70,13 @@ public abstract class StateMachineController : MonoBehaviour
 	#endregion
 	
 	#region Internal functions
-	protected virtual void Update () 
+	protected virtual void Update ()
 	{
 		behaviourState = currentBehaviour.run ();
+	}
+
+	protected virtual void LateUpdate () {
+
 	}
 	#endregion
 }

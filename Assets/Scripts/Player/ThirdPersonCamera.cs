@@ -20,8 +20,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	public float angularSmoothLag = 0.3f;
 	public float angularMaxSpeed = 15.0f;
 	
-	public float camera_turn_speed_v = 20.0f;
-	public float camera_turn_speed_h = 20.0f;
+	public float camera_turn_speed_v = 500.0f;
+	public float camera_turn_speed_h = 500.0f;
 	public float currentAngle_v = 0.0f;
 	public float currentAngle_h = 0.0f;
 	public float max_rotation_v = 60.0f;
