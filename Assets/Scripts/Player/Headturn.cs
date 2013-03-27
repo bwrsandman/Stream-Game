@@ -8,7 +8,7 @@ public class Headturn : MonoBehaviour {
 	private Transform playerTransform;
 	private Animator anim;
 
-	public float turnLimit = -10.0f;
+	public float turnLimit = 80.0f;
 	public float headTiltAngle = -70.0f;
 	public Transform headTransform;
 
@@ -27,28 +27,29 @@ public class Headturn : MonoBehaviour {
 	
 			float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
 			float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + 90.0f));
-	
-			if (playerCamDiff > -turnLimit && playerCamDiff < turnLimit) { 
-	
+
+			Debug.Log(deltaAngle + " " + playerCamDiff + " " + turnLimit);
+
+			if (Mathf.Abs(playerCamDiff) < turnLimit) {
 				//don't lerp if the change in angle is greater than "turnLimit":
-				if (Mathf.Ceil(deltaAngle) < turnLimit) {
+				if (deltaAngle < turnLimit)
 					prevAngle = Mathf.LerpAngle(prevAngle, camRot + 90.0f, .2f);
-					Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, headTiltAngle);
-			    	headTransform.rotation = rotation;
-				}
 				else
 					prevAngle = playerRot + 90.0f;
+
+				Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, headTiltAngle);
+				headTransform.rotation = rotation;
 			}
 			//if the camera is looking behind the player, the head should turn to face the front.
 			else {
-				Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, headTiltAngle);
-		    	headTransform.rotation = rotation;
-	
 				//if the player turns more than "turnLimit" on the spot, don't lerp:
-				if (deltaAngle < turnLimit && deltaAngle > 0.1) 
+				if (deltaAngle < turnLimit + 5 && anim.GetFloat("Speed") < 0.1f)
 					prevAngle = Mathf.LerpAngle(prevAngle, playerRot + 90.0f, .05f);
 				else
 					prevAngle = playerRot + 90.0f;
+
+				Quaternion rotation = Quaternion.Euler(0.0f, prevAngle, headTiltAngle);
+				headTransform.rotation = rotation;
 			}
 		}
 	}

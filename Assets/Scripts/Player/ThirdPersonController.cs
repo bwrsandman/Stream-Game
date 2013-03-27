@@ -16,6 +16,8 @@ public class ThirdPersonController : MonoBehaviour
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
 	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
+	private ThirdPersonCamera camScript;
+	private Aiming aimScript;
 	private ActivationHandler activationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 	#endregion
@@ -25,6 +27,9 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
 	public Transform spine;
+	public float walkSensitivity = 0.1f;
+	public float runSensitivity = 0.65f;
+	
 	#endregion
 	
 	#region Initialization
@@ -34,6 +39,8 @@ public class ThirdPersonController : MonoBehaviour
 		anim.SetLayerWeight(1, 1.0f);
 		anim.SetLayerWeight(2, 1.0f);
 		timeScript = GetComponent<TimeActions>();
+		camScript = GetComponent<ThirdPersonCamera>();
+		aimScript = GetComponent<Aiming>();
 		activationHandler = GetComponent<ActivationHandler>();
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
@@ -85,10 +92,11 @@ public class ThirdPersonController : MonoBehaviour
 		dir.Normalize();
 		
 		bool wasMoving = mMoving;
-		mMoving = mag > 0.01f; 
+		mMoving = mag > walkSensitivity; 
 
 		if (mMoving)  {			
-			anim.SetFloat("Speed", mag);
+			anim.SetFloat("Speed", dir.magnitude);
+			anim.SetBool("Running", mag > runSensitivity);
 			
 			float x = dir.x;
 			float y = dir.z;			
@@ -96,6 +104,8 @@ public class ThirdPersonController : MonoBehaviour
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
+		else
+			anim.SetFloat("Speed", 0.0f);
 	}
 	
 	void updateAim () 
@@ -110,7 +120,6 @@ public class ThirdPersonController : MonoBehaviour
 	#region Internal Member functions
 	void Update () 
 	{
-
 		updateMovement(); 
 	}
 	
@@ -127,23 +136,62 @@ public class ThirdPersonController : MonoBehaviour
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
 			}
-			if (Input.GetKeyDown("t")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleport());	
-			}
-			if (Input.GetKeyDown("r")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleportCloner());	
-			}
 			if (Input.GetKeyDown("y")) 
 			{	
 				timeScript.sendYoungestBack();	
 			}	
-			if (Input.GetKeyDown("q")) {	
+			
+			if (Input.GetButton("A")) {
 				activationHandler.Activate();
 			}
+
+			//Aiming
+			bool aim = Input.GetButton("Left Trigger");
+			anim.SetBool("Aiming", aim);
+			camScript.setDistance(aim ? 1.0f : 2.0f);
+
+			//Shooting
+			bool shoot = Input.GetButton("Right Trigger");
+			if (shoot && anim.GetBool("Aiming")) {
+				aimScript.shootRay();
+				if (!aimScript.hit.point.Equals(Vector3.zero))
+					aimScript.shootProjectile();
+			}
+
+			//Dpad clone activation
+			Vector2 dPad = new Vector2(Input.GetAxis("Dpad X"), Input.GetAxis("Dpad Y"));
+
+			if (dPad.sqrMagnitude > 0.25f) {
+				uint clone_index = 0;
+				float dom = dPad.y;
+				if (Mathf.Abs(dPad.x) > Mathf.Abs(dPad.y)) {
+					dom = dPad.x;
+					clone_index += 1;
+				}
+				if (dom < 0.0f) {
+					clone_index += 2;
+				}
+
+				// do something with clone_index
+				Debug.Log("activate clone #" + clone_index);
+			}
+
+
+			//Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
+
+			//Time travel
+			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleportCloner());
+			}
+			//Teleport
+			else if (Input.GetAxis("Y") >= 1.0f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleport());
+			}
+
 		}
 		
 		updateAim();
