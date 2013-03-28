@@ -43,13 +43,12 @@ Shader "Custom/HealthShader" {
 				const float _smoothe1 = 100.0;
 				const float _separate = 0.95;
 				float2 center = float2(_uCenter, _vCenter);
-				float health = 0.05 * ceil(_health/0.05);
+				float health = 1.0 - 0.05 * ceil(_health/0.05);
+				float dist = distance(IN.uv_tex0, center);
 
 				float3 oricol = tex2D(_tex0, IN.uv_tex0).xyz;
 				float3 defcol = tex2D (_tex2, IN.uv_tex0).xyz;
 				float3 col = tex2D (_tex1, IN.uv_tex0).xyz;
-
-				float dist = distance(IN.uv_tex0, center);
 
 				col = lerp(col, oricol, clamp(_smoothe0 * (IN.uv_tex0.y + health - 1.0),0.0,1.0));
 				col = lerp(defcol, col, clamp(_smoothe1 * (IN.uv_tex0.x - _separate),0.0,1.0));
