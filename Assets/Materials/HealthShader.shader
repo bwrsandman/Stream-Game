@@ -1,9 +1,13 @@
 Shader "Custom/HealthShader" {
 	Properties {
-		_tex0 ("Texture1", 2D) = "white" {}
-		_tex1 ("Texture2", 2D) = "white" {}
+		_tex0 ("Empty", 2D) = "black" {}
+		_tex1 ("Filled", 2D) = "white" {}
+		_tex2 ("Default", 2D) = "gray" {}
 		_health ("Health", Range(0,1)) = 1.0
-		_smootheFactor ("Smoothing", Range(0,100)) = 20.0
+		_smoothe0 ("Health Smoothing", Range(0,100)) = 20.0
+		_uCenter ("Health Center u", Range(0.0,1.0)) = 0.1
+		_vCenter ("Health Center v", Range(0.0,1.0)) = 0.1
+		_radius ("Circle radius", Range(0.0,1.0)) = 0.5
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -19,8 +23,12 @@ Shader "Custom/HealthShader" {
 
 			sampler2D _tex0;
 			sampler2D _tex1;
+			sampler2D _tex2;
 			float _health;
-			float _smootheFactor;
+			float _smoothe0;
+			float _uCenter;
+			float _vCenter;
+			float _radius;
 
 			struct v2f {
 				float4 pos : POSITION;
@@ -43,14 +51,24 @@ Shader "Custom/HealthShader" {
 	
 			half4 frag (v2f i) : COLOR
 			{
-				float animHealth = _health*1.0;
-				float2 q = i.uv.xy / float2(1,1);
+				const float _smoothe1 = 100.0;
+				const float _separate = 0.95;
+				float2 q = i.uv.xy;
+				float2 center = float2(_uCenter, _vCenter);
+				float health = 0.05 * ceil(_health/0.05);
+
 				float3 oricol = tex2D (_tex0,float2(q.x,q.y)).xyz;
+				float3 defcol = tex2D (_tex2,float2(q.x,q.y)).xyz;
 				float3 col = tex2D (_tex1,float2(i.uv.x,i.uv.y)).xyz;
 
-				//float comp = smoothstep(0.2, 0.7, animHealth);
-				col = lerp(col,oricol, clamp(_smootheFactor * (q.y + animHealth - 1.0),0.0,1.0));
-				return float4(col,1);
+				float dist = distance(q, center);
+
+				float3 circol = lerp(defcol,oricol, 1.0 - clamp(dist/_radius, 0.0, 1.0));
+
+				col = lerp(col, oricol, clamp(_smoothe0 * (q.y + health - 1.0),0.0,1.0));
+				col = lerp(defcol, col, clamp(_smoothe1 * (q.x - _separate),0.0,1.0));
+
+				return float4(col,dist < _radius || q.x > _separate);
 			}
 	
 			ENDCG
