@@ -84,6 +84,115 @@ ModelImporter:
     100156: SteelBeam_7
     100158: SteelBeam_8
     100160: SteelBeam_9
+    100162: group1
+    100164: group11
+    100166: group2
+    100168: group3
+    100170: group4
+    100172: group5
+    100174: group6
+    100176: group7
+    100178: group8
+    100180: pCube39
+    100182: pCube40
+    100184: pCube41
+    100186: pCube42
+    100188: pCube43
+    100190: pCube44
+    100192: pCube45
+    100194: pCube46
+    100196: polySurface1
+    100198: SteelBeam_100
+    100200: SteelBeam_101
+    100202: SteelBeam_102
+    100204: SteelBeam_103
+    100206: SteelBeam_104
+    100208: SteelBeam_105
+    100210: SteelBeam_106
+    100212: SteelBeam_107
+    100214: SteelBeam_108
+    100216: SteelBeam_109
+    100218: SteelBeam_110
+    100220: SteelBeam_111
+    100222: SteelBeam_112
+    100224: SteelBeam_12 1
+    100226: SteelBeam_142
+    100228: SteelBeam_172
+    100230: SteelBeam_202
+    100232: SteelBeam_210
+    100234: SteelBeam_211
+    100236: SteelBeam_212
+    100238: SteelBeam_213
+    100240: SteelBeam_214
+    100242: SteelBeam_215
+    100244: SteelBeam_45
+    100246: SteelBeam_46
+    100248: SteelBeam_46 1
+    100250: SteelBeam_47
+    100252: SteelBeam_47 1
+    100254: SteelBeam_48
+    100256: SteelBeam_48 1
+    100258: SteelBeam_49
+    100260: SteelBeam_49 1
+    100262: SteelBeam_50
+    100264: SteelBeam_50 1
+    100266: SteelBeam_51
+    100268: SteelBeam_51 1
+    100270: SteelBeam_52
+    100272: SteelBeam_52 1
+    100274: SteelBeam_53
+    100276: SteelBeam_53 1
+    100278: SteelBeam_54
+    100280: SteelBeam_54 1
+    100282: SteelBeam_55
+    100284: SteelBeam_55 1
+    100286: SteelBeam_56
+    100288: SteelBeam_57
+    100290: SteelBeam_58
+    100292: SteelBeam_59
+    100294: SteelBeam_60
+    100296: SteelBeam_61
+    100298: SteelBeam_61 1
+    100300: SteelBeam_62
+    100302: SteelBeam_63
+    100304: SteelBeam_63 1
+    100306: SteelBeam_64
+    100308: SteelBeam_65
+    100310: SteelBeam_65 1
+    100312: SteelBeam_66
+    100314: SteelBeam_67
+    100316: SteelBeam_67 1
+    100318: SteelBeam_68
+    100320: SteelBeam_69
+    100322: SteelBeam_70
+    100324: SteelBeam_71
+    100326: SteelBeam_72
+    100328: SteelBeam_73
+    100330: SteelBeam_74
+    100332: SteelBeam_75
+    100334: SteelBeam_76
+    100336: SteelBeam_77
+    100338: SteelBeam_78
+    100340: SteelBeam_79
+    100342: SteelBeam_80
+    100344: SteelBeam_81
+    100346: SteelBeam_82
+    100348: SteelBeam_83
+    100350: SteelBeam_84
+    100352: SteelBeam_85
+    100354: SteelBeam_86
+    100356: SteelBeam_87
+    100358: SteelBeam_88
+    100360: SteelBeam_89
+    100362: SteelBeam_90
+    100364: SteelBeam_91
+    100366: SteelBeam_92
+    100368: SteelBeam_94
+    100370: SteelBeam_95
+    100372: SteelBeam_96
+    100374: SteelBeam_97
+    100376: SteelBeam_98
+    100378: SteelBeam_99
     400000: //RootNode
     400002: CorrugatedSteelWall_1
     400004: CorrugatedSteelWall_10
@@ -165,6 +274,115 @@ ModelImporter:
     400156: SteelBeam_7
     400158: SteelBeam_8
     400160: SteelBeam_9
+    400162: group1
+    400164: group11
+    400166: group2
+    400168: group3
+    400170: group4
+    400172: group5
+    400174: group6
+    400176: group7
+    400178: group8
+    400180: pCube39
+    400182: pCube40
+    400184: pCube41
+    400186: pCube42
+    400188: pCube43
+    400190: pCube44
+    400192: pCube45
+    400194: pCube46
+    400196: polySurface1
+    400198: SteelBeam_100
+    400200: SteelBeam_101
+    400202: SteelBeam_102
+    400204: SteelBeam_103
+    400206: SteelBeam_104
+    400208: SteelBeam_105
+    400210: SteelBeam_106
+    400212: SteelBeam_107
+    400214: SteelBeam_108
+    400216: SteelBeam_109
+    400218: SteelBeam_110
+    400220: SteelBeam_111
+    400222: SteelBeam_112
+    400224: SteelBeam_12 1
+    400226: SteelBeam_142
+    400228: SteelBeam_172
+    400230: SteelBeam_202
+    400232: SteelBeam_210
+    400234: SteelBeam_211
+    400236: SteelBeam_212
+    400238: SteelBeam_213
+    400240: SteelBeam_214
+    400242: SteelBeam_215
+    400244: SteelBeam_45
+    400246: SteelBeam_46
+    400248: SteelBeam_46 1
+    400250: SteelBeam_47
+    400252: SteelBeam_47 1
+    400254: SteelBeam_48
+    400256: SteelBeam_48 1
+    400258: SteelBeam_49
+    400260: SteelBeam_49 1
+    400262: SteelBeam_50
+    400264: SteelBeam_50 1
+    400266: SteelBeam_51
+    400268: SteelBeam_51 1
+    400270: SteelBeam_52
+    400272: SteelBeam_52 1
+    400274: SteelBeam_53
+    400276: SteelBeam_53 1
+    400278: SteelBeam_54
+    400280: SteelBeam_54 1
+    400282: SteelBeam_55
+    400284: SteelBeam_55 1
+    400286: SteelBeam_56
+    400288: SteelBeam_57
+    400290: SteelBeam_58
+    400292: SteelBeam_59
+    400294: SteelBeam_60
+    400296: SteelBeam_61
+    400298: SteelBeam_61 1
+    400300: SteelBeam_62
+    400302: SteelBeam_63
+    400304: SteelBeam_63 1
+    400306: SteelBeam_64
+    400308: SteelBeam_65
+    400310: SteelBeam_65 1
+    400312: SteelBeam_66
+    400314: SteelBeam_67
+    400316: SteelBeam_67 1
+    400318: SteelBeam_68
+    400320: SteelBeam_69
+    400322: SteelBeam_70
+    400324: SteelBeam_71
+    400326: SteelBeam_72
+    400328: SteelBeam_73
+    400330: SteelBeam_74
+    400332: SteelBeam_75
+    400334: SteelBeam_76
+    400336: SteelBeam_77
+    400338: SteelBeam_78
+    400340: SteelBeam_79
+    400342: SteelBeam_80
+    400344: SteelBeam_81
+    400346: SteelBeam_82
+    400348: SteelBeam_83
+    400350: SteelBeam_84
+    400352: SteelBeam_85
+    400354: SteelBeam_86
+    400356: SteelBeam_87
+    400358: SteelBeam_88
+    400360: SteelBeam_89
+    400362: SteelBeam_90
+    400364: SteelBeam_91
+    400366: SteelBeam_92
+    400368: SteelBeam_94
+    400370: SteelBeam_95
+    400372: SteelBeam_96
+    400374: SteelBeam_97
+    400376: SteelBeam_98
+    400378: SteelBeam_99
     2300000: CorrugatedSteelWall_1
     2300002: CorrugatedSteelWall_10
     2300004: CorrugatedSteelWall_11
@@ -245,6 +463,8 @@ ModelImporter:
     2300154: SteelBeam_7
     2300156: SteelBeam_8
     2300158: SteelBeam_9
+    2300160: polySurface1
+    2300162: //RootNode
     3300000: CorrugatedSteelWall_1
     3300002: CorrugatedSteelWall_10
     3300004: CorrugatedSteelWall_11
@@ -325,6 +545,8 @@ ModelImporter:
     3300154: SteelBeam_7
     3300156: SteelBeam_8
     3300158: SteelBeam_9
+    3300160: polySurface1
+    3300162: //RootNode
     4300000: SteelBeam_1
     4300002: SteelBeam_2
     4300004: SteelBeam_3
@@ -405,6 +627,8 @@ ModelImporter:
     4300154: CorrugatedSteelWall_35
     4300156: CorrugatedSteelWall_36
     4300158: CorrugatedSteelWall_37
+    4300160: polySurface1
+    4300162: BrokenStructure
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -425,10 +649,12 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
