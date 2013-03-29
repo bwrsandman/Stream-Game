@@ -28,7 +28,7 @@ public class Headturn : MonoBehaviour {
 			float playerCamDiff = Mathf.DeltaAngle(camRot,playerRot);
 			float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(prevAngle, playerRot + 90.0f));
 
-			Debug.Log(deltaAngle + " " + playerCamDiff + " " + turnLimit);
+			//Debug.Log(deltaAngle + " " + playerCamDiff + " " + turnLimit);
 
 			if (Mathf.Abs(playerCamDiff) < turnLimit) {
 				//don't lerp if the change in angle is greater than "turnLimit":
