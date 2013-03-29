@@ -1,94 +1,81 @@
+#region Using
 using UnityEngine;
 using System.Collections;
+#endregion
 
-// Require these components when using this script
+#region Required components
 [RequireComponent(typeof (Animator))]
 [RequireComponent(typeof (TimeActions))]
+#endregion
 
-public class ThirdPersonController : MonoBehaviour {
+public class ThirdPersonController : MonoBehaviour 
+{
 	
+	#region References
 	private Animator anim;							// a reference to the animator on the character
 	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
-	private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
+	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
-	private bool moving;
-	private bool inLargeRoom = false;
-	private bool locked = false;
+	private ThirdPersonCamera camScript;
+	private Aiming aimScript;
+	private ActivationHandler activationHandler;
+	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
+	#endregion
 	
+	#region Members
+	private bool mMoving;
+	private bool mInLargeRoom = false;
+	private bool mLocked = false;
+	public Transform spine;
+	public float walkSensitivity = 0.1f;
+	public float runSensitivity = 0.65f;
+	
+	#endregion
+	
+	#region Initialization
+	void Start () 
+	{
+		anim = GetComponent<Animator>();	
+		anim.SetLayerWeight(1, 1.0f);
+		anim.SetLayerWeight(2, 1.0f);
+		timeScript = GetComponent<TimeActions>();
+		camScript = GetComponent<ThirdPersonCamera>();
+		aimScript = GetComponent<Aiming>();
+		activationHandler = GetComponent<ActivationHandler>();
+		if(anim.layerCount == 2)
+			anim.SetLayerWeight(1, 1);
+		
+		mMoving = false;
+	}
+	#endregion
+	
+	#region Public functions
 	public void setLargeRoom(Transform target)
 	{
-		inLargeRoom = true;
-		locked = true;
+		mInLargeRoom = true;
+		mLocked = true;
 	}
 	
 	public void unsetLargeRoom()
 	{
-		inLargeRoom = false;
-		locked = false;
+		mInLargeRoom = false;
+		mLocked = false;
 	}
-	
+	#endregion
 		
-	//private CapsuleCollider col;	
-	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
-
-	void Start () {
-		anim = GetComponent<Animator>();	
-		timeScript = GetComponent<TimeActions>();
-		//col = GetComponent<CapsuleCollider>();		
-		if(anim.layerCount == 2)
-			anim.SetLayerWeight(1, 1);
-		
-		moving = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
-		layer2CurrentState = anim.GetCurrentAnimatorStateInfo(1);
-		
-		if (!timeScript.isTeleporting()) {
-			if (Input.GetKeyDown("e")) 
-			{	
-				timeScript.setCheckpoint();	
-			}
-			if (Input.GetKeyDown("t")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleport());	
-			}
-			if (Input.GetKeyDown("r")) 
-			{	
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleportCloner());	
-			}
-			if (Input.GetKeyDown("y")) 
-			{	
-				timeScript.sendYoungestBack();	
-			}	
-		}
-		
-		if(layer2CurrentState.nameHash == SettingWaypointState)
-		{
-			anim.SetBool("SettingWaypoint", false);
-		}
-	}
-	
-	void FixedUpdate ()
+	#region Member functions
+	void updateMovement () 
 	{
-		updateMovement();
-	}
-	
-	void updateMovement () {
 		float h = Input.GetAxis("Horizontal Move");				// setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
 		bool run = Input.GetKey("left shift");
 		anim.SetBool("Running", run);
 		
-		if (inLargeRoom && Mathf.Abs(v) < 0.01f)
-			locked = false;
+		if (mInLargeRoom && Mathf.Abs(v) < 0.01f)
+			mLocked = false;
 		
-		if(inLargeRoom && locked) {
+		if(mInLargeRoom && mLocked) {
 			v = -Mathf.Abs(v);
 		}
 		
@@ -104,18 +91,110 @@ public class ThirdPersonController : MonoBehaviour {
 		float mag = dir.magnitude;
 		dir.Normalize();
 		
-		bool wasMoving = moving;
-		moving = mag > 0.01f; 
-		
-		anim.SetFloat("Speed", mag);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-		
-		if (moving) {
+		bool wasMoving = mMoving;
+		mMoving = mag > walkSensitivity; 
+
+		if (mMoving)  {			
+			anim.SetFloat("Speed", dir.magnitude);
+			anim.SetBool("Running", mag > runSensitivity);
+			
 			float x = dir.x;
 			float y = dir.z;			
 			
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
-			
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
 		}
+		else
+			anim.SetFloat("Speed", 0.0f);
 	}
+	
+	void updateAim () 
+	{
+		if (anim.GetBool("Aiming")) {
+			Transform cameraTransform = Camera.main.transform;
+			spine.localRotation = Quaternion.Euler(180.0f, 0.0f, cameraTransform.eulerAngles.x);
+		}	
+	}
+	#endregion
+	
+	#region Internal Member functions
+	void Update () 
+	{
+		updateMovement(); 
+	}
+	
+	void LateUpdate () 
+	{
+		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
+		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
+		
+		anim.SetBool("SettingWaypoint", false);
+		
+		if (!timeScript.isTeleporting()) {
+			if (Input.GetKeyDown("e")) 
+			{	
+				anim.SetBool("SettingWaypoint", true);
+				timeScript.setCheckpoint();	
+			}
+			if (Input.GetKeyDown("y")) 
+			{	
+				timeScript.sendYoungestBack();	
+			}	
+			
+			if (Input.GetButton("A")) {
+				activationHandler.Activate();
+			}
+
+			//Aiming
+			bool aim = Input.GetButton("Left Trigger");
+			anim.SetBool("Aiming", aim);
+			camScript.setDistance(aim ? 1.0f : 2.0f);
+
+			//Shooting
+			bool shoot = Input.GetButton("Right Trigger");
+			if (shoot && anim.GetBool("Aiming")) {
+				aimScript.shootRay();
+				if (!aimScript.hit.point.Equals(Vector3.zero))
+					aimScript.shootProjectile();
+			}
+
+			//Dpad clone activation
+			Vector2 dPad = new Vector2(Input.GetAxis("Dpad X"), Input.GetAxis("Dpad Y"));
+
+			if (dPad.sqrMagnitude > 0.25f) {
+				uint clone_index = 0;
+				float dom = dPad.y;
+				if (Mathf.Abs(dPad.x) > Mathf.Abs(dPad.y)) {
+					dom = dPad.x;
+					clone_index += 1;
+				}
+				if (dom < 0.0f) {
+					clone_index += 2;
+				}
+
+				// do something with clone_index
+				Debug.Log("activate clone #" + clone_index);
+			}
+
+
+			//Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
+
+			//Time travel
+			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleportCloner());
+			}
+			//Teleport
+			else if (Input.GetAxis("Y") >= 1.0f)
+			{
+				anim.SetBool("SettingWaypoint", true);
+				StartCoroutine(timeScript.teleport());
+			}
+
+		}
+		
+		updateAim();
+	}
+	#endregion
 }
