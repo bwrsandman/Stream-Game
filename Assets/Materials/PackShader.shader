@@ -1,23 +1,20 @@
 Shader "Custom/PackShader" {
 	Properties {
 		_tex0 ("Default", 2D) = "white" {}
-		_tex1 ("Time Energy Empty", 2D) = "red" {}
+		_tex1 ("Time Energy Empty", 2D) = "black" {}
 		_tex2 ("Time Energy Filled", 2D) = "white" {}
 		_tex3 ("Health Low", 2D) = "red" {}
 		_tex4 ("Health Full", 2D) = "white" {}
 		_bump ("Bumpmap", 2D) = "bump" {}
-		_wrap ("Wrap Amount", Range (0.0, 1.0)) = 0.5
 
 		_timeEnergy ("Time Energy", Range(0,1)) = 1.0
 		_health("Health", Range(0,1)) = 1.0
 
-		_healthFade("Health Fade", Range(0.0, 1.0)) = 0.8
 		_healthBrightness("Health Brightness", Range(0.0, 1.0)) = 0.2
-
-		_uCenter ("Health Center u", Range(0.0, 1.0)) = 0.26
-		_vCenter ("Health Center v", Range(0.0, 1.0)) = 0.6
-		_radius ("Health radius", Range(0.0, 1.0)) = 0.1
+		_healthVariation("Health Variation", Range(0.0, 1.0)) = 0.2
+		_timeBrightness("Time Brightness", Range(0.0, 1.0)) = 0.5
 	}
+
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 200
@@ -40,20 +37,16 @@ Shader "Custom/PackShader" {
 			sampler2D _tex4;
 			sampler2D _bump;
 
-			float _wrap;
-
 			float _timeEnergy;
 			float _health;
 
-			float _healthFade;
+			float _healthVariation;
 			float _healthBrightness;
-
-			float _uCenter;
-			float _vCenter;
-			float _radius;
+			float _timeBrightness;
 
 			half4 LightingWrapLambert (SurfaceOutput s, half3 lightDir, half atten)
 			{
+				const half _wrap = 0.5;
 				half NdotL = dot (s.Normal, lightDir);
 				half diff = NdotL *_wrap  + (1.0 - _wrap);
 				half4 c;
@@ -72,9 +65,11 @@ Shader "Custom/PackShader" {
 
 			void frag (Input IN, SurfaceOutput o, inout fixed4 color)
 			{
-				const float _smoothe0 = 100.0;
-				const float _smoothe1 = 100.0;
+				const float _radius = 0.1;
+				const float _uCenter = 0.26;
+				const float _vCenter = 0.6;
 				const float _separate = 0.95;
+				const half smoothe = 60.0;
 				float2 center = float2(_uCenter, _vCenter);
 				float health = 1.0 - 0.05 * ceil(_timeEnergy/0.05);
 				float dist = distance(IN.uv_tex0, center);
@@ -84,13 +79,15 @@ Shader "Custom/PackShader" {
 				float3 lowcol = tex2D(_tex3, IN.uv_tex0).xyz;
 				float3 fulcol = tex2D(_tex4, IN.uv_tex0).xyz;
 
-				col = lerp(col, oricol, clamp(_smoothe0 * (IN.uv_tex0.y + health - 1.0),0.0,1.0));
-				col = lerp(color.rgb, col, clamp(_smoothe1 * (IN.uv_tex0.x - _separate),0.0,1.0));
+				col = lerp(col, oricol, clamp(smoothe * (IN.uv_tex0.y + health - 1.0),0.0,1.0));
+				col = lerp(color.rgb, col, clamp(smoothe * (IN.uv_tex0.x - _separate),0.0,1.0));
 
-				float3 heacol = lerp(col, lerp(lowcol, fulcol, _health), _healthFade + _SinTime.w * 0.5);
+				float3 heacol = lerp(lowcol, fulcol, _health);
+				float healthBlend = max(_healthVariation, 1.0 - _healthVariation);
+				heacol = lerp(col, heacol, healthBlend + _SinTime.w * _healthVariation);
 
-				color.rgb = (dist < _radius)? heacol : col;
-				color.a = max(_healthBrightness * float(dist < _radius), float(IN.uv_tex0.x > _separate));
+				color.rgb = lerp(heacol, col, clamp(smoothe * (dist - _radius), 0.0, 1.0));
+				color.a = max(_healthBrightness * float(dist < _radius), _timeBrightness * float(IN.uv_tex0.x > _separate));
 			}
 
 		ENDCG
