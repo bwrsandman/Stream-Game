@@ -23,9 +23,16 @@ public class Projectile : MonoBehaviour {
 		this.velocity = velocity;
 	}
 	
-	/*void OnTriggerEnter (Collider other) {
-		Debug.Log("entered");
-		
-    	Destroy(other.gameObject);
-	}*/
+	void OnTriggerEnter(Collider other) 
+	{		
+		if (other.tag == "Environment") {
+			Debug.Log("env");
+			Destroy(this.gameObject);
+		}
+		else if (other.tag != "TriggerArea") {
+			Health otherHealth = other.gameObject.GetComponent<Health>();
+			if (otherHealth != null)
+				otherHealth.decreaseHealth(20);
+		}
+    }
 }
