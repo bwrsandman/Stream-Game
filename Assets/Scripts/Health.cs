@@ -7,14 +7,10 @@ public class Health : MonoBehaviour {
 	public int maxHealth;
 	
 	public void increaseHealth (int delta) {
-		healthLevel += delta;	
-		if (healthLevel > maxHealth)
-			healthLevel = maxHealth;
+		healthLevel = Mathf.Min(healthLevel + delta, maxHealth);
 	}
 	
 	public void decreaseHealth (int delta) {
-		Debug.Log(healthLevel);
-		
 		healthLevel -= delta;	
 		if (healthLevel <= 0)
 			die();
