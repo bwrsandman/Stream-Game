@@ -2,7 +2,6 @@ Shader "Custom/HalfLambertConstant" {
 	Properties
 	{
 		_MainColor ("Texture", Color) = (0.0, 0.0, 0.0, 0.0)
-		_BumpMap ("Bumpmap", 2D) = "bump" {}
 		_WrapAmount ("Wrap Amount", Range (0.0, 1.0)) = 0.5
 	}
 
@@ -28,17 +27,14 @@ Shader "Custom/HalfLambertConstant" {
 
 		struct Input
 		{
-			float4 color : COLOR;
-			float2 uv_BumpMap;
+			float2 uv_MainColor;
 		};
 
 		float4 _MainColor;
-		sampler2D _BumpMap;
 
 		void surf (Input IN, inout SurfaceOutput o)
 		{
-			o.Albedo = IN.color.rgb * _MainColor.rgb;
-			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+			o.Albedo = _MainColor.rgb;
 			o.Alpha = _MainColor.a;
 		}
 		ENDCG
