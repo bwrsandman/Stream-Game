@@ -69,6 +69,15 @@ public class ThirdPersonController : MonoBehaviour
 	#region Member functions
 	void updateMovement () 
 	{
+		if (getUpAtStart)
+		{
+			foreach(AnimationInfo s in anim.GetCurrentAnimationClipState(0)){
+				if(s.clip.name == "Getting up")
+					return;
+			getUpAtStart = false;
+			}
+		}
+
 		float h = Input.GetAxis("Horizontal Move");				// setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
 		
@@ -128,6 +137,9 @@ public class ThirdPersonController : MonoBehaviour
 	
 	void LateUpdate () 
 	{
+		if (getUpAtStart)
+			return;
+
 		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
