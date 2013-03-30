@@ -10,6 +10,7 @@ Shader "Custom/Half Lambert"
 	SubShader
 	{
 		Tags { "RenderType" = "Opaque" }
+		Tags { "Queue" = "Geometry+1000" }
 
 		CGPROGRAM
 		#pragma surface surf WrapLambert
