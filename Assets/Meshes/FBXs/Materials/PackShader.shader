@@ -90,7 +90,7 @@ Shader "Custom/Pack Shader"
 				heacol = lerp(col, heacol, healthBlend + _SinTime.w * _healthVariation);
 
 				color.rgb = lerp(heacol, col, clamp(smoothe * (dist - _radius), 0.0, 1.0));
-				color.a = max(	 * float(dist < _radius), _timeBrightness * float(IN.uv_tex0.x > _separate));
+				color.a = max(_healthBrightness * float(dist < _radius), _timeBrightness * float(IN.uv_tex0.x > _separate));
 			}
 
 		ENDCG
