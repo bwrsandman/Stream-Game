@@ -10,9 +10,9 @@ public abstract class Activateable : MonoBehaviour
 	void Awake () 
 	{
 		if(!mPlayerActivate)
-			mPlayerActivate = GameObject.FindWithTag("player").GetComponent<PlayerActivationHandler>();
+			mPlayerActivate = GameObject.FindWithTag("Player").GetComponent<PlayerActivationHandler>();
 		if(!mCloneActivate)
-			mCloneActivate = GameObject.FindWithTag("player").GetComponent<CloneActivationHandler>();
+			mCloneActivate = GameObject.FindWithTag("Player").GetComponent<CloneActivationHandler>();
 		
 	}
 	

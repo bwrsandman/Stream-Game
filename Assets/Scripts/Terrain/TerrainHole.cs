@@ -15,7 +15,7 @@ public class TerrainHole : MonoBehaviour
 
 	void OnTriggerEnter (Collider c)
 	{
-		if (c.tag == "player") {
+		if (c.tag == "Player") {
 			Physics.IgnoreCollision(c, tCollider, true);
 			echo.enabled = true;
 		} else if (c.tag == "clone") {
@@ -25,7 +25,7 @@ public class TerrainHole : MonoBehaviour
 
 	void OnTriggerExit (Collider c)
 	{
-		if (c.tag == "player") {
+		if (c.tag == "Player") {
 			Physics.IgnoreCollision(c, tCollider, false);
 			echo.enabled = false;
 		} else if (c.tag == "clone") {
