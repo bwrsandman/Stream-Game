@@ -143,7 +143,7 @@ public class InstanceController : StateMachineController
 
 	protected override void LateUpdate ()
 	{
-		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("player").transform.position);
+		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("Player").transform.position);
 		agent.SetDestination(targetPosition);
 
 		if (anim.GetFloat("Speed") > 0.1f) {
