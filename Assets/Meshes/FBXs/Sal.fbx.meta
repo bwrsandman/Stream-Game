@@ -1,232 +1,806 @@
 fileFormatVersion: 2
-guid: 338fff734dc20064bbe5bc57903f3b62
+guid: 7961c3bd107a64740b9f5c81316541bd
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
     100002: Sal_model04:back_chest_piece
     100004: Sal_model04:belt
-    100006: Sal_model04:bodymesh
+    100006: Sal_model04:bodymesh1
     100008: Sal_model04:chest_piece
     100010: Sal_model04:front_strap1
     100012: Sal_model04:front_strap2
     100014: Sal_model04:helmetGRP
-    100016: Sal_model04:L_boot
-    100018: Sal_model04:L_bootstrap
-    100020: Sal_model04:L_gloves
-    100022: Sal_model04:L_shoulderplate
-    100024: Sal_model04:L_shoulderstrap1
-    100026: Sal_model04:L_shoulderstrap2
-    100028: Sal_model04:pCube1
-    100030: Sal_model04:pCylinder3
-    100032: Sal_model04:polySurface21
-    100034: Sal_model04:polySurface28
-    100036: Sal_model04:polySurface36
-    100038: Sal_model04:polySurface37
-    100040: Sal_model04:polySurface57
-    100042: Sal_model04:polySurface61
-    100044: Sal_model04:powerpack
-    100046: Sal_model04:pSphere1
-    100048: Sal_model04:pSphere4
-    100050: Sal_model04:R_boot
-    100052: Sal_model04:R_bootstrap
-    100054: Sal_model04:R_gloves
-    100056: Sal_model04:R_shoulderstrap1
-    100058: Sal_model04:R_shoulderstrap2
-    100060: Sal_model04:R_shouldplate
-    100062: Sal_model04:Sal_head_a_jnt
-    100064: Sal_model04:Sal_head_b_jnt
-    100066: Sal_model04:sal_helmet:pCube1
-    100068: Sal_model04:sal_helmet:pCylinder3
-    100070: Sal_model04:Sal_hip_jnt
-    100072: Sal_model04:Sal_lf_ankle_jnt
-    100074: Sal_model04:Sal_lf_ball_jnt
-    100076: Sal_model04:Sal_lf_clavicle_jnt
-    100078: Sal_model04:Sal_lf_elbow_jnt
-    100080: Sal_model04:Sal_lf_eye_jnt
-    100082: Sal_model04:Sal_lf_hand_jnt
-    100084: Sal_model04:Sal_lf_index_a_jnt
-    100086: Sal_model04:Sal_lf_index_b_jnt
-    100088: Sal_model04:Sal_lf_index_c_jnt
-    100090: Sal_model04:Sal_lf_index_d_jnt
-    100092: Sal_model04:Sal_lf_knee_jnt
-    100094: Sal_model04:Sal_lf_middle_a_jnt
-    100096: Sal_model04:Sal_lf_middle_b_jnt
-    100098: Sal_model04:Sal_lf_middle_c_jnt
-    100100: Sal_model04:Sal_lf_middle_d_jnt
-    100102: Sal_model04:Sal_lf_pinky_a_jnt
-    100104: Sal_model04:Sal_lf_pinky_b_jnt
-    100106: Sal_model04:Sal_lf_pinky_c_jnt
-    100108: Sal_model04:Sal_lf_pinky_d_jnt
-    100110: Sal_model04:Sal_lf_pinkyCup_jnt
-    100112: Sal_model04:Sal_lf_ring_a_jnt
-    100114: Sal_model04:Sal_lf_ring_b_jnt
-    100116: Sal_model04:Sal_lf_ring_c_jnt
-    100118: Sal_model04:Sal_lf_ring_d_jnt
-    100120: Sal_model04:Sal_lf_ringCup_jnt
-    100122: Sal_model04:Sal_lf_thumb_a_jnt
-    100124: Sal_model04:Sal_lf_thumb_b_jnt
-    100126: Sal_model04:Sal_lf_thumb_c_jnt
-    100128: Sal_model04:Sal_lf_thumb_d_jnt
-    100130: Sal_model04:Sal_lf_toe_jnt
-    100132: Sal_model04:Sal_lf_upArm_jnt
-    100134: Sal_model04:Sal_lf_upLeg_jnt
-    100136: Sal_model04:Sal_lf_wrist_jnt
-    100138: Sal_model04:Sal_neck_jnt
-    100140: Sal_model04:Sal_rt_ankle_jnt
-    100142: Sal_model04:Sal_rt_ball_jnt
-    100144: Sal_model04:Sal_rt_clavicle_jnt
-    100146: Sal_model04:Sal_rt_elbow_jnt
-    100148: Sal_model04:Sal_rt_eye_jnt
-    100150: Sal_model04:Sal_rt_hand_jnt
-    100152: Sal_model04:Sal_rt_index_a_jnt
-    100154: Sal_model04:Sal_rt_index_b_jnt
-    100156: Sal_model04:Sal_rt_index_c_jnt
-    100158: Sal_model04:Sal_rt_index_d_jnt
-    100160: Sal_model04:Sal_rt_knee_jnt
-    100162: Sal_model04:Sal_rt_middle_a_jnt
-    100164: Sal_model04:Sal_rt_middle_b_jnt
-    100166: Sal_model04:Sal_rt_middle_c_jnt
-    100168: Sal_model04:Sal_rt_middle_d_jnt
-    100170: Sal_model04:Sal_rt_pinky_a_jnt
-    100172: Sal_model04:Sal_rt_pinky_b_jnt
-    100174: Sal_model04:Sal_rt_pinky_c_jnt
-    100176: Sal_model04:Sal_rt_pinky_d_jnt
-    100178: Sal_model04:Sal_rt_pinkyCup_jnt
-    100180: Sal_model04:Sal_rt_ring_a_jnt
-    100182: Sal_model04:Sal_rt_ring_b_jnt
-    100184: Sal_model04:Sal_rt_ring_c_jnt
-    100186: Sal_model04:Sal_rt_ring_d_jnt
-    100188: Sal_model04:Sal_rt_ringCup_jnt
-    100190: Sal_model04:Sal_rt_thumb_a_jnt
-    100192: Sal_model04:Sal_rt_thumb_b_jnt
-    100194: Sal_model04:Sal_rt_thumb_c_jnt
-    100196: Sal_model04:Sal_rt_thumb_d_jnt
-    100198: Sal_model04:Sal_rt_toe_jnt
-    100200: Sal_model04:Sal_rt_upArm_jnt
-    100202: Sal_model04:Sal_rt_upLeg_jnt
-    100204: Sal_model04:Sal_rt_wrist_jnt
-    100206: Sal_model04:Sal_Skeleton_grp
-    100208: Sal_model04:Sal_spine_end_jnt
-    100210: Sal_model04:Sal_spine_hi_jnt
-    100212: Sal_model04:Sal_spine_low_jnt
-    100214: Sal_model04:Sal_spine_mid_jnt
-    100216: Sal_model04:shoulder_light1
-    100218: Sal_model04:shoulder_light2
-    100220: Sal_model04:straps
-    100222: Sal_model04:visor
+    100016: Sal_model04:ikHandle1
+    100018: Sal_model04:ikHandle2
+    100020: Sal_model04:ikHandle3
+    100022: Sal_model04:ikHandle4
+    100024: Sal_model04:ikHandle5
+    100026: Sal_model04:ikHandle6
+    100028: Sal_model04:L_boot
+    100030: Sal_model04:L_bootstrap
+    100032: Sal_model04:L_shoulderplate
+    100034: Sal_model04:L_shoulderstrap1
+    100036: Sal_model04:L_shoulderstrap2
+    100038: Sal_model04:pCube1
+    100040: Sal_model04:pCylinder3
+    100042: Sal_model04:polySurface21
+    100044: Sal_model04:polySurface28
+    100046: Sal_model04:polySurface36
+    100048: Sal_model04:polySurface37
+    100050: Sal_model04:polySurface57
+    100052: Sal_model04:polySurface61
+    100054: Sal_model04:powerpack
+    100056: Sal_model04:pSphere1
+    100058: Sal_model04:pSphere4
+    100060: Sal_model04:R_boot
+    100062: Sal_model04:R_bootstrap
+    100064: Sal_model04:R_gloves
+    100066: Sal_model04:R_gloves1
+    100068: Sal_model04:R_shoulderstrap1
+    100070: Sal_model04:R_shoulderstrap2
+    100072: Sal_model04:R_shouldplate
+    100074: Sal_model04:Sal_head_a_jnt
+    100076: Sal_model04:Sal_head_b_jnt
+    100078: Sal_model04:sal_helmet:pCube1
+    100080: Sal_model04:sal_helmet:pCylinder3
+    100082: Sal_model04:Sal_hip_jnt
+    100084: Sal_model04:Sal_lf_ankle_jnt
+    100086: Sal_model04:Sal_lf_ball_jnt
+    100088: Sal_model04:Sal_lf_clavicle_jnt
+    100090: Sal_model04:Sal_lf_elbow_jnt
+    100092: Sal_model04:Sal_lf_eye_jnt
+    100094: Sal_model04:Sal_lf_hand_jnt
+    100096: Sal_model04:Sal_lf_index_a_jnt
+    100098: Sal_model04:Sal_lf_index_b_jnt
+    100100: Sal_model04:Sal_lf_index_c_jnt
+    100102: Sal_model04:Sal_lf_index_d_jnt
+    100104: Sal_model04:Sal_lf_knee_jnt
+    100106: Sal_model04:Sal_lf_middle_a_jnt
+    100108: Sal_model04:Sal_lf_middle_b_jnt
+    100110: Sal_model04:Sal_lf_middle_c_jnt
+    100112: Sal_model04:Sal_lf_middle_d_jnt
+    100114: Sal_model04:Sal_lf_pinky_a_jnt
+    100116: Sal_model04:Sal_lf_pinky_b_jnt
+    100118: Sal_model04:Sal_lf_pinky_c_jnt
+    100120: Sal_model04:Sal_lf_pinky_d_jnt
+    100122: Sal_model04:Sal_lf_pinkyCup_jnt
+    100124: Sal_model04:Sal_lf_ring_a_jnt
+    100126: Sal_model04:Sal_lf_ring_b_jnt
+    100128: Sal_model04:Sal_lf_ring_c_jnt
+    100130: Sal_model04:Sal_lf_ring_d_jnt
+    100132: Sal_model04:Sal_lf_ringCup_jnt
+    100134: Sal_model04:Sal_lf_thumb_a_jnt
+    100136: Sal_model04:Sal_lf_thumb_b_jnt
+    100138: Sal_model04:Sal_lf_thumb_c_jnt
+    100140: Sal_model04:Sal_lf_thumb_d_jnt
+    100142: Sal_model04:Sal_lf_toe_jnt
+    100144: Sal_model04:Sal_lf_upArm_jnt
+    100146: Sal_model04:Sal_lf_upLeg_jnt
+    100148: Sal_model04:Sal_lf_wrist_jnt
+    100150: Sal_model04:Sal_neck_jnt
+    100152: Sal_model04:Sal_rt_ankle_jnt
+    100154: Sal_model04:Sal_rt_ball_jnt
+    100156: Sal_model04:Sal_rt_clavicle_jnt
+    100158: Sal_model04:Sal_rt_elbow_jnt
+    100160: Sal_model04:Sal_rt_eye_jnt
+    100162: Sal_model04:Sal_rt_hand_jnt
+    100164: Sal_model04:Sal_rt_index_a_jnt
+    100166: Sal_model04:Sal_rt_index_b_jnt
+    100168: Sal_model04:Sal_rt_index_c_jnt
+    100170: Sal_model04:Sal_rt_index_d_jnt
+    100172: Sal_model04:Sal_rt_knee_jnt
+    100174: Sal_model04:Sal_rt_middle_a_jnt
+    100176: Sal_model04:Sal_rt_middle_b_jnt
+    100178: Sal_model04:Sal_rt_middle_c_jnt
+    100180: Sal_model04:Sal_rt_middle_d_jnt
+    100182: Sal_model04:Sal_rt_pinky_a_jnt
+    100184: Sal_model04:Sal_rt_pinky_b_jnt
+    100186: Sal_model04:Sal_rt_pinky_c_jnt
+    100188: Sal_model04:Sal_rt_pinky_d_jnt
+    100190: Sal_model04:Sal_rt_pinkyCup_jnt
+    100192: Sal_model04:Sal_rt_ring_a_jnt
+    100194: Sal_model04:Sal_rt_ring_b_jnt
+    100196: Sal_model04:Sal_rt_ring_c_jnt
+    100198: Sal_model04:Sal_rt_ring_d_jnt
+    100200: Sal_model04:Sal_rt_ringCup_jnt
+    100202: Sal_model04:Sal_rt_thumb_a_jnt
+    100204: Sal_model04:Sal_rt_thumb_b_jnt
+    100206: Sal_model04:Sal_rt_thumb_c_jnt
+    100208: Sal_model04:Sal_rt_thumb_d_jnt
+    100210: Sal_model04:Sal_rt_toe_jnt
+    100212: Sal_model04:Sal_rt_upArm_jnt
+    100214: Sal_model04:Sal_rt_upLeg_jnt
+    100216: Sal_model04:Sal_rt_wrist_jnt
+    100218: Sal_model04:Sal_Skeleton_grp
+    100220: Sal_model04:Sal_spine_end_jnt
+    100222: Sal_model04:Sal_spine_hi_jnt
+    100224: Sal_model04:Sal_spine_low_jnt
+    100226: Sal_model04:Sal_spine_mid_jnt
+    100228: Sal_model04:shoulder_light1
+    100230: Sal_model04:shoulder_light2
+    100232: Sal_model04:straps
+    100234: Sal_model04:visor
+    100236: abRTLine_Sal_lf_elbow_line_loc
+    100238: abRTLine_Sal_lf_knee_line_loc
+    100240: abRTLine_Sal_rt_elbow_line_loc
+    100242: abRTLine_Sal_rt_knee_line_loc
+    100244: ikHandle1
+    100246: ikHandle2
+    100248: ikHandle3
+    100250: ikHandle4
+    100252: ikHandle5
+    100254: ikHandle6
+    100256: polySurface62
+    100258: polySurface63
+    100260: refSpine_a
+    100262: refSpine_b
+    100264: refSpine_c
+    100266: refSpine_d
+    100268: refSpine_e
+    100270: refSpine_f
+    100272: Sal_charVars
+    100274: Sal_cog_ctrl
+    100276: Sal_cogCtrl_space_grp
+    100278: Sal_cogCtrl_space_switch_grp
+    100280: Sal_eyeFrzGrp_space_grp
+    100282: Sal_eyeMaster_ctrl_frzGrp
+    100284: Sal_head_fk_ctrl_frzGrp
+    100286: Sal_head_fk_ctrl_frzGrp 1
+    100288: Sal_head_fk_ctrl_frzGrp 2
+    100290: Sal_head_ik_ctrl
+    100292: Sal_head_rig_grp
+    100294: Sal_headAlignOffset_rig_grp
+    100296: Sal_headAlignOffset_rig_grp_frzGrp
+    100298: Sal_headCtrl_space_grp
+    100300: Sal_hip_ctrl
+    100302: Sal_hipCtrl_space_grp
+    100304: Sal_hipCtrl_space_switch_grp
+    100306: Sal_hiSpineCtrl_space_grp
+    100308: Sal_hiSpineCtrl_space_switch_grp
+    100310: Sal_ikSpline_crv
+    100312: Sal_lf__ik_jnt
+    100314: Sal_lf_ankle_fk_ctrl
+    100316: Sal_lf_ankle_fk_ctrl_frzGrp
+    100318: Sal_lf_ankle_fk_ctrl_frzGrp 1
+    100320: Sal_lf_ankle_fk_jnt
+    100322: Sal_lf_ankle_ik_jnt
+    100324: Sal_lf_ankle_rev_rig_jnt
+    100326: Sal_lf_ankleBallReader_Ankle_jnt
+    100328: Sal_lf_ankleBallReader_Ball_jnt
+    100330: Sal_lf_ankleBallReader_Knee_jnt
+    100332: Sal_lf_ankleBallReader_UpLeg_jnt
+    100334: Sal_lf_arm_ik_ctrl
+    100336: Sal_lf_arm_ik_ctrl_frzGrp
+    100338: Sal_lf_arm_ikHandle
+    100340: Sal_lf_arm_rig_grp
+    100342: Sal_lf_armFK_Grp
+    100344: Sal_lf_armIK_Grp
+    100346: Sal_lf_armIkCtrl_space_grp
+    100348: Sal_lf_armPvCtrlGrp_space_grp
+    100350: Sal_lf_armPvIkCtrl_dist
+    100352: Sal_lf_armPvIkCtrl_dist_ep
+    100354: Sal_lf_armPvIkCtrl_dist_sp
+    100356: Sal_lf_armStrDist_dist
+    100358: Sal_lf_armStrDist_dist_ep
+    100360: Sal_lf_armStrDist_dist_sp
+    100362: Sal_lf_ball_fk_ctrl
+    100364: Sal_lf_ball_fk_ctrl_frzGrp
+    100366: Sal_lf_ball_fk_ctrl_frzGrp 1
+    100368: Sal_lf_ball_fk_jnt
+    100370: Sal_lf_ball_ik_jnt
+    100372: Sal_lf_ball_rev_rig_jnt
+    100374: Sal_lf_clavicle_fk_ctrl
+    100376: Sal_lf_clavicle_fk_ctrl_frzGrp
+    100378: Sal_lf_clavicle_fk_ctrl_frzGrp 1
+    100380: Sal_lf_elbow_fk_ctrl
+    100382: Sal_lf_elbow_fk_ctrl_frzGrp
+    100384: Sal_lf_elbow_fk_ctrl_frzGrp 1
+    100386: Sal_lf_elbow_fk_jnt
+    100388: Sal_lf_elbow_ik_jnt
+    100390: Sal_lf_elbow_line_loc
+    100392: Sal_lf_elbow_pv_ctrl
+    100394: Sal_lf_elbow_pv_ctrl_annLoc
+    100396: Sal_lf_elbow_pv_ctrl_frzGrp
+    100398: Sal_lf_foot_ctrl
+    100400: Sal_lf_hand_ctrl
+    100402: Sal_lf_hand_ctrl_frzGrp
+    100404: Sal_lf_hand_ctrl_frzGrp 1
+    100406: Sal_lf_hand_rig_grp
+    100408: Sal_lf_handCtrl_grp
+    100410: Sal_lf_heel_ik_ctrl
+    100412: Sal_lf_heel_ik_ctrl_frzGrp
+    100414: Sal_lf_heel_rev_rig_jnt
+    100416: Sal_lf_knee_fk_ctrl
+    100418: Sal_lf_knee_fk_ctrl_frzGrp
+    100420: Sal_lf_knee_fk_ctrl_frzGrp 1
+    100422: Sal_lf_knee_fk_jnt
+    100424: Sal_lf_knee_ik_jnt
+    100426: Sal_lf_knee_line_loc
+    100428: Sal_lf_knee_pv_ctrl
+    100430: Sal_lf_knee_pv_ctrl_annLoc
+    100432: Sal_lf_knee_pv_ctrl_frzGrp
+    100434: Sal_lf_leg_ikHandle
+    100436: Sal_lf_leg_rig_grp
+    100438: Sal_lf_legFK_Grp
+    100440: Sal_lf_legIK_Grp
+    100442: Sal_lf_legIkCtrl_space_grp
+    100444: Sal_lf_legPvCtrlGrp_space_grp
+    100446: Sal_lf_legPvIkCtrl_dist
+    100448: Sal_lf_legPvIkCtrl_dist_ep
+    100450: Sal_lf_legPvIkCtrl_dist_sp
+    100452: Sal_lf_legStrDist_dist
+    100454: Sal_lf_legStrDist_dist_ep
+    100456: Sal_lf_legStrDist_dist_sp
+    100458: Sal_lf_reverseFoot_rig_grp
+    100460: Sal_lf_toe_fk_jnt
+    100462: Sal_lf_toe_ik_jnt
+    100464: Sal_lf_toe_rev_rig_jnt
+    100466: Sal_lf_upArm_fk_ctrl
+    100468: Sal_lf_upArm_fk_ctrl_frzGrp
+    100470: Sal_lf_upArm_fk_ctrl_frzGrp 1
+    100472: Sal_lf_upArm_fk_jnt
+    100474: Sal_lf_upArm_ik_jnt
+    100476: Sal_lf_upArmAlignOffset_rig_grp
+    100478: Sal_lf_upArmAlignOffset_rig_grp_frzGrp
+    100480: Sal_lf_upArmPvCtrl_dist
+    100482: Sal_lf_upArmPvCtrl_dist_ep
+    100484: Sal_lf_upArmPvCtrl_dist_sp
+    100486: Sal_lf_upArmupJntFkCtrl_grp
+    100488: Sal_lf_upLeg_fk_ctrl
+    100490: Sal_lf_upLeg_fk_ctrl_frzGrp
+    100492: Sal_lf_upLeg_fk_ctrl_frzGrp 1
+    100494: Sal_lf_upLeg_fk_jnt
+    100496: Sal_lf_upLeg_ik_jnt
+    100498: Sal_lf_upLegAlignOffset_rig_grp
+    100500: Sal_lf_upLegAlignOffset_rig_grp_frzGrp
+    100502: Sal_lf_upLegPvCtrl_dist
+    100504: Sal_lf_upLegPvCtrl_dist_ep
+    100506: Sal_lf_upLegPvCtrl_dist_sp
+    100508: Sal_lf_upLegupJntFkCtrl_grp
+    100510: Sal_lf_wrist_fk_jnt
+    100512: Sal_lf_wrist_ik_jnt
+    100514: Sal_lfArmIkCtrl_space_switch_grp
+    100516: Sal_lfLegIkCtrl_space_switch_grp
+    100518: Sal_lowSpineCtrl_space_grp
+    100520: Sal_lowSpineCtrl_space_switch_grp
+    100522: Sal_midSpineCtrl_space_grp
+    100524: Sal_midSpineCtrl_space_switch_grp
+    100526: Sal_neck_fk_ctrl
+    100528: Sal_neck_fk_ctrl_frzGrp
+    100530: Sal_neck_fk_ctrl_frzGrp 1
+    100532: Sal_neckAlignOffset_rig_grp
+    100534: Sal_neckAlignOffset_rig_grp_frzGrp
+    100536: Sal_neckCtrl_space_switch_grp
+    100538: Sal_neckupJntFkCtrl_grp
+    100540: Sal_rig_grp
+    100542: Sal_root_ctrl
+    100544: Sal_rootCtrl_space_switch_grp
+    100546: Sal_rt__ik_jnt
+    100548: Sal_rt_ankle_fk_ctrl
+    100550: Sal_rt_ankle_fk_ctrl_frzGrp
+    100552: Sal_rt_ankle_fk_ctrl_frzGrp 1
+    100554: Sal_rt_ankle_fk_jnt
+    100556: Sal_rt_ankle_ik_jnt
+    100558: Sal_rt_ankle_rev_rig_jnt
+    100560: Sal_rt_ankleBallReader_Ankle_jnt
+    100562: Sal_rt_ankleBallReader_Ball_jnt
+    100564: Sal_rt_ankleBallReader_Knee_jnt
+    100566: Sal_rt_ankleBallReader_UpLeg_jnt
+    100568: Sal_rt_arm_ik_ctrl
+    100570: Sal_rt_arm_ik_ctrl_frzGrp
+    100572: Sal_rt_arm_ikHandle
+    100574: Sal_rt_arm_rig_grp
+    100576: Sal_rt_armFK_Grp
+    100578: Sal_rt_armIK_Grp
+    100580: Sal_rt_armIkCtrl_space_grp
+    100582: Sal_rt_armPvCtrlGrp_space_grp
+    100584: Sal_rt_armPvIkCtrl_dist
+    100586: Sal_rt_armPvIkCtrl_dist_ep
+    100588: Sal_rt_armPvIkCtrl_dist_sp
+    100590: Sal_rt_armStrDist_dist
+    100592: Sal_rt_armStrDist_dist_ep
+    100594: Sal_rt_armStrDist_dist_sp
+    100596: Sal_rt_ball_fk_ctrl
+    100598: Sal_rt_ball_fk_ctrl_frzGrp
+    100600: Sal_rt_ball_fk_ctrl_frzGrp 1
+    100602: Sal_rt_ball_fk_jnt
+    100604: Sal_rt_ball_ik_jnt
+    100606: Sal_rt_ball_rev_rig_jnt
+    100608: Sal_rt_clavicle_fk_ctrl
+    100610: Sal_rt_clavicle_fk_ctrl_frzGrp
+    100612: Sal_rt_clavicle_fk_ctrl_frzGrp 1
+    100614: Sal_rt_elbow_fk_ctrl
+    100616: Sal_rt_elbow_fk_ctrl_frzGrp
+    100618: Sal_rt_elbow_fk_ctrl_frzGrp 1
+    100620: Sal_rt_elbow_fk_jnt
+    100622: Sal_rt_elbow_ik_jnt
+    100624: Sal_rt_elbow_line_loc
+    100626: Sal_rt_elbow_pv_ctrl
+    100628: Sal_rt_elbow_pv_ctrl_annLoc
+    100630: Sal_rt_elbow_pv_ctrl_frzGrp
+    100632: Sal_rt_foot_ctrl
+    100634: Sal_rt_hand_ctrl
+    100636: Sal_rt_hand_ctrl_frzGrp
+    100638: Sal_rt_hand_ctrl_frzGrp 1
+    100640: Sal_rt_hand_rig_grp
+    100642: Sal_rt_handCtrl_grp
+    100644: Sal_rt_heel_ik_ctrl
+    100646: Sal_rt_heel_ik_ctrl_frzGrp
+    100648: Sal_rt_heel_rev_rig_jnt
+    100650: Sal_rt_knee_fk_ctrl
+    100652: Sal_rt_knee_fk_ctrl_frzGrp
+    100654: Sal_rt_knee_fk_ctrl_frzGrp 1
+    100656: Sal_rt_knee_fk_jnt
+    100658: Sal_rt_knee_ik_jnt
+    100660: Sal_rt_knee_line_loc
+    100662: Sal_rt_knee_pv_ctrl
+    100664: Sal_rt_knee_pv_ctrl_annLoc
+    100666: Sal_rt_knee_pv_ctrl_frzGrp
+    100668: Sal_rt_leg_ikHandle
+    100670: Sal_rt_leg_rig_grp
+    100672: Sal_rt_legFK_Grp
+    100674: Sal_rt_legIK_Grp
+    100676: Sal_rt_legIkCtrl_space_grp
+    100678: Sal_rt_legPvCtrlGrp_space_grp
+    100680: Sal_rt_legPvIkCtrl_dist
+    100682: Sal_rt_legPvIkCtrl_dist_ep
+    100684: Sal_rt_legPvIkCtrl_dist_sp
+    100686: Sal_rt_legStrDist_dist
+    100688: Sal_rt_legStrDist_dist_ep
+    100690: Sal_rt_legStrDist_dist_sp
+    100692: Sal_rt_reverseFoot_rig_grp
+    100694: Sal_rt_toe_fk_jnt
+    100696: Sal_rt_toe_ik_jnt
+    100698: Sal_rt_toe_rev_rig_jnt
+    100700: Sal_rt_upArm_fk_ctrl
+    100702: Sal_rt_upArm_fk_ctrl_frzGrp
+    100704: Sal_rt_upArm_fk_ctrl_frzGrp 1
+    100706: Sal_rt_upArm_fk_jnt
+    100708: Sal_rt_upArm_ik_jnt
+    100710: Sal_rt_upArmAlignOffset_rig_grp
+    100712: Sal_rt_upArmAlignOffset_rig_grp_frzGrp
+    100714: Sal_rt_upArmPvCtrl_dist
+    100716: Sal_rt_upArmPvCtrl_dist_ep
+    100718: Sal_rt_upArmPvCtrl_dist_sp
+    100720: Sal_rt_upArmupJntFkCtrl_grp
+    100722: Sal_rt_upLeg_fk_ctrl
+    100724: Sal_rt_upLeg_fk_ctrl_frzGrp
+    100726: Sal_rt_upLeg_fk_ctrl_frzGrp 1
+    100728: Sal_rt_upLeg_fk_jnt
+    100730: Sal_rt_upLeg_ik_jnt
+    100732: Sal_rt_upLegAlignOffset_rig_grp
+    100734: Sal_rt_upLegAlignOffset_rig_grp_frzGrp
+    100736: Sal_rt_upLegPvCtrl_dist
+    100738: Sal_rt_upLegPvCtrl_dist_ep
+    100740: Sal_rt_upLegPvCtrl_dist_sp
+    100742: Sal_rt_upLegupJntFkCtrl_grp
+    100744: Sal_rt_wrist_fk_jnt
+    100746: Sal_rt_wrist_ik_jnt
+    100748: Sal_rtArmIkCtrl_space_switch_grp
+    100750: Sal_rtLegIkCtrl_space_switch_grp
+    100752: Sal_spine0_clstrHandle
+    100754: Sal_spine1_clstrHandle
+    100756: Sal_spine2_clstrHandle
+    100758: Sal_spine3_clstrHandle
+    100760: Sal_spine4_clstrHandle
+    100762: Sal_spine5_clstrHandle
+    100764: Sal_spine_ikHandle
+    100766: Sal_spine_rig_grp
+    100768: Sal_spineHigh_ctrl
+    100770: Sal_spineHigh_ctrl_frzGrp
+    100772: Sal_spineLow_ctrl
+    100774: Sal_spineMid_ctrl
+    100776: Sal_spineMid_ctrl_frzGrp
+    100778: Sal_spineNoScale_rig_grp
+    100780: Sal_spineRig_a_jnt
+    100782: Sal_spineRig_b_jnt
+    100784: Sal_spineRig_c_jnt
+    100786: Sal_spineRig_d_jnt
+    100788: Sal_spineRig_e_jnt
+    100790: Sal_spineRig_f_jnt
+    100792: Sal_spineShaper_ctrl_frzGrp
+    100794: Sal_spineShaper_ctrl_frzGrp 1
+    100796: Sal_spineSplitRot_ctrl
     400000: //RootNode
     400002: Sal_model04:back_chest_piece
     400004: Sal_model04:belt
-    400006: Sal_model04:bodymesh
+    400006: Sal_model04:bodymesh1
     400008: Sal_model04:chest_piece
     400010: Sal_model04:front_strap1
     400012: Sal_model04:front_strap2
     400014: Sal_model04:helmetGRP
-    400016: Sal_model04:L_boot
-    400018: Sal_model04:L_bootstrap
-    400020: Sal_model04:L_gloves
-    400022: Sal_model04:L_shoulderplate
-    400024: Sal_model04:L_shoulderstrap1
-    400026: Sal_model04:L_shoulderstrap2
-    400028: Sal_model04:pCube1
-    400030: Sal_model04:pCylinder3
-    400032: Sal_model04:polySurface21
-    400034: Sal_model04:polySurface28
-    400036: Sal_model04:polySurface36
-    400038: Sal_model04:polySurface37
-    400040: Sal_model04:polySurface57
-    400042: Sal_model04:polySurface61
-    400044: Sal_model04:powerpack
-    400046: Sal_model04:pSphere1
-    400048: Sal_model04:pSphere4
-    400050: Sal_model04:R_boot
-    400052: Sal_model04:R_bootstrap
-    400054: Sal_model04:R_gloves
-    400056: Sal_model04:R_shoulderstrap1
-    400058: Sal_model04:R_shoulderstrap2
-    400060: Sal_model04:R_shouldplate
-    400062: Sal_model04:Sal_head_a_jnt
-    400064: Sal_model04:Sal_head_b_jnt
-    400066: Sal_model04:sal_helmet:pCube1
-    400068: Sal_model04:sal_helmet:pCylinder3
-    400070: Sal_model04:Sal_hip_jnt
-    400072: Sal_model04:Sal_lf_ankle_jnt
-    400074: Sal_model04:Sal_lf_ball_jnt
-    400076: Sal_model04:Sal_lf_clavicle_jnt
-    400078: Sal_model04:Sal_lf_elbow_jnt
-    400080: Sal_model04:Sal_lf_eye_jnt
-    400082: Sal_model04:Sal_lf_hand_jnt
-    400084: Sal_model04:Sal_lf_index_a_jnt
-    400086: Sal_model04:Sal_lf_index_b_jnt
-    400088: Sal_model04:Sal_lf_index_c_jnt
-    400090: Sal_model04:Sal_lf_index_d_jnt
-    400092: Sal_model04:Sal_lf_knee_jnt
-    400094: Sal_model04:Sal_lf_middle_a_jnt
-    400096: Sal_model04:Sal_lf_middle_b_jnt
-    400098: Sal_model04:Sal_lf_middle_c_jnt
-    400100: Sal_model04:Sal_lf_middle_d_jnt
-    400102: Sal_model04:Sal_lf_pinky_a_jnt
-    400104: Sal_model04:Sal_lf_pinky_b_jnt
-    400106: Sal_model04:Sal_lf_pinky_c_jnt
-    400108: Sal_model04:Sal_lf_pinky_d_jnt
-    400110: Sal_model04:Sal_lf_pinkyCup_jnt
-    400112: Sal_model04:Sal_lf_ring_a_jnt
-    400114: Sal_model04:Sal_lf_ring_b_jnt
-    400116: Sal_model04:Sal_lf_ring_c_jnt
-    400118: Sal_model04:Sal_lf_ring_d_jnt
-    400120: Sal_model04:Sal_lf_ringCup_jnt
-    400122: Sal_model04:Sal_lf_thumb_a_jnt
-    400124: Sal_model04:Sal_lf_thumb_b_jnt
-    400126: Sal_model04:Sal_lf_thumb_c_jnt
-    400128: Sal_model04:Sal_lf_thumb_d_jnt
-    400130: Sal_model04:Sal_lf_toe_jnt
-    400132: Sal_model04:Sal_lf_upArm_jnt
-    400134: Sal_model04:Sal_lf_upLeg_jnt
-    400136: Sal_model04:Sal_lf_wrist_jnt
-    400138: Sal_model04:Sal_neck_jnt
-    400140: Sal_model04:Sal_rt_ankle_jnt
-    400142: Sal_model04:Sal_rt_ball_jnt
-    400144: Sal_model04:Sal_rt_clavicle_jnt
-    400146: Sal_model04:Sal_rt_elbow_jnt
-    400148: Sal_model04:Sal_rt_eye_jnt
-    400150: Sal_model04:Sal_rt_hand_jnt
-    400152: Sal_model04:Sal_rt_index_a_jnt
-    400154: Sal_model04:Sal_rt_index_b_jnt
-    400156: Sal_model04:Sal_rt_index_c_jnt
-    400158: Sal_model04:Sal_rt_index_d_jnt
-    400160: Sal_model04:Sal_rt_knee_jnt
-    400162: Sal_model04:Sal_rt_middle_a_jnt
-    400164: Sal_model04:Sal_rt_middle_b_jnt
-    400166: Sal_model04:Sal_rt_middle_c_jnt
-    400168: Sal_model04:Sal_rt_middle_d_jnt
-    400170: Sal_model04:Sal_rt_pinky_a_jnt
-    400172: Sal_model04:Sal_rt_pinky_b_jnt
-    400174: Sal_model04:Sal_rt_pinky_c_jnt
-    400176: Sal_model04:Sal_rt_pinky_d_jnt
-    400178: Sal_model04:Sal_rt_pinkyCup_jnt
-    400180: Sal_model04:Sal_rt_ring_a_jnt
-    400182: Sal_model04:Sal_rt_ring_b_jnt
-    400184: Sal_model04:Sal_rt_ring_c_jnt
-    400186: Sal_model04:Sal_rt_ring_d_jnt
-    400188: Sal_model04:Sal_rt_ringCup_jnt
-    400190: Sal_model04:Sal_rt_thumb_a_jnt
-    400192: Sal_model04:Sal_rt_thumb_b_jnt
-    400194: Sal_model04:Sal_rt_thumb_c_jnt
-    400196: Sal_model04:Sal_rt_thumb_d_jnt
-    400198: Sal_model04:Sal_rt_toe_jnt
-    400200: Sal_model04:Sal_rt_upArm_jnt
-    400202: Sal_model04:Sal_rt_upLeg_jnt
-    400204: Sal_model04:Sal_rt_wrist_jnt
-    400206: Sal_model04:Sal_Skeleton_grp
-    400208: Sal_model04:Sal_spine_end_jnt
-    400210: Sal_model04:Sal_spine_hi_jnt
-    400212: Sal_model04:Sal_spine_low_jnt
-    400214: Sal_model04:Sal_spine_mid_jnt
-    400216: Sal_model04:shoulder_light1
-    400218: Sal_model04:shoulder_light2
-    400220: Sal_model04:straps
-    400222: Sal_model04:visor
+    400016: Sal_model04:ikHandle1
+    400018: Sal_model04:ikHandle2
+    400020: Sal_model04:ikHandle3
+    400022: Sal_model04:ikHandle4
+    400024: Sal_model04:ikHandle5
+    400026: Sal_model04:ikHandle6
+    400028: Sal_model04:L_boot
+    400030: Sal_model04:L_bootstrap
+    400032: Sal_model04:L_shoulderplate
+    400034: Sal_model04:L_shoulderstrap1
+    400036: Sal_model04:L_shoulderstrap2
+    400038: Sal_model04:pCube1
+    400040: Sal_model04:pCylinder3
+    400042: Sal_model04:polySurface21
+    400044: Sal_model04:polySurface28
+    400046: Sal_model04:polySurface36
+    400048: Sal_model04:polySurface37
+    400050: Sal_model04:polySurface57
+    400052: Sal_model04:polySurface61
+    400054: Sal_model04:powerpack
+    400056: Sal_model04:pSphere1
+    400058: Sal_model04:pSphere4
+    400060: Sal_model04:R_boot
+    400062: Sal_model04:R_bootstrap
+    400064: Sal_model04:R_gloves
+    400066: Sal_model04:R_gloves1
+    400068: Sal_model04:R_shoulderstrap1
+    400070: Sal_model04:R_shoulderstrap2
+    400072: Sal_model04:R_shouldplate
+    400074: Sal_model04:Sal_head_a_jnt
+    400076: Sal_model04:Sal_head_b_jnt
+    400078: Sal_model04:sal_helmet:pCube1
+    400080: Sal_model04:sal_helmet:pCylinder3
+    400082: Sal_model04:Sal_hip_jnt
+    400084: Sal_model04:Sal_lf_ankle_jnt
+    400086: Sal_model04:Sal_lf_ball_jnt
+    400088: Sal_model04:Sal_lf_clavicle_jnt
+    400090: Sal_model04:Sal_lf_elbow_jnt
+    400092: Sal_model04:Sal_lf_eye_jnt
+    400094: Sal_model04:Sal_lf_hand_jnt
+    400096: Sal_model04:Sal_lf_index_a_jnt
+    400098: Sal_model04:Sal_lf_index_b_jnt
+    400100: Sal_model04:Sal_lf_index_c_jnt
+    400102: Sal_model04:Sal_lf_index_d_jnt
+    400104: Sal_model04:Sal_lf_knee_jnt
+    400106: Sal_model04:Sal_lf_middle_a_jnt
+    400108: Sal_model04:Sal_lf_middle_b_jnt
+    400110: Sal_model04:Sal_lf_middle_c_jnt
+    400112: Sal_model04:Sal_lf_middle_d_jnt
+    400114: Sal_model04:Sal_lf_pinky_a_jnt
+    400116: Sal_model04:Sal_lf_pinky_b_jnt
+    400118: Sal_model04:Sal_lf_pinky_c_jnt
+    400120: Sal_model04:Sal_lf_pinky_d_jnt
+    400122: Sal_model04:Sal_lf_pinkyCup_jnt
+    400124: Sal_model04:Sal_lf_ring_a_jnt
+    400126: Sal_model04:Sal_lf_ring_b_jnt
+    400128: Sal_model04:Sal_lf_ring_c_jnt
+    400130: Sal_model04:Sal_lf_ring_d_jnt
+    400132: Sal_model04:Sal_lf_ringCup_jnt
+    400134: Sal_model04:Sal_lf_thumb_a_jnt
+    400136: Sal_model04:Sal_lf_thumb_b_jnt
+    400138: Sal_model04:Sal_lf_thumb_c_jnt
+    400140: Sal_model04:Sal_lf_thumb_d_jnt
+    400142: Sal_model04:Sal_lf_toe_jnt
+    400144: Sal_model04:Sal_lf_upArm_jnt
+    400146: Sal_model04:Sal_lf_upLeg_jnt
+    400148: Sal_model04:Sal_lf_wrist_jnt
+    400150: Sal_model04:Sal_neck_jnt
+    400152: Sal_model04:Sal_rt_ankle_jnt
+    400154: Sal_model04:Sal_rt_ball_jnt
+    400156: Sal_model04:Sal_rt_clavicle_jnt
+    400158: Sal_model04:Sal_rt_elbow_jnt
+    400160: Sal_model04:Sal_rt_eye_jnt
+    400162: Sal_model04:Sal_rt_hand_jnt
+    400164: Sal_model04:Sal_rt_index_a_jnt
+    400166: Sal_model04:Sal_rt_index_b_jnt
+    400168: Sal_model04:Sal_rt_index_c_jnt
+    400170: Sal_model04:Sal_rt_index_d_jnt
+    400172: Sal_model04:Sal_rt_knee_jnt
+    400174: Sal_model04:Sal_rt_middle_a_jnt
+    400176: Sal_model04:Sal_rt_middle_b_jnt
+    400178: Sal_model04:Sal_rt_middle_c_jnt
+    400180: Sal_model04:Sal_rt_middle_d_jnt
+    400182: Sal_model04:Sal_rt_pinky_a_jnt
+    400184: Sal_model04:Sal_rt_pinky_b_jnt
+    400186: Sal_model04:Sal_rt_pinky_c_jnt
+    400188: Sal_model04:Sal_rt_pinky_d_jnt
+    400190: Sal_model04:Sal_rt_pinkyCup_jnt
+    400192: Sal_model04:Sal_rt_ring_a_jnt
+    400194: Sal_model04:Sal_rt_ring_b_jnt
+    400196: Sal_model04:Sal_rt_ring_c_jnt
+    400198: Sal_model04:Sal_rt_ring_d_jnt
+    400200: Sal_model04:Sal_rt_ringCup_jnt
+    400202: Sal_model04:Sal_rt_thumb_a_jnt
+    400204: Sal_model04:Sal_rt_thumb_b_jnt
+    400206: Sal_model04:Sal_rt_thumb_c_jnt
+    400208: Sal_model04:Sal_rt_thumb_d_jnt
+    400210: Sal_model04:Sal_rt_toe_jnt
+    400212: Sal_model04:Sal_rt_upArm_jnt
+    400214: Sal_model04:Sal_rt_upLeg_jnt
+    400216: Sal_model04:Sal_rt_wrist_jnt
+    400218: Sal_model04:Sal_Skeleton_grp
+    400220: Sal_model04:Sal_spine_end_jnt
+    400222: Sal_model04:Sal_spine_hi_jnt
+    400224: Sal_model04:Sal_spine_low_jnt
+    400226: Sal_model04:Sal_spine_mid_jnt
+    400228: Sal_model04:shoulder_light1
+    400230: Sal_model04:shoulder_light2
+    400232: Sal_model04:straps
+    400234: Sal_model04:visor
+    400236: abRTLine_Sal_lf_elbow_line_loc
+    400238: abRTLine_Sal_lf_knee_line_loc
+    400240: abRTLine_Sal_rt_elbow_line_loc
+    400242: abRTLine_Sal_rt_knee_line_loc
+    400244: ikHandle1
+    400246: ikHandle2
+    400248: ikHandle3
+    400250: ikHandle4
+    400252: ikHandle5
+    400254: ikHandle6
+    400256: polySurface62
+    400258: polySurface63
+    400260: refSpine_a
+    400262: refSpine_b
+    400264: refSpine_c
+    400266: refSpine_d
+    400268: refSpine_e
+    400270: refSpine_f
+    400272: Sal_charVars
+    400274: Sal_cog_ctrl
+    400276: Sal_cogCtrl_space_grp
+    400278: Sal_cogCtrl_space_switch_grp
+    400280: Sal_eyeFrzGrp_space_grp
+    400282: Sal_eyeMaster_ctrl_frzGrp
+    400284: Sal_head_fk_ctrl_frzGrp
+    400286: Sal_head_fk_ctrl_frzGrp 1
+    400288: Sal_head_fk_ctrl_frzGrp 2
+    400290: Sal_head_ik_ctrl
+    400292: Sal_head_rig_grp
+    400294: Sal_headAlignOffset_rig_grp
+    400296: Sal_headAlignOffset_rig_grp_frzGrp
+    400298: Sal_headCtrl_space_grp
+    400300: Sal_hip_ctrl
+    400302: Sal_hipCtrl_space_grp
+    400304: Sal_hipCtrl_space_switch_grp
+    400306: Sal_hiSpineCtrl_space_grp
+    400308: Sal_hiSpineCtrl_space_switch_grp
+    400310: Sal_ikSpline_crv
+    400312: Sal_lf__ik_jnt
+    400314: Sal_lf_ankle_fk_ctrl
+    400316: Sal_lf_ankle_fk_ctrl_frzGrp
+    400318: Sal_lf_ankle_fk_ctrl_frzGrp 1
+    400320: Sal_lf_ankle_fk_jnt
+    400322: Sal_lf_ankle_ik_jnt
+    400324: Sal_lf_ankle_rev_rig_jnt
+    400326: Sal_lf_ankleBallReader_Ankle_jnt
+    400328: Sal_lf_ankleBallReader_Ball_jnt
+    400330: Sal_lf_ankleBallReader_Knee_jnt
+    400332: Sal_lf_ankleBallReader_UpLeg_jnt
+    400334: Sal_lf_arm_ik_ctrl
+    400336: Sal_lf_arm_ik_ctrl_frzGrp
+    400338: Sal_lf_arm_ikHandle
+    400340: Sal_lf_arm_rig_grp
+    400342: Sal_lf_armFK_Grp
+    400344: Sal_lf_armIK_Grp
+    400346: Sal_lf_armIkCtrl_space_grp
+    400348: Sal_lf_armPvCtrlGrp_space_grp
+    400350: Sal_lf_armPvIkCtrl_dist
+    400352: Sal_lf_armPvIkCtrl_dist_ep
+    400354: Sal_lf_armPvIkCtrl_dist_sp
+    400356: Sal_lf_armStrDist_dist
+    400358: Sal_lf_armStrDist_dist_ep
+    400360: Sal_lf_armStrDist_dist_sp
+    400362: Sal_lf_ball_fk_ctrl
+    400364: Sal_lf_ball_fk_ctrl_frzGrp
+    400366: Sal_lf_ball_fk_ctrl_frzGrp 1
+    400368: Sal_lf_ball_fk_jnt
+    400370: Sal_lf_ball_ik_jnt
+    400372: Sal_lf_ball_rev_rig_jnt
+    400374: Sal_lf_clavicle_fk_ctrl
+    400376: Sal_lf_clavicle_fk_ctrl_frzGrp
+    400378: Sal_lf_clavicle_fk_ctrl_frzGrp 1
+    400380: Sal_lf_elbow_fk_ctrl
+    400382: Sal_lf_elbow_fk_ctrl_frzGrp
+    400384: Sal_lf_elbow_fk_ctrl_frzGrp 1
+    400386: Sal_lf_elbow_fk_jnt
+    400388: Sal_lf_elbow_ik_jnt
+    400390: Sal_lf_elbow_line_loc
+    400392: Sal_lf_elbow_pv_ctrl
+    400394: Sal_lf_elbow_pv_ctrl_annLoc
+    400396: Sal_lf_elbow_pv_ctrl_frzGrp
+    400398: Sal_lf_foot_ctrl
+    400400: Sal_lf_hand_ctrl
+    400402: Sal_lf_hand_ctrl_frzGrp
+    400404: Sal_lf_hand_ctrl_frzGrp 1
+    400406: Sal_lf_hand_rig_grp
+    400408: Sal_lf_handCtrl_grp
+    400410: Sal_lf_heel_ik_ctrl
+    400412: Sal_lf_heel_ik_ctrl_frzGrp
+    400414: Sal_lf_heel_rev_rig_jnt
+    400416: Sal_lf_knee_fk_ctrl
+    400418: Sal_lf_knee_fk_ctrl_frzGrp
+    400420: Sal_lf_knee_fk_ctrl_frzGrp 1
+    400422: Sal_lf_knee_fk_jnt
+    400424: Sal_lf_knee_ik_jnt
+    400426: Sal_lf_knee_line_loc
+    400428: Sal_lf_knee_pv_ctrl
+    400430: Sal_lf_knee_pv_ctrl_annLoc
+    400432: Sal_lf_knee_pv_ctrl_frzGrp
+    400434: Sal_lf_leg_ikHandle
+    400436: Sal_lf_leg_rig_grp
+    400438: Sal_lf_legFK_Grp
+    400440: Sal_lf_legIK_Grp
+    400442: Sal_lf_legIkCtrl_space_grp
+    400444: Sal_lf_legPvCtrlGrp_space_grp
+    400446: Sal_lf_legPvIkCtrl_dist
+    400448: Sal_lf_legPvIkCtrl_dist_ep
+    400450: Sal_lf_legPvIkCtrl_dist_sp
+    400452: Sal_lf_legStrDist_dist
+    400454: Sal_lf_legStrDist_dist_ep
+    400456: Sal_lf_legStrDist_dist_sp
+    400458: Sal_lf_reverseFoot_rig_grp
+    400460: Sal_lf_toe_fk_jnt
+    400462: Sal_lf_toe_ik_jnt
+    400464: Sal_lf_toe_rev_rig_jnt
+    400466: Sal_lf_upArm_fk_ctrl
+    400468: Sal_lf_upArm_fk_ctrl_frzGrp
+    400470: Sal_lf_upArm_fk_ctrl_frzGrp 1
+    400472: Sal_lf_upArm_fk_jnt
+    400474: Sal_lf_upArm_ik_jnt
+    400476: Sal_lf_upArmAlignOffset_rig_grp
+    400478: Sal_lf_upArmAlignOffset_rig_grp_frzGrp
+    400480: Sal_lf_upArmPvCtrl_dist
+    400482: Sal_lf_upArmPvCtrl_dist_ep
+    400484: Sal_lf_upArmPvCtrl_dist_sp
+    400486: Sal_lf_upArmupJntFkCtrl_grp
+    400488: Sal_lf_upLeg_fk_ctrl
+    400490: Sal_lf_upLeg_fk_ctrl_frzGrp
+    400492: Sal_lf_upLeg_fk_ctrl_frzGrp 1
+    400494: Sal_lf_upLeg_fk_jnt
+    400496: Sal_lf_upLeg_ik_jnt
+    400498: Sal_lf_upLegAlignOffset_rig_grp
+    400500: Sal_lf_upLegAlignOffset_rig_grp_frzGrp
+    400502: Sal_lf_upLegPvCtrl_dist
+    400504: Sal_lf_upLegPvCtrl_dist_ep
+    400506: Sal_lf_upLegPvCtrl_dist_sp
+    400508: Sal_lf_upLegupJntFkCtrl_grp
+    400510: Sal_lf_wrist_fk_jnt
+    400512: Sal_lf_wrist_ik_jnt
+    400514: Sal_lfArmIkCtrl_space_switch_grp
+    400516: Sal_lfLegIkCtrl_space_switch_grp
+    400518: Sal_lowSpineCtrl_space_grp
+    400520: Sal_lowSpineCtrl_space_switch_grp
+    400522: Sal_midSpineCtrl_space_grp
+    400524: Sal_midSpineCtrl_space_switch_grp
+    400526: Sal_neck_fk_ctrl
+    400528: Sal_neck_fk_ctrl_frzGrp
+    400530: Sal_neck_fk_ctrl_frzGrp 1
+    400532: Sal_neckAlignOffset_rig_grp
+    400534: Sal_neckAlignOffset_rig_grp_frzGrp
+    400536: Sal_neckCtrl_space_switch_grp
+    400538: Sal_neckupJntFkCtrl_grp
+    400540: Sal_rig_grp
+    400542: Sal_root_ctrl
+    400544: Sal_rootCtrl_space_switch_grp
+    400546: Sal_rt__ik_jnt
+    400548: Sal_rt_ankle_fk_ctrl
+    400550: Sal_rt_ankle_fk_ctrl_frzGrp
+    400552: Sal_rt_ankle_fk_ctrl_frzGrp 1
+    400554: Sal_rt_ankle_fk_jnt
+    400556: Sal_rt_ankle_ik_jnt
+    400558: Sal_rt_ankle_rev_rig_jnt
+    400560: Sal_rt_ankleBallReader_Ankle_jnt
+    400562: Sal_rt_ankleBallReader_Ball_jnt
+    400564: Sal_rt_ankleBallReader_Knee_jnt
+    400566: Sal_rt_ankleBallReader_UpLeg_jnt
+    400568: Sal_rt_arm_ik_ctrl
+    400570: Sal_rt_arm_ik_ctrl_frzGrp
+    400572: Sal_rt_arm_ikHandle
+    400574: Sal_rt_arm_rig_grp
+    400576: Sal_rt_armFK_Grp
+    400578: Sal_rt_armIK_Grp
+    400580: Sal_rt_armIkCtrl_space_grp
+    400582: Sal_rt_armPvCtrlGrp_space_grp
+    400584: Sal_rt_armPvIkCtrl_dist
+    400586: Sal_rt_armPvIkCtrl_dist_ep
+    400588: Sal_rt_armPvIkCtrl_dist_sp
+    400590: Sal_rt_armStrDist_dist
+    400592: Sal_rt_armStrDist_dist_ep
+    400594: Sal_rt_armStrDist_dist_sp
+    400596: Sal_rt_ball_fk_ctrl
+    400598: Sal_rt_ball_fk_ctrl_frzGrp
+    400600: Sal_rt_ball_fk_ctrl_frzGrp 1
+    400602: Sal_rt_ball_fk_jnt
+    400604: Sal_rt_ball_ik_jnt
+    400606: Sal_rt_ball_rev_rig_jnt
+    400608: Sal_rt_clavicle_fk_ctrl
+    400610: Sal_rt_clavicle_fk_ctrl_frzGrp
+    400612: Sal_rt_clavicle_fk_ctrl_frzGrp 1
+    400614: Sal_rt_elbow_fk_ctrl
+    400616: Sal_rt_elbow_fk_ctrl_frzGrp
+    400618: Sal_rt_elbow_fk_ctrl_frzGrp 1
+    400620: Sal_rt_elbow_fk_jnt
+    400622: Sal_rt_elbow_ik_jnt
+    400624: Sal_rt_elbow_line_loc
+    400626: Sal_rt_elbow_pv_ctrl
+    400628: Sal_rt_elbow_pv_ctrl_annLoc
+    400630: Sal_rt_elbow_pv_ctrl_frzGrp
+    400632: Sal_rt_foot_ctrl
+    400634: Sal_rt_hand_ctrl
+    400636: Sal_rt_hand_ctrl_frzGrp
+    400638: Sal_rt_hand_ctrl_frzGrp 1
+    400640: Sal_rt_hand_rig_grp
+    400642: Sal_rt_handCtrl_grp
+    400644: Sal_rt_heel_ik_ctrl
+    400646: Sal_rt_heel_ik_ctrl_frzGrp
+    400648: Sal_rt_heel_rev_rig_jnt
+    400650: Sal_rt_knee_fk_ctrl
+    400652: Sal_rt_knee_fk_ctrl_frzGrp
+    400654: Sal_rt_knee_fk_ctrl_frzGrp 1
+    400656: Sal_rt_knee_fk_jnt
+    400658: Sal_rt_knee_ik_jnt
+    400660: Sal_rt_knee_line_loc
+    400662: Sal_rt_knee_pv_ctrl
+    400664: Sal_rt_knee_pv_ctrl_annLoc
+    400666: Sal_rt_knee_pv_ctrl_frzGrp
+    400668: Sal_rt_leg_ikHandle
+    400670: Sal_rt_leg_rig_grp
+    400672: Sal_rt_legFK_Grp
+    400674: Sal_rt_legIK_Grp
+    400676: Sal_rt_legIkCtrl_space_grp
+    400678: Sal_rt_legPvCtrlGrp_space_grp
+    400680: Sal_rt_legPvIkCtrl_dist
+    400682: Sal_rt_legPvIkCtrl_dist_ep
+    400684: Sal_rt_legPvIkCtrl_dist_sp
+    400686: Sal_rt_legStrDist_dist
+    400688: Sal_rt_legStrDist_dist_ep
+    400690: Sal_rt_legStrDist_dist_sp
+    400692: Sal_rt_reverseFoot_rig_grp
+    400694: Sal_rt_toe_fk_jnt
+    400696: Sal_rt_toe_ik_jnt
+    400698: Sal_rt_toe_rev_rig_jnt
+    400700: Sal_rt_upArm_fk_ctrl
+    400702: Sal_rt_upArm_fk_ctrl_frzGrp
+    400704: Sal_rt_upArm_fk_ctrl_frzGrp 1
+    400706: Sal_rt_upArm_fk_jnt
+    400708: Sal_rt_upArm_ik_jnt
+    400710: Sal_rt_upArmAlignOffset_rig_grp
+    400712: Sal_rt_upArmAlignOffset_rig_grp_frzGrp
+    400714: Sal_rt_upArmPvCtrl_dist
+    400716: Sal_rt_upArmPvCtrl_dist_ep
+    400718: Sal_rt_upArmPvCtrl_dist_sp
+    400720: Sal_rt_upArmupJntFkCtrl_grp
+    400722: Sal_rt_upLeg_fk_ctrl
+    400724: Sal_rt_upLeg_fk_ctrl_frzGrp
+    400726: Sal_rt_upLeg_fk_ctrl_frzGrp 1
+    400728: Sal_rt_upLeg_fk_jnt
+    400730: Sal_rt_upLeg_ik_jnt
+    400732: Sal_rt_upLegAlignOffset_rig_grp
+    400734: Sal_rt_upLegAlignOffset_rig_grp_frzGrp
+    400736: Sal_rt_upLegPvCtrl_dist
+    400738: Sal_rt_upLegPvCtrl_dist_ep
+    400740: Sal_rt_upLegPvCtrl_dist_sp
+    400742: Sal_rt_upLegupJntFkCtrl_grp
+    400744: Sal_rt_wrist_fk_jnt
+    400746: Sal_rt_wrist_ik_jnt
+    400748: Sal_rtArmIkCtrl_space_switch_grp
+    400750: Sal_rtLegIkCtrl_space_switch_grp
+    400752: Sal_spine0_clstrHandle
+    400754: Sal_spine1_clstrHandle
+    400756: Sal_spine2_clstrHandle
+    400758: Sal_spine3_clstrHandle
+    400760: Sal_spine4_clstrHandle
+    400762: Sal_spine5_clstrHandle
+    400764: Sal_spine_ikHandle
+    400766: Sal_spine_rig_grp
+    400768: Sal_spineHigh_ctrl
+    400770: Sal_spineHigh_ctrl_frzGrp
+    400772: Sal_spineLow_ctrl
+    400774: Sal_spineMid_ctrl
+    400776: Sal_spineMid_ctrl_frzGrp
+    400778: Sal_spineNoScale_rig_grp
+    400780: Sal_spineRig_a_jnt
+    400782: Sal_spineRig_b_jnt
+    400784: Sal_spineRig_c_jnt
+    400786: Sal_spineRig_d_jnt
+    400788: Sal_spineRig_e_jnt
+    400790: Sal_spineRig_f_jnt
+    400792: Sal_spineShaper_ctrl_frzGrp
+    400794: Sal_spineShaper_ctrl_frzGrp 1
+    400796: Sal_spineSplitRot_ctrl
     2300000: Sal_model04:pCube1
     2300002: Sal_model04:pCylinder3
     2300004: Sal_model04:polySurface21
@@ -240,6 +814,7 @@ ModelImporter:
     2300020: Sal_model04:sal_helmet:pCube1
     2300022: Sal_model04:sal_helmet:pCylinder3
     2300024: Sal_model04:visor
+    2300026: polySurface63
     3300000: Sal_model04:pCube1
     3300002: Sal_model04:pCylinder3
     3300004: Sal_model04:polySurface21
@@ -253,63 +828,73 @@ ModelImporter:
     3300020: Sal_model04:sal_helmet:pCube1
     3300022: Sal_model04:sal_helmet:pCylinder3
     3300024: Sal_model04:visor
-    4300000: Sal_model04:bodymesh
-    4300002: Sal_model04:chest_piece
-    4300004: Sal_model04:shoulder_light2
-    4300006: Sal_model04:R_shoulderstrap1
-    4300008: Sal_model04:R_shouldplate
-    4300010: Sal_model04:R_shoulderstrap2
-    4300012: Sal_model04:R_gloves
-    4300014: Sal_model04:front_strap2
-    4300016: Sal_model04:back_chest_piece
-    4300018: Sal_model04:L_shoulderplate
-    4300020: Sal_model04:L_shoulderstrap1
-    4300022: Sal_model04:L_shoulderstrap2
-    4300024: Sal_model04:L_gloves
-    4300026: Sal_model04:R_boot
-    4300028: Sal_model04:front_strap1
-    4300030: Sal_model04:L_boot
-    4300032: Sal_model04:belt
-    4300034: Sal_model04:shoulder_light1
-    4300036: Sal_model04:sal_helmet:pCube1
-    4300038: Sal_model04:sal_helmet:pCylinder3
-    4300040: Sal_model04:polySurface21
-    4300042: Sal_model04:pSphere4
-    4300044: Sal_model04:polySurface28
-    4300046: Sal_model04:polySurface36
-    4300048: Sal_model04:polySurface37
-    4300050: Sal_model04:pCylinder3
-    4300052: Sal_model04:pCube1
-    4300054: Sal_model04:visor
-    4300056: Sal_model04:pSphere1
-    4300058: Sal_model04:polySurface57
-    4300060: Sal_model04:polySurface61
-    4300062: Sal_model04:R_bootstrap
-    4300064: Sal_model04:L_bootstrap
+    3300026: polySurface63
+    4300000: Sal_model04:chest_piece
+    4300002: Sal_model04:shoulder_light2
+    4300004: Sal_model04:R_shoulderstrap1
+    4300006: Sal_model04:R_shouldplate
+    4300008: Sal_model04:R_shoulderstrap2
+    4300010: Sal_model04:R_gloves
+    4300012: Sal_model04:front_strap2
+    4300014: Sal_model04:back_chest_piece
+    4300016: Sal_model04:L_shoulderplate
+    4300018: Sal_model04:L_shoulderstrap1
+    4300020: Sal_model04:L_shoulderstrap2
+    4300022: Sal_model04:R_boot
+    4300024: Sal_model04:front_strap1
+    4300026: Sal_model04:L_boot
+    4300028: Sal_model04:belt
+    4300030: Sal_model04:shoulder_light1
+    4300032: Sal_model04:sal_helmet:pCube1
+    4300034: Sal_model04:sal_helmet:pCylinder3
+    4300036: Sal_model04:polySurface21
+    4300038: Sal_model04:pSphere4
+    4300040: Sal_model04:polySurface28
+    4300042: Sal_model04:polySurface36
+    4300044: Sal_model04:polySurface37
+    4300046: Sal_model04:pCylinder3
+    4300048: Sal_model04:pCube1
+    4300050: Sal_model04:visor
+    4300052: Sal_model04:pSphere1
+    4300054: Sal_model04:polySurface57
+    4300056: Sal_model04:polySurface61
+    4300058: Sal_model04:R_bootstrap
+    4300060: Sal_model04:L_bootstrap
+    4300062: Sal_model04:straps
+    4300064: Sal_model04:R_gloves1
     4300066: Sal_model04:powerpack
-    4300068: Sal_model04:straps
+    4300068: Sal_model04:bodymesh1
+    4300070: polySurface63
     7400000: Idle
     7400002: Walk
-    7400004: WalkAim
-    7400006: Aim
-    7400008: Run
+    7400004: Run
+    7400006: AI Boost
+    7400008: Jump Ledge
+    7400010: Getting up
+    7400012: Aming
+    7400014: Recoil
+    7400016: Hit Impact
+    7400018: Push Button
+    7400020: Open Portal
+    7400022: Walk Aim
+    7400024: AI Kneeling
     9500000: //RootNode
     13700000: Sal_model04:back_chest_piece
     13700002: Sal_model04:belt
-    13700004: Sal_model04:bodymesh
+    13700004: Sal_model04:bodymesh1
     13700006: Sal_model04:chest_piece
     13700008: Sal_model04:front_strap1
     13700010: Sal_model04:front_strap2
     13700012: Sal_model04:L_boot
     13700014: Sal_model04:L_bootstrap
-    13700016: Sal_model04:L_gloves
-    13700018: Sal_model04:L_shoulderplate
-    13700020: Sal_model04:L_shoulderstrap1
-    13700022: Sal_model04:L_shoulderstrap2
-    13700024: Sal_model04:powerpack
-    13700026: Sal_model04:R_boot
-    13700028: Sal_model04:R_bootstrap
-    13700030: Sal_model04:R_gloves
+    13700016: Sal_model04:L_shoulderplate
+    13700018: Sal_model04:L_shoulderstrap1
+    13700020: Sal_model04:L_shoulderstrap2
+    13700022: Sal_model04:powerpack
+    13700024: Sal_model04:R_boot
+    13700026: Sal_model04:R_bootstrap
+    13700028: Sal_model04:R_gloves
+    13700030: Sal_model04:R_gloves1
     13700032: Sal_model04:R_shoulderstrap1
     13700034: Sal_model04:R_shoulderstrap2
     13700036: Sal_model04:R_shouldplate
@@ -317,7 +902,7 @@ ModelImporter:
     13700040: Sal_model04:shoulder_light2
     13700042: Sal_model04:straps
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -332,123 +917,288 @@ ModelImporter:
     - name: Idle
       takeName: Take 001
       firstFrame: 40
-      lastFrame: 440
+      lastFrame: 438
       wrapMode: 0
       orientationOffsetY: 0
-      level: .0700000003
+      level: .075000003
       cycleOffset: 0
       loop: 0
       loopBlend: 1
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 1
-      mirror: 0
-      keepAdditionalBonesAnimation: 1
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      skeletonMaskElements: []
-    - name: Walk
-      takeName: Take 001
-      firstFrame: 460
-      lastFrame: 484
-      wrapMode: 0
-      orientationOffsetY: -4.26999998
-      level: .0700000003
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 1
-      mirror: 0
-      keepAdditionalBonesAnimation: 1
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      skeletonMaskElements: []
-    - name: WalkAim
-      takeName: Take 001
-      firstFrame: 532
-      lastFrame: 556
-      wrapMode: 0
-      orientationOffsetY: -12.5
-      level: .0700000003
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 1
-      mirror: 0
-      keepAdditionalBonesAnimation: 1
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      skeletonMaskElements: []
-    - name: Aim
-      takeName: Take 001
-      firstFrame: 544
-      lastFrame: 544.099976
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      keepAdditionalBonesAnimation: 1
-      bodyMask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      skeletonMaskElements: []
-    - name: Run
+      transformMask: []
+    - name: Walk
       takeName: Take 001
-      firstFrame: 580
-      lastFrame: 598
+      firstFrame: 460
+      lastFrame: 483
       wrapMode: 0
-      orientationOffsetY: -8.42000008
-      level: 0
+      orientationOffsetY: 0
+      level: .075000003
       cycleOffset: 0
       loop: 0
       loopBlend: 1
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
-      keepAdditionalBonesAnimation: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      skeletonMaskElements: []
+      transformMask: []
+    - name: Run
+      takeName: Take 001
+      firstFrame: 580
+      lastFrame: 596
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: AI Boost
+      takeName: Take 001
+      firstFrame: 680
+      lastFrame: 724
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Jump Ledge
+      takeName: Take 001
+      firstFrame: 748
+      lastFrame: 814
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Getting up
+      takeName: Take 001
+      firstFrame: 850
+      lastFrame: 1030
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Aming
+      takeName: Take 001
+      firstFrame: 1048
+      lastFrame: 1240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Recoil
+      takeName: Take 001
+      firstFrame: 1282
+      lastFrame: 1294
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Hit Impact
+      takeName: Take 001
+      firstFrame: 1310
+      lastFrame: 1335
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Push Button
+      takeName: Take 001
+      firstFrame: 1383
+      lastFrame: 1435
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Open Portal
+      takeName: Take 001
+      firstFrame: 1450
+      lastFrame: 1495
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Walk Aim
+      takeName: Take 001
+      firstFrame: 532
+      lastFrame: 555
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .075000003
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: AI Kneeling
+      takeName: Take 001
+      firstFrame: 700
+      lastFrame: 724
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: .100000001
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -461,988 +1211,8 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    human:
-    - boneName: Sal_model04:Sal_spine_low_jnt
-      humanName: Hips
-      limit:
-        min: {x: -40, y: -40, z: -40}
-        max: {x: 40, y: 40, z: 40}
-        value: {x: .104214698, y: 0, z: .052107349}
-        preQ: {x: .515102744, y: .484426647, z: -.515102565, w: -.484426767}
-        postQ: {x: 1.63912773e-07, y: 2.98023224e-08, z: -.999991417, w: .00413902104}
-        length: .13026841
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_upLeg_jnt
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: -60.0000038, y: -60.0000038, z: -90}
-        max: {x: 60.0000038, y: 60.0000038, z: 50}
-        value: {x: .297449648, y: 0, z: .148724824}
-        preQ: {x: -.969430625, y: -.244131327, z: -.0238320008, w: .00600160472}
-        postQ: {x: 2.98023224e-08, y: .99999994, z: -1.48713598e-05, w: 5.96046448e-08}
-        length: .371812195
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_upLeg_jnt
-      humanName: RightUpperLeg
-      limit:
-        min: {x: -60.0000038, y: -60.0000038, z: -90}
-        max: {x: 60.0000038, y: 60.0000038, z: 50}
-        value: {x: .297450006, y: 0, z: .148725003}
-        preQ: {x: -.988597989, y: -.137044862, z: .0618000813, w: -.00856698118}
-        postQ: {x: -.999905229, y: -4.76837158e-07, z: 4.47034836e-08, w: .013766259}
-        length: .371812642
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_knee_jnt
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: .358130664, y: 0, z: .179065332}
-        preQ: {x: .641995549, y: .766057849, z: .0315727182, w: 9.5890291e-06}
-        postQ: {x: 1.49011612e-08, y: .99999994, z: -1.30832195e-05, w: 5.96046448e-08}
-        length: .447663456
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_knee_jnt
-      humanName: RightLowerLeg
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: .358130813, y: 0, z: .179065406}
-        preQ: {x: -.764900088, y: .637687206, z: .00877915509, w: .0905858278}
-        postQ: {x: -.999905169, y: 3.12924357e-07, z: -1.49011603e-08, w: .0137677332}
-        length: .447663665
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_ankle_jnt
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: -30.0000019, z: -50}
-        max: {x: 0, y: 30.0000019, z: 50}
-        value: {x: .105820581, y: 0, z: .0529102907}
-        preQ: {x: -.0129046738, y: .999614537, z: -.000330269308, w: .0245739222}
-        postQ: {x: .584591389, y: .80539906, z: .0475274026, w: .085593909}
-        length: .13227576
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_ankle_jnt
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: -30.0000019, z: -50}
-        max: {x: 0, y: 30.0000019, z: 50}
-        value: {x: .129128516, y: 0, z: .0645642579}
-        preQ: {x: -.990664065, y: -.120432384, z: -.0635923147, w: .00605720328}
-        postQ: {x: -.854937375, y: .510831833, z: -.0893266499, w: .0123925218}
-        length: .161410719
-        modified: 1
-    - boneName: Sal_model04:Sal_spine_mid_jnt
-      humanName: Spine
-      limit:
-        min: {x: -40, y: -40, z: -40}
-        max: {x: 40, y: 40, z: 40}
-        value: {x: .14693369, y: 0, z: .0734668449}
-        preQ: {x: 8.94069601e-08, y: 2.98023206e-08, z: -.999988258, w: -.00483250571}
-        postQ: {x: .0105938017, y: -.999943852, z: -2.98023224e-08, w: 5.96046448e-08}
-        length: .183667183
-        modified: 1
-    - boneName: Sal_model04:Sal_spine_hi_jnt
-      humanName: Chest
-      limit:
-        min: {x: -40, y: -40, z: -40}
-        max: {x: 40, y: 40, z: 40}
-        value: {x: .122802489, y: 0, z: .0614012443}
-        preQ: {x: -.0560668558, y: .998426974, z: -1.49011612e-08, w: -7.4505806e-08}
-        postQ: {x: -.0237907618, y: .999716938, z: -1.49011612e-08, w: -5.96046448e-08}
-        length: .15350315
-        modified: 1
-    - boneName: Sal_model04:Sal_neck_jnt
-      humanName: Neck
-      limit:
-        min: {x: -40, y: -40, z: -40}
-        max: {x: 40, y: 40, z: 40}
-        value: {x: .067945905, y: 0, z: .0339729525}
-        preQ: {x: -.139242709, y: .990258217, z: -5.96046341e-08, w: -5.96046341e-08}
-        postQ: {x: 7.45057989e-08, y: .99999994, z: -4.470348e-08, w: -5.96046412e-08}
-        length: .0849324167
-        modified: 1
-    - boneName: Sal_model04:Sal_head_a_jnt
-      humanName: Head
-      limit:
-        min: {x: -40, y: -40, z: -40}
-        max: {x: 40, y: 40, z: 40}
-        value: {x: .067945905, y: 0, z: .0339729525}
-        preQ: {x: .212683722, y: .977121055, z: -5.96046448e-08, w: 0}
-        postQ: {x: .550294876, y: .444044441, z: -.550294876, w: -.444044471}
-        length: .0849324167
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_clavicle_jnt
-      humanName: LeftShoulder
-      limit:
-        min: {x: 0, y: -15.000001, z: -15.000001}
-        max: {x: 0, y: 15.000001, z: 30.0000019}
-        value: {x: .0869624764, y: 0, z: .0434812382}
-        preQ: {x: .484086722, y: .454934686, z: -.58291024, w: .467878252}
-        postQ: {x: -8.98580765e-09, y: .00456930138, z: -.99998951, w: -1.64814992e-07}
-        length: .108703129
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_clavicle_jnt
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: -15.000001, z: -15.000001}
-        max: {x: 0, y: 15.000001, z: 30.0000019}
-        value: {x: .0869625434, y: 0, z: .0434812717}
-        preQ: {x: -.467886746, y: .582903743, z: -.454925716, w: -.484094739}
-        postQ: {x: .99998951, y: 1.58095208e-05, z: -1.37551979e-07, w: -.00456743594}
-        length: .108703218
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_upArm_jnt
-      humanName: LeftUpperArm
-      limit:
-        min: {x: -90, y: -100, z: -60.0000038}
-        max: {x: 90, y: 100, z: 100}
-        value: {x: .183824688, y: 0, z: .0919123441}
-        preQ: {x: -.193560943, y: -.0221801307, z: -.896976411, w: .396831781}
-        postQ: {x: -1.65891823e-09, y: -.00485656504, z: -.999988139, w: -7.88078793e-08}
-        length: .229780927
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_upArm_jnt
-      humanName: RightUpperArm
-      limit:
-        min: {x: -90, y: -100, z: -60.0000038}
-        max: {x: 90, y: 100, z: 100}
-        value: {x: .183825478, y: 0, z: .091912739}
-        preQ: {x: .89697659, y: .3968319, z: -.193559781, w: .0221795794}
-        postQ: {x: .999988198, y: 8.1245289e-06, z: 7.88306352e-07, w: .00485698879}
-        length: .229781911
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_elbow_jnt
-      humanName: LeftLowerArm
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: .147418499, y: 0, z: .0737092495}
-        preQ: {x: -.484434217, y: -.507216513, z: -.54621017, w: .457940131}
-        postQ: {x: -1.05355873e-07, y: -.73224318, z: -.681043267, w: -1.21071935e-07}
-        length: .184273198
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_elbow_jnt
-      humanName: RightLowerArm
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: .147417471, y: 0, z: .0737087354}
-        preQ: {x: .551004529, y: .400353134, z: -.477679402, w: .554917634}
-        postQ: {x: .699197948, y: -7.75419176e-06, z: -8.81607411e-06, w: .714927971}
-        length: .184271902
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_wrist_jnt
-      humanName: LeftHand
-      limit:
-        min: {x: 0, y: -40, z: -80}
-        max: {x: 0, y: 40, z: 80}
-        value: {x: .0737092495, y: 0, z: .0368546247}
-        preQ: {x: 1.27474795e-08, y: -.0371320918, z: -.999310315, w: -1.59327115e-07}
-        postQ: {x: .00279739313, y: -.0370210782, z: -.996322572, w: -.0772193521}
-        length: .0921365991
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_wrist_jnt
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: -40, z: -80}
-        max: {x: 0, y: 40, z: 80}
-        value: {x: .0737087354, y: 0, z: .0368543677}
-        preQ: {x: .999919832, y: -1.17162217e-05, z: -7.67730057e-07, w: .0126610342}
-        postQ: {x: .996919334, y: -.0774060935, z: .000860173313, w: .0126231099}
-        length: .0921359509
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_toe_jnt
-      humanName: LeftToes
-      limit:
-        min: {x: 0, y: 0, z: -50}
-        max: {x: 0, y: 0, z: 50}
-        value: {x: .113285549, y: 0, z: .0566427745}
-        preQ: {x: .0160430167, y: -.994302452, z: .028167164, w: -.10154593}
-        postQ: {x: -.77553463, y: -9.48303978e-08, z: -.63130486, w: -1.15903816e-07}
-        length: .141606972
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_toe_jnt
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: -50}
-        max: {x: 0, y: 0, z: 50}
-        value: {x: .111736149, y: 0, z: .0558680743}
-        preQ: {x: .995452464, y: .0262134466, z: .0771629512, w: .0493257679}
-        postQ: {x: 1.04708562e-07, y: -.759998977, z: 9.68060334e-08, w: -.649924159}
-        length: .139670223
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_eye_jnt
-      humanName: LeftEye
-      limit:
-        min: {x: 0, y: -20, z: -10}
-        max: {x: 0, y: 20, z: 15.000001}
-        value: {x: .0799999759, y: 0, z: .0399999879}
-        preQ: {x: -.703104138, y: -.0751303881, z: -.703104138, w: -.0751303881}
-        postQ: {x: -.707106769, y: -5.26835642e-09, z: -.707106769, w: -5.26835642e-09}
-        length: .100000001
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_eye_jnt
-      humanName: RightEye
-      limit:
-        min: {x: 0, y: -20, z: -10}
-        max: {x: 0, y: 20, z: 15.000001}
-        value: {x: .0799999759, y: 0, z: .0399999879}
-        preQ: {x: -.703104138, y: -.0751303881, z: -.703104138, w: -.0751303881}
-        postQ: {x: -.707106769, y: -5.26835642e-09, z: -.707106769, w: -5.26835642e-09}
-        length: .100000001
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_thumb_a_jnt
-      humanName: Left Thumb Proximal
-      limit:
-        min: {x: 0, y: -25, z: -20}
-        max: {x: 0, y: 25, z: 20}
-        value: {x: .0276593622, y: 0, z: .0138296811}
-        preQ: {x: -.339932323, y: -.62286514, z: -.584139407, w: .3940382}
-        postQ: {x: -2.68220873e-07, y: .252592355, z: -.967572629, w: 2.38418565e-07}
-        length: .0345742106
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_thumb_b_jnt
-      humanName: Left Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -40}
-        max: {x: 0, y: 0, z: 35}
-        value: {x: .0288788993, y: 0, z: .0144394496}
-        preQ: {x: -.063484028, y: .234222576, z: -.945104182, w: -.218832433}
-        postQ: {x: -6.10947609e-07, y: .119091101, z: -.992883265, w: -1.63912773e-07}
-        length: .036098633
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_thumb_c_jnt
-      humanName: Left Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: -40}
-        max: {x: 0, y: 0, z: 35}
-        value: {x: .0216591731, y: 0, z: .0108295865}
-        preQ: {x: -.0233307481, y: .10767819, z: -.974693656, w: -.194507793}
-        postQ: {x: -.0263535213, y: .311132014, z: -.949796259, w: -.0197324511}
-        length: .0270739757
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_index_a_jnt
-      humanName: Left Index Proximal
-      limit:
-        min: {x: 0, y: -20, z: -50}
-        max: {x: 0, y: 20, z: 50}
-        value: {x: .0357476585, y: 0, z: .0178738292}
-        preQ: {x: -.0533270426, y: -.0470706001, z: -.991001666, w: .113385163}
-        postQ: {x: -3.12924357e-07, y: .68903929, z: -.724723935, w: -3.47772556e-07}
-        length: .0446845889
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_index_b_jnt
-      humanName: Left Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0296519659, y: 0, z: .014825983}
-        preQ: {x: .243078515, y: .641561627, z: -.681930363, w: .253539681}
-        postQ: {x: -2.01165705e-07, y: .69662112, z: -.717439175, w: -1.99165726e-07}
-        length: .0370649658
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_index_c_jnt
-      humanName: Left Index Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0222389717, y: 0, z: .0111194858}
-        preQ: {x: .218288258, y: .658733249, z: -.684017777, w: .224811688}
-        postQ: {x: .00593174249, y: .695647359, z: -.718336582, w: .00565985963}
-        length: .0277987234
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_middle_a_jnt
-      humanName: Left Middle Proximal
-      limit:
-        min: {x: 0, y: -7.50000048, z: -50}
-        max: {x: 0, y: 7.50000048, z: 50}
-        value: {x: .0381972566, y: 0, z: .0190986283}
-        preQ: {x: .0304043796, y: -.0423899181, z: -.992629468, w: .109387033}
-        postQ: {x: 4.47034836e-08, y: .688398361, z: -.725332737, w: 7.48405e-08}
-        length: .0477465875
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_middle_b_jnt
-      humanName: Left Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0327379815, y: 0, z: .0163689908}
-        preQ: {x: .242155075, y: .66388005, z: -.660434067, w: .253871858}
-        postQ: {x: -8.19563866e-08, y: .69359231, z: -.72036767, w: -6.95654307e-08}
-        length: .0409224927
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_middle_c_jnt
-      humanName: Left Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0245534889, y: 0, z: .0122767445}
-        preQ: {x: .216704756, y: .676119328, z: -.667266667, w: .225070387}
-        postQ: {x: .00493499637, y: .693220735, z: -.720691502, w: .00493023545}
-        length: .0306918696
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_ring_a_jnt
-      humanName: Left Ring Proximal
-      limit:
-        min: {x: 0, y: -7.50000048, z: -50}
-        max: {x: 0, y: 7.50000048, z: 50}
-        value: {x: .0321729928, y: 0, z: .0160864964}
-        preQ: {x: .199856564, y: .686896324, z: -.680767417, w: .157436997}
-        postQ: {x: 4.09781933e-07, y: .689800382, z: -.723999441, w: 4.26807702e-07}
-        length: .0402162597
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_ring_b_jnt
-      humanName: Left Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0338188149, y: 0, z: .0169094075}
-        preQ: {x: .243212909, y: .664031208, z: -.660017729, w: .253547877}
-        postQ: {x: -4.73111925e-07, y: .692025363, z: -.721873105, w: -5.06159324e-07}
-        length: .0422735363
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_ring_c_jnt
-      humanName: Left Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .025364114, y: 0, z: .012682057}
-        preQ: {x: .216276661, y: .673815548, z: -.669551611, w: .225604832}
-        postQ: {x: -.00302819186, y: .692027271, z: -.721858799, w: -.00298751798}
-        length: .0317051522
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_pinky_a_jnt
-      humanName: Left Little Proximal
-      limit:
-        min: {x: 0, y: -20, z: -50}
-        max: {x: 0, y: 20, z: 50}
-        value: {x: .0239487235, y: 0, z: .0119743617}
-        preQ: {x: .230965495, y: .680592835, z: -.676009953, w: .162661582}
-        postQ: {x: 2.90572615e-07, y: .690039098, z: -.723771989, w: 3.03603855e-07}
-        length: .0299359132
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_pinky_b_jnt
-      humanName: Left Little Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0234997869, y: 0, z: .0117498934}
-        preQ: {x: .242898524, y: .653721869, z: -.67071408, w: .252567858}
-        postQ: {x: 1.2293458e-07, y: .687960625, z: -.725747824, w: 8.19654886e-08}
-        length: .0293747429
-        modified: 1
-    - boneName: Sal_model04:Sal_lf_pinky_c_jnt
-      humanName: Left Little Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0176248383, y: 0, z: .00881241914}
-        preQ: {x: .215487346, y: .660376012, z: -.68249011, w: .227323234}
-        postQ: {x: .0015743603, y: .688034415, z: -.725674748, w: .00153270224}
-        length: .0220310576
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_thumb_a_jnt
-      humanName: Right Thumb Proximal
-      limit:
-        min: {x: 0, y: -25, z: -20}
-        max: {x: 0, y: 25, z: 20}
-        value: {x: .0276604276, y: 0, z: .0138302138}
-        preQ: {x: .58095175, y: .409655482, z: -.315949827, w: .628373504}
-        postQ: {x: -.971750379, y: 2.09361315e-05, z: -5.03957272e-05, w: .236010894}
-        length: .0345755443
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_thumb_b_jnt
-      humanName: Right Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -40}
-        max: {x: 0, y: 0, z: 35}
-        value: {x: .0288781393, y: 0, z: .0144390697}
-        preQ: {x: .945212185, y: -.219690964, z: -.0606920905, w: -.233722493}
-        postQ: {x: -.994535744, y: -6.37769745e-06, z: 4.81158531e-05, w: .10439612}
-        length: .036097683
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_thumb_c_jnt
-      humanName: Right Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: -40}
-        max: {x: 0, y: 0, z: 35}
-        value: {x: .0216586031, y: 0, z: .0108293016}
-        preQ: {x: .974711001, y: -.194977298, z: -.0205145776, w: -.107244983}
-        postQ: {x: -.954293728, y: .0193496644, z: .0266039092, w: .297054172}
-        length: .0270732623
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_index_a_jnt
-      humanName: Right Index Proximal
-      limit:
-        min: {x: 0, y: -20, z: -50}
-        max: {x: 0, y: 20, z: 50}
-        value: {x: .0357478485, y: 0, z: .0178739242}
-        preQ: {x: -.992324114, y: -.116419107, z: .0413225442, w: -.0056273751}
-        postQ: {x: .716825306, y: -3.05188587e-06, z: -2.6896596e-06, w: -.697252691}
-        length: .0446848273
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_index_b_jnt
-      humanName: Right Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0296519175, y: 0, z: .0148259588}
-        preQ: {x: -.641780913, y: -.249919772, z: -.243659735, w: .682852268}
-        postQ: {x: .705636024, y: 1.15529183e-05, z: 1.08554959e-05, w: -.708574414}
-        length: .0370649062
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_index_c_jnt
-      humanName: Right Index Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0222389363, y: 0, z: .0111194681}
-        preQ: {x: -.643464267, y: -.219546497, z: -.220459178, w: .699393034}
-        postQ: {x: .706549466, y: .00577044347, z: .0058468543, w: -.707615912}
-        length: .0277986787
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_middle_a_jnt
-      humanName: Right Middle Proximal
-      limit:
-        min: {x: 0, y: -7.50000048, z: -50}
-        max: {x: 0, y: 7.50000048, z: 50}
-        value: {x: .0381970666, y: 0, z: .0190985333}
-        preQ: {x: -.993051112, y: -.109815575, z: -.0422715358, w: .00173715467}
-        postQ: {x: .718084455, y: 1.3067619e-08, z: -5.14090004e-07, w: -.695955873}
-        length: .0477463529
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_middle_b_jnt
-      humanName: Right Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0327376463, y: 0, z: .0163688231}
-        preQ: {x: -.620639145, y: -.2477175, z: -.239897013, w: .704196274}
-        postQ: {x: .709135115, y: -4.51308915e-05, z: -4.50387633e-05, w: -.705072582}
-        length: .0409220755
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_middle_c_jnt
-      humanName: Right Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0245532375, y: 0, z: .0122766187}
-        preQ: {x: -.627259016, y: -.217275485, z: -.216036499, w: .716006756}
-        postQ: {x: .709465206, y: .00496379193, z: .00481022149, w: -.70470655}
-        length: .0306915566
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_ring_a_jnt
-      humanName: Right Ring Proximal
-      limit:
-        min: {x: 0, y: -7.50000048, z: -50}
-        max: {x: 0, y: 7.50000048, z: 50}
-        value: {x: .0321728475, y: 0, z: .0160864238}
-        preQ: {x: -.644514084, y: -.149257109, z: -.197595403, w: .723380864}
-        postQ: {x: .716674209, y: 4.08143387e-06, z: 4.12762165e-06, w: -.69740802}
-        length: .0402160771
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_ring_b_jnt
-      humanName: Right Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0338194706, y: 0, z: .0169097353}
-        preQ: {x: -.620054364, y: -.247515306, z: -.241081104, w: .704378128}
-        postQ: {x: .710566819, y: 1.56591777e-05, z: 1.58324838e-05, w: -.703629613}
-        length: .0422743559
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_ring_c_jnt
-      humanName: Right Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0253646057, y: 0, z: .0126823029}
-        preQ: {x: -.629523754, y: -.217953175, z: -.21582365, w: .713874221}
-        postQ: {x: .710552454, y: -.00302003091, z: -.00296310708, w: -.703631401}
-        length: .0317057669
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_pinky_a_jnt
-      humanName: Right Little Proximal
-      limit:
-        min: {x: 0, y: -20, z: -50}
-        max: {x: 0, y: 20, z: 50}
-        value: {x: .0239492469, y: 0, z: .0119746234}
-        preQ: {x: -.637465477, y: -.154935822, z: -.226541787, w: .719938338}
-        postQ: {x: .716135681, y: -8.68120405e-05, z: -7.56084919e-05, w: -.697961032}
-        length: .0299365669
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_pinky_b_jnt
-      humanName: Right Little Intermediate
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0235002469, y: 0, z: .0117501235}
-        preQ: {x: -.630717993, y: -.247622132, z: -.242055267, w: .694468975}
-        postQ: {x: .714406013, y: 5.62939858e-05, z: 3.83108891e-05, w: -.69973129}
-        length: .0293753184
-        modified: 1
-    - boneName: Sal_model04:Sal_rt_pinky_c_jnt
-      humanName: Right Little Distal
-      limit:
-        min: {x: 0, y: 0, z: -45}
-        max: {x: 0, y: 0, z: 45}
-        value: {x: .0176251847, y: 0, z: .00881259236}
-        preQ: {x: -.642609119, y: -.220931351, z: -.216372401, w: .701017559}
-        postQ: {x: .714331627, y: .00161441485, z: .00158730173, w: -.699803591}
-        length: .0220314898
-        modified: 1
-    skeleton:
-    - name: Sal
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_Skeleton_grp
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: 0, w: .99999994}
-      scale: {x: 10, y: 10, z: 10}
-      transformModified: 1
-    - name: Sal_model04:Sal_spine_low_jnt
-      position: {x: -0, y: .105521493, z: -.00130412506}
-      rotation: {x: .486554563, y: -.513093174, z: -.486554563, w: .513093174}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_hip_jnt
-      position: {x: .00573118497, y: -.000270554709, z: 7.71458625e-19}
-      rotation: {x: 1.38777891e-16, y: -1.66533414e-16, z: -.0242628716, w: .999705553}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_upLeg_jnt
-      position: {x: .00473450264, y: -.000136386385, z: .0097369086}
-      rotation: {x: -.0245731156, y: .000387120381, z: .999583244, w: .0151420729}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_knee_jnt
-      position: {x: -.0371812209, y: -6.1062266e-18, z: 5.2722081e-18}
-      rotation: {x: -2.95651953e-16, y: 1.16492769e-15, z: -3.81270838e-05, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ankle_jnt
-      position: {x: -.0447663479, y: -6.09584238e-19, z: -9.33376905e-17}
-      rotation: {x: -.0632453412, y: .0653488263, z: .593563378, w: .79963243}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ball_jnt
-      position: {x: -.0166788511, y: -1.66675487e-17, z: -9.94079025e-18}
-      rotation: {x: -.013423698, y: .0101779075, z: .139394909, w: .990093529}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_toe_jnt
-      position: {x: -.0119153839, y: -4.86403086e-18, z: -2.42122019e-17}
-      rotation: {x: -.706460536, y: .0117166862, z: .707009673, w: -.0302238837}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_upLeg_jnt
-      position: {x: .00473446678, y: -.000136428178, z: -.00973690953}
-      rotation: {x: -.00591167714, y: .0636060238, z: -.122676238, w: .990388691}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_knee_jnt
-      position: {x: .0371812694, y: 3.69041757e-08, z: 4.440892e-18}
-      rotation: {x: 0, y: -0, z: -1.11625804e-05, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ankle_jnt
-      position: {x: .0447663665, y: -2.65302713e-08, z: 9.99200679e-18}
-      rotation: {x: -.0503410697, y: .0295385458, z: .608777881, w: .791190624}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ball_jnt
-      position: {x: .0166788716, y: 2.68319695e-08, z: -7.77156121e-18}
-      rotation: {x: -.023406975, y: .0134964567, z: .216247499, w: .975964606}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_toe_jnt
-      position: {x: .0119153429, y: 5.02436448e-09, z: -5.55111479e-18}
-      rotation: {x: -.705612481, y: .0204508696, z: .706392765, w: -.0519800894}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_spine_mid_jnt
-      position: {x: -.0130263902, y: -.000107836793, z: -3.05917984e-18}
-      rotation: {x: .99998337, y: .0057614604, z: 2.22483977e-16, w: -6.25152005e-17}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_spine_hi_jnt
-      position: {x: -.0183625985, y: -.000389125664, z: 2.83238781e-18}
-      rotation: {x: -3.08005974e-18, y: 1.03747507e-16, z: .0322976708, w: .999478221}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_spine_end_jnt
-      position: {x: -.00661606761, y: .000580536202, z: 1.67023193e-18}
-      rotation: {x: 0, y: 0, z: .0745547935, w: .99721688}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_clavicle_jnt
-      position: {x: -.00287780748, y: .000432725006, z: -.0083241323}
-      rotation: {x: .452266335, y: -.486219585, z: .465661556, w: .584982812}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_upArm_jnt
-      position: {x: -.0108703161, y: 1.98887224e-17, z: 4.25652668e-18}
-      rotation: {x: .0048121768, y: -.0546132661, z: .0722949877, w: .995875299}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_elbow_jnt
-      position: {x: -.0229781009, y: 1.10167446e-17, z: -2.60740874e-18}
-      rotation: {x: .0331098884, y: .031387832, z: -.022346003, w: .998708725}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_wrist_jnt
-      position: {x: -.0184273198, y: 1.40002211e-18, z: 7.50095486e-18}
-      rotation: {x: 4.61115901e-09, y: .00566276209, z: .0770620778, w: .997010171}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_hand_jnt
-      position: {x: -4.440892e-18, y: 0, z: -4.440892e-18}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_index_a_jnt
-      position: {x: -.0110929376, y: .00372089655, z: .00224012206}
-      rotation: {x: -.702801228, y: .0935491621, z: -.149481416, w: .689183652}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_index_b_jnt
-      position: {x: -.00446846103, y: 2.37539327e-18, z: 1.96689967e-17}
-      rotation: {x: -.0110685145, y: -.0401971787, z: 4.12211375e-05, w: .999130428}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_index_c_jnt
-      position: {x: -.00370649528, y: -4.09668933e-18, z: 1.92457069e-17}
-      rotation: {x: .00132369308, y: .00819871575, z: 7.15688002e-05, w: .999965489}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_index_d_jnt
-      position: {x: -.00356029766, y: -2.42697956e-18, z: 3.78413326e-17}
-      rotation: {x: .707085788, y: -.00544178579, z: -.107378297, w: .698906183}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_middle_a_jnt
-      position: {x: -.0105009982, y: .00340697542, z: -9.72219714e-05}
-      rotation: {x: -.705058634, y: .0649697483, z: -.184970587, w: .681510806}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_middle_b_jnt
-      position: {x: -.00477465754, y: 1.46883785e-18, z: 1.92587152e-17}
-      rotation: {x: -.00406046817, y: -.0406907797, z: .000896315381, w: .999163091}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_middle_c_jnt
-      position: {x: -.00409224955, y: -4.27082532e-18, z: 1.98699255e-17}
-      rotation: {x: .000492317427, y: .0069746892, z: -.000128706568, w: .999975502}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_middle_d_jnt
-      position: {x: -.00424828054, y: 1.61776924e-17, z: 1.95082342e-17}
-      rotation: {x: .706935346, y: .0155667048, z: -.0652135313, w: .704093099}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_pinkyCup_jnt
-      position: {x: -.00503997738, y: .000740386546, z: -.00300756842}
-      rotation: {x: -.707947254, y: .0583802722, z: -.173205301, w: .682203889}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_pinky_a_jnt
-      position: {x: -.00556148589, y: -4.02906312e-19, z: -5.12742875e-18}
-      rotation: {x: -.000685187988, y: .00984089449, z: .0207749195, w: .999735475}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_pinky_b_jnt
-      position: {x: -.00299359323, y: 6.28382383e-19, z: 1.55908176e-17}
-      rotation: {x: .00402654614, y: -.0394290388, z: .000370603811, w: .999214172}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_pinky_c_jnt
-      position: {x: -.00293747662, y: -4.77952237e-18, z: -1.18121482e-17}
-      rotation: {x: -.000103742932, y: .00219687121, z: -2.92692348e-05, w: .999997556}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_pinky_d_jnt
-      position: {x: -.00338309514, y: 4.95112231e-17, z: 9.12086236e-18}
-      rotation: {x: .703182399, y: .0743934959, z: -.0411205776, w: .705910087}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ringCup_jnt
-      position: {x: -.00493460754, y: .0015219365, z: -.00111556286}
-      rotation: {x: -.713005662, y: .0417259336, z: -.158507645, w: .681730926}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ring_a_jnt
-      position: {x: -.00557589764, y: 4.67602719e-19, z: 1.8625568e-17}
-      rotation: {x: .000879356521, y: .0353868678, z: .00114786369, w: .999372602}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ring_b_jnt
-      position: {x: -.00402162829, y: 2.68791265e-18, z: 2.37312948e-18}
-      rotation: {x: -9.33837728e-05, y: -.0411329865, z: .00059405691, w: .999153435}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ring_c_jnt
-      position: {x: -.00422735605, y: -3.00263357e-18, z: -1.94185827e-17}
-      rotation: {x: -1.13047663e-05, y: -.00425271643, z: 6.09785748e-05, w: .99999094}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_ring_d_jnt
-      position: {x: -.00377342268, y: -1.63594339e-17, z: 8.88830797e-18}
-      rotation: {x: .70584929, y: .0421513282, z: -.044070527, w: .705732048}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_thumb_a_jnt
-      position: {x: -.00531777181, y: .00199046684, z: .00297448458}
-      rotation: {x: -.779414415, y: .263692141, z: .312165737, w: .474902183}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_thumb_b_jnt
-      position: {x: -.00345742283, y: -5.73957507e-18, z: 1.81337462e-17}
-      rotation: {x: .133770719, y: .0178328697, z: -.028093189, w: .990453482}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_thumb_c_jnt
-      position: {x: -.00360986264, y: -5.16673554e-19, z: 1.25603174e-17}
-      rotation: {x: -.195805445, y: -.0285153221, z: .0164536182, w: .980089903}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_thumb_d_jnt
-      position: {x: -.00461713877, y: 5.61138979e-18, z: -1.14185054e-17}
-      rotation: {x: .706717134, y: .0234696344, z: -.57687062, w: .408925682}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_neck_jnt
-      position: {x: -.00881486386, y: 8.881784e-18, z: 3.17986371e-12}
-      rotation: {x: 0, y: 0, z: .139242724, w: .990258217}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:helmetGRP
-      position: {x: -.0117226709, y: -5.77474384e-05, z: .00014588832}
-      rotation: {x: .382218748, y: -.594902337, z: .382218748, w: .594902337}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:pCube1
-      position: {x: -.00990824774, y: -.00134507322, z: .00437095622}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:pCylinder3
-      position: {x: -.0087120831, y: -.00306659681, z: .00486979121}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface21
-      position: {x: -.00014588832, y: -.163838476, z: .00898222998}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface28
-      position: {x: -.00014588832, y: -.163838476, z: .00898222998}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface36
-      position: {x: .00952917896, y: -.00396430958, z: .00547048543}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface37
-      position: {x: -.00963946246, y: -.00345796719, z: .00472642248}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface57
-      position: {x: -.00014588832, y: -.163838476, z: .00898222998}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:polySurface61
-      position: {x: -.00014588832, y: -.163838476, z: .00898222998}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:pSphere1
-      position: {x: -2.12882569e-05, y: .00390674593, z: .00140055188}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:pSphere4
-      position: {x: -.000121592115, y: -.00132723735, z: -.00466904789}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:sal_helmet:pCube1
-      position: {x: .00939721521, y: -.00186904974, z: .00592971453}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:sal_helmet:pCylinder3
-      position: {x: .00870547909, y: -.00349025335, z: .00584931346}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:visor
-      position: {x: -.00014588832, y: -.163838476, z: .00898222998}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_head_a_jnt
-      position: {x: -.00849323813, y: 8.88178367e-17, z: -7.65060498e-12}
-      rotation: {x: .44326368, y: -.550924003, z: .44326368, w: .550924003}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_head_b_jnt
-      position: {x: -6.95439113e-18, y: .0189817455, z: 3.97056703e-18}
-      rotation: {x: -.106250398, y: 0, z: -0, w: .994339347}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_lf_eye_jnt
-      position: {x: -.00560990581, y: .00886575505, z: .00942203961}
-      rotation: {x: -.106250398, y: 0, z: -0, w: .994339347}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_eye_jnt
-      position: {x: .00560990954, y: .00886582397, z: .00942202471}
-      rotation: {x: -.106250398, y: 0, z: -0, w: .994339347}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_clavicle_jnt
-      position: {x: -.00287814485, y: .000432777015, z: .00832413044}
-      rotation: {x: .486219585, y: .452266335, z: .584982872, w: -.465661526}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_upArm_jnt
-      position: {x: .0108703254, y: 3.45713374e-07, z: -1.20489008e-09}
-      rotation: {x: .00481310487, y: -.0546136983, z: .0722869709, w: .995875835}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_elbow_jnt
-      position: {x: .0229781885, y: 3.70099656e-07, z: 3.44347626e-08}
-      rotation: {x: .00649640104, y: -.0289503075, z: -.0656595305, w: .99740088}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_wrist_jnt
-      position: {x: .0184272006, y: -4.35657626e-07, z: -2.30525199e-08}
-      rotation: {x: 1.39236064e-07, y: .00184076524, z: .0773773193, w: .997000158}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_hand_jnt
-      position: {x: -1.3322676e-17, y: -3.5527136e-17, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_index_a_jnt
-      position: {x: .0110930093, y: -.00372055918, z: -.00224013627}
-      rotation: {x: -.702801228, y: .0935491621, z: -.149481416, w: .689183652}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_index_b_jnt
-      position: {x: .00446848385, y: -2.89240876e-09, z: -4.16833679e-08}
-      rotation: {x: -.011068509, y: -.0401741825, z: 4.08085616e-05, w: .999131322}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_index_c_jnt
-      position: {x: .00370649411, y: 3.8063801e-09, z: 1.20764923e-07}
-      rotation: {x: .00132369308, y: .00819871575, z: 7.15688002e-05, w: .999965489}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_index_d_jnt
-      position: {x: .00356031279, y: -1.03419131e-08, z: 1.45285464e-08}
-      rotation: {x: .707085788, y: -.00544178579, z: -.107378297, w: .698906183}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_middle_a_jnt
-      position: {x: .0105010308, y: -.00340677099, z: 9.72104608e-05}
-      rotation: {x: -.705058634, y: .0649697483, z: -.184970587, w: .681510806}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_middle_b_jnt
-      position: {x: .00477463612, y: 3.41814954e-09, z: -6.63986954e-09}
-      rotation: {x: -.00406055991, y: -.0407597087, z: .000897600083, w: .99916023}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_middle_c_jnt
-      position: {x: .00409220718, y: -2.2327693e-09, z: -5.2474428e-07}
-      rotation: {x: .000492317427, y: .0069746892, z: -.000128706568, w: .999975502}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_middle_d_jnt
-      position: {x: .00424833456, y: -4.49775506e-09, z: 3.62927352e-07}
-      rotation: {x: .706935346, y: .0155667048, z: -.0652135313, w: .704093099}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_pinkyCup_jnt
-      position: {x: .00503997598, y: -.000740316114, z: .00300756237}
-      rotation: {x: -.707948387, y: .0583899282, z: -.17321904, w: .682198405}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_pinky_a_jnt
-      position: {x: .00556146493, y: 2.29541914e-08, z: 4.62918393e-07}
-      rotation: {x: -.000685187988, y: .00984089449, z: .0207749195, w: .999735475}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_pinky_b_jnt
-      position: {x: .00299365725, y: -5.60027296e-08, z: -6.82938264e-07}
-      rotation: {x: .00402656849, y: -.0392344296, z: .000357731042, w: .999221802}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_pinky_c_jnt
-      position: {x: .00293753389, y: 7.90669361e-08, z: 3.97926698e-07}
-      rotation: {x: -.000103742932, y: .00219687121, z: -2.92692348e-05, w: .999997556}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_pinky_d_jnt
-      position: {x: .00338303018, y: -2.19835226e-08, z: -3.53481283e-07}
-      rotation: {x: .703182399, y: .0743934959, z: -.0411205776, w: .705910087}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ringCup_jnt
-      position: {x: .00493470998, y: -.001521711, z: .00111556565}
-      rotation: {x: -.713006616, y: .041714102, z: -.158503875, w: .681731522}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ring_a_jnt
-      position: {x: .00557581056, y: 3.69351305e-09, z: -3.65650067e-07}
-      rotation: {x: .000879272877, y: .035386838, z: .00115218491, w: .999372602}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ring_b_jnt
-      position: {x: .00402160687, y: 5.59702146e-11, z: 4.47791528e-08}
-      rotation: {x: -9.32967305e-05, y: -.0411172248, z: .000593829667, w: .999154091}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ring_c_jnt
-      position: {x: .00422743894, y: 2.50838461e-10, z: 1.91057779e-07}
-      rotation: {x: -1.13047636e-05, y: -.00425271643, z: 6.09785748e-05, w: .99999094}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_ring_d_jnt
-      position: {x: .00377333513, y: -5.11844123e-10, z: -2.50536146e-07}
-      rotation: {x: .70584929, y: .0421513282, z: -.044070527, w: .705732048}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_thumb_a_jnt
-      position: {x: .00531769497, y: -.00199074647, z: -.00297447643}
-      rotation: {x: -.777028143, y: .253091156, z: .318536282, w: .480319351}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_thumb_b_jnt
-      position: {x: .00345755275, y: -2.23391936e-07, z: 3.09820791e-07}
-      rotation: {x: .133769274, y: .0177567899, z: -.0281260647, w: .990454078}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_thumb_c_jnt
-      position: {x: .00360976811, y: 8.13714465e-08, z: -3.34890387e-07}
-      rotation: {x: -.195805356, y: -.0284345727, z: .0164870322, w: .980091751}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    - name: Sal_model04:Sal_rt_thumb_d_jnt
-      position: {x: .00461736787, y: -2.96289784e-07, z: 3.32878216e-07}
-      rotation: {x: .706717134, y: .0234696344, z: -.57687062, w: .408925682}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
+    human: []
+    skeleton: []
     handles: []
     armTwist: .5
     foreArmTwist: .5
@@ -1451,8 +1221,8 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Sal_model04:Sal_spine_low_jnt
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 3
+  animationType: 2
   userData: 
