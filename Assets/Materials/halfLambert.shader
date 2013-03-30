@@ -4,13 +4,13 @@ Shader "Custom/Half Lambert"
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_BumpMap ("Bumpmap", 2D) = "bump" {}
 		_WrapAmount ("Wrap Amount", Range (0.0, 1.0)) = 0.5
 	}
 
 	SubShader
 	{
 		Tags { "RenderType" = "Opaque" }
+		Tags { "Queue" = "Geometry+1000" }
 
 		CGPROGRAM
 		#pragma surface surf WrapLambert
@@ -21,27 +21,23 @@ Shader "Custom/Half Lambert"
 		{
 
 			half NdotL = dot (s.Normal, lightDir);
-			half diff = NdotL * _WrapAmount + (1 - _WrapAmount);
+			half diff = NdotL * _WrapAmount + (1.0 - _WrapAmount);
 			half4 c;
-			c.rgb = s.Albedo * _LightColor0.rgb * (diff * atten * 2);
+			c.rgb = s.Albedo * _LightColor0.rgb * (diff * atten * 2.0);
 			c.a = s.Alpha;
 			return c;
 		}
 
 		struct Input
 		{
-			float4 color : COLOR;
 			float2 uv_MainTex;
-			float2 uv_BumpMap;
 		};
 
 		sampler2D _MainTex;
-		sampler2D _BumpMap;
 
 		void surf (Input IN, inout SurfaceOutput o)
 		{
-			o.Albedo = IN.color.rgb * tex2D (_MainTex, IN.uv_MainTex).rgb;
-			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+			o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
 		}
 		ENDCG
 	}

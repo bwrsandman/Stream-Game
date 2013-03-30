@@ -1,20 +1,36 @@
 using UnityEngine;
 using System.Collections;
 
-public class TerrainHole : MonoBehaviour {
+public class TerrainHole : MonoBehaviour
+{
 
-public TerrainCollider tCollider; // assign in inspector
+	public TerrainCollider tCollider;
+	public Camera camera;
+	AudioEchoFilter echo;
 
-void OnTriggerEnter (Collider c) {
-  if (c.tag == "player" || c.tag == "clone") {
-     Physics.IgnoreCollision(c, tCollider, true);
-  }
-}
+	void Start ()
+	{
+		echo = camera.GetComponent<AudioEchoFilter>();
+	}
 
-void OnTriggerExit (Collider c) {
-  if (c.tag == "player" || c.tag == "clone") {
-     Physics.IgnoreCollision(c, tCollider, false);
-  }
-}
+	void OnTriggerEnter (Collider c)
+	{
+		if (c.tag == "player") {
+			Physics.IgnoreCollision(c, tCollider, true);
+			echo.enabled = true;
+		} else if (c.tag == "clone") {
+			Physics.IgnoreCollision(c, tCollider, true);
+		}
+	}
+
+	void OnTriggerExit (Collider c)
+	{
+		if (c.tag == "player") {
+			Physics.IgnoreCollision(c, tCollider, false);
+			echo.enabled = false;
+		} else if (c.tag == "clone") {
+			Physics.IgnoreCollision(c, tCollider, false);
+		}
+	}
 
 }

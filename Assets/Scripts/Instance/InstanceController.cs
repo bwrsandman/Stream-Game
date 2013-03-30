@@ -36,6 +36,9 @@ public class InstanceController : StateMachineController
 	Animator anim;
 	NavMeshAgent agent;
 	GameObject cube;
+
+	private float walkingSpeed = 0.956f * 1.75f * 2.0f;
+	private float runningSpeed = 3.247f * 1.5f * 1.1f;
 	#endregion
 	
 	#region Properties
@@ -90,11 +93,11 @@ public class InstanceController : StateMachineController
 		agent.Resume();
 		if (anim.GetFloat("Speed") < movingSpeed) {
 			anim.SetFloat("Speed", movingSpeed);
-			agent.speed = 0.956f*1.75f*2.0f;
+			agent.speed = walkingSpeed;
 		}
 		if (running) {
 			anim.SetBool("Running", true);
-			agent.speed = 3.247f*1.5f*1.1f;
+			agent.speed = runningSpeed;
 		}
 	}
 
@@ -136,14 +139,23 @@ public class InstanceController : StateMachineController
 	protected override void Update ()
 	{
 		base.Update();
-		agent.SetDestination(targetPosition);
-		if (anim.GetFloat("Speed") > 0.1f) {
-			float dist = Vector3.Distance(transform.position, agent.transform.position);
-		}
 	}
 
 	protected override void LateUpdate ()
 	{
+		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("player").transform.position);
+		agent.SetDestination(targetPosition);
+
+		if (anim.GetFloat("Speed") > 0.1f) {
+			float dist = Vector3.Distance(transform.position, agent.transform.position);
+			Debug.Log("dist " + dist);
+			if (dist > 0.4f)
+				anim.SetFloat("Speed", movingSpeed);
+			else
+				anim.SetFloat("Speed", 0.0f);
+		}
+
+
 		if (anim.GetFloat("Speed") > 0.1f) {
 			transform.LookAt(agent.transform);
 			Vector3 rot = transform.rotation.eulerAngles;
