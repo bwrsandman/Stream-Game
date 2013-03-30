@@ -1,5 +1,7 @@
-Shader "Custom/PackShader" {
-	Properties {
+Shader "Custom/Pack Shader"
+{
+	Properties
+	{
 		_tex0 ("Default", 2D) = "white" {}
 		_tex1 ("Time Energy Empty", 2D) = "black" {}
 		_tex2 ("Time Energy Filled", 2D) = "white" {}
@@ -15,7 +17,8 @@ Shader "Custom/PackShader" {
 		_timeBrightness("Time Brightness", Range(0.0, 1.0)) = 0.5
 	}
 
-	SubShader {
+	SubShader
+	{
 		Tags { "RenderType"="Opaque" }
 		LOD 200
 
