@@ -10,7 +10,7 @@ public class Ammo : MonoBehaviour {
 	private float invMaxAmmo;
 
 	void Start () {
-		invMaxAmmo = 1 / maxAmmo;
+		invMaxAmmo = 1.0f / maxAmmo;
 		setTimeEnergyIndicator();
 	}
 
