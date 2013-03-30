@@ -29,6 +29,11 @@ public class Projectile : MonoBehaviour {
 			Debug.Log("env");
 			Destroy(this.gameObject);
 		}
+		else if (other.tag == "player") {
+			PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
+			if (otherHealth != null)
+				otherHealth.decreaseHealth(20);
+		}
 		else if (other.tag != "TriggerArea") {
 			Health otherHealth = other.gameObject.GetComponent<Health>();
 			if (otherHealth != null)

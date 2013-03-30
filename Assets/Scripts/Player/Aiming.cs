@@ -6,21 +6,21 @@ using System.Collections;
 public class Aiming : MonoBehaviour {
 	
 	private Vector3 screenMidPoint;
-	
 	private Vector3 shootingDirection;
-	public RaycastHit hit;
-	
 	private ThirdPersonCamera camScript;
+	private Ammo ammoScript;
 	
 	protected Animator anim;
 	
 	public float projectileSpeed = 30.0f;
 	public GameObject projectileFab;
-	
+	public RaycastHit hit;
+
 	void Start () {
 		screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
 		anim = GetComponent<Animator>();
 		camScript = GetComponent<ThirdPersonCamera>();
+		ammoScript = GetComponent<Ammo>();
 	}
 	
 	void LateUpdate () {
@@ -67,5 +67,6 @@ public class Aiming : MonoBehaviour {
 		
 		projectileScript.setPosition(spawnPos);
 		projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
+		ammoScript.decreaseAmmo(1);
 	}
 }
