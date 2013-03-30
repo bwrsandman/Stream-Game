@@ -75,6 +75,7 @@ public class ThirdPersonController : MonoBehaviour
 				if(s.clip.name == "Getting up")
 					return;
 			getUpAtStart = false;
+			anim.SetBool("GetUp", false);
 			}
 		}
 
