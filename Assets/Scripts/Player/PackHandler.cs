@@ -5,12 +5,18 @@ using System.Collections;
 
 public class PackHandler : MonoBehaviour 
 {
+	public bool hideOnStart = true;
 	public GameObject [] PackGeometry;
+	public GameObject Pack
+	{
+		get { return PackGeometry[0]; }
+	}
 	
 	#region Initialization
 	void Start () 
 	{
-		Hide();
+		if (hideOnStart)
+			Hide();
 	}
 	#endregion
 	
