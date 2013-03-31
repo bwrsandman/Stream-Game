@@ -21,6 +21,7 @@ public class InstanceController : StateMachineController
 	NavMeshAgent    _navmesh_agent;
 	GameObject      _cube;
 	SelfActivationHandler _activation;
+	bool kneeling = false;
 
 	private float walkingSpeed = 0.956f * 1.75f * 2.0f;
 	private float runningSpeed = 3.247f * 1.5f * 1.1f;
@@ -129,6 +130,12 @@ public class InstanceController : StateMachineController
 			rot.x = 0.0f;
 			transform.rotation = Quaternion.Euler(rot);
 		}
+		
+		// Way to avoid setting and unsetting before animator can transition
+		bool tmpKneeling = _animator.GetBool("Kneel");
+		if(kneeling)
+			_animator.SetBool("Kneel", false);
+		kneeling = tmpKneeling;
 	}
 	#endregion
 }

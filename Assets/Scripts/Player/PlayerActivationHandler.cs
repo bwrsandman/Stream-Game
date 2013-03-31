@@ -27,13 +27,17 @@ public class PlayerActivationHandler : SelectionActivationHandler
 	public override void Activate ()
 	{
 		base.Activate();
-		if (selectedObject && selectedObject.GetType() == typeof(Equipment)) {
+		if (!selectedObject) {
+			return;
+		} else if (selectedObject.GetType() == typeof(Equipment)) {
 			if (selectedObject.name == "Powerpack") {
 				Destroy(selectedObject.gameObject);
 				packHandler.Show();
 				unsetSelectedObject(selectedObject);
 				GetComponent<PlayerHealth>().setIndicator();
 			}
+		} else if (selectedObject.GetType() == typeof(Ledge)) {
+			Ledge ledge = (Ledge)selectedObject;
 		}
 	}
 }
