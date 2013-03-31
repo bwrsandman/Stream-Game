@@ -18,6 +18,9 @@ public class ThirdPersonController : MonoBehaviour
 	private TimeActions timeScript; 
 	private ThirdPersonCamera camScript;
 	private Aiming aimScript;
+	private Ammo ammoScript;
+	private ActivationHandler activationHandler;
+	private WeaponHandler weapHandler;
     private PlayerActivationHandler playerActivationHandler;
     private CloneActivationHandler cloneActivationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
@@ -31,6 +34,7 @@ public class ThirdPersonController : MonoBehaviour
 	public float walkSensitivity = 0.1f;
 	public float runSensitivity = 0.65f;
 	public bool getUpAtStart = false;
+	public float ammoPerShot = 25f;
 	
 	#endregion
 	
@@ -43,6 +47,9 @@ public class ThirdPersonController : MonoBehaviour
 		timeScript = GetComponent<TimeActions>();
 		camScript = GetComponent<ThirdPersonCamera>();
 		aimScript = GetComponent<Aiming>();
+		activationHandler = GetComponent<ActivationHandler>();
+		weapHandler = GetComponent<WeaponHandler>();
+		ammoScript = GetComponent<Ammo>();
 		playerActivationHandler = GetComponent<PlayerActivationHandler>();
         cloneActivationHandler = GetComponent<CloneActivationHandler>();
 		if(anim.layerCount == 2)
@@ -164,16 +171,19 @@ public class ThirdPersonController : MonoBehaviour
 			}
 
 			//Aiming
-			bool aim = Input.GetButton("Left Trigger");
-			anim.SetBool("Aiming", aim);
-			camScript.setDistance(aim ? 1.0f : 2.0f);
+			if (weapHandler.hasWeapon()) {
+				bool aim = Input.GetButton("Left Trigger");
+				anim.SetBool("Aiming", aim);
+				camScript.setDistance(aim ? 1.0f : 2.0f);
 
-			//Shooting
-			bool shoot = Input.GetButton("Right Trigger");
-			if (shoot && anim.GetBool("Aiming")) {
-				aimScript.shootRay();
-				if (!aimScript.hit.point.Equals(Vector3.zero))
-					aimScript.shootProjectile();
+				//Shooting
+				bool shoot = Input.GetButton("Right Trigger");
+				if (shoot && anim.GetBool("Aiming")) {
+					aimScript.shootProjectile(ammoPerShot);
+					ammoScript.setSemiAuto(true);
+				}
+				else if (!shoot)
+					ammoScript.setSemiAuto(false);
 			}
 
 			//Dpad clone activation

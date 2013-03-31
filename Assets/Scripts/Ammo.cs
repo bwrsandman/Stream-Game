@@ -6,26 +6,48 @@ public class Ammo : MonoBehaviour {
 	public float ammoLevel;
 	public float maxAmmo;
 	public Material indicator;
+	public float recharge_percentage_lock;
 
-	private float invMaxAmmo;
+	private bool locked = false;
+	private bool semiAutoLocked = false;
+
+	protected float invMaxAmmo;
+
+	void Update () {
+		increaseAmmo(0.125f);
+	}
 
 	void Start () {
 		invMaxAmmo = 1.0f / maxAmmo;
 		setTimeEnergyIndicator();
 	}
 
-	public void increaseAmmo (int delta) {
-		ammoLevel = Mathf.Min(ammoLevel + delta, maxAmmo);
+	public void increaseAmmo (float delta) {
+		ammoLevel += delta;
+		if (ammoLevel > maxAmmo * recharge_percentage_lock && locked)
+			locked = false;
+		else if (ammoLevel > maxAmmo)
+			ammoLevel = maxAmmo;
+
 		setTimeEnergyIndicator();
 	}
 
-	public void decreaseAmmo (int delta) {
-		ammoLevel = Mathf.Max(ammoLevel - delta, 0.0f);
+	public void decreaseAmmo (float delta) {
+		ammoLevel-= delta;
+		if (ammoLevel < 0.0f)
+			locked = true;
 		setTimeEnergyIndicator();
 	}
 
-	private void setTimeEnergyIndicator () {
+	public bool canShoot (float ammoPerShoot) {
+		return ammoLevel >= ammoPerShoot && !locked && !semiAutoLocked;
+	}
+
+	public void setSemiAuto(bool semiAutoLocked) {
+		this.semiAutoLocked = semiAutoLocked;
+	}
+
+	protected void setTimeEnergyIndicator () {
 		indicator.SetFloat("_timeEnergy", ammoLevel * invMaxAmmo);
 	}
-
 }

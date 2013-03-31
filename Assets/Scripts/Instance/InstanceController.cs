@@ -116,7 +116,6 @@ public class InstanceController : StateMachineController
 
 		if (_animator.GetFloat("Speed") > 0.1f) {
 			float dist = Vector3.Distance(transform.position, _navmesh_agent.transform.position);
-			//Debug.Log("dist " + dist);
 			if (dist > 0.4f)
 				_animator.SetFloat("Speed", movingSpeed);
 			else
