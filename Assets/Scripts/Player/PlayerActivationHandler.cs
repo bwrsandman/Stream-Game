@@ -9,7 +9,7 @@ public class PlayerActivationHandler : ActivationHandler
 	{
 		get 
 		{
-			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment)});
+			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment), typeof(TimeRift)});
 		}
 	}
 	
