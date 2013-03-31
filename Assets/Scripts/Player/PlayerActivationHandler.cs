@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerActivationHandler : ActivationHandler 
+public class PlayerActivationHandler : SelectionActivationHandler 
 {	
 	PackHandler packHandler;
 	

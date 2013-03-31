@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CloneActivationHandler : SelectionActivationHandler 
+public class SelfActivationHandler : ActivationHandler 
 {
 	/* 
-	 * Handler for the player to select objects to send clones to
-	 * Must be put on player
+	 * Handler for the clone to pick up objects
+	 * Must be put on clone
 	 */
 	protected override List<System.Type> activateableTypes
 	{
