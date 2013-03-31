@@ -15,6 +15,7 @@ public class Aiming : MonoBehaviour {
 	
 	public float projectileSpeed = 30.0f;
 	public GameObject projectileFab;
+	public GameObject muzzleSparkFab;
 	public RaycastHit hit;
 
 	void Start () {
@@ -55,6 +56,7 @@ public class Aiming : MonoBehaviour {
 			spawnPos += -0.45f*right;
 			
 			GameObject projectile = (GameObject) Instantiate(projectileFab, spawnPos, Quaternion.identity);
+			Instantiate(muzzleSparkFab, spawnPos, transform.rotation);
 			
 			Projectile projectileScript = projectile.GetComponent<Projectile>();
 			
