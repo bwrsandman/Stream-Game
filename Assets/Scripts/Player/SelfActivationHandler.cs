@@ -14,4 +14,16 @@ public class SelfActivationHandler : ActivationHandler
 			return new List<System.Type>(new System.Type [] { typeof(Weapon), typeof(Ledge) });
 		}
 	}
+	
+	public override void Activate ()
+	{
+		base.Activate ();
+		if (!selectedObject) {
+			return;
+		} else if (selectedObject.GetType() == typeof(Ledge)) {
+			Debug.Log("Kneeling");
+			animator.SetBool("Kneel", true);
+			unsetSelectedObject(selectedObject);
+		}
+	}
 }

@@ -154,6 +154,7 @@ public class ThirdPersonController : MonoBehaviour
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
 		anim.SetBool("SettingWaypoint", false);
+		anim.SetBool("Kneel", false);
 		
 		if (!timeScript.isTeleporting()) {
 			if (Input.GetKeyDown("e")) 
