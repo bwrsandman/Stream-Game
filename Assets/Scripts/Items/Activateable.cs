@@ -9,11 +9,24 @@ public abstract class Activateable : MonoBehaviour
 	
 	void Awake () 
 	{
+		GameObject player = null;
+		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
+		{
+			if (obj.name == "Sal")
+			{
+				player = obj;
+				break;
+			}
+		}
+
+		if(!player)
+			Debug.LogError("Could not find player in Scene");
+
 		if(!mPlayerActivate)
-			mPlayerActivate = GameObject.FindWithTag("Player").GetComponent<PlayerActivationHandler>();
+			mPlayerActivate = player.GetComponent<PlayerActivationHandler>();
 		if(!mCloneActivate)
-			mCloneActivate = GameObject.FindWithTag("Player").GetComponent<CloneActivationHandler>();
-		
+			mCloneActivate = player.GetComponent<CloneActivationHandler>();
+
 	}
 	
 	void OnTriggerEnter(Collider other) 

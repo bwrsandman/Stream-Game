@@ -9,13 +9,14 @@ public class InstanceIdleBehaviour : InstanceBehaviour
 		:base (controller)
 	{ }
 		
-		public override uint run ()
-		{
-			float distance = _controller.distanceToPlayer;
-				
-			if(distance > InstanceController.satisfactionRadius) {
-				_controller.GotoState(new InstanceFollowBehaviour(_controller));
-			}
+
+	public override uint run()
+	{
+        float distance = _controller.GetTravelDistance(_controller._player_transform.position);
+
+        if(distance > InstanceController.satisfactionRadius) {
+            _controller.GotoState(new InstanceFollowBehaviour(_controller));
+		}
 			
 		return base.run();
 	}

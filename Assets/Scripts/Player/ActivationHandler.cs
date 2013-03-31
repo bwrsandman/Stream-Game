@@ -7,6 +7,7 @@ public abstract class ActivationHandler : MonoBehaviour
 	public Activateable selectedObject;
 	
 	protected WeaponHandler weaponHandler;
+	protected Animator animator;
 	
 	protected abstract List<System.Type> activateableTypes
 	{
@@ -16,6 +17,7 @@ public abstract class ActivationHandler : MonoBehaviour
 	protected virtual void Start () 
 	{
 		weaponHandler = GetComponent<WeaponHandler>();
+		animator = GetComponent<Animator>();
 	}
 	
 	public virtual void setSelectedObject (Activateable obj)

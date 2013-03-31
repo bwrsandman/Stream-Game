@@ -16,21 +16,9 @@ public class InstanceFollowBehaviour : InstanceBehaviour
 
 	public override uint run ()
 	{
-		//Debug.Log("Following.");
-			
-		float distance = _controller.distanceToPlayer;
-		//_controller.facePlayer();
-		
-		if(distance < InstanceController.satisfactionRadius * 1.2f) {
-			//Debug.Log("Player within satisfaction radius. Idling.");
-			_controller.Stop();
+        if (Seek(_controller._player_transform.position))
             _controller.GotoState(new InstanceIdleBehaviour(_controller));
-		}
-		else if(distance > InstanceController.urgencyRadius) {
-			//Debug.Log("Player outside of urgency radius. Must run to catch up.");
-			_controller.Resume(true);
-		}
-			
+
 		return base.run();
 	}
 }

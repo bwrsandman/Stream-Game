@@ -11,7 +11,7 @@ public class CloneActivationHandler : SelectionActivationHandler
 	{
 		get 
 		{
-			return new List<System.Type>(new System.Type [] {typeof(Weapon)});
+			return new List<System.Type>(new System.Type [] { typeof(Weapon), typeof(Ledge) });
 		}
 	}
 }
