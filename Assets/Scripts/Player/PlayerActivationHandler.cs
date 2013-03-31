@@ -38,6 +38,7 @@ public class PlayerActivationHandler : SelectionActivationHandler
 			}
 		} else if (selectedObject.GetType() == typeof(Ledge)) {
 			Ledge ledge = (Ledge)selectedObject;
+			animator.SetBool("Climbing", true);
 		}
 	}
 }

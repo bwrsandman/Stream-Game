@@ -155,6 +155,7 @@ public class ThirdPersonController : MonoBehaviour
 		
 		anim.SetBool("SettingWaypoint", false);
 		anim.SetBool("Kneel", false);
+		anim.SetBool("Climbing", false);
 		
 		if (!timeScript.isTeleporting()) {
 			if (Input.GetKeyDown("e")) 
