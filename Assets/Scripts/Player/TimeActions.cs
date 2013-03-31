@@ -110,7 +110,7 @@ public class TimeActions : MonoBehaviour {
 			clone.GetComponent<InstanceHealth>().setInstanceSpecifics(clones.Count);
 			clone.GetComponent<InstanceAmmo>().setInstanceSpecifics(clones.Count);
 			InstanceController ai = (InstanceController) clone.GetComponent("InstanceController");
-			ai.player = transform;
+			//ai.player = transform;
 			ai._player_transform = transform;
 			clones.Add(clone);
 		}
