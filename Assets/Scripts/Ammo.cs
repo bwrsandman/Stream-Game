@@ -15,6 +15,7 @@ public class Ammo : MonoBehaviour {
 
 	void Update () {
 		increaseAmmo(0.125f);
+		Debug.Log(maxAmmo + " " + maxAmmo * recharge_percentage_lock + " " + ammoLevel + " " + !locked);
 	}
 
 	void Start () {
@@ -34,13 +35,14 @@ public class Ammo : MonoBehaviour {
 
 	public void decreaseAmmo (float delta) {
 		ammoLevel-= delta;
-		if (ammoLevel < 0.0f)
-			locked = true;
 		setTimeEnergyIndicator();
 	}
 
 	public bool canShoot (float ammoPerShoot) {
-		return ammoLevel >= ammoPerShoot && !locked && !semiAutoLocked;
+		bool enoughAmmo = ammoLevel >= ammoPerShoot;
+		if (!enoughAmmo)
+			locked = true;
+		return enoughAmmo && !locked && !semiAutoLocked;
 	}
 
 	public void setSemiAuto(bool semiAutoLocked) {
