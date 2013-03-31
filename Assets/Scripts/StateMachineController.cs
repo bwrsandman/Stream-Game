@@ -59,7 +59,7 @@ public abstract class StateMachineController : MonoBehaviour
 	#region Internal functions
 	protected virtual void Update ()
 	{
-		behaviourState = currentBehaviour.run ();
+		behaviourState = currentBehaviour.run();
 	}
 
 	protected virtual void LateUpdate () { }
@@ -70,21 +70,30 @@ public abstract class StateMachineController : MonoBehaviour
     public StateBehaviour _state_behaviour;
 
     public void GotoState(StateBehaviour state) {
+        _state_behaviour.OnExitState();
         _state_behaviour = state;
+        _state_behaviour.OnEnterState();
     }
 
     public void PushState(StateBehaviour state){
+        _state_behaviour.OnExitState();
         state._last_state = _state_behaviour;
         _state_behaviour = state;
+        _state_behaviour.OnEnterState();
     }
 
     public void PopState(){
+        _state_behaviour.OnExitState();
         _state_behaviour = _state_behaviour._last_state;
+        _state_behaviour.OnEnterState();
     }
 
     public void SafePopState() {
-        if(_state_behaviour._last_state != null)
+        if (_state_behaviour._last_state != null) {
+            _state_behaviour.OnExitState();
             _state_behaviour = _state_behaviour._last_state;
+            _state_behaviour.OnEnterState();
+        }
     }
 
     #endregion
