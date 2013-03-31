@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Ledge : Activateable 
 {
+	public GameObject supporter;
 
 	// Use this for initialization
 	void Start ()

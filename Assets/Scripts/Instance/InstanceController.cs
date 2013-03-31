@@ -16,6 +16,7 @@ public class InstanceController : StateMachineController
 	public Transform    _player_transform;
 	public GameObject   _nav_cube_fab;
     public GameObject   _target;
+	public bool facing = true;
 
 	Animator        _animator;
 	NavMeshAgent    _navmesh_agent;
@@ -112,6 +113,12 @@ public class InstanceController : StateMachineController
 
 	protected override void LateUpdate ()
 	{
+		// Way to avoid setting and unsetting before animator can transition
+		bool tmpKneeling = _animator.GetBool("Kneel");
+		if(kneeling)
+			_animator.SetBool("Kneel", false);
+		kneeling = tmpKneeling;
+		
 		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("Player").transform.position);
 		_navmesh_agent.SetDestination(targetPosition);
 
@@ -124,18 +131,12 @@ public class InstanceController : StateMachineController
 		}
 
 
-		if (_animator.GetFloat("Speed") > 0.1f) {
+		if (_animator.GetFloat("Speed") > 0.1f && facing) {
 			transform.LookAt(_navmesh_agent.transform);
 			Vector3 rot = transform.rotation.eulerAngles;
 			rot.x = 0.0f;
 			transform.rotation = Quaternion.Euler(rot);
 		}
-		
-		// Way to avoid setting and unsetting before animator can transition
-		bool tmpKneeling = _animator.GetBool("Kneel");
-		if(kneeling)
-			_animator.SetBool("Kneel", false);
-		kneeling = tmpKneeling;
 	}
 	#endregion
 }

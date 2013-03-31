@@ -29,11 +29,19 @@ public class SelfActivationHandler : ActivationHandler
 		if (!selectedObject) {
 			return;
 		} else if (selectedObject.GetType() == typeof(Ledge)) {
-			animator.SetBool("Kneel", true);
+			Ledge ledge = (Ledge)selectedObject;
+			ledge.supporter = controller.gameObject;
+			
+			controller.facing = false;
+			
 			float theta = selectedObject.transform.eulerAngles.y;
-			float phi = controller._player_transform.rotation.y;
-			float offset = ((phi-theta) < 0)? 90.0f : -90.0f;
+			float offset = 90.0f;
+			Vector3 target = selectedObject.transform.position + 0.3f * selectedObject.transform.up;
+			target.y = transform.position.y;
+			transform.position = target;
 			controller.rotateY (theta + offset);
+			
+			animator.SetBool("Kneel", true);
 			unsetSelectedObject(selectedObject);
 		}
 	}
