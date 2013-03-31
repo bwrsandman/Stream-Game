@@ -107,7 +107,9 @@ public class TimeActions : MonoBehaviour {
 			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			clone.GetComponent<PackHandler>().Pack.renderer.material = cloneMaterials[clones.Count];
-			InstanceController ai = (InstanceController)clone.GetComponent("InstanceController");
+			clone.GetComponent<InstanceHealth>().setInstanceSpecifics(clones.Count);
+			clone.GetComponent<InstanceAmmo>().setInstanceSpecifics(clones.Count);
+			InstanceController ai = (InstanceController) clone.GetComponent("InstanceController");
 			ai.player = transform;
 			ai.targetTransform = transform;
 			clones.Add(clone);

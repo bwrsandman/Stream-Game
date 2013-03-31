@@ -1,27 +1,26 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : Health {
-	public Material indicator;
+public class InstanceHealth : Health {
 
+	private Material indicator;
 	private float invMaxHealth;
+	private int instanceNum;
 
-	void Start () {
-
-	}
-
-	public void setIndicator() {
+	public void setInstanceSpecifics (int num) {
+		this.instanceNum = num;
+		indicator = GetComponent<PackHandler>().Pack.renderer.material;
 		invMaxHealth = 1.0f / maxHealth;
 		setHealthIndicator();
 	}
-	
-	public void increaseHealth (int delta) {
+
+	public void increaseHealth (float delta) {
 		healthLevel = Mathf.Min(healthLevel + delta, maxHealth);
 		setHealthIndicator();
 	}
 	
-	public void decreaseHealth (int delta) {
-		healthLevel -= delta;	
+	public void decreaseHealth (float delta) {
+		healthLevel -= delta;
 		if (healthLevel <= 0f) {
 			die();
 			healthLevel = maxHealth;
@@ -31,15 +30,10 @@ public class PlayerHealth : Health {
 	
 	private void die () {
 		//Destruction/death animation/time travel.
-
-		//Remember to set the start of the level as a checkpoint!
-
-		StartCoroutine(GetComponent<TimeActions>().teleport());
-		//Destroy(this.gameObject);
+		Destroy(this.gameObject);
 	}
 
 	private void setHealthIndicator () {
-		Debug.Log("Health " +  (healthLevel * invMaxHealth));
 		indicator.SetFloat("_health", healthLevel * invMaxHealth);
 	}
 }

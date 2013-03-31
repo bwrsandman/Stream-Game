@@ -16,7 +16,6 @@ namespace Instance
 		
 		public override uint run ()
 		{
-			Debug.Log("Idling.");
 			uint ret = state;
 			
 			float distance = controller.distanceToPlayer;

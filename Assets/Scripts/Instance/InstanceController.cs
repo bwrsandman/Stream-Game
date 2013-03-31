@@ -148,7 +148,6 @@ public class InstanceController : StateMachineController
 
 		if (anim.GetFloat("Speed") > 0.1f) {
 			float dist = Vector3.Distance(transform.position, agent.transform.position);
-			Debug.Log("dist " + dist);
 			if (dist > 0.4f)
 				anim.SetFloat("Speed", movingSpeed);
 			else
