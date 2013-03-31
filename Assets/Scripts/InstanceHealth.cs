@@ -14,12 +14,12 @@ public class InstanceHealth : Health {
 		setHealthIndicator();
 	}
 
-	public void increaseHealth (float delta) {
+	public override void increaseHealth (float delta) {
 		healthLevel = Mathf.Min(healthLevel + delta, maxHealth);
 		setHealthIndicator();
 	}
 	
-	public void decreaseHealth (float delta) {
+	public override void decreaseHealth (float delta) {
 		healthLevel -= delta;
 		if (healthLevel <= 0f) {
 			die();
@@ -28,7 +28,7 @@ public class InstanceHealth : Health {
 		setHealthIndicator();
 	}
 	
-	private void die () {
+	protected override void die () {
 		//Destruction/death animation/time travel.
 		Destroy(this.gameObject);
 	}

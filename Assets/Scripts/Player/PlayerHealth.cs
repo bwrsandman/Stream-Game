@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : Health {
+public class PlayerHealth : Health  {
 	public Material indicator;
-
 	private float invMaxHealth;
 
 	void Start () {
@@ -15,12 +14,12 @@ public class PlayerHealth : Health {
 		setHealthIndicator();
 	}
 	
-	public void increaseHealth (int delta) {
+	public override void increaseHealth (float delta) {
 		healthLevel = Mathf.Min(healthLevel + delta, maxHealth);
 		setHealthIndicator();
 	}
 	
-	public void decreaseHealth (int delta) {
+	public override void decreaseHealth (float delta) {
 		healthLevel -= delta;	
 		if (healthLevel <= 0f) {
 			die();
@@ -29,7 +28,7 @@ public class PlayerHealth : Health {
 		setHealthIndicator();
 	}
 	
-	private void die () {
+	protected override void die () {
 		//Destruction/death animation/time travel.
 
 		//Remember to set the start of the level as a checkpoint!

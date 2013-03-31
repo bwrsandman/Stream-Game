@@ -31,7 +31,6 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "tCollider" || other.tag == "Environment") {
-			//Debug.Log("env");
 			Destroy(this.gameObject);
 		}
 		else if (other.tag == "player" || other.tag == "clone") {
