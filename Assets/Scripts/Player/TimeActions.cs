@@ -111,7 +111,7 @@ public class TimeActions : MonoBehaviour {
 			clone.GetComponent<InstanceAmmo>().setInstanceSpecifics(clones.Count);
 			InstanceController ai = (InstanceController) clone.GetComponent("InstanceController");
 			ai.player = transform;
-			ai.targetTransform = transform;
+			ai._player_transform = transform;
 			clones.Add(clone);
 		}
 	}
@@ -132,4 +132,12 @@ public class TimeActions : MonoBehaviour {
 	{
 		return clones.Count;
 	}
+
+    #region Anton's Cool Shit
+
+    public GameObject GetClone(int number) {
+        return clones[number];
+    }
+
+    #endregion
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerActivationHandler : ActivationHandler 
+public class PlayerActivationHandler : SelectionActivationHandler 
 {	
 	PackHandler packHandler;
 	
@@ -9,7 +9,7 @@ public class PlayerActivationHandler : ActivationHandler
 	{
 		get 
 		{
-			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment)});
+			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment), typeof(TimeRift)});
 		}
 	}
 	
