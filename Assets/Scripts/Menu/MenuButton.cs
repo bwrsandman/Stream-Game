@@ -15,26 +15,23 @@ void OnMouseExit(){
 }
  
 void OnMouseDown(){
-	Debug.Log(gameObject.name + " clicked");
 	switch(gameObject.name)       
 	  {         
 		 case "btnNewGame":
-	        Application.LoadLevel("Level_01_Exterior_02"); 
+	        Application.LoadLevel(1); 
+			Time.timeScale = 1.0f;
 	        break;                  
 	     case "btnContinue":            
-
+			Application.LoadLevel(1); 
+			Time.timeScale = 1.0f;    
 	        break;
 		 case "btnSettings":            
 
 	        break;
 		 case "btnQuit":            
 			Application.Quit();
-			 Debug.Log("Application quit!");
 	        break;
 	   }
-		
-		
-
 }
 
 }
