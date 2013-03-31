@@ -106,6 +106,8 @@ public class InstanceController : StateMachineController
 	
 	#region Internal functions
 	protected override void Update () {
+        if (_switched_state)
+            OnEnterState();
         _state_behaviour.run();
 	}
 

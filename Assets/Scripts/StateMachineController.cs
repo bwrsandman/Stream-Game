@@ -37,6 +37,7 @@ public abstract class StateMachineController : MonoBehaviour
 	{
 		behaviourState = beginState;
 		BuildBehaviours();
+        _switched_state = false;
 	}
 	#endregion
 	
@@ -68,31 +69,40 @@ public abstract class StateMachineController : MonoBehaviour
     #region Anton's cool shit
 
     public StateBehaviour _state_behaviour;
+    protected bool _switched_state;
+
+    public void OnEnterState() {
+        Debug.Log("ENTERING STATE");
+        _state_behaviour.OnEnterState();
+        _switched_state = false;
+    }
+
+    public void OnExitState() {
+        Debug.Log("EXITING STATE");
+        _state_behaviour.OnExitState();
+        _switched_state = true;
+    }
 
     public void GotoState(StateBehaviour state) {
-        _state_behaviour.OnExitState();
+        OnExitState();
         _state_behaviour = state;
-        _state_behaviour.OnEnterState();
     }
 
-    public void PushState(StateBehaviour state){
-        _state_behaviour.OnExitState();
+    public void PushState(StateBehaviour state) {
+        OnExitState();
         state._last_state = _state_behaviour;
         _state_behaviour = state;
-        _state_behaviour.OnEnterState();
     }
 
-    public void PopState(){
-        _state_behaviour.OnExitState();
+    public void PopState() {
+        OnExitState();
         _state_behaviour = _state_behaviour._last_state;
-        _state_behaviour.OnEnterState();
     }
 
     public void SafePopState() {
         if (_state_behaviour._last_state != null) {
-            _state_behaviour.OnExitState();
+            OnExitState();
             _state_behaviour = _state_behaviour._last_state;
-            _state_behaviour.OnEnterState();
         }
     }
 
