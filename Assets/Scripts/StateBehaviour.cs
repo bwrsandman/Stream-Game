@@ -1,24 +1,20 @@
 public abstract class StateBehaviour
 {
-	#region Members
 	protected StateMachineController mController;
-	#endregion
+
+	protected abstract uint state
+    { get; }
 	
-	#region Properties
-	protected abstract uint state {
-		get;
-	}
-	#endregion
-	
-	#region Initialization
 	public StateBehaviour (StateMachineController controller)
-	{
-		this.mController = controller;
-	}
-	#endregion
-	
-	#region Run Functions
-	public abstract uint run();
-	#endregion
+	{ this.mController = controller; }
+
+    public abstract uint run();
+    public virtual void OnEnterState() { }
+    public virtual void OnExitState() { }
+
+
+    // Anton's cool shit
+    public StateBehaviour _last_state;
+
 }
 

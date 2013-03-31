@@ -18,7 +18,8 @@ public class ThirdPersonController : MonoBehaviour
 	private TimeActions timeScript; 
 	private ThirdPersonCamera camScript;
 	private Aiming aimScript;
-	private ActivationHandler activationHandler;
+    private PlayerActivationHandler playerActivationHandler;
+    private CloneActivationHandler cloneActivationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 	#endregion
 	
@@ -42,7 +43,8 @@ public class ThirdPersonController : MonoBehaviour
 		timeScript = GetComponent<TimeActions>();
 		camScript = GetComponent<ThirdPersonCamera>();
 		aimScript = GetComponent<Aiming>();
-		activationHandler = GetComponent<ActivationHandler>();
+		playerActivationHandler = GetComponent<PlayerActivationHandler>();
+        cloneActivationHandler = GetComponent<CloneActivationHandler>();
 		if(anim.layerCount == 2)
 			anim.SetLayerWeight(1, 1);
 
@@ -141,7 +143,7 @@ public class ThirdPersonController : MonoBehaviour
 		if (getUpAtStart)
 			return;
 
-		//currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
+		//currentBaseState = _animator.GetCurrentAnimatorStateInfo(0);
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
 		anim.SetBool("SettingWaypoint", false);
@@ -158,7 +160,7 @@ public class ThirdPersonController : MonoBehaviour
 			}	
 			
 			if (Input.GetButton("A")) {
-				activationHandler.Activate();
+				playerActivationHandler.Activate();
 			}
 
 			//Aiming
@@ -178,7 +180,7 @@ public class ThirdPersonController : MonoBehaviour
 			Vector2 dPad = new Vector2(Input.GetAxis("Dpad X"), Input.GetAxis("Dpad Y"));
 
 			if (dPad.sqrMagnitude > 0.25f) {
-				uint clone_index = 0;
+				int clone_index = 0;
 				float dom = dPad.y;
 				if (Mathf.Abs(dPad.x) > Mathf.Abs(dPad.y)) {
 					dom = dPad.x;
@@ -188,10 +190,18 @@ public class ThirdPersonController : MonoBehaviour
 					clone_index += 2;
 				}
 
+
+
 				// do something with clone_index
 				Debug.Log("activate clone #" + clone_index);
+
+                CallClone(clone_index);
 			}
 
+            if (Input.GetKeyDown("1")) CallClone(0);
+            else if (Input.GetKeyDown("2")) CallClone(1);
+            else if (Input.GetKeyDown("3")) CallClone(2);
+            else if (Input.GetKeyDown("4")) CallClone(3);
 
 			//Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
 
@@ -213,4 +223,28 @@ public class ThirdPersonController : MonoBehaviour
 		updateAim();
 	}
 	#endregion
+
+    #region Anton's Cool Shit
+
+    public bool HasClone(int number) {
+        return number < timeScript.GetCloneCount();
+    }
+
+    public GameObject GetClone(int number) {
+        return timeScript.GetClone(number);
+    }
+
+    public InstanceController GetCloneController(int number) {
+        return (InstanceController)GetClone(number).GetComponent("InstanceController");
+    }
+
+    protected void CallClone(int number) {
+        InstanceController cloneAI = GetCloneController(number);
+        if (cloneActivationHandler.selectedObject != null) {
+            cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
+            cloneAI.PushState(new Instance.InstanceActivateBehaviour(cloneAI));
+        }
+    }
+
+    #endregion
 }
