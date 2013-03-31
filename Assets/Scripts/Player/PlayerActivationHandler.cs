@@ -9,7 +9,12 @@ public class PlayerActivationHandler : SelectionActivationHandler
 	{
 		get 
 		{
-			return new List<System.Type>(new System.Type [] {typeof(Weapon), typeof(Equipment), typeof(TimeRift)});
+			return new List<System.Type>(new System.Type [] {
+				typeof(Weapon), 
+				typeof(Equipment), 
+				typeof(TimeRift), 
+				typeof(Ledge)
+			});
 		}
 	}
 	
