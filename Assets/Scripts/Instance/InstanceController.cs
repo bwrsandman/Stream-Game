@@ -20,6 +20,7 @@ public class InstanceController : StateMachineController
 	Animator        _animator;
 	NavMeshAgent    _navmesh_agent;
 	GameObject      _cube;
+	SelfActivationHandler _activation;
 
 	private float walkingSpeed = 0.956f * 1.75f * 2.0f;
 	private float runningSpeed = 3.247f * 1.5f * 1.1f;
@@ -57,6 +58,7 @@ public class InstanceController : StateMachineController
         _animator = GetComponent<Animator>();
         _cube = (GameObject)Instantiate(_nav_cube_fab, transform.position + otherDirection.normalized, transform.rotation);
         _navmesh_agent = _cube.GetComponent<NavMeshAgent>();
+		_activation = GetComponent<SelfActivationHandler>();
     }
 
 	public void Resume(bool running)
@@ -79,6 +81,11 @@ public class InstanceController : StateMachineController
 		_animator.SetBool("Running", false);
 		_navmesh_agent.speed = 0.0f;
 	}
+	
+	public void SetSelection(Activateable obj)
+	{
+		_activation.selectedObject = obj;
+	}
 
 	public void rotateY (float y)
 	{
@@ -88,6 +95,11 @@ public class InstanceController : StateMachineController
 	public void facePlayer()
 	{
 		rotateY(Quaternion.LookRotation(otherDirection).eulerAngles.y);
+	}
+	
+	public void Activate()
+	{
+		_activation.Activate();
 	}
 
 	#endregion
@@ -104,7 +116,7 @@ public class InstanceController : StateMachineController
 
 		if (_animator.GetFloat("Speed") > 0.1f) {
 			float dist = Vector3.Distance(transform.position, _navmesh_agent.transform.position);
-			Debug.Log("dist " + dist);
+			//Debug.Log("dist " + dist);
 			if (dist > 0.4f)
 				_animator.SetFloat("Speed", movingSpeed);
 			else

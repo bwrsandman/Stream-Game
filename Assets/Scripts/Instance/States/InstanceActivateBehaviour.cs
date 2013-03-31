@@ -25,7 +25,7 @@ public class InstanceActivateBehaviour : InstanceGotoBehaviour
         //_controller.facePlayer();
 
         if (distance < InstanceController.satisfactionRadius * 0.2f) {
-            //Debug.Log("Player within satisfaction radius. Idling.");
+            Debug.Log("Player within satisfaction radius. Idling.");
             _controller.Stop();
             _controller.GotoState(new InstanceIdleBehaviour(_controller));
         }
@@ -39,6 +39,7 @@ public class InstanceActivateBehaviour : InstanceGotoBehaviour
 
     public override void OnExitState() {
         Debug.Log("I'm LEAVING!");
+        _controller.Activate();
     }
 }
 

@@ -242,6 +242,7 @@ public class ThirdPersonController : MonoBehaviour
         InstanceController cloneAI = GetCloneController(number);
         if (cloneActivationHandler.selectedObject != null) {
             cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
+            cloneAI.SetSelection(cloneActivationHandler.selectedObject);
             cloneAI.PushState(new Instance.InstanceActivateBehaviour(cloneAI));
         }
     }

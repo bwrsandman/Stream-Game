@@ -13,9 +13,10 @@ public class TimeActions : MonoBehaviour {
 	private List<GameObject> clones = new List<GameObject>();
 	private bool teleporting = false;
 	private List<float> maxInstanceExtends = new List<float>();
+	private Animator anim;
 	
 	void Start () {
-		
+		anim = GetComponent<Animator>();
 	}
 	
 	public void setCheckpoint() {
@@ -41,6 +42,7 @@ public class TimeActions : MonoBehaviour {
 	
 	public IEnumerator teleport() { 
 		if (checkpoints.Count > 0) {
+			anim.SetBool("SettingWaypoint", true);
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
@@ -60,6 +62,7 @@ public class TimeActions : MonoBehaviour {
 	
 	public IEnumerator teleportCloner() {
 		if (checkpoints.Count > 0 && clones.Count < 4) {
+			anim.SetBool("SettingWaypoint", true);
 			float posZ = transform.position.z;
 			
 			if (posZ >= -17.5 && posZ < 2.5) {
