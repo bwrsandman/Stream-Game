@@ -173,11 +173,13 @@ public class ThirdPersonController : MonoBehaviour
 			}
 
 			//Aiming
+			//Shooting
+            aimScript.shootRay();
 			if (weapHandler.hasWeapon()) {
+
 				bool aim = Input.GetButton("Left Trigger");
 				anim.SetBool("Aiming", aim);
 				camScript.setDistance(aim ? 1.0f : 2.0f);
-
 				//Shooting
 				bool shoot = Input.GetButton("Right Trigger");
 				if (shoot && anim.GetBool("Aiming")) {
@@ -251,11 +253,17 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     protected void CallClone(int number) {
-        InstanceController cloneAI = GetCloneController(number);
-        if (cloneActivationHandler.selectedObject != null) {
-            cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
-            cloneAI.SetSelection(cloneActivationHandler.selectedObject);
-            cloneAI.PushState(new Instance.InstanceActivateBehaviour(cloneAI));
+        if (HasClone(number)) {
+            InstanceController cloneAI = GetCloneController(number);
+            if (cloneActivationHandler.selectedObject != null) {
+                cloneAI.GotoState(new Instance.InstanceActivateBehaviour(cloneAI));
+                cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
+                cloneAI.SetSelection(cloneActivationHandler.selectedObject);
+            }
+            else if (aimScript.hit.point != Vector3.zero) {
+                cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
+                cloneAI._target_point = aimScript.hit.point;
+            }
         }
     }
 

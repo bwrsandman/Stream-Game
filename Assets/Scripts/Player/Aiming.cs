@@ -4,8 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]  
 
 public class Aiming : MonoBehaviour {
-	
-	private Vector3 screenMidPoint;
+
+    public Vector3 _aim_position;
+    private Vector3 screenMidPoint;
 	private Vector3 shootingDirection;
 	private ThirdPersonCamera camScript;
 	private Ammo ammoScript;
@@ -70,7 +71,7 @@ public class Aiming : MonoBehaviour {
 		}
 	}
 
-	private bool shootRay () {
+	public bool shootRay () {
 		Ray ray = Camera.main.ScreenPointToRay(screenMidPoint);
 		
 		Debug.DrawRay(ray.origin, ray.direction * 5.0f, Color.red);
@@ -85,4 +86,6 @@ public class Aiming : MonoBehaviour {
 		else
 			return false;
 	}
+	
+
 }
