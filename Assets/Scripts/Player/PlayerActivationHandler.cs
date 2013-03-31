@@ -27,6 +27,7 @@ public class PlayerActivationHandler : SelectionActivationHandler
 				Destroy(selectedObject.gameObject);
 				packHandler.Show();
 				unsetSelectedObject(selectedObject);
+				GetComponent<PlayerHealth>().setIndicator();
 			}
 		}
 	}

@@ -9,11 +9,13 @@ public class Aiming : MonoBehaviour {
 	private Vector3 shootingDirection;
 	private ThirdPersonCamera camScript;
 	private Ammo ammoScript;
+	private WeaponHandler weapHandler;
 	
 	protected Animator anim;
 	
 	public float projectileSpeed = 30.0f;
 	public GameObject projectileFab;
+	public GameObject muzzleSparkFab;
 	public RaycastHit hit;
 
 	void Start () {
@@ -21,6 +23,7 @@ public class Aiming : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		camScript = GetComponent<ThirdPersonCamera>();
 		ammoScript = GetComponent<Ammo>();
+		weapHandler = GetComponent<WeaponHandler>();
 	}
 	
 	void LateUpdate () {
@@ -38,7 +41,36 @@ public class Aiming : MonoBehaviour {
 		}
 	}
 	
-	public void shootRay () {
+	public void shootProjectile (float ammoPerShoot) {
+		if (weapHandler.hasWeapon() && ammoScript.canShoot(ammoPerShoot)) {
+			bool target = shootRay();
+	
+			Vector3 spawnPos = transform.position;
+			spawnPos.y += 1.5f;
+			
+			//Make sure it spawns in front of the player:
+			spawnPos += 1.25f*shootingDirection;
+	
+			Vector3 right = new Vector3(-shootingDirection.z, shootingDirection.y, shootingDirection.x);
+			right.y = 0.0f;
+			spawnPos += -0.45f*right;
+			
+			GameObject projectile = (GameObject) Instantiate(projectileFab, spawnPos, Quaternion.identity);
+			Instantiate(muzzleSparkFab, spawnPos, transform.rotation);
+			
+			Projectile projectileScript = projectile.GetComponent<Projectile>();
+			
+			projectileScript.setPosition(spawnPos);
+			if (target)
+				projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
+			else
+				projectileScript.setVelocity(shootingDirection * projectileSpeed);
+			ammoScript.decreaseAmmo(ammoPerShoot);
+
+		}
+	}
+
+	private bool shootRay () {
 		Ray ray = Camera.main.ScreenPointToRay(screenMidPoint);
 		
 		Debug.DrawRay(ray.origin, ray.direction * 5.0f, Color.red);
@@ -47,26 +79,10 @@ public class Aiming : MonoBehaviour {
 		
 		if (Physics.Raycast(ray, out hit)) {
 			Vector3 objectHit = hit.point;
+			return true;
 		}
-		//If nothing collides make the projectile goes in the direction of the ray. 
-		//(This will never happen once we have a skybox)
+		//If nothing collides make the projectile goes in the direction of the ray.
 		else
-			hit.point = Vector3.zero;
-	}
-	
-	public void shootProjectile () {
-		Vector3 spawnPos = transform.position;
-		spawnPos.y += 1.5f;
-		
-		//Make sure it spawns in front of the player:
-		spawnPos += shootingDirection; 
-		
-		GameObject projectile = (GameObject) Instantiate(projectileFab, spawnPos, Quaternion.identity);
-		
-		Projectile projectileScript = projectile.GetComponent<Projectile>();
-		
-		projectileScript.setPosition(spawnPos);
-		projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
-		ammoScript.decreaseAmmo(1);
+			return false;
 	}
 }

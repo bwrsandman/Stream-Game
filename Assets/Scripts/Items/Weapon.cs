@@ -4,8 +4,7 @@ using System.Collections;
 #endregion
 
 #region Required components
-[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
 #endregion
 
 public class Weapon : Equipable 
