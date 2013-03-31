@@ -9,9 +9,23 @@ public class InstanceGotoBehaviour : InstanceBehaviour
 		:base (controller)
 	{ }
 
+    public override void OnEnterState() {
+        _controller._use_point_target = true;
+    }
+
+    public override void OnExitState() {
+        _controller._use_point_target = false;
+        _controller._target_point = Vector3.zero;
+    }
+
 	public override uint run()
 	{
-		return base.run();
+        Debug.Log("GOTO POINT!");
+        Debug.Log(_controller._target_point);
+        if(Seek(_controller._target_point))
+            _controller.GotoState(new InstanceIdleBehaviour(_controller));
+
+        return base.run();
 	}
 }
 

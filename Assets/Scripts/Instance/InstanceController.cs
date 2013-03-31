@@ -13,6 +13,8 @@ public class InstanceController : StateMachineController
 	public const float urgencyRadius        = 7.5f;
 	public const float movingSpeed          = 0.11f;
 
+    public bool _use_point_target;
+    public Vector3 _target_point;
 	public Transform    _player_transform;
 	public GameObject   _nav_cube_fab;
     public GameObject   _target;
@@ -37,15 +39,6 @@ public class InstanceController : StateMachineController
 	protected override Vector3 mOffset
     { get { return Vector3.zero; } }
 	
-	public float distanceToPlayer {
-		get {
-			targetTransform = _player_transform;
-			Vector3 travelVector = otherDirection;
-			travelVector.y = 0.0f;
-			return travelVector.magnitude;
-		}
-	}
-	
 
 	#region UTILITY FUNCTIONS
 
@@ -59,6 +52,14 @@ public class InstanceController : StateMachineController
         _cube = (GameObject)Instantiate(_nav_cube_fab, transform.position + otherDirection.normalized, transform.rotation);
         _navmesh_agent = _cube.GetComponent<NavMeshAgent>();
 		_activation = GetComponent<SelfActivationHandler>();
+        _target_point = Vector3.zero;
+        _use_point_target = false;
+    }
+
+    public float GetTravelDistance(Vector3 destination) {
+        Vector3 travelVector = destination - transform.position;
+        travelVector.y = 0.0f;
+        return travelVector.magnitude;
     }
 
 	public void Resume(bool running)
@@ -114,7 +115,12 @@ public class InstanceController : StateMachineController
 	protected override void LateUpdate ()
 	{
 		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("Player").transform.position);
-		_navmesh_agent.SetDestination(targetPosition);
+        if (_use_point_target) {
+            _navmesh_agent.SetDestination(_target_point);
+        }
+        else {
+            _navmesh_agent.SetDestination(targetPosition);
+        }
 
 		if (_animator.GetFloat("Speed") > 0.1f) {
 			float dist = Vector3.Distance(transform.position, _navmesh_agent.transform.position);

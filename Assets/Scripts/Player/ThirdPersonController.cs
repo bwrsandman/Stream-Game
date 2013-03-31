@@ -169,12 +169,14 @@ public class ThirdPersonController : MonoBehaviour
 			camScript.setDistance(aim ? 1.0f : 2.0f);
 
 			//Shooting
-			bool shoot = Input.GetButton("Right Trigger");
-			if (shoot && anim.GetBool("Aiming")) {
-				aimScript.shootRay();
-				if (!aimScript.hit.point.Equals(Vector3.zero))
-					aimScript.shootProjectile();
-			}
+            aimScript.shootRay();
+
+            if (Input.GetButton("Right Trigger") &&
+                anim.GetBool("Aiming") &&
+                !aimScript.hit.point.Equals(Vector3.zero))
+            {
+                aimScript.shootProjectile();
+            }
 
 			//Dpad clone activation
 			Vector2 dPad = new Vector2(Input.GetAxis("Dpad X"), Input.GetAxis("Dpad Y"));
@@ -241,9 +243,13 @@ public class ThirdPersonController : MonoBehaviour
     protected void CallClone(int number) {
         InstanceController cloneAI = GetCloneController(number);
         if (cloneActivationHandler.selectedObject != null) {
+            cloneAI.GotoState(new Instance.InstanceActivateBehaviour(cloneAI));
             cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
             cloneAI.SetSelection(cloneActivationHandler.selectedObject);
-            cloneAI.PushState(new Instance.InstanceActivateBehaviour(cloneAI));
+        }
+        else if(aimScript.hit.point != Vector3.zero) {
+            cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
+            cloneAI._target_point = aimScript.hit.point;
         }
     }
 

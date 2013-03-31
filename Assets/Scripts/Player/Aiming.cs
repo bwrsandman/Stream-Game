@@ -4,8 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]  
 
 public class Aiming : MonoBehaviour {
-	
-	private Vector3 screenMidPoint;
+
+    public Vector3 _aim_position;
+    private Vector3 screenMidPoint;
 	private Vector3 shootingDirection;
 	private ThirdPersonCamera camScript;
 	private Ammo ammoScript;
@@ -45,12 +46,7 @@ public class Aiming : MonoBehaviour {
 		
 		shootingDirection = ray.direction;
 		
-		if (Physics.Raycast(ray, out hit)) {
-			Vector3 objectHit = hit.point;
-		}
-		//If nothing collides make the projectile goes in the direction of the ray. 
-		//(This will never happen once we have a skybox)
-		else
+		if (!Physics.Raycast(ray, out hit))
 			hit.point = Vector3.zero;
 	}
 	
@@ -68,5 +64,6 @@ public class Aiming : MonoBehaviour {
 		projectileScript.setPosition(spawnPos);
 		projectileScript.setVelocity((hit.point - spawnPos).normalized * projectileSpeed);
 		ammoScript.decreaseAmmo(1);
-	}
+    }
+
 }

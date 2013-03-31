@@ -22,6 +22,19 @@ public abstract class InstanceBehaviour : StateBehaviour
 	{
 		return state;
 	}
+
+    protected bool Seek(Vector3 position) {
+        float distance = _controller.GetTravelDistance(position);
+
+        if (distance < InstanceController.satisfactionRadius * 1.2f) {
+            _controller.Stop();
+            return true;
+        }
+        else if (distance > InstanceController.urgencyRadius) {
+            _controller.Resume(true);
+        }
+        return false;
+    }
 }
 
 }
