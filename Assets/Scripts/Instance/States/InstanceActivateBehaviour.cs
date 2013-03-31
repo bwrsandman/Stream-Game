@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Instance
 {
 
-public class InstanceActivateBehaviour : InstanceGotoBehaviour
+public class InstanceActivateBehaviour : InstanceBehaviour
 {
 	public InstanceActivateBehaviour (InstanceController controller)
 		:base (controller)
@@ -16,7 +16,7 @@ public class InstanceActivateBehaviour : InstanceGotoBehaviour
 
 	public override uint run()
 	{
-        if (Seek(_controller.targetPosition))
+        if (Seek(_controller.targetPosition, InstanceController.satisfactionRadius * 0.8f))
             _controller.GotoState(new InstanceIdleBehaviour(_controller));
 
         return base.run();

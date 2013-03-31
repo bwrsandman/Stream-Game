@@ -38,6 +38,7 @@ public abstract class StateMachineController : MonoBehaviour
 		behaviourState = beginState;
 		BuildBehaviours();
         _switched_state = false;
+        _can_state_swap = true;
 	}
 	#endregion
 	
@@ -70,40 +71,55 @@ public abstract class StateMachineController : MonoBehaviour
 
     public StateBehaviour _state_behaviour;
     protected bool _switched_state;
+    protected bool _can_state_swap;
 
-    public void OnEnterState() {
+    protected void OnEnterState() {
         Debug.Log("ENTERING STATE");
         _state_behaviour.OnEnterState();
         _switched_state = false;
     }
 
-    public void OnExitState() {
+    protected void OnExitState() {
         Debug.Log("EXITING STATE");
         _state_behaviour.OnExitState();
         _switched_state = true;
     }
 
+    public void EnableStateSwap() {
+        _can_state_swap = true;
+    }
+
+    public void DisableStateSwap() {
+        _can_state_swap = false;
+    }
+
     public void GotoState(StateBehaviour state) {
+        if (!_can_state_swap)
+            return;
         OnExitState();
         _state_behaviour = state;
     }
 
     public void PushState(StateBehaviour state) {
+        if (!_can_state_swap)
+            return;
         OnExitState();
         state._last_state = _state_behaviour;
         _state_behaviour = state;
     }
 
     public void PopState() {
+        if (!_can_state_swap)
+            return;
         OnExitState();
         _state_behaviour = _state_behaviour._last_state;
     }
 
     public void SafePopState() {
-        if (_state_behaviour._last_state != null) {
-            OnExitState();
-            _state_behaviour = _state_behaviour._last_state;
-        }
+        if (!_can_state_swap || _state_behaviour._last_state == null)
+            return;
+        OnExitState();
+        _state_behaviour = _state_behaviour._last_state;
     }
 
     #endregion

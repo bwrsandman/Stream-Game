@@ -241,15 +241,17 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     protected void CallClone(int number) {
-        InstanceController cloneAI = GetCloneController(number);
-        if (cloneActivationHandler.selectedObject != null) {
-            cloneAI.GotoState(new Instance.InstanceActivateBehaviour(cloneAI));
-            cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
-            cloneAI.SetSelection(cloneActivationHandler.selectedObject);
-        }
-        else if(aimScript.hit.point != Vector3.zero) {
-            cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
-            cloneAI._target_point = aimScript.hit.point;
+        if (HasClone(number)) {
+            InstanceController cloneAI = GetCloneController(number);
+            if (cloneActivationHandler.selectedObject != null) {
+                cloneAI.GotoState(new Instance.InstanceActivateBehaviour(cloneAI));
+                cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
+                cloneAI.SetSelection(cloneActivationHandler.selectedObject);
+            }
+            else if (aimScript.hit.point != Vector3.zero) {
+                cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
+                cloneAI._target_point = aimScript.hit.point;
+            }
         }
     }
 

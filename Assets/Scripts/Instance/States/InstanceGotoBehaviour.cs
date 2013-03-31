@@ -20,10 +20,8 @@ public class InstanceGotoBehaviour : InstanceBehaviour
 
 	public override uint run()
 	{
-        Debug.Log("GOTO POINT!");
-        Debug.Log(_controller._target_point);
         if(Seek(_controller._target_point))
-            _controller.GotoState(new InstanceIdleBehaviour(_controller));
+            _controller.GotoState(new InstanceGotoIdleBehaviour(_controller));
 
         return base.run();
 	}

@@ -11,8 +11,6 @@ public class InstanceIdleBehaviour : InstanceBehaviour
 		
 	public override uint run()
 	{
-		Debug.Log("Idling.");
-
         float distance = _controller.GetTravelDistance(_controller._player_transform.position);
 
         if(distance > InstanceController.satisfactionRadius) {

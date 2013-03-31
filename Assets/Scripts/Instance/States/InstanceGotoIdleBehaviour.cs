@@ -9,8 +9,17 @@ public class InstanceGotoIdleBehaviour : InstanceBehaviour
         :base (controller)
     { }
 
+    private float _time;
+
+    public override void OnEnterState() {
+        _time = Time.time;
+    }
+
     public override uint run()
     {
+        if ((Time.time - _time) > 5.0f)
+            _controller.GotoState(new InstanceIdleBehaviour(_controller));
+
         return base.run();
     }
 }
