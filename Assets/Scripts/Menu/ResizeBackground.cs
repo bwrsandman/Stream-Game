@@ -89,6 +89,10 @@ public class ResizeBackground : MonoBehaviour {
 	   startTime = Time.time;
 	}
 	
+	public void DeactivateButtons(){
+	menuPosition = 0;
+	}
+	
     void OnGUI() {
 		backgroundObject.guiTexture.pixelInset = new Rect(
 			0.0f, 
