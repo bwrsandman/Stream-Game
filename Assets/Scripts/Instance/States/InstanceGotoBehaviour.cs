@@ -2,25 +2,30 @@ using UnityEngine;
 
 namespace Instance
 {
-	public class InstanceGotoBehaviour : InstanceBehaviour
+
+public class InstanceGotoBehaviour : InstanceBehaviour
+{
+	public InstanceGotoBehaviour (InstanceController controller)
+		:base (controller)
+	{ }
+
+    public override void OnEnterState() {
+        _controller._use_point_target = true;
+    }
+
+    public override void OnExitState() {
+        _controller._use_point_target = false;
+        _controller._target_point = Vector3.zero;
+    }
+
+	public override uint run()
 	{
-		public InstanceGotoBehaviour (InstanceController controller)
-			:base (controller)
-		{
-		}
+        if(Seek(_controller._target_point))
+            _controller.GotoState(new InstanceGotoIdleBehaviour(_controller));
 
-		protected override uint state
-		{
-			get { return (uint)InstanceState.GOTO; }
-		}
-
-		public override uint run ()
-		{
-			//Debug.Log("Going to...");
-			uint ret = state;
-
-			return ret;
-		}
+        return base.run();
 	}
+}
+
 }
 

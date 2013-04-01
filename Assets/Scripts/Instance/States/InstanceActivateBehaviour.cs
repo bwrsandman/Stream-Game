@@ -2,25 +2,30 @@ using UnityEngine;
 
 namespace Instance
 {
-	public class InstanceActivateBehaviour : InstanceGotoBehaviour
+
+public class InstanceActivateBehaviour : InstanceBehaviour
+{
+	public InstanceActivateBehaviour (InstanceController controller)
+		:base (controller)
+	{ }
+
+    public override void OnEnterState() {
+        _controller.targetTransform = _controller._target.transform;
+        _controller.Resume(false);
+    }
+
+	public override uint run()
 	{
-		public InstanceActivateBehaviour (InstanceController controller)
-			:base (controller)
-		{
-		}
+        if (Seek(_controller.targetPosition, InstanceController.satisfactionRadius * 0.8f))
+            _controller.GotoState(new InstanceIdleBehaviour(_controller));
 
-		protected override uint state
-		{
-			get { return (uint)InstanceState.ACTIVATE; }
-		}
-
-		public override uint run ()
-		{
-			//Debug.Log("Activating.");
-			uint ret = state;
-
-			return ret;
-		}
+        return base.run();
 	}
+
+    public override void OnExitState() {
+        _controller.Activate();
+    }
+}
+
 }
 

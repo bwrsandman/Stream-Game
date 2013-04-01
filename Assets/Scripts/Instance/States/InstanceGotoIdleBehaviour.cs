@@ -2,24 +2,26 @@ using UnityEngine;
 
 namespace Instance
 {
-	public class InstanceGotoIdleBehaviour : InstanceBehaviour
-	{
-		public InstanceGotoIdleBehaviour (InstanceController controller)
-			:base (controller)
-		{
-		}
 
-		protected override uint state
-		{
-			get { return (uint)InstanceState.GOTO_IDLE; }
-		}
+public class InstanceGotoIdleBehaviour : InstanceBehaviour
+{
+    public InstanceGotoIdleBehaviour(InstanceController controller)
+        :base (controller)
+    { }
 
-		public override uint run ()
-		{
-			//Debug.Log("Goto idling.");
-			uint ret = state;
+    private float _time;
 
-			return ret;
-		}
-	}
+    public override void OnEnterState() {
+        _time = Time.time;
+    }
+
+    public override uint run()
+    {
+        if ((Time.time - _time) > 5.0f)
+            _controller.GotoState(new InstanceIdleBehaviour(_controller));
+
+        return base.run();
+    }
+}
+
 }

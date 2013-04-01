@@ -2,32 +2,25 @@ using UnityEngine;
 
 namespace Instance
 {
-	public class InstanceIdleBehaviour : InstanceBehaviour
+
+public class InstanceIdleBehaviour : InstanceBehaviour
+{
+	public InstanceIdleBehaviour (InstanceController controller)
+		:base (controller)
+	{ }
+		
+
+	public override uint run()
 	{
-		public InstanceIdleBehaviour (InstanceController controller)
-			:base (controller)
-		{
+        float distance = _controller.GetTravelDistance(_controller._player_transform.position);
+
+        if(distance > InstanceController.satisfactionRadius) {
+            _controller.GotoState(new InstanceFollowBehaviour(_controller));
 		}
-		
-		protected override uint state
-		{
-			get { return (uint)InstanceState.IDLE; }
-		}
-		
-		public override uint run ()
-		{
-			Debug.Log("Idling.");
-			uint ret = state;
 			
-			float distance = controller.distanceToPlayer;
-			
-			if(distance > InstanceController.satisfactionRadius) {
-				controller.Resume(false);
-				ret = (uint)InstanceState.FOLLOW;
-			}
-			
-			return ret;
-		}
+		return base.run();
 	}
+}
+
 }
 

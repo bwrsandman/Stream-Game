@@ -45,6 +45,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	
 	private bool inLargeRoom;
 	private Transform largeRoomCamTarget;
+
+	private Animator anim;
 	
 	public void setLargeRoom(Transform target)
 	{
@@ -185,12 +187,20 @@ public class ThirdPersonCamera : MonoBehaviour {
 	void Start () 
 	{
 		inLargeRoom = false;
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () 
 	{
 		Apply ();
+
+		//Turn character with camera if aiming:
+		if (anim.GetBool("Aiming")) {
+		 	Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
+			float rot = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+			transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);
+		}
 	}
 	
 	void Cut ()
@@ -203,7 +213,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		snapSmoothLag = 0.001f;
 		heightSmoothLag = 0.001f;
 		
-		Apply ();
+		Apply();
 		
 		heightSmoothLag = oldHeightSmooth;
 		snapMaxSpeed = oldSnapMaxSpeed;
