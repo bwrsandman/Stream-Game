@@ -24,7 +24,7 @@ public class ResizeBackground : MonoBehaviour {
 	
 	void Update(){
 		float elapsedMilliseconds = (Time.time - startTime) * 1000.0f;
-		if(elapsedMilliseconds > 100)
+		if(elapsedMilliseconds > 100.0f)
 		{
 			if(Input.GetAxis("Vertical Move") > 0.9f){
 				menuPosition--;
@@ -91,12 +91,12 @@ public class ResizeBackground : MonoBehaviour {
 	
     void OnGUI() {
 		backgroundObject.guiTexture.pixelInset = new Rect(
-			0, 
-			0,
+			0.0f, 
+			0.0f,
 			Screen.width,Screen.height);
 		foregroundObject.guiTexture.pixelInset = new Rect(
 			foregroundObject.guiTexture.pixelInset.x,
-			Screen.height/2-(Screen.width*foregroundRatio)/2,
+			Screen.height/2.0f-(Screen.width*foregroundRatio)/2.0f,
 			Screen.width, Screen.width * foregroundRatio);
     }
 }
