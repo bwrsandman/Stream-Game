@@ -10,10 +10,9 @@ public class PlayerActivationHandler : SelectionActivationHandler
 		get 
 		{
 			return new List<System.Type>(new System.Type [] {
-				typeof(Weapon), 
-				typeof(Equipment), 
-				typeof(TimeRift), 
-				typeof(Ledge)
+				typeof(Weapon),
+				typeof(Equipable),
+				typeof(Activateable)
 			});
 		}
 	}
@@ -27,6 +26,7 @@ public class PlayerActivationHandler : SelectionActivationHandler
 	public override void Activate ()
 	{
 		base.Activate();
+
 		if (!selectedObject) {
 			return;
 		} else if (selectedObject.GetType() == typeof(Equipment)) {

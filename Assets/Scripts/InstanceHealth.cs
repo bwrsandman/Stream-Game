@@ -31,6 +31,7 @@ public class InstanceHealth : Health {
 	protected override void die () {
 		//Destruction/death animation/time travel.
 		Destroy(this.gameObject);
+		Destroy(GameObject.Find("Nav" + this.name));
 	}
 
 	private void setHealthIndicator () {
