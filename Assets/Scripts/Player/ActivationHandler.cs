@@ -23,7 +23,7 @@ public abstract class ActivationHandler : MonoBehaviour
 	public virtual void setSelectedObject (Activateable obj)
 	{
 		// Can't select currently held weapon
-		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType()))
+		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType))
 		{
 			selectedObject = obj;
 		}
@@ -41,7 +41,7 @@ public abstract class ActivationHandler : MonoBehaviour
 	{
 		if (!selectedObject) {
 			return;
-		} else if (selectedObject.GetType() == typeof(Weapon)) {
+		} else if (selectedObject.GetType().BaseType == typeof(Weapon)) {
 			weaponHandler.PickUpWeapon((Weapon)selectedObject);
 			unsetSelectedObject(selectedObject);
 		}

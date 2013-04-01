@@ -17,13 +17,13 @@ public class ThirdPersonController : MonoBehaviour
 	private AnimatorStateInfo CheckpointLayerCurrentState;	// a reference to the current state of the animator, used for layer 2
 	private TimeActions timeScript; 
 	private ThirdPersonCamera camScript;
-	private Aiming aimScript;
 	private Ammo ammoScript;
 	private ActivationHandler activationHandler;
 	private WeaponHandler weapHandler;
     private PlayerActivationHandler playerActivationHandler;
     private CloneActivationHandler cloneActivationHandler;
 	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
+	private static Vector3 screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
 	#endregion
 	
 	#region Members
@@ -46,7 +46,6 @@ public class ThirdPersonController : MonoBehaviour
 		anim.SetLayerWeight(2, 1.0f);
 		timeScript = GetComponent<TimeActions>();
 		camScript = GetComponent<ThirdPersonCamera>();
-		aimScript = GetComponent<Aiming>();
 		activationHandler = GetComponent<ActivationHandler>();
 		weapHandler = GetComponent<WeaponHandler>();
 		ammoScript = GetComponent<Ammo>();
@@ -172,18 +171,17 @@ public class ThirdPersonController : MonoBehaviour
 				playerActivationHandler.Activate();
 			}
 
-			//Aiming
-			//Shooting
-            aimScript.shootRay();
 			if (weapHandler.hasWeapon()) {
 
+				//Aiming
 				bool aim = Input.GetButton("Left Trigger");
 				anim.SetBool("Aiming", aim);
 				camScript.setDistance(aim ? 1.0f : 2.0f);
+
 				//Shooting
 				bool shoot = Input.GetButton("Right Trigger");
 				if (shoot && anim.GetBool("Aiming")) {
-					aimScript.shootProjectile(ammoPerShot);
+					weapHandler.weapon.shootProjectile();
 					ammoScript.setSemiAuto(true);
 				}
 				else if (!shoot)
@@ -260,12 +258,29 @@ public class ThirdPersonController : MonoBehaviour
                 cloneAI._target = cloneActivationHandler.selectedObject.rigidbody.gameObject;
                 cloneAI.SetSelection(cloneActivationHandler.selectedObject);
             }
-            else if (aimScript.hit.point != Vector3.zero) {
-                cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
-                cloneAI._target_point = aimScript.hit.point;
-            }
+			Vector3 hitpoint;
+			if (shootRay(out hitpoint)) {
+				cloneAI.GotoState(new Instance.InstanceGotoBehaviour(cloneAI));
+				cloneAI._target_point = hitpoint;
+			}
         }
     }
+
+	private bool shootRay (out Vector3 hitpoint) {
+		Ray ray = Camera.main.ScreenPointToRay(screenMidPoint);
+		RaycastHit hit;
+
+		hitpoint = new Vector3();
+		if (Physics.Raycast(ray, out hit)) {
+			hitpoint = hit.point;
+			return true;
+		}
+
+		//If nothing collides make the projectile goes in the direction of the ray.
+		else
+			return false;
+	}
+
 
     #endregion
 }
