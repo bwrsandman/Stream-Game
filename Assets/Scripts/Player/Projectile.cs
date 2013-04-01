@@ -10,10 +10,11 @@ public class Projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lifeTime = 0.0f;
+		transform.parent = null;
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {		
+	void FixedUpdate () {
 		transform.position += velocity * Time.deltaTime;
 		lifeTime += Time.deltaTime;
 		if (lifeTime > 3.0f)

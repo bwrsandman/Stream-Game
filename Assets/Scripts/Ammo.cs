@@ -19,7 +19,6 @@ public class Ammo : MonoBehaviour {
 	void Update () {
 		freezeTime = Mathf.Max(-0.1f, freezeTime - Time.deltaTime);
 
-		Debug.Log(freezeTime);
 		if (freezeTime <= 0.0f)
 			increaseAmmo(rechargeRate);
 	}

@@ -90,4 +90,8 @@ public class WeaponHandler : MonoBehaviour
 	public bool hasWeapon () {
 		return weapon != null;
 	}
+
+	public Transform getWeaponMouth () {
+		return weapon.transform.FindChild("Mouth");
+	}
 }

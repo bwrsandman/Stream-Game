@@ -45,19 +45,14 @@ public class Aiming : MonoBehaviour {
 	public void shootProjectile (float ammoPerShoot) {
 		if (weapHandler.hasWeapon() && ammoScript.canShoot(ammoPerShoot)) {
 			bool target = shootRay();
-	
-			Vector3 spawnPos = transform.position;
-			spawnPos.y += 1.5f;
-			
-			//Make sure it spawns in front of the player:
-			spawnPos += 1.25f*shootingDirection;
-	
-			Vector3 right = new Vector3(-shootingDirection.z, shootingDirection.y, shootingDirection.x);
-			right.y = 0.0f;
-			spawnPos += -0.45f*right;
+
+			Transform mouthTransform = weapHandler.getWeaponMouth();
+			Vector3 spawnPos = mouthTransform.transform.position;
 			
 			GameObject projectile = (GameObject) Instantiate(projectileFab, spawnPos, Quaternion.identity);
-			Instantiate(muzzleSparkFab, spawnPos, transform.rotation);
+			GameObject muzzle = (GameObject) Instantiate(muzzleSparkFab, spawnPos, transform.rotation);
+			projectile.transform.parent = mouthTransform;
+			muzzle.transform.parent = mouthTransform;
 			
 			Projectile projectileScript = projectile.GetComponent<Projectile>();
 			
@@ -67,7 +62,6 @@ public class Aiming : MonoBehaviour {
 			else
 				projectileScript.setVelocity(shootingDirection * projectileSpeed);
 			ammoScript.decreaseAmmo(ammoPerShoot);
-
 		}
 	}
 
