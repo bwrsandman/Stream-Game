@@ -21,6 +21,8 @@ namespace Flower
 		public FlowerBehaviour (FlowerBotController controller)
 			: base (controller)
 		{ }
+
+        public virtual float stateVolume { get { return ((FlowerBotController)mController).volume; } }
 		
 		public override uint run()
 		{
@@ -32,6 +34,7 @@ namespace Flower
 																_flower_controller.max_angular_velocity );
 			_flower_controller.transform.RotateAroundLocal(	Vector3.up,
 															_flower_controller.angular_velocity * Time.deltaTime);
+            mController.audio.volume = stateVolume;
 			return state;
 		}
 	}

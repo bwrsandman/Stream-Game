@@ -21,8 +21,12 @@ namespace Flower
 		public override uint run ()
 		{
 			uint ret = base.run ();
-			return (((FlowerBotController)mController).faceTarget(-1.0f, 0.5f) < 2.5f)?
-				(uint)FlowerState.OPENNING_MID : ret;
+            if(((FlowerBotController)mController).faceTarget(-1.0f, 0.5f) < 2.5f) {
+                mController.audio.Stop();
+                return (uint)FlowerState.OPENNING_MID;
+            } else {
+                return ret;
+            }
 		}
 	}
 }

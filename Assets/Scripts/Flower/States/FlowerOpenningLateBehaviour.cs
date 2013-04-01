@@ -30,7 +30,10 @@ namespace Flower
 		public override uint run ()
 		{
 			((FlowerBotController)mController).faceTarget(1.0f);
-			return base.run ();
+            uint ret = base.run ();
+            if (ret == (uint)FlowerState.SHOOTING && !mController.audio.isPlaying)
+                mController.audio.PlayOneShot(((FlowerBotController)mController).sweepSound);
+            return ret;
 		}
 		
 	}

@@ -38,6 +38,14 @@ public class FlowerBotController : StateMachineController
 	public bool sense_player;
 	public Vector3 other_direction;
 	public LineRenderer laser;
+
+    public float idleVolume = 0.1f;
+    public float volume = 1.0f;
+
+    public AudioClip idleSound;
+    public AudioClip scanningSound;
+    public AudioClip deathSound;
+    public AudioClip sweepSound;
 	#endregion
 	
 	#region Members
@@ -82,6 +90,8 @@ public class FlowerBotController : StateMachineController
 		laser = GetComponentInChildren<LineRenderer>();
 		healthScript = GetComponent<Health>();
 		transform.RotateAround(Vector3.up, Random.value * 360.0f);
+        if(!idleSound || !scanningSound || !deathSound || !sweepSound)
+            Debug.LogError("Audio Source missing");
 	}
 	
 	protected override void BuildBehaviours()
