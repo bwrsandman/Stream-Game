@@ -2,29 +2,101 @@ using UnityEngine;
 using System.Collections;
 
 public class ResizeBackground : MonoBehaviour {
-	private float _deltaWidth;
-	private float _screenWidth = Screen.width;
+	private float startTime;
+	private float foregroundRatio = 1.0f;
 	private GameObject foregroundObject;
+	private GameObject backgroundObject;
+	private GameObject btnNewGameObject;
+	private GameObject btnContinueObject;
+	private GameObject btnSettingsObject;
+	private GameObject btnQuitObject;
+	private int menuPosition = 1;
+	private int oldMenuPosition = 0;
 	
 	void Start(){
 		foregroundObject = GameObject.Find("foreground");
-		foregroundObject.transform.position = new Vector3((0.5f*Screen.width)/951.0f,foregroundObject.transform.position.y,foregroundObject.transform.position.z);
+		backgroundObject = GameObject.Find("MenuBackground");
+		btnNewGameObject = GameObject.Find("btnNewGame");
+		btnContinueObject = GameObject.Find("btnContinue");
+		btnSettingsObject = GameObject.Find("btnSettings");
+		btnQuitObject = GameObject.Find("btnQuit");
 	}
 	
 	void Update(){
-		Debug.Log(Screen.width);
+		float elapsedMilliseconds = (Time.time - startTime) * 1000.0f;
+		if(elapsedMilliseconds > 100)
+		{
+			if(Input.GetAxis("Vertical Move") > 0.9f){
+				menuPosition--;
+				if(menuPosition < 1) menuPosition = 4;
+				startTime = Time.time;
+			}
+			else if(Input.GetAxis("Vertical Move") < -0.9f){
+				menuPosition++;
+				if(menuPosition > 4) menuPosition = 1;
+				startTime = Time.time;
+			}
+		}
+		
+		if(oldMenuPosition != menuPosition)
+		{
+			oldMenuPosition = menuPosition;
+			btnNewGameObject.GetComponent<MenuButton>().DeactivateButton();
+			btnContinueObject.GetComponent<MenuButton>().DeactivateButton();
+			btnSettingsObject.GetComponent<MenuButton>().DeactivateButton();
+			btnQuitObject.GetComponent<MenuButton>().DeactivateButton();
+		    switch(menuPosition)       
+		    {
+			   case 0:
+		            break;
+		       case 1:
+				    btnNewGameObject.GetComponent<MenuButton>().ActivateButton();
+		            break;
+		       case 2:
+					btnContinueObject.GetComponent<MenuButton>().ActivateButton();
+					break;
+			   case 3:
+					btnSettingsObject.GetComponent<MenuButton>().ActivateButton();
+					break;
+			   case 4:
+					btnQuitObject.GetComponent<MenuButton>().ActivateButton();
+					break;		
+			}
+		}
+		if(Input.GetButton("A"))
+		{
+			switch(menuPosition)       
+			{
+			   case 0:
+			        break;
+			   case 1:
+				    btnNewGameObject.GetComponent<MenuButton>().ExecuteButtonAction(null);
+			        break;
+			   case 2:
+					btnContinueObject.GetComponent<MenuButton>().ExecuteButtonAction(null);
+					break;
+			   case 3:
+					btnSettingsObject.GetComponent<MenuButton>().ExecuteButtonAction(null);
+					break;
+			   case 4:
+					btnQuitObject.GetComponent<MenuButton>().ExecuteButtonAction(null);
+					break;		
+			}
+		}
+	}
+	
+	void Awake() { 
+	   startTime = Time.time;
 	}
 	
     void OnGUI() {
-		_deltaWidth = _screenWidth - Screen.width;
-		if(_deltaWidth > 0 || _deltaWidth < 0){
-			_screenWidth = Screen.width;
-		}
-		foregroundObject.transform.Translate(-_deltaWidth/1000.0f, 0, 0);
-		
-		//Supposed code for the scaling often proposed on the internet but it doesn't seem to have any effect on the scene.
-		float horizRatio = Screen.width / 1920.0f;
-		float vertRatio = Screen.height / 1080.0f;
-		GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.AngleAxis(0, new Vector3(0, 1, 0)), new Vector3(horizRatio, vertRatio, 1));
+		backgroundObject.guiTexture.pixelInset = new Rect(
+			0, 
+			0,
+			Screen.width,Screen.height);
+		foregroundObject.guiTexture.pixelInset = new Rect(
+			foregroundObject.guiTexture.pixelInset.x,
+			Screen.height/2-(Screen.width*foregroundRatio)/2,
+			Screen.width, Screen.width * foregroundRatio);
     }
 }
