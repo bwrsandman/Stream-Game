@@ -38,6 +38,8 @@ public class FlowerBotController : StateMachineController
 	public bool sense_player;
 	public Vector3 other_direction;
 	public LineRenderer laser;
+
+    public AudioClip deathSound;
 	#endregion
 	
 	#region Members
