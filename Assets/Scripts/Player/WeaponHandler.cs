@@ -14,6 +14,8 @@ public class WeaponHandler : MonoBehaviour
 	private Quaternion rot;
 	private Vector3 holdingPos;
 	private Animator anim;
+
+	private Ammo ammoScript;
 	
 	void Start () 
 	{
@@ -21,6 +23,7 @@ public class WeaponHandler : MonoBehaviour
 			mTransform = weapon.transform;
 
 		anim = GetComponent<Animator>();
+		ammoScript = GetComponent<Ammo>();
 	}
 	
 	public void PickUpWeapon(Weapon weapon)
@@ -36,13 +39,13 @@ public class WeaponHandler : MonoBehaviour
 
 			this.weapon.transform.parent = null;
 			this.weapon.rigidbody.position = transform.position + dir;
+			this.weapon.deactivate();
 		}
 
 		this.weapon = weapon;
-		//weapon.collider.enabled = false;
+		this.weapon.activate(holdingHand, ammoScript);
 		weapon.collider.isTrigger = true;
 		weapon.rigidbody.useGravity = false;
-		//Destroy(weapon.rigidbody);
 
 		weapon.transform.parent = holdingHand;
 		weapon.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -55,23 +58,13 @@ public class WeaponHandler : MonoBehaviour
 	// the holding hand and support hand (supportHand - holdingHand)
 	// otherwise, the weapon is oriented according to the holding hand.
 	void Update () {
-		//Debug.Log(supportHand.rotation);
-
-
-
 	}
 
 	void LateUpdate ()
 	{
-		//Debug.Log(supportHand.rotation);
-
 		if (!weapon)
 			return;
 
-		//Vector3 handDiff = supportHand.position - holdingHand.position;
-		/*Vector3 buf = new Vector3(handDiff.z, -handDiff.x, handDiff.y).normalized;
-		handDiff = buf;
-		Debug.Log(handDiff);*/
 		rot =  Quaternion.Euler(0.0f,90.0f,-90.0f);
 		holdingPos = holdingHand.localPosition;
 		mTransform.localPosition = holdingPos + rot * offset;
@@ -80,14 +73,13 @@ public class WeaponHandler : MonoBehaviour
 		else
 			mTransform.localRotation = rot;
 
-		//Vector3 handDiff = supportHand.position - holdingHand.position;
-		//Quaternion rotate = Quaternion.LookRotation(handDiff);
-		//mTransform.localPosition = holdingHand.position + rot * offset;
-		//mTransform.rotation = rot * rotationOffset;
-
 	}
 
 	public bool hasWeapon () {
 		return weapon != null;
+	}
+
+	public Transform getWeaponMouth () {
+		return weapon.transform.FindChild("Mouth");
 	}
 }

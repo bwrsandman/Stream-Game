@@ -52,6 +52,7 @@ public class InstanceController : StateMachineController
         base.Start();
         _animator = GetComponent<Animator>();
         _cube = (GameObject)Instantiate(_nav_cube_fab, transform.position + otherDirection.normalized, transform.rotation);
+		_cube.name = "Nav" + name;
         _navmesh_agent = _cube.GetComponent<NavMeshAgent>();
 		_activation = GetComponent<SelfActivationHandler>();
         _target_point = Vector3.zero;

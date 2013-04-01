@@ -109,7 +109,7 @@ public class TimeActions : MonoBehaviour {
 			clone.GetComponent<PackHandler>().Pack.renderer.material = cloneMaterials[clones.Count];
 			clone.GetComponent<InstanceHealth>().setInstanceSpecifics(clones.Count);
 			clone.GetComponent<InstanceAmmo>().setInstanceSpecifics(clones.Count);
-			InstanceController ai = (InstanceController) clone.GetComponent("InstanceController");
+			InstanceController ai = clone.GetComponent<InstanceController>();
 			ai._player_transform = transform;
 			ai.targetTransform = transform;
 			clones.Add(clone);

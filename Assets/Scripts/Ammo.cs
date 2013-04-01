@@ -7,14 +7,20 @@ public class Ammo : MonoBehaviour {
 	public float maxAmmo;
 	public Material indicator;
 	public float recharge_percentage_lock;
+	public float freezePeriod = 1f;
+	public float rechargeRate = 0.125f;
 
 	private bool locked = false;
 	private bool semiAutoLocked = false;
+	private float freezeTime;
 
 	protected float invMaxAmmo;
 
 	void Update () {
-		increaseAmmo(0.125f);
+		freezeTime = Mathf.Max(-0.1f, freezeTime - Time.deltaTime);
+
+		if (freezeTime <= 0.0f)
+			increaseAmmo(rechargeRate);
 	}
 
 	void Start () {
@@ -24,7 +30,7 @@ public class Ammo : MonoBehaviour {
 
 	public void increaseAmmo (float delta) {
 		ammoLevel += delta;
-		if (ammoLevel > maxAmmo * recharge_percentage_lock && locked)
+		if (ammoLevel > maxAmmo * recharge_percentage_lock && locked && freezeTime <= 0.0f)
 			locked = false;
 		else if (ammoLevel > maxAmmo)
 			ammoLevel = maxAmmo;
@@ -34,13 +40,16 @@ public class Ammo : MonoBehaviour {
 
 	public void decreaseAmmo (float delta) {
 		ammoLevel-= delta;
-		if (ammoLevel < 0.0f)
-			locked = true;
 		setTimeEnergyIndicator();
 	}
 
 	public bool canShoot (float ammoPerShoot) {
-		return ammoLevel >= ammoPerShoot && !locked && !semiAutoLocked;
+		freezeTime = freezePeriod;
+		bool enoughAmmo = ammoLevel >= ammoPerShoot;
+		if (!enoughAmmo) {
+			locked = true;
+		}
+		return enoughAmmo && !locked && !semiAutoLocked;
 	}
 
 	public void setSemiAuto(bool semiAutoLocked) {
