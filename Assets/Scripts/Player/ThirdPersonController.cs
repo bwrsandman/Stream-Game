@@ -30,6 +30,7 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mMoving;
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
+	private bool climbing = false;
 	public Transform spine;
 	public float walkSensitivity = 0.1f;
 	public float runSensitivity = 0.65f;
@@ -52,7 +53,7 @@ public class ThirdPersonController : MonoBehaviour
 		playerActivationHandler = GetComponent<PlayerActivationHandler>();
         cloneActivationHandler = GetComponent<CloneActivationHandler>();
 		if(anim.layerCount == 2)
-			anim.SetLayerWeight(1, 1);
+		anim.SetLayerWeight(1, 1);
 
 		mMoving = false;
 
@@ -75,17 +76,21 @@ public class ThirdPersonController : MonoBehaviour
 	#endregion
 		
 	#region Member functions
-	void updateMovement () 
+	bool animationPlaying(string animation_name)
 	{
-		if (getUpAtStart)
-		{
-			foreach(AnimationInfo s in anim.GetCurrentAnimationClipState(0)){
-				if(s.clip.name == "Getting up")
-					return;
-			getUpAtStart = false;
-			anim.SetBool("GetUp", false);
-			}
-		}
+		foreach(AnimationInfo s in anim.GetCurrentAnimationClipState(0))
+			if(s.clip.name == animation_name)
+				return true;
+		return false;
+	}
+	
+	void updateMovement ()
+	{
+        getUpAtStart = animationPlaying("Getting up");
+        climbing = animationPlaying("Jump Ledge");
+
+        if (getUpAtStart || climbing)
+            return;
 
 		float h = Input.GetAxis("Horizontal Move");				// setup h variable as our horizontal input axis
 		float v = Input.GetAxis("Vertical Move");				// setup v variables as our vertical input axis
@@ -115,12 +120,12 @@ public class ThirdPersonController : MonoBehaviour
 		bool wasMoving = mMoving;
 		mMoving = mag > walkSensitivity; 
 
-		if (mMoving)  {			
+		if (mMoving) {
 			anim.SetFloat("Speed", dir.magnitude);
 			anim.SetBool("Running", mag > runSensitivity);
 			
 			float x = dir.x;
-			float y = dir.z;			
+			float y = dir.z;
 			
 			float rot = Mathf.Atan2(x,y) * Mathf.Rad2Deg;
 			transform.eulerAngles = new Vector3(0.0f, rot, 0.0f);
@@ -146,15 +151,19 @@ public class ThirdPersonController : MonoBehaviour
 	
 	void LateUpdate () 
 	{
-		if (getUpAtStart)
-			return;
-
-		//currentBaseState = _animator.GetCurrentAnimatorStateInfo(0);
-		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
-		
+		anim.SetBool("Climbing", false);
+		anim.SetBool("GetUp", false);
 		anim.SetBool("SettingWaypoint", false);
 		anim.SetBool("Kneel", false);
-		anim.SetBool("Climbing", false);
+		
+		if (getUpAtStart || climbing)
+			return;
+
+        Debug.Log("climbing: " + climbing);
+		rigidbody.useGravity = true;
+		gameObject.rigidbody.WakeUp();
+
+		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
 		if (!timeScript.isTeleporting()) {
 			if (Input.GetKeyDown("e")) 
@@ -204,8 +213,8 @@ public class ThirdPersonController : MonoBehaviour
 
 
 
-				// do something with clone_index
-				Debug.Log("activate clone #" + clone_index);
+            // do something with clone_index
+            //Debug.Log("activate clone #" + clone_index);
 
                 CallClone(clone_index);
 			}
