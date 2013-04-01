@@ -74,13 +74,13 @@ public abstract class StateMachineController : MonoBehaviour
     protected bool _can_state_swap;
 
     protected void OnEnterState() {
-        Debug.Log("ENTERING STATE");
+        //Debug.Log("ENTERING STATE");
         _state_behaviour.OnEnterState();
         _switched_state = false;
     }
 
     protected void OnExitState() {
-        Debug.Log("EXITING STATE");
+        //Debug.Log("EXITING STATE");
         _state_behaviour.OnExitState();
         _switched_state = true;
     }

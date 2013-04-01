@@ -159,7 +159,7 @@ public class ThirdPersonController : MonoBehaviour
 		if (getUpAtStart || climbing)
 			return;
 
-        Debug.Log("climbing: " + climbing);
+        //Debug.Log("climbing: " + climbing);
 		rigidbody.useGravity = true;
 		gameObject.rigidbody.WakeUp();
 

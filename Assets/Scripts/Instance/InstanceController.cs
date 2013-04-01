@@ -8,6 +8,7 @@ using Instance;
 public class InstanceController : StateMachineController 
 {
     // Constants
+    public const float scanRadius           = 5.0f;
 	public const float LOOKSPEED            = 4.0f;
 	public const float satisfactionRadius   = 2.5f;
 	public const float urgencyRadius        = 7.5f;
@@ -19,11 +20,13 @@ public class InstanceController : StateMachineController
 	public GameObject   _nav_cube_fab;
     public GameObject   _target;
 	public bool facing = true;
+    public GameObject _foe;
 
 	Animator        _animator;
 	NavMeshAgent    _navmesh_agent;
 	GameObject      _cube;
 	SelfActivationHandler _activation;
+    SphereCollider _scanSphere;
 	bool kneeling = false;
 
 	private float walkingSpeed = 0.956f * 1.75f * 2.0f;
@@ -57,6 +60,7 @@ public class InstanceController : StateMachineController
 		_activation = GetComponent<SelfActivationHandler>();
         _target_point = Vector3.zero;
         _use_point_target = false;
+        _scanSphere = GetComponent<SphereCollider>();
     }
 
     public float GetTravelDistance(Vector3 destination) {
@@ -96,11 +100,16 @@ public class InstanceController : StateMachineController
 		transform.rotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 	}
 
-	public void facePlayer()
-	{
-		rotateY(Quaternion.LookRotation(otherDirection).eulerAngles.y);
-	}
-	
+    public void face(Vector3 direction)
+    {
+        rotateY(Quaternion.LookRotation(direction).eulerAngles.y);
+    }
+
+    public void facePlayer()
+    {
+        face(otherDirection);
+    }
+
 	public void Activate()
 	{
 		_activation.Activate();
@@ -113,6 +122,7 @@ public class InstanceController : StateMachineController
         if (_switched_state)
             OnEnterState();
         _state_behaviour.run();
+        face(_navmesh_agent.transform.position - transform.position);
 	}
 
 	protected override void LateUpdate ()
@@ -122,15 +132,13 @@ public class InstanceController : StateMachineController
 		if(kneeling)
 			_animator.SetBool("Kneel", false);
 		kneeling = tmpKneeling;
-		
-		//Debug.Log ("targetPos " + targetPosition + " " + "Sal pos: " + GameObject.FindGameObjectWithTag("Player").transform.position);
-        if (_use_point_target) {
-            _navmesh_agent.SetDestination(_target_point);
-        }
-        else {
-            _navmesh_agent.SetDestination(targetPosition);
-        }
 
+        if (_use_point_target)
+            _navmesh_agent.SetDestination(_target_point);
+        else
+            _navmesh_agent.SetDestination(targetPosition);
+
+        // Instance is walking or running
 		if (_animator.GetFloat("Speed") > 0.1f) {
 			float dist = Vector3.Distance(transform.position, _navmesh_agent.transform.position);
 			if (dist > 0.4f)
@@ -139,13 +147,39 @@ public class InstanceController : StateMachineController
 				_animator.SetFloat("Speed", 0.0f);
 		}
 
-
+        // Instance is standing still, make him face player.
 		if (_animator.GetFloat("Speed") > 0.1f && facing) {
 			transform.LookAt(_navmesh_agent.transform);
 			Vector3 rot = transform.rotation.eulerAngles;
 			rot.x = 0.0f;
 			transform.rotation = Quaternion.Euler(rot);
 		}
+
+        // Face Foe but don't walk towards it.
+        if (_foe)
+            face(_foe.transform.position - transform.position);
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        OnTriggerStay(other);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Enemy") {
+            _scanSphere.radius = 2.0f * scanRadius;
+            _foe = other.gameObject;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == _foe) {
+            _scanSphere.radius = scanRadius;
+            _foe = null;
+        }
+    }
+
 	#endregion
 }
