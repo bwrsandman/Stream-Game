@@ -8,7 +8,7 @@ Shader "Custom/Terrain Shader"
 	SubShader
 	{
 		Tags { "RenderType"="Opaque" }
-		Tags { "Queue" = "Geometry+100" }
+		//Tags { "Queue" = "Geometry-99" }
 
 		LOD 200
 		
