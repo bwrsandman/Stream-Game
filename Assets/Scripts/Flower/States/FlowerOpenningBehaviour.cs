@@ -13,12 +13,12 @@ namespace Flower
 			:base (controller)
 		{
 		}
-		
+
 		protected override float openclose_speed
 		{
 			get { return open_speed / Mathf.Max(av, 1.0f); }
 		}
-		
+
 		public override uint run ()
 		{
 			//Debug.Log("Openning...");
@@ -31,12 +31,12 @@ namespace Flower
 			mController.transform.rotation = Quaternion.Lerp(mController.transform.rotation,
 															Quaternion.LookRotation(target_at),
 															(1.0f + align_speed) / angle * Time.deltaTime);
-			
-			
+
+
 			av = ((FlowerBotController)mController).angular_velocity;
 			((FlowerBotController)mController).angular_velocity = Mathf.Min(Mathf.Lerp(
 				av, 0.0f, Time.deltaTime), 0.5f);
-			
+
 			return ret;
 		}
 	}

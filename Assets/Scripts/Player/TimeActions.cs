@@ -11,12 +11,15 @@ public class TimeActions : MonoBehaviour {
 	
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
+    private List<GameObject> cloneExtends = new List<GameObject>();
 	private bool teleporting = false;
-	private List<float> maxInstanceExtends = new List<float>();
+	//private List<float> maxInstanceExtends = new List<float>();
 	private Animator anim;
+    private GameObject currentExtent;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
+        setCheckpoint();
 	}
 	
 	public void setCheckpoint() {
@@ -40,15 +43,15 @@ public class TimeActions : MonoBehaviour {
 		checkpoints.Add(checkpoint);
 	}
 	
-	public IEnumerator teleport() { 
+	public void teleport() {
 		if (checkpoints.Count > 0) {
-			anim.SetBool("SettingWaypoint", true);
+			//anim.SetBool("SettingWaypoint", true);
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			teleporting = true;			
-			yield return new WaitForSeconds(1.5f);
-			teleporting = false;
+			//teleporting = true;
+			//yield return new WaitForSeconds(1.5f);
+			//teleporting = false;
 			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Remove all instances:
@@ -56,55 +59,27 @@ public class TimeActions : MonoBehaviour {
 				GameObject.Destroy(clone);
 			}
 			clones = new List<GameObject>();
-			maxInstanceExtends = new List<float>();
+			//maxInstanceExtends = new List<float>();
 		}
 	}
 	
-	public IEnumerator teleportCloner() {
+	public void teleportCloner() {
 		if (checkpoints.Count > 0 && clones.Count < 4) {
-			anim.SetBool("SettingWaypoint", true);
+			//anim.SetBool("SettingWaypoint", true);
 			float posZ = transform.position.z;
-			
-			if (posZ >= -17.5 && posZ < 2.5) {
-				maxInstanceExtends.Add(-17.5f);
-			}
-			else if (posZ >= -27.5 && posZ < -17.5) {
-				maxInstanceExtends.Add(-27.5f);
-			}
-			else 
-				maxInstanceExtends.Add(-47.5f);
 	 	
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			teleporting = true;
-			yield return new WaitForSeconds(1.5f);
-			teleporting = false;
+			//teleporting = true;
+			//yield return new WaitForSeconds(1.5f);
+			//teleporting = false;
 			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Find position for new instance:
-			float cloneX;
-			float cloneZ;
-			switch(clones.Count) {
-				case 0: 
-					cloneX = checkPosX + 1;
-					cloneZ = checkPosZ + 1;
-					break;
-				case 1:
-					cloneX = checkPosX - 1;
-					cloneZ = checkPosZ + 1;
-					break;
-				case 2:
-					cloneX = checkPosX + 1;
-					cloneZ = checkPosZ - 1;
-					break;
-				default:
-					cloneX = checkPosX - 1;
-					cloneZ = checkPosZ - 1;
-					break;
-			}
-			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
+
+			GameObject clone = (GameObject) Instantiate(cloneFab, transform.position, Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			clone.GetComponent<PackHandler>().Pack.renderer.material = cloneMaterials[clones.Count];
 			clone.GetComponent<InstanceHealth>().setInstanceSpecifics(clones.Count);
@@ -113,16 +88,47 @@ public class TimeActions : MonoBehaviour {
 			ai._player_transform = transform;
 			ai.targetTransform = transform;
 			clones.Add(clone);
+
+
+            //Make all clones teleport to checkpoint:
+            for (int i = 0; i < clones.Count; i++) {
+                float cloneX;
+                float cloneZ;
+
+                switch(i) {
+                     case 0:
+                         cloneX = checkPosX + 1;
+                         cloneZ = checkPosZ + 1;
+                         break;
+                     case 1:
+                         cloneX = checkPosX - 1;
+                         cloneZ = checkPosZ + 1;
+                         break;
+                     case 2:
+                         cloneX = checkPosX + 1;
+                         cloneZ = checkPosZ - 1;
+                         break;
+                     default:
+                         cloneX = checkPosX - 1;
+                         cloneZ = checkPosZ - 1;
+                         break;
+                 }
+
+
+                InstanceController insCon = clones[i].GetComponent<InstanceController>();
+                insCon.teleport(new Vector3(cloneX, transform.position.y, cloneZ));
+            }
+            clone.GetComponent<InstanceController>().setCurrentExtent(currentExtent);
 		}
 	}
 	
-	public void sendYoungestBack() {
+	/*public void sendYoungestBack() {
 		if (clones.Count > 0) {
 			GameObject.Destroy(clones[clones.Count-1]);
 			clones.RemoveAt(clones.Count-1);
-			maxInstanceExtends.RemoveAt(maxInstanceExtends.Count-1);
+			//maxInstanceExtends.RemoveAt(maxInstanceExtends.Count-1);
 		}
-	}
+	}*/
 	
 	public bool isTeleporting () {
 		return teleporting;	
@@ -132,6 +138,18 @@ public class TimeActions : MonoBehaviour {
 	{
 		return clones.Count;
 	}
+
+    public void findAndRemoveClone (GameObject clone) {
+        clones.Remove(clone);
+    }
+
+    public void setCurrentExtent (GameObject extent) {
+        currentExtent = extent;
+    }
+
+    public GameObject getCurrentExtent () {
+        return currentExtent;
+    }
 
     #region Anton's Cool Shit
 

@@ -5,12 +5,12 @@ public abstract class SelectionActivationHandler : ActivationHandler
 {
 	
 	public GameObject activationPrefab;
-	protected GameObject activationTexture;
+	public GameObject activationTexture;
 	
 	public override void setSelectedObject (Activateable obj)
 	{
 		// Can't select currently held weapon
-		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType))
+		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType || t == obj.GetType()))
 		{
 			selectedObject = obj;
 			Destroy(activationTexture);
@@ -27,17 +27,17 @@ public abstract class SelectionActivationHandler : ActivationHandler
 		base.unsetSelectedObject(obj);
 	}
 	
-	void EarlyUpdate () 
+	void EarlyUpdate ()
 	{
 		selectedObject = null;
 	}
 	
-	void Update () 
+	void Update ()
 	{		
 		// Update texture rotation
 		if (activationTexture)
 		{
-			Vector3 distance = gameObject.transform.position - activationTexture.transform.position;
+			Vector3 distance = Camera.main.transform.position - activationTexture.transform.position;
 			distance.y = 0.0f;
 			Quaternion rotation = Quaternion.Euler(90.0f, Quaternion.LookRotation(distance).eulerAngles.y, 0.0f);
 			activationTexture.transform.rotation = rotation;

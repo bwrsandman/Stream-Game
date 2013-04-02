@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerActivationHandler : SelectionActivationHandler 
@@ -39,8 +40,8 @@ public class PlayerActivationHandler : SelectionActivationHandler
 		} else if (selectedObject.GetType() == typeof(Ledge)) {
 			Ledge ledge = (Ledge)selectedObject;
 			if(ledge.supporter) {
-				gameObject.rigidbody.useGravity = false;
-				gameObject.rigidbody.Sleep();
+				rigidbody.useGravity = false;
+				//gameObject.rigidbody.Sleep();
 				
 				Vector3 target = ledge.supporter.transform.position;
 				target += 0.45f * ledge.supporter.transform.forward;
@@ -53,7 +54,22 @@ public class PlayerActivationHandler : SelectionActivationHandler
 				
 				gameObject.collider.enabled = false;
 				animator.SetBool("Climbing", true);
+                rigidbody.useGravity = false;
+                rigidbody.Sleep();
+                StartCoroutine(WaitRenablePhysics(3.5f));
 			}
-		}
+		} else if (selectedObject.GetType() == typeof(TimeRift)) {
+            TimeRift rift = (TimeRift)selectedObject;
+            rift.open(GetComponent<TimeActions>(), animator);
+        }
+
 	}
+
+    IEnumerator WaitRenablePhysics(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        rigidbody.useGravity = true;
+        gameObject.collider.enabled = true;
+        rigidbody.WakeUp();
+    }
 }

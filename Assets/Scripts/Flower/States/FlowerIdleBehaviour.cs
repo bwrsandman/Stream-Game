@@ -18,9 +18,13 @@ namespace Flower
 		{
 			get { return (uint)FlowerState.IDLE; }
 		}
+
+        public override float stateVolume { get { return ((FlowerBotController)mController).idleVolume; } }
 		
 		public override uint run ()
 		{
+            if (!mController.audio.isPlaying)
+                mController.audio.PlayOneShot(((FlowerBotController)mController).idleSound);
 			((FlowerBotController)mController).angular_velocity = 0.0f;
 			((FlowerBotController)mController).opened = 0.5f * (Mathf.Abs(Mathf.Sin(Time.time * 0.5f)));
 			uint ret = base.run ();

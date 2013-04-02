@@ -28,12 +28,12 @@ public class PlayerHealth : Health  {
 		setHealthIndicator();
 	}
 	
-	protected override void die () {
+	public override void die () {
 		//Destruction/death animation/time travel.
 
 		//Remember to set the start of the level as a checkpoint!
 
-		StartCoroutine(GetComponent<TimeActions>().teleport());
+		/*StartCoroutine(*/GetComponent<TimeActions>().teleport()/*)*/;
 		//Destroy(this.gameObject);
 	}
 

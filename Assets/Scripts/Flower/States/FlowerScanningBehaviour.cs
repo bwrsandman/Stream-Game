@@ -56,6 +56,10 @@ namespace Flower
 				ret = (uint)FlowerState.CLOSEUP;
 				circling = 0.0f;
 			}
+
+            if (ret != state)
+                mController.audio.Stop();
+
 			return ret;
 		}
 	}

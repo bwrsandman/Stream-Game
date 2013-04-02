@@ -4,11 +4,30 @@ using System.Collections;
 public class BotHealth : Health {
 
 	public GameObject exploderFab;
+    public float explosionWaitTime = 2.0f;
 
-	protected override void die () {
+    private bool dead = false;
 
-		//Destruction/death animation/time travel.
-		Instantiate(exploderFab, transform.position, Quaternion.identity);
-		Destroy(this.gameObject);
-	}
+	public override void die () {
+        if (dead)
+            return;
+        dead = true;
+        FlowerBotController controller = GetComponent<FlowerBotController>();
+        controller.laser.enabled = false;
+        controller.enabled = false;
+
+        if (!audio.isPlaying)
+            audio.PlayOneShot(controller.deathSound);
+
+        //Destruction/death animation/time travel.
+        StartCoroutine(exploder());
+
+    }
+
+    IEnumerator exploder () {
+     yield return new WaitForSeconds(explosionWaitTime);
+     Instantiate(exploderFab, transform.position, Quaternion.identity);
+     Destroy(this.gameObject);
+
+    }
 }

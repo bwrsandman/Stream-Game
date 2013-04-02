@@ -22,7 +22,10 @@ public class ThirdPersonController : MonoBehaviour
 	private WeaponHandler weapHandler;
     private PlayerActivationHandler playerActivationHandler;
     private CloneActivationHandler cloneActivationHandler;
-	static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
+
+    private Screenflash flash;
+
+	private static int SettingWaypointState = Animator.StringToHash("CheckpointLayer.SettingWaypoint");
 	private static Vector3 screenMidPoint = new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f);
 	#endregion
 	
@@ -30,7 +33,9 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mMoving;
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
-	private bool climbing = false;
+    public bool climbing = false;
+    private bool hasJustTeleported = false;
+
 	public Transform spine;
 	public float walkSensitivity = 0.1f;
 	public float runSensitivity = 0.65f;
@@ -52,6 +57,7 @@ public class ThirdPersonController : MonoBehaviour
 		ammoScript = GetComponent<Ammo>();
 		playerActivationHandler = GetComponent<PlayerActivationHandler>();
         cloneActivationHandler = GetComponent<CloneActivationHandler>();
+        flash = GameObject.Find("Flash").GetComponent<Screenflash>();
 		if(anim.layerCount == 2)
 		anim.SetLayerWeight(1, 1);
 
@@ -159,22 +165,18 @@ public class ThirdPersonController : MonoBehaviour
 		if (getUpAtStart || climbing)
 			return;
 
-        //Debug.Log("climbing: " + climbing);
-		rigidbody.useGravity = true;
-		gameObject.rigidbody.WakeUp();
-
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
 		if (!timeScript.isTeleporting()) {
-			if (Input.GetKeyDown("e")) 
+			/*if (Input.GetKeyDown("e"))
 			{	
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
-			}
-			if (Input.GetKeyDown("y")) 
+			}*/
+			/*if (Input.GetKeyDown("y"))
 			{	
 				timeScript.sendYoungestBack();	
-			}	
+			}	*/
 			
 			if (Input.GetButton("A")) {
 				playerActivationHandler.Activate();
@@ -226,18 +228,24 @@ public class ThirdPersonController : MonoBehaviour
 
 			//Debug.Log(Input.GetAxis("Y") + " " + Input.GetAxis("B"));
 
+            flash.setAlpha(Input.GetAxis("Y"), hasJustTeleported );
+
 			//Time travel
-			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
+			if (!hasJustTeleported && Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
 			{
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleportCloner());
+                hasJustTeleported = true;
+				//anim.SetBool("SettingWaypoint", true);
+				/*StartCoroutine(*/timeScript.teleportCloner()/*)*/;
 			}
 			//Teleport
-			else if (Input.GetAxis("Y") >= 1.0f)
+			else if (!hasJustTeleported && Input.GetAxis("Y") >= 1.0f)
 			{
-				anim.SetBool("SettingWaypoint", true);
-				StartCoroutine(timeScript.teleport());
+                hasJustTeleported = true;
+                //anim.SetBool("SettingWaypoint", true);
+				/*StartCoroutine(*/timeScript.teleport()/*)*/;
 			}
+            if (Input.GetAxis("Y") <= .1f && Input.GetAxis("B") <= .1f)
+                hasJustTeleported = false;
 
 		}
 		

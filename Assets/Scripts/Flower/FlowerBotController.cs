@@ -38,10 +38,19 @@ public class FlowerBotController : StateMachineController
 	public bool sense_player;
 	public Vector3 other_direction;
 	public LineRenderer laser;
+
+    public float idleVolume = 0.1f;
+    public float volume = 1.0f;
+
+    public AudioClip idleSound;
+    public AudioClip scanningSound;
+    public AudioClip deathSound;
+    public AudioClip sweepSound;
 	#endregion
 	
 	#region Members
 	Health healthScript;
+    MusicThemeController music;
 	#endregion
 	
 	#region Properties
@@ -81,7 +90,11 @@ public class FlowerBotController : StateMachineController
 		base.Start();
 		laser = GetComponentInChildren<LineRenderer>();
 		healthScript = GetComponent<Health>();
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        music = cam.GetComponent<MusicThemeController>();
 		transform.RotateAround(Vector3.up, Random.value * 360.0f);
+        if(!idleSound || !scanningSound || !deathSound || !sweepSound)
+            Debug.LogError("Audio Source missing");
 	}
 	
 	protected override void BuildBehaviours()
@@ -139,4 +152,10 @@ public class FlowerBotController : StateMachineController
 		return Mathf.Abs(Quaternion.Angle(transform.rotation, target));
 	}
 	#endregion
+
+    protected override void Update ()
+    {
+        base.Update ();
+        music.fight |= sense_player;
+    }
 }
