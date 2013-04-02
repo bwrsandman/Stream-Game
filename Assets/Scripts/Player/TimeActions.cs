@@ -85,27 +85,8 @@ public class TimeActions : MonoBehaviour {
 			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Find position for new instance:
-			float cloneX;
-			float cloneZ;
-			switch(clones.Count) {
-				case 0: 
-					cloneX = checkPosX + 1;
-					cloneZ = checkPosZ + 1;
-					break;
-				case 1:
-					cloneX = checkPosX - 1;
-					cloneZ = checkPosZ + 1;
-					break;
-				case 2:
-					cloneX = checkPosX + 1;
-					cloneZ = checkPosZ - 1;
-					break;
-				default:
-					cloneX = checkPosX - 1;
-					cloneZ = checkPosZ - 1;
-					break;
-			}
-			GameObject clone = (GameObject) Instantiate(cloneFab, new Vector3(cloneX, transform.position.y, cloneZ), Quaternion.identity);
+
+			GameObject clone = (GameObject) Instantiate(cloneFab, transform.position, Quaternion.identity);
 			clone.name = "clone" + clones.Count;
 			clone.GetComponent<PackHandler>().Pack.renderer.material = cloneMaterials[clones.Count];
 			clone.GetComponent<InstanceHealth>().setInstanceSpecifics(clones.Count);
@@ -114,6 +95,35 @@ public class TimeActions : MonoBehaviour {
 			ai._player_transform = transform;
 			ai.targetTransform = transform;
 			clones.Add(clone);
+
+
+            //Make all clones teleport to checkpoint:
+            for (int i = 0; i < clones.Count; i++) {
+                float cloneX;
+                float cloneZ;
+
+                switch(i) {
+                     case 0:
+                         cloneX = checkPosX + 1;
+                         cloneZ = checkPosZ + 1;
+                         break;
+                     case 1:
+                         cloneX = checkPosX - 1;
+                         cloneZ = checkPosZ + 1;
+                         break;
+                     case 2:
+                         cloneX = checkPosX + 1;
+                         cloneZ = checkPosZ - 1;
+                         break;
+                     default:
+                         cloneX = checkPosX - 1;
+                         cloneZ = checkPosZ - 1;
+                         break;
+                 }
+
+                clones[i].GetComponent<InstanceController>().teleport(new Vector3(cloneX, transform.position.y, cloneZ));
+                //clones[i].transform.position = new Vector3(cloneX, transform.position.y, cloneZ);
+            }
 		}
 	}
 	

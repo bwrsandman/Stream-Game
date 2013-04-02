@@ -115,6 +115,12 @@ public class InstanceController : StateMachineController
 		_activation.Activate();
 	}
 
+    public void teleport (Vector3 position) {
+        transform.position = position;
+        if (_cube != null)
+            _cube.transform.position = position + Vector3.right;
+    }
+
 	#endregion
 	
 	#region Internal functions
