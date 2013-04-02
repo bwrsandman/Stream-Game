@@ -11,9 +11,11 @@ public class TimeActions : MonoBehaviour {
 	
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
+    private List<GameObject> cloneExtends = new List<GameObject>();
 	private bool teleporting = false;
 	//private List<float> maxInstanceExtends = new List<float>();
 	private Animator anim;
+    private GameObject currentExtent;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -65,15 +67,6 @@ public class TimeActions : MonoBehaviour {
 		if (checkpoints.Count > 0 && clones.Count < 4) {
 			//anim.SetBool("SettingWaypoint", true);
 			float posZ = transform.position.z;
-			
-			/*if (posZ >= -17.5 && posZ < 2.5) {
-				maxInstanceExtends.Add(-17.5f);
-			}
-			else if (posZ >= -27.5 && posZ < -17.5) {
-				maxInstanceExtends.Add(-27.5f);
-			}
-			else 
-				maxInstanceExtends.Add(-47.5f);*/
 	 	
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
@@ -121,9 +114,11 @@ public class TimeActions : MonoBehaviour {
                          break;
                  }
 
-                clones[i].GetComponent<InstanceController>().teleport(new Vector3(cloneX, transform.position.y, cloneZ));
-                //clones[i].transform.position = new Vector3(cloneX, transform.position.y, cloneZ);
+
+                InstanceController insCon = clones[i].GetComponent<InstanceController>();
+                insCon.teleport(new Vector3(cloneX, transform.position.y, cloneZ));
             }
+            clone.GetComponent<InstanceController>().setCurrentExtent(currentExtent);
 		}
 	}
 	
@@ -146,6 +141,14 @@ public class TimeActions : MonoBehaviour {
 
     public void findAndRemoveClone (GameObject clone) {
         clones.Remove(clone);
+    }
+
+    public void setCurrentExtent (GameObject extent) {
+        currentExtent = extent;
+    }
+
+    public GameObject getCurrentExtent () {
+        return currentExtent;
     }
 
     #region Anton's Cool Shit

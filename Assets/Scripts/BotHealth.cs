@@ -8,7 +8,7 @@ public class BotHealth : Health {
 
     private bool dead = false;
 
-	protected override void die () {
+	public override void die () {
         if (dead)
             return;
         dead = true;

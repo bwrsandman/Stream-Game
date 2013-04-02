@@ -16,5 +16,5 @@ public abstract class Health : MonoBehaviour {
 			die();
 	}
 	
-	protected abstract void die ();
+	public abstract void die ();
 }

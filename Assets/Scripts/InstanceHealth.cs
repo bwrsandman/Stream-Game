@@ -33,7 +33,7 @@ public class InstanceHealth : Health {
 		setHealthIndicator();
 	}
 	
-	protected override void die () {
+	public override void die () {
 		//Destruction/death animation/time travel.
         timeScript.findAndRemoveClone(this.gameObject);
 		Destroy(this.gameObject);
