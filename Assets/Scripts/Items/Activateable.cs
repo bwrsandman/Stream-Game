@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Activateable : MonoBehaviour
 {
-	static PlayerActivationHandler mPlayerActivate;
-	static CloneActivationHandler mCloneActivate;
+	protected static PlayerActivationHandler mPlayerActivate;
+	protected static CloneActivationHandler mCloneActivate;
 	
 	void Awake () 
 	{
@@ -29,9 +29,9 @@ public abstract class Activateable : MonoBehaviour
 
 	}
 	
-	void OnTriggerEnter(Collider other) 
+	protected virtual void OnTriggerEnter(Collider other) 
 	{
-		if (other.name == "PlayerCamera" || other.name == "Sal") {
+		if (other.name == "PlayerCamera") {
 			mPlayerActivate.setSelectedObject(this);
 		}
 		if (other.name == "LongDistance") {
@@ -41,7 +41,7 @@ public abstract class Activateable : MonoBehaviour
 	
 	void OnTriggerExit(Collider other) 
 	{
-		if (other.name == "PlayerCamera" || other.name == "Sal") {
+		if (other.name == "PlayerCamera") {
 			mPlayerActivate.unsetSelectedObject(this);
 		}
 		if (other.name == "LongDistance") {

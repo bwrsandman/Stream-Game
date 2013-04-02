@@ -32,6 +32,8 @@ public class InstanceController : StateMachineController
 	private float walkingSpeed = 0.956f * 1.75f * 2.0f;
 	private float runningSpeed = 3.247f * 1.5f * 1.1f;
 
+    private GameObject currentExtent;
+
 	protected override uint beginState
     { get { return 0; } }
 	
@@ -114,6 +116,20 @@ public class InstanceController : StateMachineController
 	{
 		_activation.Activate();
 	}
+
+    public void teleport (Vector3 position) {
+        transform.position = position;
+        if (_cube != null)
+            _cube.transform.position = position + Vector3.right;
+    }
+
+    public void setCurrentExtent (GameObject extent) {
+        currentExtent = extent;
+    }
+
+    public GameObject getCurrentExtent () {
+        return currentExtent;
+    }
 
 	#endregion
 	

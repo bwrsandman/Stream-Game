@@ -6,6 +6,11 @@ public class InstanceHealth : Health {
 	private Material indicator;
 	private float invMaxHealth;
 	private int instanceNum;
+    private TimeActions timeScript;
+
+    void Start () {
+        timeScript = GameObject.Find("Sal").GetComponent<TimeActions>();
+    }
 
 	public void setInstanceSpecifics (int num) {
 		this.instanceNum = num;
@@ -28,8 +33,9 @@ public class InstanceHealth : Health {
 		setHealthIndicator();
 	}
 	
-	protected override void die () {
+	public override void die () {
 		//Destruction/death animation/time travel.
+        timeScript.findAndRemoveClone(this.gameObject);
 		Destroy(this.gameObject);
 		Destroy(GameObject.Find("Nav" + this.name));
 	}

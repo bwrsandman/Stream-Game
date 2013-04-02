@@ -51,7 +51,7 @@ public class DetonatorSound : DetonatorComponent {
 	//		_soundComponent.maxVolume = maxVolume;
 	//		_soundComponent.rolloffFactor = rolloffFactor;
 			
-			if (Vector3.Distance(Camera.main.transform.position, this.transform.position) < distanceThreshold)
+			if (Vector3.Distance(Camera.main.transform.position, this.transform.position) < distanceThreshold  && !_soundComponent.isPlaying)
 			{
 				_idx = (int)(Random.value * nearSounds.Length);
 				_soundComponent.PlayOneShot(nearSounds[_idx]);
