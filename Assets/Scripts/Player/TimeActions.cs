@@ -40,15 +40,15 @@ public class TimeActions : MonoBehaviour {
 		checkpoints.Add(checkpoint);
 	}
 	
-	public IEnumerator teleport() { 
+	public void teleport() {
 		if (checkpoints.Count > 0) {
 			//anim.SetBool("SettingWaypoint", true);
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			teleporting = true;			
-			yield return new WaitForSeconds(1.5f);
-			teleporting = false;
+			//teleporting = true;
+			//yield return new WaitForSeconds(1.5f);
+			//teleporting = false;
 			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Remove all instances:
@@ -60,7 +60,7 @@ public class TimeActions : MonoBehaviour {
 		}
 	}
 	
-	public IEnumerator teleportCloner() {
+	public void teleportCloner() {
 		if (checkpoints.Count > 0 && clones.Count < 4) {
 			//anim.SetBool("SettingWaypoint", true);
 			float posZ = transform.position.z;
@@ -78,9 +78,9 @@ public class TimeActions : MonoBehaviour {
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
 			var checkPosY = (checkpoints[0] as GameObject).transform.position.y;
 			var checkPosZ = (checkpoints[0] as GameObject).transform.position.z;
-			teleporting = true;
-			yield return new WaitForSeconds(1.5f);
-			teleporting = false;
+			//teleporting = true;
+			//yield return new WaitForSeconds(1.5f);
+			//teleporting = false;
 			transform.position = new Vector3(checkPosX, checkPosY - 3.5f, checkPosZ);
 			
 			//Find position for new instance:

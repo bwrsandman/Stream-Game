@@ -33,7 +33,7 @@ public class PlayerHealth : Health  {
 
 		//Remember to set the start of the level as a checkpoint!
 
-		StartCoroutine(GetComponent<TimeActions>().teleport());
+		/*StartCoroutine(*/GetComponent<TimeActions>().teleport()/*)*/;
 		//Destroy(this.gameObject);
 	}
 
