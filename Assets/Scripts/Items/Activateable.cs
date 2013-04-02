@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Activateable : MonoBehaviour
 {
+    public Vector3 offset;
 	protected static PlayerActivationHandler mPlayerActivate;
 	protected static CloneActivationHandler mCloneActivate;
 	
@@ -29,13 +30,13 @@ public abstract class Activateable : MonoBehaviour
 
 	}
 	
-	protected virtual void OnTriggerEnter(Collider other) 
+	protected virtual void OnTriggerEnter(Collider other)
 	{
 		if (other.name == "PlayerCamera") {
-			mPlayerActivate.setSelectedObject(this);
+			mPlayerActivate.setSelectedObject(this, offset);
 		}
 		if (other.name == "LongDistance") {
-			mCloneActivate.setSelectedObject(this);
+			mCloneActivate.setSelectedObject(this, offset);
 		}
 	}
 	

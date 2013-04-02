@@ -20,7 +20,7 @@ public abstract class ActivationHandler : MonoBehaviour
 		animator = GetComponent<Animator>();
 	}
 	
-	public virtual void setSelectedObject (Activateable obj)
+	public virtual void setSelectedObject (Activateable obj, Vector3 offset)
 	{
 		// Can't select currently held weapon
 		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType))
