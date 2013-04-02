@@ -8,7 +8,6 @@ public class Screenflash : MonoBehaviour {
 
         int width = Screen.width;
         int height = Screen.height;
-        Debug.Log(width + " " + height);
         guiTexture.pixelInset = new Rect(-width/2, -height/2, width, height);
 
         guiTexture.color = new Color(guiTexture.color.r, guiTexture.color.g, guiTexture.color.b, 0.0f);

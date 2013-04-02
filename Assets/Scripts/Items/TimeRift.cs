@@ -12,7 +12,6 @@ public class TimeRift : Activateable
 	// Use this for initialization
 	void Awake () {
         crack = ClosedState.transform.FindChild("CrackInSpaceTime");
-        Debug.Log(OpenState);
         OpenState.SetActive(false);
 	}
 	
@@ -22,12 +21,11 @@ public class TimeRift : Activateable
 	}
 
     public void open(TimeActions timeScript, Animator anim) {
-        Debug.Log("Opened");
         isOpen = true;
         anim.SetBool("SettingWaypoint", true);
         timeScript.setCheckpoint();
         StartCoroutine(setState());
-        //Set actual checkpoint, and save state of the world.
+        //Save state of the world.
     }
 
     IEnumerator setState () {

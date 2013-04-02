@@ -177,10 +177,10 @@ public class ThirdPersonController : MonoBehaviour
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
 			}*/
-			if (Input.GetKeyDown("y")) 
+			/*if (Input.GetKeyDown("y"))
 			{	
 				timeScript.sendYoungestBack();	
-			}	
+			}	*/
 			
 			if (Input.GetButton("A")) {
 				playerActivationHandler.Activate();

@@ -12,11 +12,12 @@ public class TimeActions : MonoBehaviour {
 	private List<GameObject> checkpoints = new List<GameObject>();
 	private List<GameObject> clones = new List<GameObject>();
 	private bool teleporting = false;
-	private List<float> maxInstanceExtends = new List<float>();
+	//private List<float> maxInstanceExtends = new List<float>();
 	private Animator anim;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
+        setCheckpoint();
 	}
 	
 	public void setCheckpoint() {
@@ -56,7 +57,7 @@ public class TimeActions : MonoBehaviour {
 				GameObject.Destroy(clone);
 			}
 			clones = new List<GameObject>();
-			maxInstanceExtends = new List<float>();
+			//maxInstanceExtends = new List<float>();
 		}
 	}
 	
@@ -65,14 +66,14 @@ public class TimeActions : MonoBehaviour {
 			//anim.SetBool("SettingWaypoint", true);
 			float posZ = transform.position.z;
 			
-			if (posZ >= -17.5 && posZ < 2.5) {
+			/*if (posZ >= -17.5 && posZ < 2.5) {
 				maxInstanceExtends.Add(-17.5f);
 			}
 			else if (posZ >= -27.5 && posZ < -17.5) {
 				maxInstanceExtends.Add(-27.5f);
 			}
 			else 
-				maxInstanceExtends.Add(-47.5f);
+				maxInstanceExtends.Add(-47.5f);*/
 	 	
 			//Update position of character after a waiting period (should be updated to event based instead of time based):
 			var checkPosX = (checkpoints[0] as GameObject).transform.position.x;
@@ -116,13 +117,13 @@ public class TimeActions : MonoBehaviour {
 		}
 	}
 	
-	public void sendYoungestBack() {
+	/*public void sendYoungestBack() {
 		if (clones.Count > 0) {
 			GameObject.Destroy(clones[clones.Count-1]);
 			clones.RemoveAt(clones.Count-1);
-			maxInstanceExtends.RemoveAt(maxInstanceExtends.Count-1);
+			//maxInstanceExtends.RemoveAt(maxInstanceExtends.Count-1);
 		}
-	}
+	}*/
 	
 	public bool isTeleporting () {
 		return teleporting;	
@@ -132,6 +133,10 @@ public class TimeActions : MonoBehaviour {
 	{
 		return clones.Count;
 	}
+
+    public void findAndRemoveClone (GameObject clone) {
+        clones.Remove(clone);
+    }
 
     #region Anton's Cool Shit
 
