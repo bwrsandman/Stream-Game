@@ -20,16 +20,19 @@ ModelImporter:
     2300004: Fan_3
     2300006: Fan_4
     2300008: Rotator
+    2300010: //RootNode
     3300000: Fan_1
     3300002: Fan_2
     3300004: Fan_3
     3300006: Fan_4
     3300008: Rotator
+    3300010: //RootNode
     4300000: Rotator
     4300002: Fan_4
     4300004: Fan_3
     4300006: Fan_2
     4300008: Fan_1
+    4300010: Fan
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -50,10 +53,12 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -63,7 +68,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
