@@ -138,6 +138,8 @@ public class InstanceController : StateMachineController
         if (_switched_state)
             OnEnterState();
         _state_behaviour.run();
+        if(!facing)
+            return;
         face(_navmesh_agent.transform.position - transform.position);
 	}
 
@@ -149,6 +151,8 @@ public class InstanceController : StateMachineController
 			_animator.SetBool("Kneel", false);
 		kneeling = tmpKneeling;
 
+        if(!facing)
+            return;
         if (_use_point_target)
             _navmesh_agent.SetDestination(_target_point);
         else

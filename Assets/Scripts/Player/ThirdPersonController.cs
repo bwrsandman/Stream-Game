@@ -33,7 +33,7 @@ public class ThirdPersonController : MonoBehaviour
 	private bool mMoving;
 	private bool mInLargeRoom = false;
 	private bool mLocked = false;
-	private bool climbing = false;
+    public bool climbing = false;
     private bool hasJustTeleported = false;
 
 	public Transform spine;
@@ -164,10 +164,6 @@ public class ThirdPersonController : MonoBehaviour
 		
 		if (getUpAtStart || climbing)
 			return;
-
-        //Debug.Log("climbing: " + climbing);
-		rigidbody.useGravity = true;
-		gameObject.rigidbody.WakeUp();
 
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
