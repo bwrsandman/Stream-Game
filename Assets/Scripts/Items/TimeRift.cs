@@ -36,7 +36,7 @@ public class TimeRift : Activateable
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (!isOpen && other.name == "PlayerCamera" || other.name == "Sal") {
+        if (!isOpen && other.name == "PlayerCamera") {
             mPlayerActivate.setSelectedObject(this);
             mPlayerActivate.activationTexture.transform.position = crack.position + Vector3.up;
         }

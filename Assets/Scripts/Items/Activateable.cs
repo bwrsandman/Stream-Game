@@ -31,7 +31,7 @@ public abstract class Activateable : MonoBehaviour
 	
 	protected virtual void OnTriggerEnter(Collider other) 
 	{
-		if (other.name == "PlayerCamera" || other.name == "Sal") {
+		if (other.name == "PlayerCamera") {
 			mPlayerActivate.setSelectedObject(this);
 		}
 		if (other.name == "LongDistance") {
@@ -41,7 +41,7 @@ public abstract class Activateable : MonoBehaviour
 	
 	void OnTriggerExit(Collider other) 
 	{
-		if (other.name == "PlayerCamera" || other.name == "Sal") {
+		if (other.name == "PlayerCamera") {
 			mPlayerActivate.unsetSelectedObject(this);
 		}
 		if (other.name == "LongDistance") {
