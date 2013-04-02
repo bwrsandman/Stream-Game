@@ -184,6 +184,7 @@ ModelImporter:
     2300108: Wall_ground_1
     2300110: Wall_ground_2
     2300112: Wall_ground_3
+    2300114: //RootNode
     3300000: Pipe1
     3300002: Pipe2
     3300004: RailGuard_1
@@ -241,6 +242,7 @@ ModelImporter:
     3300108: Wall_ground_1
     3300110: Wall_ground_2
     3300112: Wall_ground_3
+    3300114: //RootNode
     4300000: Wall_ground_3
     4300002: Wall_ground_2
     4300004: Wall_ground_1
@@ -298,6 +300,65 @@ ModelImporter:
     4300108: RailGuard_2
     4300110: Pipe1
     4300112: Pipe2
+    4300114: Hallway
+    6400000: Pipe1
+    6400002: Pipe2
+    6400004: RailGuard_1
+    6400006: RailGuard_2
+    6400008: RailPost_1
+    6400010: RailPost_10
+    6400012: RailPost_11
+    6400014: RailPost_12
+    6400016: RailPost_13
+    6400018: RailPost_14
+    6400020: RailPost_15
+    6400022: RailPost_16
+    6400024: RailPost_17
+    6400026: RailPost_18
+    6400028: RailPost_19
+    6400030: RailPost_2
+    6400032: RailPost_20
+    6400034: RailPost_21
+    6400036: RailPost_22
+    6400038: RailPost_23
+    6400040: RailPost_24
+    6400042: RailPost_25
+    6400044: RailPost_26
+    6400046: RailPost_27
+    6400048: RailPost_28
+    6400050: RailPost_29
+    6400052: RailPost_3
+    6400054: RailPost_30
+    6400056: RailPost_31
+    6400058: RailPost_32
+    6400060: RailPost_33
+    6400062: RailPost_34
+    6400064: RailPost_35
+    6400066: RailPost_36
+    6400068: RailPost_37
+    6400070: RailPost_38
+    6400072: RailPost_39
+    6400074: RailPost_4
+    6400076: RailPost_40
+    6400078: RailPost_41
+    6400080: RailPost_42
+    6400082: RailPost_43
+    6400084: RailPost_44
+    6400086: RailPost_45
+    6400088: RailPost_46
+    6400090: RailPost_47
+    6400092: RailPost_48
+    6400094: RailPost_49
+    6400096: RailPost_5
+    6400098: RailPost_50
+    6400100: RailPost_6
+    6400102: RailPost_7
+    6400104: RailPost_8
+    6400106: RailPost_9
+    6400108: Wall_ground_1
+    6400110: Wall_ground_2
+    6400112: Wall_ground_3
+    6400114: //RootNode
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -317,11 +378,13 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -331,7 +394,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
