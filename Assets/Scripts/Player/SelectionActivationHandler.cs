@@ -10,7 +10,7 @@ public abstract class SelectionActivationHandler : ActivationHandler
 	public override void setSelectedObject (Activateable obj)
 	{
 		// Can't select currently held weapon
-		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType))
+		if(obj != weaponHandler.weapon && activateableTypes.Exists(t => t == obj.GetType().BaseType || t == obj.GetType()))
 		{
 			selectedObject = obj;
 			Destroy(activationTexture);
