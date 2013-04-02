@@ -166,11 +166,11 @@ public class ThirdPersonController : MonoBehaviour
 		CheckpointLayerCurrentState = anim.GetCurrentAnimatorStateInfo(2);
 		
 		if (!timeScript.isTeleporting()) {
-			if (Input.GetKeyDown("e")) 
+			/*if (Input.GetKeyDown("e"))
 			{	
 				anim.SetBool("SettingWaypoint", true);
 				timeScript.setCheckpoint();	
-			}
+			}*/
 			if (Input.GetKeyDown("y")) 
 			{	
 				timeScript.sendYoungestBack();	
@@ -229,13 +229,13 @@ public class ThirdPersonController : MonoBehaviour
 			//Time travel
 			if (Input.GetAxis("Y") >= .9f && Input.GetAxis("B") >= .9f)
 			{
-				anim.SetBool("SettingWaypoint", true);
+				//anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleportCloner());
 			}
 			//Teleport
 			else if (Input.GetAxis("Y") >= 1.0f)
 			{
-				anim.SetBool("SettingWaypoint", true);
+                //anim.SetBool("SettingWaypoint", true);
 				StartCoroutine(timeScript.teleport());
 			}
 

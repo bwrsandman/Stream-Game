@@ -54,6 +54,10 @@ public class PlayerActivationHandler : SelectionActivationHandler
 				gameObject.collider.enabled = false;
 				animator.SetBool("Climbing", true);
 			}
-		}
+		} else if (selectedObject.GetType() == typeof(TimeRift)) {
+            TimeRift rift = (TimeRift)selectedObject;
+            rift.open(GetComponent<TimeActions>(), animator);
+        }
+
 	}
 }

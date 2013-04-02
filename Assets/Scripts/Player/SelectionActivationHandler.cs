@@ -5,7 +5,7 @@ public abstract class SelectionActivationHandler : ActivationHandler
 {
 	
 	public GameObject activationPrefab;
-	protected GameObject activationTexture;
+	public GameObject activationTexture;
 	
 	public override void setSelectedObject (Activateable obj)
 	{
