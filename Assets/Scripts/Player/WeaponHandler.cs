@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class WeaponHandler : MonoBehaviour 
 {
@@ -6,6 +7,7 @@ public class WeaponHandler : MonoBehaviour
 	private bool supporting;
 	
 	public Weapon weapon;
+    public Weapon spawnWeapon;
 	public Transform holdingHand;
 	public Transform supportHand;
 	public Vector3 offset;
@@ -16,14 +18,22 @@ public class WeaponHandler : MonoBehaviour
 	private Animator anim;
 
 	private Ammo ammoScript;
+    private bool isShooting = false;
+
+    void Awake () {
+
+
+        anim = GetComponent<Animator>();
+        ammoScript = GetComponent<Ammo>();
+
+        Weapon weap = (Weapon) Instantiate(spawnWeapon, Vector3.zero, Quaternion.identity);
+        PickUpWeapon(weap);
+    }
 	
 	void Start () 
 	{
 		if (weapon)
 			mTransform = weapon.transform;
-
-		anim = GetComponent<Animator>();
-		ammoScript = GetComponent<Ammo>();
 	}
 	
 	public void PickUpWeapon(Weapon weapon)
@@ -50,7 +60,7 @@ public class WeaponHandler : MonoBehaviour
 		weapon.transform.parent = holdingHand;
 		weapon.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
-		Start();
+		//Start();
 	}
 	
 	// The weapon is located in the holding
@@ -75,6 +85,13 @@ public class WeaponHandler : MonoBehaviour
 
 	}
 
+    IEnumerator shoot () {
+       while(true) {
+           yield return new WaitForSeconds(1.5f);
+           weapon.shootProjectile();
+       }
+    }
+
 	public bool hasWeapon () {
 		return weapon != null;
 	}
@@ -82,4 +99,18 @@ public class WeaponHandler : MonoBehaviour
 	public Transform getWeaponMouth () {
 		return weapon.transform.FindChild("Mouth");
 	}
+
+    public void startShooting () {
+        if (!isShooting) {
+            StartCoroutine("shoot");
+            isShooting = true;
+        }
+    }
+
+    public void stopShooting () {
+         if (isShooting) {
+            StopCoroutine("shoot");
+            isShooting = false;
+        }
+    }
 }

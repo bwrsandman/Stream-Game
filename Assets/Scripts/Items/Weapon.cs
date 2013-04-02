@@ -21,10 +21,14 @@ public class Weapon : Equipable
 	private Transform muzzleTransform;
 	private Transform hand;
 
+    void Awake () {
+        muzzleTransform = transform.FindChild("Mouth");
+    }
+
 	#region Initialization
 	void Start () 
 	{
-		muzzleTransform = transform.FindChild("Mouth");
+
 	}
 	#endregion
 	
