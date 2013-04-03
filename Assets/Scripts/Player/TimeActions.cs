@@ -15,10 +15,12 @@ public class TimeActions : MonoBehaviour {
 	private bool teleporting = false;
 	//private List<float> maxInstanceExtends = new List<float>();
 	private Animator anim;
+    private Ammo ammoScript;
     private GameObject currentExtent;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
+        ammoScript = GetComponent<Ammo>();
         setCheckpoint();
 	}
 	
@@ -88,6 +90,8 @@ public class TimeActions : MonoBehaviour {
 			ai._player_transform = transform;
 			ai.targetTransform = transform;
 			clones.Add(clone);
+
+            ammoScript.setMaxAmmoOffset(clones.Count * 25.0f);
 
 
             //Make all clones teleport to checkpoint:
