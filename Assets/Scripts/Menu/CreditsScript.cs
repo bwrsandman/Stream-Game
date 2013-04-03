@@ -13,19 +13,27 @@ void Start(){
 	streamLogo = GameObject.Find("StreamLogo");
     string credsText =
 	"TEAM\n"+
-	"\n"+
+    "\n"+
 	"Sandy Carter\n"+
+    "Mads Jeppe Lyngholm Roennow\n"+
     "Samuel Tissot-Jobin\n"+
     "Olivia Colden\n"+
-    "Mads Ronnow\n"+
     "Eileen Peng\n"+
-	"Pascal Guay\n"+
+    "Pascal Guay\n"+
+    "Mark Latimer\n"+
 	"\n"+
 	"\n"+
 	"PROFESSORS\n"+
 	"\n"+
-	"Thomas Fevens\n"+
-	"Jonathan Lessard\n";
+	"Dr. Thomas Fevens\n"+
+	"Jonathan Lessard\n" +
+    "\n"+
+    "\n"+
+    "Special thanks to\n"+
+    "\n" +
+    "Danielle Niko Holmes\n"+
+    "Christian Henegan\n"+
+    "Arsenii Foudimov\n";
 	creditsText.guiText.text = credsText;
 	creditsText.guiText.pixelOffset = new Vector2(Screen.width/2.0f - creditsText.guiText.GetScreenRect().width/2.0f,0.0f);
 	streamLogo.guiTexture.pixelInset = new Rect(
