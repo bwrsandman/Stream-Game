@@ -3,38 +3,68 @@ using System.Collections;
 
 public class MenuButton : MonoBehaviour {
 
-public Texture2D inactiveTexture;
-public Texture2D activeTexture;
- 
-void OnMouseEnter () {
-	guiTexture.texture = activeTexture;
-}
- 
-void OnMouseExit(){
-	guiTexture.texture = inactiveTexture;
-}
- 
-void OnMouseDown(){
-	Debug.Log(gameObject.name + " clicked");
-	switch(gameObject.name)       
-	  {         
-		 case "btnNewGame":
-	        Application.LoadLevel("Level_01_Exterior_02"); 
-	        break;                  
-	     case "btnContinue":            
-
-	        break;
-		 case "btnSettings":            
-
-	        break;
-		 case "btnQuit":            
-			Application.Quit();
-			 Debug.Log("Application quit!");
-	        break;
-	   }
+	public Texture2D inactiveTexture;
+	public Texture2D activeTexture;
+	private GameObject menuHandler;
+	public static bool isMenuShown = true;
+	
+	void Start(){
+		menuHandler = GameObject.Find("MenuHandler");
+		if(!isMenuShown)
+		{
+			menuHandler.GetComponent<MenuInGameHandler>().HideMenu();
+			Time.timeScale = 1.0f;
+		}
+		else
+		{
+			Time.timeScale = 0.0f;
+		}
+	}
+	
+	public void DeactivateButton()
+	{
+		guiTexture.texture = inactiveTexture;
+	}
+	
+	public void ActivateButton()
+	{
+		guiTexture.texture = activeTexture;
+	}
+	
+	void OnMouseEnter () {
+		guiTexture.texture = activeTexture;
+	}
+	 
+	void OnMouseExit(){
+		guiTexture.texture = inactiveTexture;
+	}
 		
-		
-
-}
-
+	void OnMouseDown(){
+		ExecuteButtonAction(gameObject.name);
+	}
+	
+	public void ExecuteButtonAction(string buttonName)
+	{
+		if(buttonName == null) buttonName = gameObject.name;
+		switch(buttonName)       
+		{
+            case "btnContinue":
+			case "btnNewGame":
+				Time.timeScale = 1.0f;
+				isMenuShown = false;
+				Application.LoadLevel(1);
+				break;
+			case "btnSettings":            
+	    	  	break;
+			case "btnQuit":            
+			  	Application.Quit();
+			  	break;
+		}
+	}
+	
+	public bool IsMenuShown()
+	{
+		return isMenuShown;
+	}
+	
 }

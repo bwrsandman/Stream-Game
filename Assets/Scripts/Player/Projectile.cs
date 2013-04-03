@@ -43,12 +43,12 @@ public class Projectile : MonoBehaviour {
 		if (other.tag == "tCollider" || other.tag == "Environment") {
 			Destroy(this.gameObject);
 		}
-		else if (other.tag == "player" || other.tag == "clone") {
+		/*else if (other.tag == "player" || other.tag == "clone") {
 			PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
 			if (otherHealth != null)
 				otherHealth.decreaseHealth(damage);
-		}
-		else if (other.tag != "TriggerArea" && other.tag != "MainCamera" && other.name != "LongDistance") {
+		}*/
+		else if (other.tag != "TriggerArea" && other.tag != "MainCamera" && other.name != "LongDistance" && other.tag != "player"  && other.tag != "Player" && other.tag != "Projectile") {
 			Health otherHealth = other.gameObject.GetComponent<Health>();
 			if (otherHealth != null)
 				otherHealth.decreaseHealth(damage);

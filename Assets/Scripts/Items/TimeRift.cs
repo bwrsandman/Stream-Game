@@ -6,6 +6,7 @@ public class TimeRift : Activateable
 
     public GameObject OpenState;
     public GameObject ClosedState;
+    public AudioClip OpenSound;
     private Transform crack;
     private bool isOpen = false;
 
@@ -25,6 +26,8 @@ public class TimeRift : Activateable
         anim.SetBool("SettingWaypoint", true);
         timeScript.setCheckpoint();
         StartCoroutine(setState());
+        audio.PlayOneShot(OpenSound);
+        audio.PlayDelayed(1.0f);
         //Save state of the world.
     }
 
