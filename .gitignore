@@ -6,8 +6,8 @@ Assets/Meshes/scenes/
 *workshop*
 *Edit*
 *edit*
-*.psd
-*.psd.meta
+Assets/Meshes/lib/*.psd
+Assets/Meshes/lib/*.psd.meta
 *_version_*
 *landscape_02*
 *landscape_03*

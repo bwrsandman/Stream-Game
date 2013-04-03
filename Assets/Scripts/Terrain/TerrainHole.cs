@@ -5,6 +5,7 @@ public class TerrainHole : MonoBehaviour
 {
 
 	public TerrainCollider tCollider;
+	public GameObject landscape;
 	public Camera camera;
 	AudioEchoFilter echo;
 
@@ -17,6 +18,7 @@ public class TerrainHole : MonoBehaviour
 	{
 		if (c.tag == "Player") {
 			Physics.IgnoreCollision(c, tCollider, true);
+			landscape.GetComponent<Terrain>().enabled = false;
 			echo.enabled = true;
 		} else if (c.tag == "clone") {
 			Physics.IgnoreCollision(c, tCollider, true);
@@ -27,6 +29,7 @@ public class TerrainHole : MonoBehaviour
 	{
 		if (c.tag == "Player") {
 			Physics.IgnoreCollision(c, tCollider, false);
+			landscape.GetComponent<Terrain>().enabled = true;
 			echo.enabled = false;
 		} else if (c.tag == "clone") {
 			Physics.IgnoreCollision(c, tCollider, false);
