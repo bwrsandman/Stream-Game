@@ -61,6 +61,8 @@ public class PlayerActivationHandler : SelectionActivationHandler
 		} else if (selectedObject.GetType() == typeof(TimeRift)) {
             TimeRift rift = (TimeRift)selectedObject;
             rift.open(GetComponent<TimeActions>(), animator);
+        } else if (selectedObject.GetType() == typeof(BridgeControl)) {
+            ((BridgeControl)selectedObject).ToggleBridges();
         }
 
 	}

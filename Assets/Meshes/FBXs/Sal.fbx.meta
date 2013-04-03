@@ -1042,15 +1042,15 @@ ModelImporter:
       transformMask: []
     - name: Aming
       takeName: Take 001
-      firstFrame: 1048
-      lastFrame: 1240
+      firstFrame: 1068
+      lastFrame: 1115
       wrapMode: 0
       orientationOffsetY: 0
       level: .075000003
       cycleOffset: 0
       loop: 0
       loopBlend: 1
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1

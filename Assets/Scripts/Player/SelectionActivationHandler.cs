@@ -7,7 +7,7 @@ public abstract class SelectionActivationHandler : ActivationHandler
 	public GameObject activationPrefab;
 	public GameObject activationTexture;
 	
-	public override void setSelectedObject (Activateable obj)
+	public override void setSelectedObject (Activateable obj, Vector3 offset)
 	{
 		// Can't select currently held weapon
 		if(obj.GetType() != typeof(Rifle) && activateableTypes.Exists(t => t == obj.GetType().BaseType || t == obj.GetType()))
@@ -17,7 +17,7 @@ public abstract class SelectionActivationHandler : ActivationHandler
 			Vector3 distance = gameObject.transform.position - obj.transform.position;
 			distance.y = 0.0f;
 			Quaternion rotation = Quaternion.Euler(90.0f, Quaternion.LookRotation(distance).eulerAngles.y, 0.0f);
-			activationTexture = (GameObject)Instantiate(activationPrefab, obj.rigidbody.transform.position + Vector3.up, rotation);
+			activationTexture = (GameObject)Instantiate(activationPrefab, obj.rigidbody.transform.position + Vector3.up + offset, rotation);
 		}
 	}
 	
