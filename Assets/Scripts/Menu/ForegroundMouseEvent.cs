@@ -2,16 +2,16 @@ using UnityEngine;
 using System.Collections;
 
 public class ForegroundMouseEvent : MonoBehaviour {
-	private GameObject backgroundObject;
+	private GameObject menuHandler;
 	
 	void Start () {
-		backgroundObject = GameObject.Find("MenuBackground");
+		menuHandler = GameObject.Find("MenuHandler");
 	}
 	
 	void Update () {
 	}
 	
 	void OnMouseEnter(){
-		backgroundObject.GetComponent<ResizeBackground>().DeactivateButtons();
+		menuHandler.GetComponent<AsyncMenuControl>().DeactivateButtons();
 	}
 }

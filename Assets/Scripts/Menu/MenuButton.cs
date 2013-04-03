@@ -5,6 +5,20 @@ public class MenuButton : MonoBehaviour {
 
 	public Texture2D inactiveTexture;
 	public Texture2D activeTexture;
+	private GameObject menuHandler;
+	public static bool isMenuShown = true;
+	void Start(){
+		menuHandler = GameObject.Find("MenuHandler");
+		if(!isMenuShown)
+		{
+			menuHandler.GetComponent<MenuInGameHandler>().HideMenu();
+			Time.timeScale = 1.0f;
+		}
+		else
+		{
+			Time.timeScale = 0.0f;
+		}
+	}
 	
 	public void DeactivateButton()
 	{
@@ -34,12 +48,14 @@ public class MenuButton : MonoBehaviour {
 		switch(buttonName)       
 		{         
 			case "btnNewGame":
-			    Application.LoadLevel(1); 
 				Time.timeScale = 1.0f;
-			    break;                  
-			case "btnContinue":            
-				Application.LoadLevel(1); 
-				Time.timeScale = 1.0f;    
+				isMenuShown = false;
+				Application.LoadLevel(1);
+				break;
+			case "btnContinue":
+				Time.timeScale = 1.0f;
+				isMenuShown = false;
+				menuHandler.GetComponent<MenuInGameHandler>().HideMenu();
 			    break;
 			case "btnSettings":            
 	    	  	break;
