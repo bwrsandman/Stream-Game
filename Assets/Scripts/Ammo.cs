@@ -14,6 +14,8 @@ public class Ammo : MonoBehaviour {
 	private bool semiAutoLocked = false;
 	private float freezeTime;
 
+    private float maxAmmoOffset = 0.0f;
+
 	protected float invMaxAmmo;
 
 	void Update () {
@@ -32,8 +34,8 @@ public class Ammo : MonoBehaviour {
 		ammoLevel += delta;
 		if (ammoLevel > maxAmmo * recharge_percentage_lock && locked && freezeTime <= 0.0f)
 			locked = false;
-		else if (ammoLevel > maxAmmo)
-			ammoLevel = maxAmmo;
+		else if (ammoLevel > maxAmmo - maxAmmoOffset)
+			ammoLevel = maxAmmo - maxAmmoOffset;
 
 		setTimeEnergyIndicator();
 	}
@@ -59,11 +61,15 @@ public class Ammo : MonoBehaviour {
 	}
 
 	protected void setTimeEnergyIndicator () {
-		indicator.SetFloat("_timeEnergy", ammoLevel * invMaxAmmo);
+		indicator.SetFloat("_timeEnergy", ammoLevel * invMaxAmmo );
 	}
 
+    public void setMaxAmmoOffset (float offset) {
+        maxAmmoOffset = offset;
+    }
+
     IEnumerator shootSemiAutoTime () {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         this.semiAutoLocked = false;
     }
 }
