@@ -69,7 +69,7 @@ public class Ammo : MonoBehaviour {
     }
 
     IEnumerator shootSemiAutoTime () {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         this.semiAutoLocked = false;
     }
 }
