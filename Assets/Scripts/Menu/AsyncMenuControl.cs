@@ -86,7 +86,7 @@ public class AsyncMenuControl : MonoBehaviour {
 						break;		
 				}
 			}
-			if(Input.GetButton("Start"))
+			if(Input.GetButton("Start") && btnNewGameObject.guiTexture.enabled)
 			{
 				switch(menuPosition)       
 				{

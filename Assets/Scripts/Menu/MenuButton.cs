@@ -7,6 +7,7 @@ public class MenuButton : MonoBehaviour {
 	public Texture2D activeTexture;
 	private GameObject menuHandler;
 	public static bool isMenuShown = true;
+	
 	void Start(){
 		menuHandler = GameObject.Find("MenuHandler");
 		if(!isMenuShown)
@@ -64,4 +65,10 @@ public class MenuButton : MonoBehaviour {
 			  	break;
 		}
 	}
+	
+	public bool IsMenuShown()
+	{
+		return isMenuShown;
+	}
+	
 }
