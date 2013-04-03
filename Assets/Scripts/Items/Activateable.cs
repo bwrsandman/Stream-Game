@@ -8,7 +8,7 @@ public abstract class Activateable : MonoBehaviour
 	protected static PlayerActivationHandler mPlayerActivate;
 	protected static CloneActivationHandler mCloneActivate;
 	
-	void Awake () 
+	protected virtual void Awake ()
 	{
 		GameObject player = null;
 		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
@@ -32,20 +32,20 @@ public abstract class Activateable : MonoBehaviour
 	
 	protected virtual void OnTriggerEnter(Collider other)
 	{
-		if (other.name == "PlayerCamera") {
+		if (mPlayerActivate && other.name == "PlayerCamera") {
 			mPlayerActivate.setSelectedObject(this, offset);
 		}
-		if (other.name == "LongDistance") {
+		if (mCloneActivate && other.name == "LongDistance") {
 			mCloneActivate.setSelectedObject(this, offset);
 		}
 	}
 	
 	void OnTriggerExit(Collider other) 
 	{
-		if (other.name == "PlayerCamera") {
+		if (mPlayerActivate && other.name == "PlayerCamera") {
 			mPlayerActivate.unsetSelectedObject(this);
 		}
-		if (other.name == "LongDistance") {
+		if (mCloneActivate && other.name == "LongDistance") {
 			mCloneActivate.unsetSelectedObject(this);
 		}
 	}

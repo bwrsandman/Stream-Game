@@ -21,7 +21,8 @@ public class Weapon : Equipable
 	private Transform muzzleTransform;
 	private Transform hand;
 
-    void Awake () {
+    protected override void Awake () {
+        base.Awake();
         muzzleTransform = transform.FindChild("Mouth");
     }
 
