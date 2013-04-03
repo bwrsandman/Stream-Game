@@ -52,11 +52,18 @@ public class Ammo : MonoBehaviour {
 		return enoughAmmo && !locked && !semiAutoLocked;
 	}
 
-	public void setSemiAuto(bool semiAutoLocked) {
-		this.semiAutoLocked = semiAutoLocked;
+	public void setSemiAuto() {
+        if (!semiAutoLocked)
+            StartCoroutine(shootSemiAutoTime());
+		this.semiAutoLocked = true;
 	}
 
 	protected void setTimeEnergyIndicator () {
 		indicator.SetFloat("_timeEnergy", ammoLevel * invMaxAmmo);
 	}
+
+    IEnumerator shootSemiAutoTime () {
+        yield return new WaitForSeconds(0.5f);
+        this.semiAutoLocked = false;
+    }
 }

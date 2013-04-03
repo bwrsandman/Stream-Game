@@ -61,7 +61,8 @@ public class Weapon : Equipable
 	}
 
 	public void shootProjectile () {
-		if (ammoScript.canShoot(ammoPerShot)) {
+		//if (ammoScript.canShoot(ammoPerShot)) {
+            audio.Play();
 
 			Vector3 spawnPos = muzzleTransform.transform.position;
 
@@ -74,7 +75,7 @@ public class Weapon : Equipable
 			projectileScript.initialize(spawnPos,  this, hand);
 
 			ammoScript.decreaseAmmo(ammoPerShot);
-		}
+		//}
 	}
 	#endregion
 

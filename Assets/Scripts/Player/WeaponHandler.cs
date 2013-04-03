@@ -13,6 +13,9 @@ public class WeaponHandler : MonoBehaviour
 	public Vector3 offset;
 	public Quaternion rotationOffset;
 
+    public Vector3 aimingOffset;
+    public Quaternion aimingRotationOffset;
+
 	private Quaternion rot;
 	private Vector3 holdingPos;
 	private Animator anim;
@@ -77,11 +80,15 @@ public class WeaponHandler : MonoBehaviour
 
 		rot =  Quaternion.Euler(0.0f,90.0f,-90.0f);
 		holdingPos = holdingHand.localPosition;
-		mTransform.localPosition = holdingPos + rot * offset;
-		if (anim.GetBool("Aiming"))
+		if (anim.GetBool("Aiming")) {
+            mTransform.localRotation = rot * aimingRotationOffset;
+            mTransform.localPosition = holdingPos + aimingOffset;
+
+        }
+		else {
+            mTransform.localPosition = holdingPos + rot * offset;
 			mTransform.localRotation = rot * rotationOffset;
-		else
-			mTransform.localRotation = rot;
+        }
 
 	}
 
