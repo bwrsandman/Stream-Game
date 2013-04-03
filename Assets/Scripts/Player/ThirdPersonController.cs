@@ -185,18 +185,20 @@ public class ThirdPersonController : MonoBehaviour
 			if (weapHandler.hasWeapon()) {
 
 				//Aiming
-				bool aim = Input.GetButton("Left Trigger");
+				bool aim = Input.GetButton("Left Trigger") || Input.GetAxis("Left Trigger") > 0.9f;
 				anim.SetBool("Aiming", aim);
 				camScript.setDistance(aim ? 1.0f : 2.0f);
 
 				//Shooting
-				bool shoot = Input.GetButton("Right Trigger");
+				bool shoot = Input.GetButton("Right Trigger") || Input.GetAxis("Right Trigger") > 0.9f;
 				if (shoot && anim.GetBool("Aiming")) {
-					weapHandler.weapon.shootProjectile();
-					ammoScript.setSemiAuto(true);
+                    if (ammoScript.canShoot(ammoPerShot)) {
+                        anim.SetBool("Shoot", true);
+                        StartCoroutine(stopShootAnim());
+					    weapHandler.weapon.shootProjectile();
+					    ammoScript.setSemiAuto();
+                    }
 				}
-				else if (!shoot)
-					ammoScript.setSemiAuto(false);
 			}
 
 			//Dpad clone activation
@@ -251,6 +253,12 @@ public class ThirdPersonController : MonoBehaviour
 		
 		updateAim();
 	}
+
+    private IEnumerator stopShootAnim () {
+        yield return new WaitForSeconds(0.1f);
+        anim.SetBool("Shoot", false);
+
+    }
 	#endregion
 
     #region Anton's Cool Shit

@@ -12,7 +12,7 @@ public class InstanceController : StateMachineController
 	public const float LOOKSPEED            = 4.0f;
 	public const float satisfactionRadius   = 2.5f;
 	public const float urgencyRadius        = 7.5f;
-	public const float movingSpeed          = 0.11f;
+	public float movingSpeed          = 0.11f;
 
     public bool _use_point_target;
     public Vector3 _target_point;
@@ -21,6 +21,7 @@ public class InstanceController : StateMachineController
     public GameObject   _target;
 	public bool facing = true;
     public GameObject _foe;
+    public Transform spine;
 
 	Animator        _animator;
 	NavMeshAgent    _navmesh_agent;
@@ -63,6 +64,8 @@ public class InstanceController : StateMachineController
         _target_point = Vector3.zero;
         _use_point_target = false;
         _scanSphere = GetComponent<SphereCollider>();
+        //if(_animator.layerCount == 2)
+            _animator.SetLayerWeight(1, 1);
     }
 
     public float GetTravelDistance(Vector3 destination) {
@@ -151,8 +154,24 @@ public class InstanceController : StateMachineController
 			_animator.SetBool("Kneel", false);
 		kneeling = tmpKneeling;
 
-        if(!facing)
-            return;
+        if (_foe) {
+            face(_foe.transform.position - transform.position);
+            _navmesh_agent.SetDestination(transform.position);
+            _animator.SetBool("Aiming", true);
+
+
+            movingSpeed = 0.0f;
+            _animator.SetFloat("Speed", 0.0f);
+
+            Vector3 dir = (_foe.transform.parent.transform.position - transform.position).normalized;
+            spine.localRotation = Quaternion.Euler(180.0f, 0.0f, Quaternion.LookRotation(dir).eulerAngles.x + 10.0f);
+
+            GetComponent<WeaponHandler>().startShooting();
+        }
+        else {
+            GetComponent<WeaponHandler>().stopShooting();
+            _animator.SetBool("Aiming", false);
+            movingSpeed = 0.11f;
         if (_use_point_target)
             _navmesh_agent.SetDestination(_target_point);
         else
@@ -176,8 +195,9 @@ public class InstanceController : StateMachineController
 		}
 
         // Face Foe but don't walk towards it.
-        if (_foe)
-            face(_foe.transform.position - transform.position);
+        //if (_foe)
+        //    face(_foe.transform.position - transform.position);
+        }
 	}
 
     void OnTriggerEnter(Collider other)
@@ -187,7 +207,7 @@ public class InstanceController : StateMachineController
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Enemy") {
+        if (other.transform.parent && other.transform.parent.gameObject.tag == "Enemy") {
             _scanSphere.radius = 2.0f * scanRadius;
             _foe = other.gameObject;
         }

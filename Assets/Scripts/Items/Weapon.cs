@@ -21,10 +21,14 @@ public class Weapon : Equipable
 	private Transform muzzleTransform;
 	private Transform hand;
 
+    void Awake () {
+        muzzleTransform = transform.FindChild("Mouth");
+    }
+
 	#region Initialization
 	void Start () 
 	{
-		muzzleTransform = transform.FindChild("Mouth");
+
 	}
 	#endregion
 	
@@ -57,7 +61,8 @@ public class Weapon : Equipable
 	}
 
 	public void shootProjectile () {
-		if (ammoScript.canShoot(ammoPerShot)) {
+		//if (ammoScript.canShoot(ammoPerShot)) {
+            audio.Play();
 
 			Vector3 spawnPos = muzzleTransform.transform.position;
 
@@ -70,7 +75,7 @@ public class Weapon : Equipable
 			projectileScript.initialize(spawnPos,  this, hand);
 
 			ammoScript.decreaseAmmo(ammoPerShot);
-		}
+		//}
 	}
 	#endregion
 

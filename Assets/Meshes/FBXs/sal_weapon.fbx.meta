@@ -10,8 +10,11 @@ ModelImporter:
     400002: Sal_model04:Sal_Skeleton_grp
     400004: //RootNode
     2300000: polySurface20
+    2300002: //RootNode
     3300000: polySurface20
+    3300002: //RootNode
     4300000: polySurface20
+    4300002: Weapon
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -29,7 +32,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: .0149999997
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -47,7 +50,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -63,5 +66,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 0
   userData: 
