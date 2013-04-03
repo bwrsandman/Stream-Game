@@ -4,10 +4,10 @@
 Assets/Meshes/scenes/
 
 *workshop*
-*Edit*
-*edit*
 Assets/Meshes/lib/*.psd
 Assets/Meshes/lib/*.psd.meta
+*[Ee]dit*.ma
+*[Ee]dit*.ma.meta
 *_version_*
 *landscape_02*
 *landscape_03*
@@ -17,8 +17,6 @@ MentalRay*
 
 *autosave*
 *TunelSizeTest*
-
-*B2M_2.1*
 
 preview*.jpg
 preview*.jpg.meta
