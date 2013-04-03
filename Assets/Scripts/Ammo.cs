@@ -31,7 +31,6 @@ public class Ammo : MonoBehaviour {
 	}
 
 	public void increaseAmmo (float delta) {
-        Debug.Log (maxAmmo + " " + maxAmmoOffset);
 		ammoLevel += delta;
 		if (ammoLevel > maxAmmo * recharge_percentage_lock && locked && freezeTime <= 0.0f)
 			locked = false;

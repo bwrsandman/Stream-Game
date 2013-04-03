@@ -48,12 +48,19 @@ public class Projectile : MonoBehaviour {
 			if (otherHealth != null)
 				otherHealth.decreaseHealth(damage);
 		}*/
-		else if (other.tag != "TriggerArea" && other.tag != "MainCamera" && other.name != "LongDistance" && other.tag != "player"  && other.tag != "Player" && other.tag != "Projectile") {
+        else if (other.tag == "Enemy") {
+            Health otherHealth = other.gameObject.GetComponent<Health>();
+             if (otherHealth != null)
+                 otherHealth.decreaseHealth(damage);
+    
+             Destroy(this.gameObject);
+        }
+		/*else if (other.tag != "TriggerArea" && other.tag != "MainCamera" && other.name != "LongDistance" && other.tag != "player"  && other.tag != "Player" && other.tag != "Projectile") {
 			Health otherHealth = other.gameObject.GetComponent<Health>();
 			if (otherHealth != null)
 				otherHealth.decreaseHealth(damage);
 
 			Destroy(this.gameObject);
-		}
+		}*/
 	}
 }
